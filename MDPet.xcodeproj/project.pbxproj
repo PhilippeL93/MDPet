@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EAC2239188E800CAA9E7 /* AppDelegate.swift */; };
-		3715EAC5239188E800CAA9E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EAC4239188E800CAA9E7 /* SceneDelegate.swift */; };
 		3715EAC7239188E800CAA9E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EAC6239188E800CAA9E7 /* ViewController.swift */; };
 		3715EACA239188E800CAA9E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAC8239188E800CAA9E7 /* Main.storyboard */; };
 		3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */; };
@@ -30,7 +29,6 @@
 /* Begin PBXFileReference section */
 		3715EABF239188E800CAA9E7 /* MDPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715EAC2239188E800CAA9E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3715EAC4239188E800CAA9E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3715EAC6239188E800CAA9E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3715EAC9239188E800CAA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3715EACC239188E800CAA9E7 /* MDPet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MDPet.xcdatamodel; sourceTree = "<group>"; };
@@ -81,14 +79,10 @@
 		3715EAC1239188E800CAA9E7 /* MDPet */ = {
 			isa = PBXGroup;
 			children = (
-				3715EAC2239188E800CAA9E7 /* AppDelegate.swift */,
-				3715EAC4239188E800CAA9E7 /* SceneDelegate.swift */,
-				3715EAC6239188E800CAA9E7 /* ViewController.swift */,
-				3715EAC8239188E800CAA9E7 /* Main.storyboard */,
-				3715EACE239188E800CAA9E7 /* Assets.xcassets */,
-				3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */,
-				3715EAD3239188E800CAA9E7 /* Info.plist */,
-				3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */,
+				3715EAEA23918A6200CAA9E7 /* Model */,
+				3715EAE923918A5C00CAA9E7 /* View */,
+				3715EAE823918A5300CAA9E7 /* Controler */,
+				3715EAE723918A4700CAA9E7 /* Supprotiing Files */,
 			);
 			path = MDPet;
 			sourceTree = "<group>";
@@ -102,6 +96,41 @@
 			path = MDPetTests;
 			sourceTree = "<group>";
 		};
+		3715EAE723918A4700CAA9E7 /* Supprotiing Files */ = {
+			isa = PBXGroup;
+			children = (
+				3715EAD3239188E800CAA9E7 /* Info.plist */,
+				3715EAC2239188E800CAA9E7 /* AppDelegate.swift */,
+				3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */,
+				3715EACE239188E800CAA9E7 /* Assets.xcassets */,
+			);
+			name = "Supprotiing Files";
+			sourceTree = "<group>";
+		};
+		3715EAE823918A5300CAA9E7 /* Controler */ = {
+			isa = PBXGroup;
+			children = (
+				3715EAC6239188E800CAA9E7 /* ViewController.swift */,
+			);
+			name = Controler;
+			sourceTree = "<group>";
+		};
+		3715EAE923918A5C00CAA9E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3715EAC8239188E800CAA9E7 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3715EAEA23918A6200CAA9E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,6 +141,7 @@
 				3715EABB239188E800CAA9E7 /* Sources */,
 				3715EABC239188E800CAA9E7 /* Frameworks */,
 				3715EABD239188E800CAA9E7 /* Resources */,
+				3715EAEB23918A8E00CAA9E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -198,6 +228,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3715EAEB23918A8E00CAA9E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3715EABB239188E800CAA9E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -206,7 +256,6 @@
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
 				3715EAC7239188E800CAA9E7 /* ViewController.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
-				3715EAC5239188E800CAA9E7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -352,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -369,6 +418,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88WF6385D;
 				INFOPLIST_FILE = MDPet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88WF6385D;
 				INFOPLIST_FILE = MDPet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
