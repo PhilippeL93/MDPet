@@ -39,6 +39,19 @@ class PetsViewController: UIViewController {
         deathDateText.resignFirstResponder()
     }
 
+    // MARK: - variables
+    private var datePickerBirthDate: UIDatePicker?
+    private var datePickerSterilized: UIDatePicker?
+    private var datePickerWeaning: UIDatePicker?
+    private var datePickerDeathDate: UIDatePicker?
+    private var pickerViewBreed = UIPickerView()
+    private var pickerViewVeterinary = UIPickerView()
+    private let imagePicker = UIImagePickerController()
+    var activeField: UITextField?
+    var lastOffset: CGPoint!
+    var keyboardHeight: CGFloat!
+    var constraintContentHeight: CGFloat!
+
     // MARK: - buttons
     ///   saveSettings in order to save in userDefaults
     @IBAction func addPetPhoto(_ sender: Any) {
@@ -54,16 +67,32 @@ class PetsViewController: UIViewController {
         createDatesPickerView()
         createBreedPickerView()
         createVeterinaryPickerView()
-    }
+        createPetTypeSegmentedCtrl()
+        nameText.delegate = self
+        tatooText.delegate = self
+        birthDateText.delegate = self
+        dateSterilizedText.delegate = self
+        veterinaryText.delegate = self
+        weaningDateText.delegate = self
+        breedText.delegate = self
+        deathDateText.delegate = self
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
 
-    // MARK: - variables
-    private var datePickerBirthDate: UIDatePicker?
-    private var datePickerSterilized: UIDatePicker?
-    private var datePickerWeaning: UIDatePicker?
-    private var datePickerDeathDate: UIDatePicker?
-    private var pickerViewBreed = UIPickerView()
-    private var pickerViewVeterinary = UIPickerView()
-    private let imagePicker = UIImagePickerController()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                              action: #selector(returnTextView(gesture:))))
+    }
+    @objc func returnTextView(gesture: UIGestureRecognizer) {
+        guard activeField != nil else {
+            return
+        }
+        activeField?.resignFirstResponder()
+        activeField = nil
+    }
 
     @objc func dateChangedBirthDate(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
@@ -86,6 +115,16 @@ class PetsViewController: UIViewController {
         deathDateText.text = dateFormatter.string(from: datePicker.date)
     }
 
+    @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
+        self.pickerViewBreed.reloadAllComponents()
+    }
+
+    private func createPetTypeSegmentedCtrl() {
+        petTypeSegmentedCtrl?.addTarget(self,
+                                       action: #selector(
+                                       PetsViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
+                                       for: .valueChanged)
+    }
     // MARK: - functions
     private func createDatesPickerView() {
         createDatePickerBirthDate()
@@ -149,7 +188,7 @@ class PetsViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Abandonnner", style: .cancel, handler: { (_)in
         }))
-        self.present(alert, animated: true, completion: {
+        present(alert, animated: true, completion: {
         })
     }
 
@@ -266,8 +305,6 @@ extension PetsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 }
 
 extension PetsViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    /*    function imagePickerController
-     */
 
     func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
         if error != nil {
@@ -293,5 +330,53 @@ extension PetsViewController: UINavigationControllerDelegate, UIImagePickerContr
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension PetsViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        activeField = textField
+        lastOffset = view.frame.origin
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        activeField?.resignFirstResponder()
+        activeField = nil
+        return true
+    }
+}
+
+// MARK: Keyboard Handling
+extension PetsViewController {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardHeight != nil {
+            return
+        }
+        if let keyboardSize =
+            (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height + 40
+            constraintContentHeight = keyboardHeight + view.frame.size.height
+
+            // move if keyboard hide input field
+            let distanceToBottom =
+                self.view.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
+            if distanceToBottom > keyboardHeight {
+                return
+            }
+            let collapseSpace = (keyboardHeight - distanceToBottom + 10) * -1
+            // set new offset for scroll view
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.frame.origin = CGPoint(x: self.lastOffset.x, y: collapseSpace)
+            })
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame.origin = CGPoint(x: 0, y: 0)
+        }
+        keyboardHeight = nil
     }
 }

@@ -122,6 +122,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bsy-hf-Nqe" userLabel="SwitchClinic">
+                                <rect key="frame" x="87" y="52" width="49" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="3zt-rq-poz"/>
+                                    <constraint firstAttribute="height" constant="31" id="jUO-Nr-8g6"/>
+                                </constraints>
+                            </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clinique" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwZ-Qh-zaq" userLabel="LabelClinicVeterinay">
                                 <rect key="frame" x="10" y="56" width="62" height="22"/>
                                 <constraints>
@@ -131,20 +138,14 @@
                                 <color key="textColor" red="0.25976192949999999" green="0.58702206609999996" blue="0.36859408020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bsy-hf-Nqe" userLabel="SwitchClinic">
-                                <rect key="frame" x="87" y="52" width="49" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="47" id="3zt-rq-poz"/>
-                                    <constraint firstAttribute="height" constant="31" id="jUO-Nr-8g6"/>
-                                </constraints>
-                            </switch>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zrX-4I-PEq" userLabel="TextFieldNameClinic">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zrX-4I-PEq" userLabel="TextFieldNameClinic">
                                 <rect key="frame" x="10" y="91" width="355" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="gL5-27-dFZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULB-0P-9FB" userLabel="LabelNameVeterinay">
                                 <rect key="frame" x="10" y="133" width="37" height="22"/>
@@ -155,8 +156,9 @@
                                 <color key="textColor" red="0.25976192949999999" green="0.58702206609999996" blue="0.36859408020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AP7-f3-LW2" userLabel="TextFieldNameVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AP7-f3-LW2" userLabel="TextFieldNameVeterinay">
                                 <rect key="frame" x="10" y="163" width="355" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="cqq-N6-GzD"/>
                                 </constraints>
@@ -172,8 +174,9 @@
                                 <color key="textColor" red="0.25976192949999999" green="0.58702206609999996" blue="0.36859408020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DKg-mr-PBT" userLabel="TextFieldFirstNameVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DKg-mr-PBT" userLabel="TextFieldFirstNameVeterinay">
                                 <rect key="frame" x="10" y="235" width="355" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="OHN-rJ-kSi"/>
                                 </constraints>
@@ -189,32 +192,36 @@
                                 <color key="textColor" red="0.25976192949999999" green="0.58702206609999996" blue="0.36859408020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xxS-Ka-87A" userLabel="TextFieldStreetOneVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xxS-Ka-87A" userLabel="TextFieldStreetOneVeterinay">
                                 <rect key="frame" x="10" y="307" width="355" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="H0s-RQ-GDp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="address-line1"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="address-line1"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDG-nU-WpY" userLabel="TextFieldStreetTwoVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDG-nU-WpY" userLabel="TextFieldStreetTwoVeterinay">
                                 <rect key="frame" x="10" y="349" width="355" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Xbc-Ff-CvD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="address-line1"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="address-line2"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IRm-dA-8GM" userLabel="TextFieldPostalCodeVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IRm-dA-8GM" userLabel="TextFieldPostalCodeVeterinay">
                                 <rect key="frame" x="10" y="391" width="62" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="vd0-6C-b4t"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0JH-dR-rA2" userLabel="TextFieldCityVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0JH-dR-rA2" userLabel="TextFieldCityVeterinay">
                                 <rect key="frame" x="87" y="391" width="278" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="278" id="0W7-sw-FZt"/>
                                     <constraint firstAttribute="height" constant="34" id="PvY-GF-Sqs"/>
@@ -231,8 +238,9 @@
                                 <color key="textColor" red="0.25976192949999999" green="0.58702206609999996" blue="0.36859408020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-Mh-5zu" userLabel="TextFieldPhoneVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-Mh-5zu" userLabel="TextFieldPhoneVeterinay">
                                 <rect key="frame" x="114" y="433" width="251" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="W05-u8-zhJ"/>
                                 </constraints>
@@ -248,8 +256,9 @@
                                 <color key="textColor" red="0.25976192949999999" green="0.58702206609999996" blue="0.36859408020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C6-X4-1RO" userLabel="TextFieldEmailVeterinay">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C6-X4-1RO" userLabel="TextFieldEmailVeterinay">
                                 <rect key="frame" x="81" y="475" width="284" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Hag-6o-aEM"/>
                                 </constraints>
@@ -345,18 +354,27 @@
                             <constraint firstItem="VEP-5b-9Xn" firstAttribute="height" secondItem="vwZ-Qh-zaq" secondAttribute="height" id="yPk-n1-8yU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jIN-de-sKP"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="BTX-pF-VWl" appends="YES" id="lmZ-xI-0fD"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Yan-cJ-cYs">
                         <barButtonItem key="rightBarButtonItem" title="Ok" id="4jc-SK-IYk" userLabel="RightBarButtonVeterinary"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cityText" destination="0JH-dR-rA2" id="aRm-Pg-k0d"/>
+                        <outlet property="clinicNameText" destination="zrX-4I-PEq" id="a91-Kb-wwr"/>
+                        <outlet property="emailAddressText" destination="3C6-X4-1RO" id="28G-jc-DAy"/>
+                        <outlet property="phoneNumberText" destination="LtT-Mh-5zu" id="jGo-ie-8Ad"/>
+                        <outlet property="postalCodeName" destination="IRm-dA-8GM" id="ji3-c2-2e6"/>
+                        <outlet property="streetOneText" destination="xxS-Ka-87A" id="LsO-0G-Awd"/>
+                        <outlet property="streetTwoText" destination="EDG-nU-WpY" id="Njo-6S-2X6"/>
+                        <outlet property="switchClinic" destination="vwZ-Qh-zaq" id="Nrx-AL-le5"/>
+                        <outlet property="veterinaryFirstNameText" destination="DKg-mr-PBT" id="hKU-oQ-Q7V"/>
+                        <outlet property="veterinaryNameText" destination="AP7-f3-LW2" id="h0n-cj-Apn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0GO-rX-eK7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="BTX-pF-VWl"/>
             </objects>
-            <point key="canvasLocation" x="3470" y="354"/>
+            <point key="canvasLocation" x="3469.5999999999999" y="353.9730134932534"/>
         </scene>
         <!--Pets-->
         <scene sceneID="MmO-Lt-hLX">
