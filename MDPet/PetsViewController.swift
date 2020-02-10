@@ -11,7 +11,7 @@ import UIKit
 // MARK: - class PetsViewController
 class PetsViewController: UIViewController {
 
-    // MARK: - outlets
+// MARK: - outlets
     ///   link between view elements and controller
     @IBOutlet weak var imagePet: UIImageView!
     @IBOutlet weak var petTypeSegmentedCtrl: UISegmentedControl!
@@ -39,7 +39,7 @@ class PetsViewController: UIViewController {
         deathDateText.resignFirstResponder()
     }
 
-    // MARK: - variables
+// MARK: - variables
     private var datePickerBirthDate: UIDatePicker?
     private var datePickerSterilized: UIDatePicker?
     private var datePickerWeaning: UIDatePicker?
@@ -47,12 +47,14 @@ class PetsViewController: UIViewController {
     private var pickerViewBreed = UIPickerView()
     private var pickerViewVeterinary = UIPickerView()
     private let imagePicker = UIImagePickerController()
-    var activeField: UITextField?
-    var lastOffset: CGPoint!
-    var keyboardHeight: CGFloat!
-    var constraintContentHeight: CGFloat!
+    private var activeField: UITextField?
+    private var lastOffset: CGPoint!
+    private var keyboardHeight: CGFloat!
+    private var constraintContentHeight: CGFloat!
+    private let localeLanguage = Locale(identifier: "FR-fr")
+    private var dateFormatter = DateFormatter()
 
-    // MARK: - buttons
+// MARK: - buttons
     ///   saveSettings in order to save in userDefaults
     @IBAction func addPetPhoto(_ sender: Any) {
         selectImageOrCamera(animated: true)
@@ -62,6 +64,7 @@ class PetsViewController: UIViewController {
     @IBAction func suppressPet(_ sender: Any) {
     }
 
+// MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatesPickerView()
@@ -86,6 +89,12 @@ class PetsViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(returnTextView(gesture:))))
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+
+// MARK: - @objc func
     @objc func returnTextView(gesture: UIGestureRecognizer) {
         guard activeField != nil else {
             return
@@ -95,37 +104,37 @@ class PetsViewController: UIViewController {
     }
 
     @objc func dateChangedBirthDate(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        formatDate()
         birthDateText.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedSterilized(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        formatDate()
         dateSterilizedText.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedWeaning(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        formatDate()
         weaningDateText.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedDeathDate(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        formatDate()
         deathDateText.text = dateFormatter.string(from: datePicker.date)
+    }
+    private func formatDate() {
+        dateFormatter.locale = localeLanguage
+        dateFormatter.dateFormat = "dd MMMM yyyy"
     }
 
     @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
         self.pickerViewBreed.reloadAllComponents()
     }
 
+// MARK: - functions
     private func createPetTypeSegmentedCtrl() {
         petTypeSegmentedCtrl?.addTarget(self,
                                        action: #selector(
                                        PetsViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
                                        for: .valueChanged)
     }
-    // MARK: - functions
     private func createDatesPickerView() {
         createDatePickerBirthDate()
         createDatePickerSterilized()
@@ -135,6 +144,7 @@ class PetsViewController: UIViewController {
     private func createDatePickerBirthDate() {
         datePickerBirthDate = UIDatePicker()
         datePickerBirthDate?.datePickerMode = .date
+        datePickerBirthDate?.locale = localeLanguage
         datePickerBirthDate?.addTarget(self,
                                        action: #selector(PetsViewController.dateChangedBirthDate(datePicker:)),
                                        for: .valueChanged)
@@ -143,6 +153,7 @@ class PetsViewController: UIViewController {
     private func createDatePickerSterilized() {
         datePickerSterilized = UIDatePicker()
         datePickerSterilized?.datePickerMode = .date
+        datePickerSterilized?.locale = localeLanguage
         datePickerSterilized?.addTarget(self,
                                        action: #selector(PetsViewController.dateChangedSterilized(datePicker:)),
                                        for: .valueChanged)
@@ -151,6 +162,7 @@ class PetsViewController: UIViewController {
     private func createDatePickerWeaning() {
         datePickerWeaning = UIDatePicker()
         datePickerWeaning?.datePickerMode = .date
+        datePickerWeaning?.locale = localeLanguage
         datePickerWeaning?.addTarget(self,
                                        action: #selector(PetsViewController.dateChangedWeaning(datePicker:)),
                                        for: .valueChanged)
@@ -159,6 +171,7 @@ class PetsViewController: UIViewController {
     private func createDatePickerDeathDate() {
         datePickerDeathDate = UIDatePicker()
         datePickerDeathDate?.datePickerMode = .date
+        datePickerDeathDate?.locale = localeLanguage
         datePickerDeathDate?.addTarget(self,
                                        action: #selector(PetsViewController.dateChangedDeathDate(datePicker:)),
                                        for: .valueChanged)
@@ -174,7 +187,7 @@ class PetsViewController: UIViewController {
         veterinaryText.inputView = pickerViewVeterinary
     }
 
-    // MARK: - images management
+// MARK: - images management
     ///   selectImageOrCamera in order to choose between
     ///    - photo from library of Iphone ==> call function getImage with parameter photo
     ///    - to take a photo with camera ==> call function getImage with parameter camera
@@ -304,6 +317,7 @@ extension PetsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 }
 
+// MARK: - extension for getting image
 extension PetsViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
@@ -333,7 +347,7 @@ extension PetsViewController: UINavigationControllerDelegate, UIImagePickerContr
     }
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension PetsViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         activeField = textField
@@ -348,9 +362,9 @@ extension PetsViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: Keyboard Handling
-extension PetsViewController {
-    @objc func keyboardWillShow(notification: NSNotification) {
+// MARK: - Keyboard Handling
+private extension PetsViewController {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         if keyboardHeight != nil {
             return
         }
@@ -373,7 +387,7 @@ extension PetsViewController {
         }
     }
 
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
             self.view.frame.origin = CGPoint(x: 0, y: 0)
         }
