@@ -13,31 +13,20 @@ class PetsViewController: UIViewController {
 
 // MARK: - outlets
     ///   link between view elements and controller
-    @IBOutlet weak var imagePet: UIImageView!
-    @IBOutlet weak var petTypeSegmentedCtrl: UISegmentedControl!
+    @IBOutlet weak var petTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var imagePetLabel: UIImageView!
     @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var petSexeSegmentedCtrl: UISegmentedControl!
+    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var birthDateText: UITextField!
     @IBOutlet weak var tatooText: UITextField!
     @IBOutlet weak var sterilizedSwitch: UISwitch!
     @IBOutlet weak var dateSterilizedText: UITextField!
     @IBOutlet weak var veterinaryText: UITextField!
-    @IBOutlet weak var breedText: UITextField!
-
+    @IBOutlet weak var raceText: UITextField!
     @IBOutlet weak var weaningSwitch: UISwitch!
     @IBOutlet weak var weaningDateText: UITextField!
     @IBOutlet weak var deathDateText: UITextField!
-
-    @IBAction func dismissKeyBoard(_ sender: UITapGestureRecognizer) {
-        nameText.resignFirstResponder()
-        tatooText.resignFirstResponder()
-        birthDateText.resignFirstResponder()
-        dateSterilizedText.resignFirstResponder()
-        veterinaryText.resignFirstResponder()
-        weaningDateText.resignFirstResponder()
-        breedText.resignFirstResponder()
-        deathDateText.resignFirstResponder()
-    }
+    @IBOutlet weak var savePetButton: UIBarButtonItem!
 
 // MARK: - variables
     private var datePickerBirthDate: UIDatePicker?
@@ -53,6 +42,7 @@ class PetsViewController: UIViewController {
     private var constraintContentHeight: CGFloat!
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
+    private var pets: Pets?
 
 // MARK: - buttons
     ///   saveSettings in order to save in userDefaults
@@ -60,6 +50,8 @@ class PetsViewController: UIViewController {
         selectImageOrCamera(animated: true)
     }
     @IBAction func savePet(_ sender: Any) {
+//        createPetObject()
+//        checkPetStatus()
     }
     @IBAction func suppressPet(_ sender: Any) {
     }
@@ -67,27 +59,10 @@ class PetsViewController: UIViewController {
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDatesPickerView()
-        createBreedPickerView()
-        createVeterinaryPickerView()
-        createPetTypeSegmentedCtrl()
-        nameText.delegate = self
-        tatooText.delegate = self
-        birthDateText.delegate = self
-        dateSterilizedText.delegate = self
-        veterinaryText.delegate = self
-        weaningDateText.delegate = self
-        breedText.delegate = self
-        deathDateText.delegate = self
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                              action: #selector(returnTextView(gesture:))))
+        createPickerView()
+        createDelegate()
+        toggleSavePetButton(shown: false)
+        initiateObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -129,17 +104,34 @@ class PetsViewController: UIViewController {
     }
 
 // MARK: - functions
-    private func createPetTypeSegmentedCtrl() {
-        petTypeSegmentedCtrl?.addTarget(self,
-                                       action: #selector(
-                                       PetsViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
-                                       for: .valueChanged)
-    }
-    private func createDatesPickerView() {
+    private func createPickerView() {
         createDatePickerBirthDate()
         createDatePickerSterilized()
         createDatePickerWeaning()
         createDatePickerDeathDate()
+        createBreedPickerView()
+        createVeterinaryPickerView()
+        createPetTypeSegmentedCtrl()
+    }
+    private func createDelegate() {
+        nameText.delegate = self
+        tatooText.delegate = self
+        birthDateText.delegate = self
+        dateSterilizedText.delegate = self
+        veterinaryText.delegate = self
+        weaningDateText.delegate = self
+        raceText.delegate = self
+        deathDateText.delegate = self
+    }
+    private func initiateObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                              action: #selector(returnTextView(gesture:))))
     }
     private func createDatePickerBirthDate() {
         datePickerBirthDate = UIDatePicker()
@@ -177,14 +169,79 @@ class PetsViewController: UIViewController {
                                        for: .valueChanged)
         deathDateText.inputView = datePickerDeathDate
     }
-
     private func createBreedPickerView() {
         pickerViewBreed.delegate = self
-        breedText.inputView = pickerViewBreed
+        raceText.inputView = pickerViewBreed
     }
     private func createVeterinaryPickerView() {
         pickerViewVeterinary.delegate = self
         veterinaryText.inputView = pickerViewVeterinary
+    }
+    private func createPetTypeSegmentedCtrl() {
+        petTypeSegmentedControl?.addTarget(self,
+                                       action: #selector(
+                                       PetsViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
+                                       for: .valueChanged)
+    }
+
+    private func checkPetComplete() {
+        guard let imagePet = (imagePetLabel.image)?.pngData() else {
+            return
+        }
+        let petTypeIndex = petTypeSegmentedControl.selectedSegmentIndex
+        let petType: Pets.PetType = (petTypeIndex == 0) ? .cat : .rodent
+        guard let name = nameText.text else {
+            return
+        }
+        let genderIndex = genderSegmentedControl.selectedSegmentIndex
+        let gender: Pets.Gender = (genderIndex == 0) ? .female : .male
+        guard let birdthDate = birthDateText.text else {
+            return
+        }
+        guard let tatoo = tatooText.text else {
+            return
+        }
+        let sterilized = sterilizedSwitch.isOn
+        guard let sterilizedDate = dateSterilizedText.text else {
+            return
+        }
+        guard let veterinary = dateSterilizedText.text else {
+            return
+        }
+        guard let race = raceText.text else {
+            return
+        }
+        let weaning = weaningSwitch.isOn
+        guard let weaningDate = weaningDateText.text else {
+            return
+        }
+        guard let deathDate = deathDateText.text else {
+            return
+        }
+        pets = Pets(imagePet: imagePet,
+                    petType: petType,
+                    name: name,
+                    gender: gender,
+                    birdthDate: birdthDate,
+                    tatoo: tatoo,
+                    sterilized: sterilized,
+                    sterilizedDate: sterilizedDate,
+                    veterinary: veterinary,
+                    race: race,
+                    weaning: weaning,
+                    weaningDate: weaningDate,
+                    deathDate: deathDate)
+        toggleSavePetButton(shown: true)
+    }
+    private func toggleSavePetButton(shown: Bool) {
+        switch shown {
+        case true:
+            savePetButton.tintColor = #colorLiteral(red: 0.6904090591, green: 0.9153559804, blue: 0, alpha: 1)
+        case false:
+            savePetButton.tintColor = #colorLiteral(red: 0.8214782803, green: 1, blue: 0.6659395258, alpha: 1)
+        }
+    savePetButton.isEnabled = shown
+    savePetButton.isAccessibilityElement = shown
     }
 
 // MARK: - images management
@@ -209,7 +266,7 @@ class PetsViewController: UIViewController {
     ///     - if photo direct imagePickerController with source photoLibrary
     ///     - if camera verifying available on this device
     ///         - if camera available call of imagePickerController with source camera
-    ///             - else noCamera
+    ///             - else error noCamera
     private func getImage(source: String) {
         let source = source
         let imagePicker = UIImagePickerController()
@@ -223,30 +280,13 @@ class PetsViewController: UIViewController {
                 imagePicker.cameraCaptureMode = .photo
                 imagePicker.modalPresentationStyle = .fullScreen
             } else {
-                noCamera()
+                getErrors(type: .noCamera)
             }
         default:
             break
         }
         imagePicker.allowsEditing = false
         self.present(imagePicker, animated: true)
-    }
-
-    ///    noCamera display message when device has no camera
-    private func noCamera() {
-        let alertVC = UIAlertController(
-            title: "Pas d'appareil photo",
-            message: "Désolé, cet appareil n'a pas d'appareil photo",
-            preferredStyle: .alert)
-        let okAction = UIAlertAction(
-            title: "OK",
-            style: .default,
-            handler: nil)
-        alertVC.addAction(okAction)
-        present(
-            alertVC,
-            animated: true,
-            completion: nil)
     }
 }
 
@@ -260,7 +300,7 @@ extension PetsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         if pickerView == pickerViewVeterinary {
             return 0
         } else {
-            switch petTypeSegmentedCtrl.selectedSegmentIndex {
+            switch petTypeSegmentedControl.selectedSegmentIndex {
             case 0:
                 return catRaces.count
             case 1:
@@ -279,7 +319,7 @@ extension PetsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         if pickerView == pickerViewVeterinary {
             return nil
         } else {
-            switch petTypeSegmentedCtrl.selectedSegmentIndex {
+            switch petTypeSegmentedControl.selectedSegmentIndex {
             case 0:
                 return catRaces[row]
             case 1:
@@ -300,7 +340,7 @@ extension PetsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             selected = ""
             veterinaryText.text = selected
         } else {
-            switch petTypeSegmentedCtrl.selectedSegmentIndex {
+            switch petTypeSegmentedControl.selectedSegmentIndex {
             case 0:
                 selected = catRaces[row]
             case 1:
@@ -312,7 +352,7 @@ extension PetsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             default:
                 selected = ""
             }
-            breedText.text = selected
+            raceText.text = selected
         }
     }
 }
@@ -322,22 +362,16 @@ extension PetsViewController: UINavigationControllerDelegate, UIImagePickerContr
 
     func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
         if error != nil {
-            let alert = UIAlertController(title: "Save Failed",
-                                          message: "Failed to save image",
-                                          preferredStyle: UIAlertController.Style.alert)
-            let cancelAction = UIAlertAction(title: "OK",
-                                             style: .cancel, handler: nil)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true,
-                         completion: nil)
+            getErrors(type: .saveFailed)
         }
     }
 
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imagePet.contentMode = .scaleAspectFit
-            imagePet.image = pickedImage
+            imagePetLabel.contentMode = .scaleAspectFit
+            imagePetLabel.image = pickedImage
+            checkPetComplete()
         }
         dismiss(animated: true, completion: nil)
     }
@@ -392,5 +426,6 @@ private extension PetsViewController {
             self.view.frame.origin = CGPoint(x: 0, y: 0)
         }
         keyboardHeight = nil
+        checkPetComplete()
     }
 }
