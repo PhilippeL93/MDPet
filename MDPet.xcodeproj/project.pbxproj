@@ -13,9 +13,15 @@
 		3715EACF239188E800CAA9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3715EACE239188E800CAA9E7 /* Assets.xcassets */; };
 		3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */; };
 		3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* MDPetTests.swift */; };
+		372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFC9248676B600984537 /* SettingsViewController.swift */; };
+		372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCB248682FA00984537 /* PetsListTableViewController.swift */; };
+		372CFFCE2486839200984537 /* PetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCD2486839200984537 /* PetItem.swift */; };
+		372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */; };
+		372CFFD42486A2A400984537 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD32486A2A400984537 /* User.swift */; };
+		372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD52486A72400984537 /* VeterinaryItem.swift */; };
 		3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CEF623EDC53D002B8999 /* TabBarViewController.swift */; };
 		3748CF1B23EDE48C002B8999 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748CF1A23EDE48C002B8999 /* CloudKit.framework */; };
-		3748CF1D23EEA0B1002B8999 /* PetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF1C23EEA0B1002B8999 /* PetsViewController.swift */; };
+		3748CF1D23EEA0B1002B8999 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF1C23EEA0B1002B8999 /* PetViewController.swift */; };
 		3748CF2123EF194B002B8999 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2023EF194B002B8999 /* Races.swift */; };
 		3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2223EFE84B002B8999 /* SettingsButton.swift */; };
 		3748CF2523EFEA5D002B8999 /* SettingsImagePetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsImagePetView.swift */; };
@@ -49,9 +55,15 @@
 		3715EAD8239188E900CAA9E7 /* MDPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MDPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715EADC239188E900CAA9E7 /* MDPetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPetTests.swift; sourceTree = "<group>"; };
 		3715EADE239188E900CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		372CFFC9248676B600984537 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../../xCode/MDPet/MDPet/MDPet/Controller/SettingsViewController.swift; sourceTree = "<group>"; };
+		372CFFCB248682FA00984537 /* PetsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PetsListTableViewController.swift; path = ../../../../../xCode/MDPet/MDPet/MDPet/Controller/PetsListTableViewController.swift; sourceTree = "<group>"; };
+		372CFFCD2486839200984537 /* PetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PetItem.swift; path = ../../../../../xCode/MDPet/MDPet/MDPet/Model/PetItem.swift; sourceTree = "<group>"; };
+		372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VeterinariesListTableViewController.swift; path = ../../../../../xCode/MDPet/MDPet/MDPet/Controller/VeterinariesListTableViewController.swift; sourceTree = "<group>"; };
+		372CFFD32486A2A400984537 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../../xCode/MDPet/MDPet/MDPet/Model/User.swift; sourceTree = "<group>"; };
+		372CFFD52486A72400984537 /* VeterinaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VeterinaryItem.swift; path = ../../../../../xCode/MDPet/MDPet/MDPet/Model/VeterinaryItem.swift; sourceTree = "<group>"; };
 		3748CEF623EDC53D002B8999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		3748CF1A23EDE48C002B8999 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		3748CF1C23EEA0B1002B8999 /* PetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsViewController.swift; sourceTree = "<group>"; };
+		3748CF1C23EEA0B1002B8999 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
 		3748CF2023EF194B002B8999 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		3748CF2223EFE84B002B8999 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		3748CF2423EFEA5D002B8999 /* SettingsImagePetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsImagePetView.swift; sourceTree = "<group>"; };
@@ -146,6 +158,9 @@
 				3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */,
 				3748CF2023EF194B002B8999 /* Races.swift */,
 				37CED12D23FC154200CF6247 /* Pets.swift */,
+				372CFFCD2486839200984537 /* PetItem.swift */,
+				372CFFD52486A72400984537 /* VeterinaryItem.swift */,
+				372CFFD32486A2A400984537 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,7 +179,10 @@
 			isa = PBXGroup;
 			children = (
 				37CED13C23FD329500CF6247 /* LoginViewController.swift */,
-				3748CF1C23EEA0B1002B8999 /* PetsViewController.swift */,
+				372CFFC9248676B600984537 /* SettingsViewController.swift */,
+				372CFFCB248682FA00984537 /* PetsListTableViewController.swift */,
+				3748CF1C23EEA0B1002B8999 /* PetViewController.swift */,
+				372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */,
 				3748CF4823F06623002B8999 /* VeterinayViewController.swift */,
 				3748CEF623EDC53D002B8999 /* TabBarViewController.swift */,
 				37CED12923FC112100CF6247 /* UIViewController+Alert.swift */,
@@ -382,9 +400,15 @@
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
+				372CFFD42486A2A400984537 /* User.swift in Sources */,
+				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
+				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
+				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsImagePetView.swift in Sources */,
-				3748CF1D23EEA0B1002B8999 /* PetsViewController.swift in Sources */,
+				3748CF1D23EEA0B1002B8999 /* PetViewController.swift in Sources */,
+				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
+				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
 				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,
 			);

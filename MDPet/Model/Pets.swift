@@ -14,23 +14,23 @@ struct Pets {
         case cat, dog, rabbit, rodent
     }
 
-    enum Gender {
+    enum PetGender {
         case male, female
     }
 
-    var imagePet: Data
+    var petPicture: Data
     var petType: PetType
-    var name: String
-    var gender: Gender
-    var birdthDate: String
-    var tatoo: String
-    var sterilized: Bool
-    var sterilizedDate: String
-    var veterinary: String
-    var race: String
-    var weaning: Bool
-    var weaningDate: String
-    var deathDate: String
+    var petName: String
+    var petGender: PetGender
+    var petBirthDate: String
+    var petTatoo: String
+    var petSterilized: Bool
+    var petSterilizedDate: String
+    var petVeterinary: String
+    var petRace: String
+    var petWeaning: Bool
+    var petWeaningDate: String
+    var petDeathDate: String
 }
 
 extension Pets {
@@ -40,10 +40,10 @@ extension Pets {
     }
 
     var status: Status {
-        if name.isEmpty {
-            return .rejected("Vous n'avez pas indiqué votre nom !")
+        if petName.isEmpty {
+            return .rejected("Vous n'avez pas indiqué de nom !")
         }
-        if race.isEmpty {
+        if petRace.isEmpty {
             return .rejected("Quel est la race de votre animal?")
         }
         return .accepted

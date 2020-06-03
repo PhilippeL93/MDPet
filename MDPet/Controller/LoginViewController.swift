@@ -26,13 +26,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
       super.viewDidLoad()
 
-      Auth.auth().addStateDidChangeListener { auth, user in
-        if user != nil {
-          self.performSegue(withIdentifier: self.loginToList, sender: nil)
-          self.textFieldLoginEmail.text = nil
-          self.textFieldLoginPassword.text = nil
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                self.performSegue(withIdentifier: self.loginToList, sender: nil)
+                self.textFieldLoginEmail.text = nil
+                self.textFieldLoginPassword.text = nil
+                print("login user.UserID : \(String(describing: user?.uid))")
+            }
         }
-      }
     }
 
     @IBAction func loginDidTouch(_ sender: Any) {
@@ -76,9 +77,9 @@ class LoginViewController: UIViewController {
                                         let alert = UIAlertController(title: "Sign In Failed",
                                                                       message: error?.localizedDescription,
                                                                       preferredStyle: .alert)
-                                        
+
                                         alert.addAction(UIAlertAction(title: "OK", style: .default))
-                                        
+
                                         self.present(alert, animated: true, completion: nil)
                                         return
                                     }
