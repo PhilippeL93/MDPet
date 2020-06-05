@@ -13,39 +13,39 @@ struct PetItem {
 
     let ref: DatabaseReference?
     let key: String
-    var petPicture: Data
-    var petType: PetType
     var petName: String
-    var petGender: PetGender
-    var petBirthDate: Date
+    var petURLPicture: String
+    var petType: Int
+    var petGender: Int
+    var petBirthDate: String
     var petTatoo: String
     var petSterilized: Bool
-    var petSterilizedDate: Date
+    var petSterilizedDate: String
     var petVeterinary: String
     var petRace: String
     var petWeaning: Bool
-    var petWeaningDate: Date
-    var petDeathDate: Date
+    var petWeaningDate: String
+    var petDeathDate: String
 
-    enum PetType {
-        case cat, dog, rabbit, rodent
-    }
+//    enum PetType {
+//        case cat, dog, rabbit, rodent
+//    }
+//
+//    enum PetGender {
+//        case male, female
+//    }
 
-    enum PetGender {
-        case male, female
-    }
-    
     init(name: String, key: String = "",
-         picture: Data, type: PetType,
-         gender: PetGender, birthDate: Date,
+         URLPicture: String, type: Int,
+         gender: Int, birthDate: String,
          tatoo: String, sterilized: Bool,
-         sterilizedDate: Date, veterinary: String,
+         sterilizedDate: String, veterinary: String,
          race: String, weaning: Bool,
-         weaningDate: Date, deathDate: Date) {
+         weaningDate: String, deathDate: String) {
         self.ref = nil
         self.key = key
         self.petName = name
-        self.petPicture = picture
+        self.petURLPicture = URLPicture
         self.petType = type
         self.petGender = gender
         self.petBirthDate = birthDate
@@ -63,25 +63,25 @@ struct PetItem {
         guard
             let value = snapshot.value as? [String: AnyObject],
             let petName = value["petName"] as? String,
-            let petPicture = value["petPicture"] as? Data,
-            let petType = value["petType"] as? PetType,
-            let petGender = value["petGender"] as? PetGender,
-            let petBirthDate = value["petBirthDate"] as? Date,
+            let petURLPicture = value["petURLPicture"] as? String,
+            let petType = value["petType"] as? Int,
+            let petGender = value["petGender"] as? Int,
+            let petBirthDate = value["petBirthDate"] as? String,
             let petTatoo = value["petTatoo"] as? String,
             let petSterilized = value["petSterilized"] as? Bool,
-            let petSterilizedDate = value["petSterilizedDate"] as? Date,
+            let petSterilizedDate = value["petSterilizedDate"] as? String,
             let petVeterinary = value["petVeterinary"] as? String,
             let petRace = value["petRace"] as? String,
             let petWeaning = value["petWeaning"] as? Bool,
-            let petWeaningDate = value["petWeaningDate"] as? Date ,
-            let petDeathDate = value["petDeathDate"] as? Date else {
+            let petWeaningDate = value["petWeaningDate"] as? String ,
+            let petDeathDate = value["petDeathDate"] as? String else {
                 return nil
         }
 
         self.ref = snapshot.ref
         self.key = snapshot.key
         self.petName = petName
-        self.petPicture = petPicture
+        self.petURLPicture = petURLPicture
         self.petType = petType
         self.petGender = petGender
         self.petBirthDate = petBirthDate
@@ -98,18 +98,18 @@ struct PetItem {
     func toAnyObject() -> Any {
         return [
             "petName": petName,
-            "petPicture"  : petPicture,
-            "petType"  : petType,
-            "petGender"  : petGender,
-            "petBirthDate"  : petBirthDate,
-            "petTatoo"  : petTatoo,
-            "petSterilized"  : petSterilized,
-            "petSterilizedDate"  : petSterilizedDate,
-            "petVeterinary"  : petVeterinary,
-            "petRace"  : petRace,
-            "petWeaning"  : petWeaning,
-            "petWeaningDate"  : petWeaningDate,
-            "petDeathDate"  : petDeathDate
+            "petURLPicture": petURLPicture,
+            "petType": petType,
+            "petGender": petGender,
+            "petBirthDate": petBirthDate,
+            "petTatoo": petTatoo,
+            "petSterilized": petSterilized,
+            "petSterilizedDate": petSterilizedDate,
+            "petVeterinary": petVeterinary,
+            "petRace": petRace,
+            "petWeaning": petWeaning,
+            "petWeaningDate": petWeaningDate,
+            "petDeathDate": petDeathDate
         ]
     }
 }

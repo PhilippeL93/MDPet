@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 // MARK: - class PetViewController
 class PetViewController: UIViewController {
@@ -44,10 +45,12 @@ class PetViewController: UIViewController {
     private var constraintContentHeight: CGFloat!
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
-    private var petName: String = ""
-    private var pets: Pets?
+//    private var petName: String = ""
+//    private var pet: Pets
+     var petItem: PetItem?
 
     var databaseRef = Database.database().reference(withPath: "pets-items")
+    var imageRef = Storage.storage().reference().child("pets-items")
 
 // MARK: - buttons
     ///   
@@ -58,22 +61,12 @@ class PetViewController: UIViewController {
     @IBAction func savePet(_ sender: Any) {
         //        createPetObject()
         //        checkPetStatus()
-        let petItem = PetItem(name: petName,
-                              key: "",
-                              picture: pets.petPicture,
-                              type: pets.petType,
-                              gender: pets.petGender,
-                              birthDate: pets.petBirthDate,
-                              tatoo: pets.petTatoo,
-                              sterilized: pets.petSterilizedIsOn,
-                              sterilizedDate: pets.petSterilizedDate,
-                              veterinary: pets.petVeterinary,
-                              race: pets.petRace,
-                              weaning: pets.petWeaningIsOn,
-                              weaningDate: pets.petWeaningDate,
-                              deathDate: pets.petDeathDate)
+        guard let petName = petNameField.text else {
+            return
+        }
+        checkPetComplete()
         let petItemRef = self.databaseRef.child(petName.lowercased())
-        petItemRef.setValue(petItem.toAnyObject())
+        petItemRef.setValue(petItem?.toAnyObject())
     }
 
     @IBAction func suppressPet(_ sender: Any) {
@@ -211,13 +204,15 @@ class PetViewController: UIViewController {
         guard let petPicture = (petPicture.image)?.pngData() else {
             return
         }
+        let petURLPicture = "ff"
+
         let petTypeIndex = petTypeSegmentedControl.selectedSegmentIndex
-        let petType: Pets.PetType = (petTypeIndex == 0) ? .cat : .rodent
-        guard petName == petNameField.text else {
+//        let petType: PetItem.PetType = (petTypeIndex == 0) ? .cat : .rodent
+        guard let petName = petNameField.text else {
             return
         }
-        let genderIndex = petGenderSegmentedControl.selectedSegmentIndex
-        let petGender: Pets.PetGender = (genderIndex == 0) ? .female : .male
+        let petGenderIndex = petGenderSegmentedControl.selectedSegmentIndex
+//        let petGender: Pets.PetGender = (petGenderIndex == 0) ? .female : .male
         guard let petBirthDate = petBirthDateField.text else {
             return
         }
@@ -241,19 +236,34 @@ class PetViewController: UIViewController {
         guard let petDeathDate = petDeathDateField.text else {
             return
         }
-        pets = Pets(petPicture: petPicture,
-                    petType: petType,
-                    petName: petName,
-                    petGender: petGender,
-                    petBirthDate: petBirthDate,
-                    petTatoo: petTatoo,
-                    petSterilized: petSterilizedIsOn,
-                    petSterilizedDate: petSterilizedDate,
-                    petVeterinary: petVeterinary,
-                    petRace: petRace,
-                    petWeaning: petWeaningIsOn,
-                    petWeaningDate: petWeaningDate,
-                    petDeathDate: petDeathDate)
+        petItem = PetItem(name: petName,
+                          key: "",
+                          URLPicture: petURLPicture,
+                          type: petTypeIndex,
+                          gender: petGenderIndex,
+                          birthDate: petBirthDate,
+                          tatoo: petTatoo,
+                          sterilized: petSterilizedIsOn,
+                          sterilizedDate: petSterilizedDate,
+                          veterinary: petVeterinary,
+                          race: petRace,
+                          weaning: petWeaningIsOn,
+                          weaningDate: petWeaningDate,
+                          deathDate: petDeathDate)
+        let petItemtest = PetItem(name: petName,
+                                  key: "",
+                                  URLPicture: petURLPicture,
+                                  type: petTypeIndex,
+                                  gender: petGenderIndex,
+                                  birthDate: petBirthDate,
+                                  tatoo: petTatoo,
+                                  sterilized: petSterilizedIsOn,
+                                  sterilizedDate: petSterilizedDate,
+                                  veterinary: petVeterinary,
+                                  race: petRace,
+                                  weaning: petWeaningIsOn,
+                                  weaningDate: petWeaningDate,
+                                  deathDate: petDeathDate)
         toggleSavePetButton(shown: true)
     }
     private func toggleSavePetButton(shown: Bool) {
@@ -297,6 +307,7 @@ class PetViewController: UIViewController {
         switch source {
         case "photo":
             imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            imagePicker.modalPresentationStyle = .fullScreen
         case "camera":
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -308,7 +319,7 @@ class PetViewController: UIViewController {
         default:
             break
         }
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true)
     }
 }

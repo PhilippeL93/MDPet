@@ -1,5 +1,5 @@
 //
-//  PetsListTableViewController.swift
+//  VeterinariesListTableViewController.swift
 //  MDPet
 //
 //  Created by Philippe on 02/06/2020.
@@ -9,15 +9,15 @@
 import UIKit
 import Firebase
 
-class PetsListTableViewController: UITableViewController {
+class VeterinariesListTableViewController: UITableViewController {
 
     // MARK: Constants
     let listToUsers = "ListToUsers"
 
     // MARK: Properties
-    var items: [PetItem] = []
+    var items: [VeterinaryItem] = []
     var user: User!
-    var databaseRef = Database.database().reference(withPath: " ")
+    var databaseRef = Database.database().reference(withPath: "veterinay-tems")
     let usersRef = Database.database().reference(withPath: "online")
 
     // MARK: UIViewController Lifecycle
