@@ -64,10 +64,16 @@ extension PetsListTableViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemPet", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemPet", for: indexPath)
+            as? PresentPetsCell else {
+            return UITableViewCell()
+        }
+        
         let petItem = items[indexPath.row]
 
-        cell.textLabel?.text = petItem.petName
+//        cell.textLabel?.text = petItem.petName
+//        cell.configurePetCell(with: ,
+        cell.configurePetCell(with: petItem.petName, picture: petItem.petURLPicture, birthDate: petItem.petBirthDate)
         return cell
     }
 

@@ -201,6 +201,13 @@ class PetViewController: UIViewController {
     }
 
     private func checkPetComplete() {
+        guard let petName = petNameField.text else {
+            return
+        }
+
+        guard !petName.isEmpty else {
+            return
+        }
         guard let petPicture = (petPicture.image)?.pngData() else {
             return
         }
@@ -208,9 +215,7 @@ class PetViewController: UIViewController {
 
         let petTypeIndex = petTypeSegmentedControl.selectedSegmentIndex
 //        let petType: PetItem.PetType = (petTypeIndex == 0) ? .cat : .rodent
-        guard let petName = petNameField.text else {
-            return
-        }
+
         let petGenderIndex = petGenderSegmentedControl.selectedSegmentIndex
 //        let petGender: Pets.PetGender = (petGenderIndex == 0) ? .female : .male
         guard let petBirthDate = petBirthDateField.text else {
@@ -269,9 +274,9 @@ class PetViewController: UIViewController {
     private func toggleSavePetButton(shown: Bool) {
         switch shown {
         case true:
-            savePetButton.tintColor = #colorLiteral(red: 0.6904090591, green: 0.9153559804, blue: 0, alpha: 1)
+            savePetButton.tintColor = #colorLiteral(red: 1, green: 0.2730214596, blue: 0.2258683443, alpha: 1)
         case false:
-            savePetButton.tintColor = #colorLiteral(red: 0.8214782803, green: 1, blue: 0.6659395258, alpha: 1)
+            savePetButton.tintColor = #colorLiteral(red: 0.7256230712, green: 0.725236237, blue: 0.7426275611, alpha: 1)
         }
     savePetButton.isEnabled = shown
     savePetButton.isAccessibilityElement = shown
