@@ -27,14 +27,6 @@ struct PetItem {
     var petWeaningDate: String
     var petDeathDate: String
 
-//    enum PetType {
-//        case cat, dog, rabbit, rodent
-//    }
-//
-//    enum PetGender {
-//        case male, female
-//    }
-
     init(name: String, key: String = "",
          URLPicture: String, type: Int,
          gender: Int, birthDate: String,
@@ -74,7 +66,8 @@ struct PetItem {
             let petRace = value["petRace"] as? String,
             let petWeaning = value["petWeaning"] as? Bool,
             let petWeaningDate = value["petWeaningDate"] as? String ,
-            let petDeathDate = value["petDeathDate"] as? String else {
+            let petDeathDate = value["petDeathDate"] as? String
+            else {
                 return nil
         }
 

@@ -13,18 +13,25 @@ class PetsListTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    @IBAction func addNewPet(_ sender: UIBarButtonItem) {
+        createNewPet()
+    }
     // MARK: Constants
     let listToUsers = "ListToUsers"
 
     // MARK: Properties
     var items: [PetItem] = []
     var user: User!
-    var databaseRef = Database.database().reference(withPath: "pets-items")
+    var databaseRef = Database.database().reference(withPath: "pets-item")
     let usersRef = Database.database().reference(withPath: "online")
+    var userUid: UserUid!
 
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
         super.viewDidLoad()
+        let userUid = UserUid.uid
+
+        databaseRef = Database.database().reference(withPath: "\(userUid)")
 
         databaseRef.queryOrdered(byChild: "petBirthDate").observe(.value, with: { snapshot in
           var newItems: [PetItem] = []
@@ -34,7 +41,6 @@ class PetsListTableViewController: UIViewController {
               newItems.append(petItem)
             }
           }
-
           self.items = newItems
           self.tableView.reloadData()
         })
@@ -42,7 +48,7 @@ class PetsListTableViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
-//            self.databaseRef = Database.database().reference(withPath: "\(user.uid)")
+
             let currentUserRef = self.usersRef.child(self.user.uid)
             currentUserRef.setValue(self.user.email)
             currentUserRef.onDisconnectRemoveValue()
@@ -54,6 +60,14 @@ class PetsListTableViewController: UIViewController {
 //            self.userCountBarButtonItem?.title = "0"
 //          }
         })
+    }
+    private func createNewPet() {
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
+            as? PetViewController else {
+                return
+        }
+        destVC.typeOfCall = "create"
+        self.show(destVC, sender: self)
     }
 }
 
@@ -68,11 +82,8 @@ extension PetsListTableViewController: UITableViewDataSource {
             as? PresentPetsCell else {
             return UITableViewCell()
         }
-        
-        let petItem = items[indexPath.row]
 
-//        cell.textLabel?.text = petItem.petName
-//        cell.configurePetCell(with: ,
+        let petItem = items[indexPath.row]
         cell.configurePetCell(with: petItem.petName, picture: petItem.petURLPicture, birthDate: petItem.petBirthDate)
         return cell
     }
@@ -88,13 +99,15 @@ extension PetsListTableViewController: UITableViewDelegate {
         let size = tableView.frame.height / 6
         return size
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-//        let petItem = petItems[indexPath.row]
-//        let petName = !petItems.petN
-//        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-//        petItem.ref?.updateChildValues([
-//            "completed": toggledCompletion
-//        ])
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
+            as? PetViewController else {
+                return
+        }
+        let petItem = items[indexPath.row]
+        destVC.typeOfCall = "update"
+        destVC.petItem = petItem
+//        destVC.petItemToUpdate = petItem
+        self.show(destVC, sender: self)
+    }
 }

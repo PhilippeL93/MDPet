@@ -32,6 +32,8 @@ class PetViewController: UIViewController {
     @IBOutlet weak var savePetButton: UIBarButtonItem!
 
 // MARK: - variables
+    private var petName: UITextField?
+    private var pickerViewGender = UIPickerView()
     private var datePickerBirthDate: UIDatePicker?
     private var datePickerSterilized: UIDatePicker?
     private var datePickerWeaning: UIDatePicker?
@@ -45,12 +47,12 @@ class PetViewController: UIViewController {
     private var constraintContentHeight: CGFloat!
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
-//    private var petName: String = ""
-//    private var pet: Pets
-     var petItem: PetItem?
 
-    var databaseRef = Database.database().reference(withPath: "pets-items")
-    var imageRef = Storage.storage().reference().child("pets-items")
+    var typeOfCall: String = ""
+    var petItem: PetItem?
+    var databaseRef = Database.database().reference(withPath: "pets-item")
+    var imageRef = Storage.storage().reference().child("pets-images")
+    let imageCache = NSCache<NSString, AnyObject>()
 
 // MARK: - buttons
     ///   
@@ -59,14 +61,7 @@ class PetViewController: UIViewController {
     }
 
     @IBAction func savePet(_ sender: Any) {
-        //        createPetObject()
-        //        checkPetStatus()
-        guard let petName = petNameField.text else {
-            return
-        }
-        checkPetComplete()
-        let petItemRef = self.databaseRef.child(petName.lowercased())
-        petItemRef.setValue(petItem?.toAnyObject())
+        createOrUpdatePet()
     }
 
     @IBAction func suppressPet(_ sender: Any) {
@@ -75,10 +70,13 @@ class PetViewController: UIViewController {
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        createPickerView()
+        let userUid = UserUid.uid
+        databaseRef = Database.database().reference(withPath: "\(userUid)")
+        createObserver()
         createDelegate()
         toggleSavePetButton(shown: false)
         initiateObserver()
+        initiateView()
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -93,50 +91,116 @@ class PetViewController: UIViewController {
         activeField?.resignFirstResponder()
         activeField = nil
     }
-
+    @objc func petNameFieldDidChange(_ textField: UITextField) {
+        checkChangeDone()
+    }
     @objc func dateChangedBirthDate(datePicker: UIDatePicker) {
+        checkChangeDone()
         formatDate()
         petBirthDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedSterilized(datePicker: UIDatePicker) {
+        checkChangeDone()
         formatDate()
         petSterilizedDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedWeaning(datePicker: UIDatePicker) {
+        checkChangeDone()
         formatDate()
         petWeaningDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedDeathDate(datePicker: UIDatePicker) {
+        checkChangeDone()
         formatDate()
         petDeathDateField.text = dateFormatter.string(from: datePicker.date)
+    }
+    @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
+        checkChangeDone()
+        self.pickerViewRace.reloadAllComponents()
+    }
+    @objc func textChangedPetGenderSegmentedCtrl(genderSegmentedCtrl: UISegmentedControl) {
+        checkChangeDone()
+        self.pickerViewGender.reloadAllComponents()
+    }
+    @objc func petTatooFieldDidChange(_ textField: UITextField) {
+        checkChangeDone()
+    }
+    @objc func petVeterinaryFieldDidChange(_ textField: UITextField) {
+        checkChangeDone()
+    }
+    @objc func petRaceFieldDidChange(_ textField: UITextField) {
+        checkChangeDone()
+    }
+    private func checkChangeDone() {
+        if petNameField.text != petItem?.petName {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petBirthDateField.text != petItem?.petBirthDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petSterilizedDateField.text != petItem?.petSterilizedDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petWeaningDateField.text != petItem?.petWeaningDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petDeathDateField.text != petItem?.petDeathDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petTypeSegmentedControl.selectedSegmentIndex != petItem?.petType {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petGenderSegmentedControl.selectedSegmentIndex != petItem?.petGender {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petTatooField.text != petItem?.petTatoo {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petVeterinaryField.text != petItem?.petVeterinary {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petRaceField.text != petItem?.petRace {
+            toggleSavePetButton(shown: true)
+            return
+        } else {
+            toggleSavePetButton(shown: false)
+        }
     }
     private func formatDate() {
         dateFormatter.locale = localeLanguage
         dateFormatter.dateFormat = "dd MMMM yyyy"
     }
 
-    @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
-        self.pickerViewRace.reloadAllComponents()
-    }
-
 // MARK: - functions
-    private func createPickerView() {
-        createDatePickerBirthDate()
-        createDatePickerSterilized()
-        createDatePickerWeaning()
-        createDatePickerDeathDate()
-        createBreedPickerView()
-        createVeterinaryPickerView()
-        createPetTypeSegmentedCtrl()
+    private func createObserver() {
+        createObserverPetTypeSegmentedCtrl()
+        createObserverPetGenderSegmentedCtrl()
+        createObserverPetName()
+        createObserverPetTatoo()
+        createObserverDatePickerBirthDate()
+        createObserverDatePickerSterilized()
+        createObserverVeterinaryPickerView()
+        createObserverRacePickerView()
+        createObserverDatePickerWeaning()
+        createObserverDatePickerDeathDate()
     }
     private func createDelegate() {
         petNameField.delegate = self
-        petTatooField.delegate = self
         petBirthDateField.delegate = self
+        petTatooField.delegate = self
         petSterilizedDateField.delegate = self
         petVeterinaryField.delegate = self
-        petWeaningDateField.delegate = self
         petRaceField.delegate = self
+        petWeaningDateField.delegate = self
         petDeathDateField.delegate = self
     }
     private func initiateObserver() {
@@ -149,7 +213,65 @@ class PetViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(returnTextView(gesture:))))
     }
-    private func createDatePickerBirthDate() {
+    private func initiateView() {
+        if typeOfCall == "create" {
+            savePetButton.title = "Ajouter"
+        } else {
+            savePetButton.title = "Modifier"
+        }
+
+        petPicture.image = nil
+        if let picture = petItem?.petURLPicture {
+            if let cachedImage = imageCache.object(forKey: picture as NSString) as? UIImage {
+                petPicture.image = cachedImage
+                return
+            }
+            let url = URL(string: picture)
+            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                DispatchQueue.main.async(execute: {
+                    if let downloadedImage = UIImage(data: data!) {
+                        self.imageCache.setObject(downloadedImage, forKey: picture as NSString)
+                        self.petPicture.image = downloadedImage
+                    }
+                })
+            }).resume()
+        }
+        petTypeSegmentedControl.selectedSegmentIndex = petItem?.petType ?? 0
+        petNameField.text = petItem?.petName
+        petGenderSegmentedControl.selectedSegmentIndex = petItem?.petGender ?? 0
+        petBirthDateField.text = petItem?.petBirthDate
+        petTatooField.text = petItem?.petTatoo
+        petSterilizedDateField.text = petItem?.petSterilizedDate
+        if petItem?.petSterilized == true {
+            petSterilizedSwitch.isOn = true
+        } else {
+            petSterilizedSwitch.isOn = false
+        }
+        petVeterinaryField.text = petItem?.petVeterinary
+        petRaceField.text = petItem?.petRace
+        if petItem?.petWeaning == true {
+            petWeaningSwitch.isOn = true
+        } else {
+            petWeaningSwitch.isOn = false
+        }
+        petWeaningDateField.text = petItem?.petWeaningDate
+        petDeathDateField.text = petItem?.petDeathDate
+    }
+    private func createObserverPetName() {
+        petNameField?.addTarget(self,
+                                action: #selector(PetViewController.petNameFieldDidChange(_:)),
+                                for: .editingChanged)
+    }
+    private func createObserverPetTatoo() {
+        petTatooField?.addTarget(self,
+                                action: #selector(PetViewController.petTatooFieldDidChange(_:)),
+                                for: .editingChanged)
+    }
+    private func createObserverDatePickerBirthDate() {
         datePickerBirthDate = UIDatePicker()
         datePickerBirthDate?.datePickerMode = .date
         datePickerBirthDate?.locale = localeLanguage
@@ -158,7 +280,7 @@ class PetViewController: UIViewController {
                                        for: .valueChanged)
         petBirthDateField.inputView = datePickerBirthDate
     }
-    private func createDatePickerSterilized() {
+    private func createObserverDatePickerSterilized() {
         datePickerSterilized = UIDatePicker()
         datePickerSterilized?.datePickerMode = .date
         datePickerSterilized?.locale = localeLanguage
@@ -167,7 +289,7 @@ class PetViewController: UIViewController {
                                        for: .valueChanged)
         petSterilizedDateField.inputView = datePickerSterilized
     }
-    private func createDatePickerWeaning() {
+    private func createObserverDatePickerWeaning() {
         datePickerWeaning = UIDatePicker()
         datePickerWeaning?.datePickerMode = .date
         datePickerWeaning?.locale = localeLanguage
@@ -176,7 +298,7 @@ class PetViewController: UIViewController {
                                        for: .valueChanged)
         petWeaningDateField.inputView = datePickerWeaning
     }
-    private func createDatePickerDeathDate() {
+    private func createObserverDatePickerDeathDate() {
         datePickerDeathDate = UIDatePicker()
         datePickerDeathDate?.datePickerMode = .date
         datePickerDeathDate?.locale = localeLanguage
@@ -185,90 +307,48 @@ class PetViewController: UIViewController {
                                        for: .valueChanged)
         petDeathDateField.inputView = datePickerDeathDate
     }
-    private func createBreedPickerView() {
+    private func createObserverRacePickerView() {
         pickerViewRace.delegate = self
+        petRaceField?.addTarget(self,
+                                action: #selector(PetViewController.petRaceFieldDidChange(_:)),
+                                for: .editingChanged)
         petRaceField.inputView = pickerViewRace
     }
-    private func createVeterinaryPickerView() {
+    private func createObserverVeterinaryPickerView() {
         pickerViewVeterinary.delegate = self
+        petVeterinaryField?.addTarget(self,
+                                action: #selector(PetViewController.petVeterinaryFieldDidChange(_:)),
+                                for: .editingChanged)
         petVeterinaryField.inputView = pickerViewVeterinary
     }
-    private func createPetTypeSegmentedCtrl() {
+    private func createObserverPetTypeSegmentedCtrl() {
         petTypeSegmentedControl?.addTarget(self,
                                        action: #selector(
                                        PetViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
                                        for: .valueChanged)
     }
-
+    private func createObserverPetGenderSegmentedCtrl() {
+        petGenderSegmentedControl?.addTarget(self,
+                                       action: #selector(
+                                       PetViewController.textChangedPetGenderSegmentedCtrl(genderSegmentedCtrl:)),
+                                       for: .valueChanged)
+    }
     private func checkPetComplete() {
         guard let petName = petNameField.text else {
             return
         }
-
         guard !petName.isEmpty else {
             return
         }
-        guard let petPicture = (petPicture.image)?.pngData() else {
-            return
-        }
-        let petURLPicture = "ff"
-
-        let petTypeIndex = petTypeSegmentedControl.selectedSegmentIndex
-//        let petType: PetItem.PetType = (petTypeIndex == 0) ? .cat : .rodent
-
-        let petGenderIndex = petGenderSegmentedControl.selectedSegmentIndex
-//        let petGender: Pets.PetGender = (petGenderIndex == 0) ? .female : .male
         guard let petBirthDate = petBirthDateField.text else {
             return
         }
-        guard let petTatoo = petTatooField.text else {
+        guard !petBirthDate.isEmpty else {
             return
         }
-        let petSterilizedIsOn = petSterilizedSwitch.isOn
-        guard let petSterilizedDate = petSterilizedDateField.text else {
+        guard (petPicture.image?.pngData()) != nil else {
             return
         }
-        guard let petVeterinary = petSterilizedDateField.text else {
-            return
-        }
-        guard let petRace = petRaceField.text else {
-            return
-        }
-        let petWeaningIsOn = petWeaningSwitch.isOn
-        guard let petWeaningDate = petWeaningDateField.text else {
-            return
-        }
-        guard let petDeathDate = petDeathDateField.text else {
-            return
-        }
-        petItem = PetItem(name: petName,
-                          key: "",
-                          URLPicture: petURLPicture,
-                          type: petTypeIndex,
-                          gender: petGenderIndex,
-                          birthDate: petBirthDate,
-                          tatoo: petTatoo,
-                          sterilized: petSterilizedIsOn,
-                          sterilizedDate: petSterilizedDate,
-                          veterinary: petVeterinary,
-                          race: petRace,
-                          weaning: petWeaningIsOn,
-                          weaningDate: petWeaningDate,
-                          deathDate: petDeathDate)
-        let petItemtest = PetItem(name: petName,
-                                  key: "",
-                                  URLPicture: petURLPicture,
-                                  type: petTypeIndex,
-                                  gender: petGenderIndex,
-                                  birthDate: petBirthDate,
-                                  tatoo: petTatoo,
-                                  sterilized: petSterilizedIsOn,
-                                  sterilizedDate: petSterilizedDate,
-                                  veterinary: petVeterinary,
-                                  race: petRace,
-                                  weaning: petWeaningIsOn,
-                                  weaningDate: petWeaningDate,
-                                  deathDate: petDeathDate)
         toggleSavePetButton(shown: true)
     }
     private func toggleSavePetButton(shown: Bool) {
@@ -282,6 +362,51 @@ class PetViewController: UIViewController {
     savePetButton.isAccessibilityElement = shown
     }
 
+    private func createOrUpdatePet() {
+        var storageRef = imageRef.child("\(String(describing: petItem?.key)).png")
+        var uniqueUUID = petItem?.key
+
+        if typeOfCall == "create" {
+            uniqueUUID = UUID().uuidString
+            storageRef = imageRef.child("\(String(describing: uniqueUUID!)).png")
+        }
+
+        if let uploadData = self.petPicture.image?.pngData() {
+            storageRef.putData(uploadData, metadata: nil, completion: { (_, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                storageRef.downloadURL(completion: { (url, err) in
+                    if let err = err {
+                        print(err)
+                        return
+                    }
+                    guard let url = url else {
+                        return }
+                    let petURLPicture = url.absoluteString
+                    self.petItem = PetItem(
+                        name: String(self.petNameField.text ?? ""),
+                        key: "",
+                        URLPicture: petURLPicture,
+                        type: self.petTypeSegmentedControl.selectedSegmentIndex,
+                        gender: self.petGenderSegmentedControl.selectedSegmentIndex,
+                        birthDate: String(self.petBirthDateField.text ?? ""),
+                        tatoo: String(self.petTatooField.text ?? ""),
+                        sterilized: self.petSterilizedSwitch.isOn,
+                        sterilizedDate: String(self.petSterilizedDateField.text ?? ""),
+                        veterinary: String(self.petVeterinaryField.text ?? ""),
+                        race: String(self.petRaceField.text ?? ""),
+                        weaning: self.petWeaningSwitch.isOn,
+                        weaningDate: String(self.petWeaningDateField.text ?? ""),
+                        deathDate: String(self.petDeathDateField.text ?? ""))
+                    let petItemRef = self.databaseRef.child(uniqueUUID!)
+                    petItemRef.setValue(self.petItem?.toAnyObject())
+                })
+            })
+//            dismiss(animated: true, completion: nil)
+        }
+    }
 // MARK: - images management
     ///   selectImageOrCamera in order to choose between
     ///    - photo from library of Iphone ==> call function getImage with parameter photo
@@ -407,9 +532,19 @@ extension PetViewController: UINavigationControllerDelegate, UIImagePickerContro
 
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            petPicture.contentMode = .scaleAspectFit
-            petPicture.image = pickedImage
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        var selectedImageFromPicker: UIImage?
+
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+
+            selectedImageFromPicker = originalImage
+        }
+
+        if let selectedImage = selectedImageFromPicker {
+            petPicture.image = selectedImage
             checkPetComplete()
         }
         dismiss(animated: true, completion: nil)
@@ -417,6 +552,10 @@ extension PetViewController: UINavigationControllerDelegate, UIImagePickerContro
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_
+        input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
     }
 }
 
@@ -465,6 +604,5 @@ private extension PetViewController {
             self.view.frame.origin = CGPoint(x: 0, y: 0)
         }
         keyboardHeight = nil
-        checkPetComplete()
     }
 }

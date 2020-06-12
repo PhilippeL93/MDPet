@@ -45,7 +45,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VeterinaryCell" id="LDd-QP-dXV" userLabel="Veterinary Table View Cell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemVeterinary" id="LDd-QP-dXV" userLabel="Veterinary Table View Cell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LDd-QP-dXV" id="Gjg-td-cvZ">
@@ -63,10 +63,13 @@
                         <barButtonItem key="rightBarButtonItem" title="+" id="Ucz-11-BD1" userLabel="AddVeterinary">
                             <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="z5o-3h-AKK" kind="show" id="eqx-dE-lzv"/>
+                                <action selector="addNewVeterinary:" destination="20g-gl-aeJ" id="lC7-m5-QzA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="gOE-sb-Uso" id="WyZ-CH-Hbf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S3v-bW-aDg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,31 +126,31 @@
             </objects>
             <point key="canvasLocation" x="1577" y="1086"/>
         </scene>
-        <!--Veterinay-->
+        <!--Veterinary-->
         <scene sceneID="KLb-ya-L0m">
             <objects>
-                <viewController id="z5o-3h-AKK" userLabel="Veterinay" customClass="VeterinayViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="veterinaryController" id="z5o-3h-AKK" userLabel="Veterinary" customClass="VeterinaryViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CUe-Ea-XJ9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bsy-hf-Nqe" userLabel="Clinic Switch">
-                                <rect key="frame" x="87" y="64" width="49" height="31"/>
+                                <rect key="frame" x="87" y="8" width="49" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="3zt-rq-poz"/>
                                     <constraint firstAttribute="height" constant="31" id="jUO-Nr-8g6"/>
                                 </constraints>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clinique" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwZ-Qh-zaq" userLabel="Clinic Label">
-                                <rect key="frame" x="10" y="68" width="62" height="22"/>
+                                <rect key="frame" x="10" y="12" width="62" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="lEY-ZI-LbD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Clinique" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zrX-4I-PEq" userLabel="Clinic Name Field">
-                                <rect key="frame" x="10" y="103" width="355" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Clinique" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zrX-4I-PEq" userLabel="Clinic Name Field">
+                                <rect key="frame" x="10" y="47" width="355" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="gL5-27-dFZ"/>
@@ -156,16 +159,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULB-0P-9FB" userLabel="Veterinay Name Label">
-                                <rect key="frame" x="10" y="145" width="37" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULB-0P-9FB" userLabel="Veterinary Name Label">
+                                <rect key="frame" x="10" y="89" width="37" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="c4d-he-icy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AP7-f3-LW2" userLabel="Veterinay Name Field">
-                                <rect key="frame" x="10" y="175" width="355" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AP7-f3-LW2" userLabel="Veterinary Name Field">
+                                <rect key="frame" x="10" y="119" width="355" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="cqq-N6-GzD"/>
@@ -174,16 +177,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prénom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEP-5b-9Xn" userLabel="Veterinay First Name Label">
-                                <rect key="frame" x="10" y="217" width="60" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prénom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEP-5b-9Xn" userLabel="Veterinary First Name Label">
+                                <rect key="frame" x="10" y="161" width="60" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="60S-S4-ybY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Prénom" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DKg-mr-PBT" userLabel="Veterinay First Name Field">
-                                <rect key="frame" x="10" y="247" width="355" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Prénom" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DKg-mr-PBT" userLabel="Veterinary First Name Field">
+                                <rect key="frame" x="10" y="191" width="355" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="OHN-rJ-kSi"/>
@@ -192,16 +195,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yet-ZP-KWD" userLabel="Veterinay Street Label">
-                                <rect key="frame" x="10" y="289" width="62" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yet-ZP-KWD" userLabel="Veterinary Street Label">
+                                <rect key="frame" x="10" y="233" width="62" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="uLM-D7-sgw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rue" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xxS-Ka-87A" userLabel="Vetrinary Street One Field">
-                                <rect key="frame" x="10" y="319" width="355" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rue" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xxS-Ka-87A" userLabel="Veterinary Street One Field">
+                                <rect key="frame" x="10" y="263" width="355" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="H0s-RQ-GDp"/>
@@ -209,8 +212,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="address-line1"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Complément adresse" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDG-nU-WpY" userLabel="Vetrinary Street Two Field">
-                                <rect key="frame" x="10" y="361" width="355" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Complément adresse" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EDG-nU-WpY" userLabel="Veterinary Street Two Field">
+                                <rect key="frame" x="10" y="305" width="355" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Xbc-Ff-CvD"/>
@@ -218,35 +221,35 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="address-line2"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IRm-dA-8GM" userLabel="Vetrinary Postal Code Field">
-                                <rect key="frame" x="10" y="403" width="62" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CP" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IRm-dA-8GM" userLabel="Veterinary Postal Code Field">
+                                <rect key="frame" x="10" y="347" width="62" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="FuG-8Y-aMB"/>
                                     <constraint firstAttribute="height" constant="34" id="vd0-6C-b4t"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ville" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0JH-dR-rA2" userLabel="Vetrinary City Field">
-                                <rect key="frame" x="87" y="403" width="278" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ville" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0JH-dR-rA2" userLabel="Veterinary City Field">
+                                <rect key="frame" x="87" y="347" width="278" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="278" id="0W7-sw-FZt"/>
                                     <constraint firstAttribute="height" constant="34" id="PvY-GF-Sqs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="address-level2"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Téléphone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDL-b1-dI8" userLabel="Veterinay Phone Label">
-                                <rect key="frame" x="10" y="451" width="80" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Téléphone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDL-b1-dI8" userLabel="Veterinary Phone Label">
+                                <rect key="frame" x="10" y="395" width="80" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="jar-HS-jTA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0102030405" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-Mh-5zu" userLabel="Veterinay Phone Field">
-                                <rect key="frame" x="114" y="445" width="251" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0102030405" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-Mh-5zu" userLabel="Veterinary Phone Field">
+                                <rect key="frame" x="114" y="389" width="251" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="W05-u8-zhJ"/>
@@ -254,16 +257,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBr-kH-INw" userLabel="Veterinay Email Label">
-                                <rect key="frame" x="10" y="494" width="41" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBr-kH-INw" userLabel="Veterinary Email Label">
+                                <rect key="frame" x="10" y="438" width="41" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="mHt-Ue-Tbs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="exemple@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C6-X4-1RO" userLabel="Veterinay Email Field">
-                                <rect key="frame" x="81" y="487" width="284" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="exemple@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3C6-X4-1RO" userLabel="Veterinary Email Field">
+                                <rect key="frame" x="81" y="431" width="284" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Hag-6o-aEM"/>
@@ -272,7 +275,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8k-rp-zp6" userLabel="SuppressVeterinary" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
-                                <rect key="frame" x="10" y="546" width="355" height="42"/>
+                                <rect key="frame" x="10" y="615" width="355" height="42"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Utv-rE-2yu"/>
@@ -305,6 +308,7 @@
                             <constraint firstItem="jIN-de-sKP" firstAttribute="bottom" secondItem="O8k-rp-zp6" secondAttribute="bottom" constant="10" id="4C6-e8-wPR"/>
                             <constraint firstItem="MDL-b1-dI8" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="96M-eM-BLh"/>
                             <constraint firstItem="ULB-0P-9FB" firstAttribute="top" secondItem="zrX-4I-PEq" secondAttribute="bottom" constant="8" id="99M-fv-2rN"/>
+                            <constraint firstItem="IRm-dA-8GM" firstAttribute="top" secondItem="EDG-nU-WpY" secondAttribute="bottom" constant="8" id="9Xy-ej-hVA"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="Yet-ZP-KWD" secondAttribute="trailing" constant="303" id="CGB-dp-8hg"/>
                             <constraint firstItem="LtT-Mh-5zu" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="EzZ-qw-bYX"/>
                             <constraint firstItem="AP7-f3-LW2" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="FeC-gA-Vl3"/>
@@ -314,6 +318,7 @@
                             <constraint firstItem="VEP-5b-9Xn" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="Lfj-Dl-aBx"/>
                             <constraint firstItem="EDG-nU-WpY" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="Li8-rH-rSQ"/>
                             <constraint firstItem="3C6-X4-1RO" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="MGD-S7-bVI"/>
+                            <constraint firstItem="MDL-b1-dI8" firstAttribute="top" secondItem="IRm-dA-8GM" secondAttribute="bottom" constant="14" id="Naj-Yr-JKI"/>
                             <constraint firstItem="EDG-nU-WpY" firstAttribute="top" secondItem="xxS-Ka-87A" secondAttribute="bottom" constant="8" id="OSp-2W-tXV"/>
                             <constraint firstItem="VEP-5b-9Xn" firstAttribute="top" secondItem="AP7-f3-LW2" secondAttribute="bottom" constant="8" id="PVu-NZ-BSe"/>
                             <constraint firstItem="Yet-ZP-KWD" firstAttribute="height" secondItem="vwZ-Qh-zaq" secondAttribute="height" id="Pbs-Cy-KDo"/>
@@ -331,7 +336,6 @@
                             <constraint firstItem="MDL-b1-dI8" firstAttribute="height" secondItem="vwZ-Qh-zaq" secondAttribute="height" id="Xx6-X4-xUL"/>
                             <constraint firstItem="xxS-Ka-87A" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="Yl5-Nz-Oqn"/>
                             <constraint firstItem="0JH-dR-rA2" firstAttribute="top" secondItem="EDG-nU-WpY" secondAttribute="bottom" constant="8" id="Ytg-6s-nZs"/>
-                            <constraint firstItem="IRm-dA-8GM" firstAttribute="top" secondItem="EDG-nU-WpY" secondAttribute="bottom" constant="8" id="ag6-Y1-WV8"/>
                             <constraint firstItem="EDG-nU-WpY" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="aik-79-zdW"/>
                             <constraint firstItem="zrX-4I-PEq" firstAttribute="top" secondItem="bsy-hf-Nqe" secondAttribute="bottom" constant="8" id="bS6-tx-8Ub"/>
                             <constraint firstItem="DKg-mr-PBT" firstAttribute="top" secondItem="VEP-5b-9Xn" secondAttribute="bottom" constant="8" id="c8D-oE-1Sc"/>
@@ -339,9 +343,7 @@
                             <constraint firstItem="DKg-mr-PBT" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="eSH-JP-vnR"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="xxS-Ka-87A" secondAttribute="trailing" constant="10" id="fVl-jV-ZsV"/>
                             <constraint firstItem="bsy-hf-Nqe" firstAttribute="top" secondItem="jIN-de-sKP" secondAttribute="top" constant="8" id="gVx-X3-9ny"/>
-                            <constraint firstItem="MDL-b1-dI8" firstAttribute="top" secondItem="IRm-dA-8GM" secondAttribute="bottom" constant="14" id="guq-6D-kgU"/>
                             <constraint firstItem="EDG-nU-WpY" firstAttribute="top" secondItem="xxS-Ka-87A" secondAttribute="bottom" constant="8" id="idX-hb-nWV"/>
-                            <constraint firstItem="IRm-dA-8GM" firstAttribute="top" secondItem="EDG-nU-WpY" secondAttribute="bottom" constant="8" id="in8-i7-OmH"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="3C6-X4-1RO" secondAttribute="trailing" constant="10" id="jkc-8W-vfh"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="ULB-0P-9FB" secondAttribute="trailing" constant="328" id="jkm-fc-gCs"/>
                             <constraint firstItem="GBr-kH-INw" firstAttribute="top" secondItem="MDL-b1-dI8" secondAttribute="bottom" constant="21" id="kBU-sv-hqA"/>
@@ -375,7 +377,7 @@
                     <connections>
                         <outlet property="clinicNameField" destination="zrX-4I-PEq" id="Ta7-yg-bVr"/>
                         <outlet property="clinicSwitch" destination="bsy-hf-Nqe" id="9oK-yw-jQl"/>
-                        <outlet property="saveVeterinayButton" destination="4jc-SK-IYk" id="cgb-hM-oPm"/>
+                        <outlet property="saveVeterinaryButton" destination="4jc-SK-IYk" id="BtV-y0-tob"/>
                         <outlet property="veterinaryCityField" destination="0JH-dR-rA2" id="Mev-fc-hrh"/>
                         <outlet property="veterinaryEmailField" destination="3C6-X4-1RO" id="ajs-7d-Ykq"/>
                         <outlet property="veterinaryFirstNameField" destination="DKg-mr-PBT" id="ezl-tv-crN"/>
@@ -442,12 +444,40 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EDn-Mm-QY0">
                                                     <rect key="frame" x="8" y="4" width="339" height="60"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-aj-ol0" userLabel="Pet Picture">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeN-lD-URV" userLabel="View Image Pet" customClass="SettingsImagePetView" customModule="MDPet" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-aj-ol0" userLabel="Pet Picture">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="fjA-aj-ol0" secondAttribute="height" multiplier="1:1" id="99V-Ni-5uE"/>
+                                                                        <constraint firstAttribute="width" secondItem="fjA-aj-ol0" secondAttribute="height" multiplier="1:1" id="Fe2-cU-qpO"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="fjA-aj-ol0" secondAttribute="height" multiplier="1:1" id="Vaj-SE-Ksx"/>
+                                                                <constraint firstAttribute="bottom" secondItem="fjA-aj-ol0" secondAttribute="bottom" id="MPF-Ag-sZR"/>
+                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="centerY" secondItem="DeN-lD-URV" secondAttribute="centerY" id="PYz-5l-dWi"/>
+                                                                <constraint firstAttribute="width" constant="60" id="RRl-kW-6W7"/>
+                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="centerX" secondItem="DeN-lD-URV" secondAttribute="centerX" id="VDa-qY-6My"/>
+                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="top" secondItem="DeN-lD-URV" secondAttribute="top" id="WVN-nI-enT"/>
+                                                                <constraint firstAttribute="width" secondItem="DeN-lD-URV" secondAttribute="height" multiplier="1:1" id="fyI-ss-8Vb"/>
+                                                                <constraint firstAttribute="trailing" secondItem="fjA-aj-ol0" secondAttribute="trailing" id="qCc-k2-NwS"/>
+                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="leading" secondItem="DeN-lD-URV" secondAttribute="leading" id="sYb-s6-YyD"/>
                                                             </constraints>
-                                                        </imageView>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <integer key="value" value="25"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <integer key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="tZh-bz-wcI">
                                                             <rect key="frame" x="68" y="0.0" width="271" height="60"/>
                                                             <subviews>
@@ -504,7 +534,7 @@
                         <barButtonItem key="rightBarButtonItem" title="+" id="NYg-OR-p29" userLabel="AddPet">
                             <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="kyD-4W-RrK" kind="show" id="hKh-Ew-cus"/>
+                                <action selector="addNewPet:" destination="C6u-At-hoi" id="KNs-gj-6bK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -519,13 +549,16 @@
         <!--Pet-->
         <scene sceneID="aDm-Wm-eSI">
             <objects>
-                <viewController id="kyD-4W-RrK" userLabel="Pet" customClass="PetViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="petController" id="kyD-4W-RrK" userLabel="Pet" customClass="PetViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PkV-21-Doo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-Et-9zO" userLabel="Pet Type Segmented Control">
-                                <rect key="frame" x="10" y="129" width="355" height="32"/>
+                                <rect key="frame" x="10" y="73" width="355" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6To-YP-2LG"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Chat"/>
                                     <segment title="Chien"/>
@@ -534,24 +567,24 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWl-Ru-VQK" userLabel="Pet Name Label">
-                                <rect key="frame" x="10" y="174" width="36.5" height="22"/>
+                                <rect key="frame" x="10" y="117" width="36.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="dPQ-Sr-HQA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Saisir nom" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVQ-AQ-mmB" userLabel="Pet Name Field">
-                                <rect key="frame" x="64.5" y="168" width="300.5" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bVQ-AQ-mmB" userLabel="Pet Name Field">
+                                <rect key="frame" x="64.5" y="111" width="300.5" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="G3X-p2-ZtJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="q5d-cE-s4G"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sexe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddr-1b-lQI" userLabel="Pet Gender Label">
-                                <rect key="frame" x="10" y="213" width="37" height="22"/>
+                                <rect key="frame" x="10" y="154" width="37" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="QYP-Vn-GMg"/>
                                 </constraints>
@@ -559,52 +592,53 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="38r-6F-fCL" userLabel="Pet Gender Segmented Control">
-                                <rect key="frame" x="100" y="208" width="265" height="32"/>
+                                <rect key="frame" x="100" y="149" width="265" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Mpy-zd-7II"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Femelle"/>
                                     <segment title="Mâle"/>
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Naissance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwT-GJ-L4c" userLabel="Pet Birth Date Label">
-                                <rect key="frame" x="11" y="252" width="120" height="22"/>
+                                <rect key="frame" x="11" y="193" width="120" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="IQE-HO-h3C" userLabel="height = 22"/>
+                                    <constraint firstAttribute="height" constant="22" id="NCr-Ba-1Wi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DQC-Uu-IrW" userLabel="Pet Birth Date Field">
-                                <rect key="frame" x="172" y="247" width="193" height="32"/>
+                                <rect key="frame" x="207" y="187" width="158" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="193" id="0Ui-GK-YH7"/>
-                                    <constraint firstAttribute="height" constant="32" id="DsP-5Q-741"/>
+                                    <constraint firstAttribute="height" constant="30" id="g1F-ue-xrs"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tatouage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9p-AP-D0j" userLabel="Pet Tatoo Label">
-                                <rect key="frame" x="11" y="292" width="71" height="22"/>
+                                <rect key="frame" x="11" y="231" width="71" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="kT8-5r-IdI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tatouage" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="jXb-rQ-ckB" userLabel="Pet Tatoo Field">
-                                <rect key="frame" x="100" y="287" width="265" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tatouage" textAlignment="natural" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jXb-rQ-ckB" userLabel="Pet Tatoo Field">
+                                <rect key="frame" x="100" y="225" width="265" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="Bbg-v0-jl9"/>
-                                    <constraint firstAttribute="width" constant="265" id="DTO-Da-DzJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="skj-VQ-Xr6"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stérilisé(e) O/N" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd3-B5-QTi" userLabel="Pet Sterilized Label">
-                                <rect key="frame" x="10" y="332" width="117" height="22"/>
+                                <rect key="frame" x="10" y="268" width="117" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="fRK-u1-Z3g"/>
                                 </constraints>
@@ -612,64 +646,62 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6IR-3j-Mef" userLabel="Pet Sterilized Switch">
-                                <rect key="frame" x="140" y="329" width="51" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="140" y="265" width="51" height="28"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="3Pv-gI-R3K"/>
-                                    <constraint firstAttribute="height" constant="30" id="nn9-XB-zth"/>
+                                    <constraint firstAttribute="height" constant="28" id="nn9-XB-zth"/>
                                 </constraints>
                             </switch>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5gq-Nk-p8g" userLabel="Pet Sterilized Date Field">
-                                <rect key="frame" x="201" y="327" width="164" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5gq-Nk-p8g" userLabel="Pet Sterilized Date Field">
+                                <rect key="frame" x="207" y="263" width="158" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="dqx-F2-cYy"/>
-                                    <constraint firstAttribute="width" constant="164" id="vuI-X8-Cay"/>
+                                    <constraint firstAttribute="width" constant="158" id="QM5-vM-Cig"/>
+                                    <constraint firstAttribute="height" constant="30" id="wJw-Ei-RYJ"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vétérinaire" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1B-JG-dVV" userLabel="Pet Veterinary Label">
-                                <rect key="frame" x="10" y="372" width="82" height="22"/>
+                                <rect key="frame" x="10" y="309" width="82" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="9Um-Af-e5E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vétérinaire" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wJD-mm-qSk" userLabel="Pet Veterinay Field">
-                                <rect key="frame" x="100" y="367" width="265" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vétérinaire" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wJD-mm-qSk" userLabel="Pet Veterinay Field">
+                                <rect key="frame" x="100" y="302" width="265" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="Yrk-wR-cd5"/>
-                                    <constraint firstAttribute="width" constant="265" id="ZzW-km-INr"/>
+                                    <constraint firstAttribute="height" constant="30" id="8AG-db-wEU"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Race" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxR-5C-3kH" userLabel="Pet Race Label">
-                                <rect key="frame" x="10" y="412" width="39" height="22"/>
+                                <rect key="frame" x="10" y="347" width="39" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="xDp-BW-FxU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Race" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0X-Tj-cLT" userLabel="Pet Race Field">
-                                <rect key="frame" x="100" y="407" width="265" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Race" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t0X-Tj-cLT" userLabel="Pet Race Field">
+                                <rect key="frame" x="100" y="340" width="265" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="lHr-Zy-1bb"/>
-                                    <constraint firstAttribute="width" constant="265" id="uXp-tA-aCl"/>
+                                    <constraint firstAttribute="height" constant="30" id="JFn-EX-I39"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sevrage O/N" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXp-An-Foz" userLabel="Pet Weaning Label">
-                                <rect key="frame" x="10" y="452" width="115" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sevré(e) O/N" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXp-An-Foz" userLabel="Pet Weaning Label">
+                                <rect key="frame" x="10" y="387" width="99" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="JCZ-tp-hAO"/>
                                 </constraints>
@@ -677,29 +709,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Lao-bb-60p" userLabel="Pet Weaning Switch">
-                                <rect key="frame" x="140" y="448" width="51" height="31"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="140" y="379" width="51" height="28"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="g8t-fj-xro" userLabel="height = 30"/>
+                                    <constraint firstAttribute="height" constant="28" id="8Ng-hb-AYY"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </switch>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljS-Wu-10R" userLabel="Pet Weaning Date Field">
-                                <rect key="frame" x="201" y="447" width="164" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ljS-Wu-10R" userLabel="Pet Weaning Date Field">
+                                <rect key="frame" x="207" y="378" width="158" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="164" id="lk2-O7-rWZ"/>
-                                    <constraint firstAttribute="height" constant="32" id="oxY-Xj-WIB"/>
+                                    <constraint firstAttribute="width" constant="158" id="b3B-Yc-LOd"/>
+                                    <constraint firstAttribute="height" constant="30" id="k5s-0p-CyN"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAc-ZS-N9w" userLabel="Pet Vaccines" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
-                                <rect key="frame" x="10" y="527" width="140" height="25"/>
+                                <rect key="frame" x="10" y="454" width="140" height="25"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="TC8-KH-Ar1"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Vaccins">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -721,12 +751,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-M9-eEc" userLabel="Pet Suppress" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
-                                <rect key="frame" x="10" y="550" width="355" height="40"/>
+                                <rect key="frame" x="10" y="629" width="355" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="4BU-Ys-wkY"/>
+                                    <constraint firstAttribute="height" constant="30" id="UhZ-rW-e3E"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <state key="normal" title="Supprimer la fiche">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -748,26 +778,26 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Décès" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-x4-MeN" userLabel="Pet Death Date Label">
-                                <rect key="frame" x="10" y="492" width="89" height="22"/>
+                                <rect key="frame" x="10" y="427" width="89" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="0fg-cL-wo6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80O-Pg-RqG" userLabel="Pet Death Date Field">
-                                <rect key="frame" x="201" y="487" width="164" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="80O-Pg-RqG" userLabel="Pet Death Date Field">
+                                <rect key="frame" x="207" y="416" width="158" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="164" id="4d9-kI-G4W"/>
-                                    <constraint firstAttribute="height" constant="32" id="Ywm-ga-WgU"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6Fj-tV-tyo"/>
+                                    <constraint firstAttribute="height" constant="30" id="A1p-ZW-djC"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wv-8f-tga" userLabel="Pet Consultations" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
-                                <rect key="frame" x="225" y="527" width="140" height="25"/>
+                                <rect key="frame" x="225" y="454" width="140" height="25"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="2dB-1m-8ti"/>
@@ -792,7 +822,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9f5-Lu-LEl" userLabel="View Image Pet" customClass="SettingsImagePetView" customModule="MDPet" customModuleProvider="target">
-                                <rect key="frame" x="159" y="64" width="57" height="57"/>
+                                <rect key="frame" x="159" y="8" width="57" height="57"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlh-tf-QQg" userLabel="addPhotoButton">
                                         <rect key="frame" x="5" y="5" width="47" height="47"/>
@@ -831,38 +861,35 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.82147828030000003" green="1" blue="0.66593952580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="5Wv-8f-tga" firstAttribute="top" secondItem="80O-Pg-RqG" secondAttribute="bottom" constant="8" id="0Wf-UY-KKW"/>
                             <constraint firstItem="zXp-An-Foz" firstAttribute="top" secondItem="bxR-5C-3kH" secondAttribute="bottom" constant="18" id="1m7-BY-Thy"/>
                             <constraint firstItem="38r-6F-fCL" firstAttribute="leading" secondItem="ddr-1b-lQI" secondAttribute="trailing" constant="53" id="26w-Hs-IV6"/>
-                            <constraint firstItem="bAc-ZS-N9w" firstAttribute="top" secondItem="4YX-x4-MeN" secondAttribute="bottom" constant="13" id="2mX-vZ-Fdm"/>
                             <constraint firstItem="9f5-Lu-LEl" firstAttribute="top" secondItem="9a7-Ax-l5y" secondAttribute="top" constant="8" id="3Ym-Hy-WJu"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="5gq-Nk-p8g" secondAttribute="trailing" constant="10" id="3df-0Q-NHE"/>
-                            <constraint firstItem="Vd3-B5-QTi" firstAttribute="top" secondItem="v9p-AP-D0j" secondAttribute="bottom" constant="18" id="3uL-nV-mY5"/>
                             <constraint firstItem="6IR-3j-Mef" firstAttribute="leading" secondItem="Vd3-B5-QTi" secondAttribute="trailing" constant="13" id="4wJ-12-zT8"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="5Wv-8f-tga" secondAttribute="trailing" constant="10" id="51x-5D-Gx8"/>
                             <constraint firstItem="4YX-x4-MeN" firstAttribute="top" secondItem="zXp-An-Foz" secondAttribute="bottom" constant="18" id="7gj-pv-c8Q"/>
                             <constraint firstItem="YWl-Ru-VQK" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="9ch-uk-2MY"/>
-                            <constraint firstItem="D1B-JG-dVV" firstAttribute="top" secondItem="Vd3-B5-QTi" secondAttribute="bottom" constant="18" id="AmW-T8-WgC"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="jXb-rQ-ckB" secondAttribute="trailing" constant="10" id="BCG-Z1-fgG"/>
-                            <constraint firstItem="9a7-Ax-l5y" firstAttribute="bottom" secondItem="DKQ-M9-eEc" secondAttribute="bottom" constant="8" id="DIq-FF-dRq"/>
+                            <constraint firstItem="DQC-Uu-IrW" firstAttribute="leading" secondItem="kwT-GJ-L4c" secondAttribute="trailing" constant="76" id="D9z-At-Ubd"/>
                             <constraint firstItem="t0X-Tj-cLT" firstAttribute="top" secondItem="wJD-mm-qSk" secondAttribute="bottom" constant="8" id="ESn-b4-jA6"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="DKQ-M9-eEc" secondAttribute="trailing" constant="10" id="F81-Nh-cpG"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="wJD-mm-qSk" secondAttribute="trailing" constant="10" id="FHt-g5-Xhz"/>
-                            <constraint firstItem="DQC-Uu-IrW" firstAttribute="leading" secondItem="kwT-GJ-L4c" secondAttribute="trailing" constant="41" id="FxU-f3-2xU"/>
+                            <constraint firstItem="v9p-AP-D0j" firstAttribute="top" secondItem="kwT-GJ-L4c" secondAttribute="bottom" constant="16" id="Ff6-od-yBg"/>
                             <constraint firstItem="bxR-5C-3kH" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="GL8-Vx-tSB"/>
                             <constraint firstItem="kwT-GJ-L4c" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="11" id="GLI-iq-pCL"/>
                             <constraint firstItem="m9P-Et-9zO" firstAttribute="top" secondItem="9f5-Lu-LEl" secondAttribute="bottom" constant="8" id="IJ2-eb-hRw"/>
                             <constraint firstItem="kwT-GJ-L4c" firstAttribute="top" secondItem="ddr-1b-lQI" secondAttribute="bottom" constant="17" id="JPW-gL-J51"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="ljS-Wu-10R" secondAttribute="trailing" constant="10" id="K9E-xz-CKT"/>
                             <constraint firstItem="v9p-AP-D0j" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="11" id="KlM-mM-vYG"/>
-                            <constraint firstItem="5Wv-8f-tga" firstAttribute="top" secondItem="80O-Pg-RqG" secondAttribute="bottom" constant="8" id="LDk-eV-jTx"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="t0X-Tj-cLT" secondAttribute="trailing" constant="10" id="LGs-0f-bBj"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="9f5-Lu-LEl" secondAttribute="trailing" constant="159" id="LWG-J8-Wgx"/>
                             <constraint firstItem="Vd3-B5-QTi" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="Ljp-4S-FzV"/>
@@ -871,28 +898,31 @@
                             <constraint firstItem="5Wv-8f-tga" firstAttribute="leading" secondItem="bAc-ZS-N9w" secondAttribute="trailing" constant="75" id="OdF-W3-uoR"/>
                             <constraint firstItem="m9P-Et-9zO" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="PPe-6z-obH"/>
                             <constraint firstItem="80O-Pg-RqG" firstAttribute="top" secondItem="ljS-Wu-10R" secondAttribute="bottom" constant="8" id="PWI-xo-gvD"/>
-                            <constraint firstItem="bxR-5C-3kH" firstAttribute="top" secondItem="D1B-JG-dVV" secondAttribute="bottom" constant="18" id="QfE-yp-2H3"/>
-                            <constraint firstItem="80O-Pg-RqG" firstAttribute="leading" secondItem="4YX-x4-MeN" secondAttribute="trailing" constant="102" id="Tfl-LY-EnX"/>
+                            <constraint firstItem="5Wv-8f-tga" firstAttribute="centerY" secondItem="bAc-ZS-N9w" secondAttribute="centerY" id="RUE-QS-IdI"/>
                             <constraint firstItem="5Wv-8f-tga" firstAttribute="bottom" secondItem="bAc-ZS-N9w" secondAttribute="bottom" id="VGC-eH-BVn"/>
-                            <constraint firstItem="v9p-AP-D0j" firstAttribute="top" secondItem="kwT-GJ-L4c" secondAttribute="bottom" constant="18" id="VsF-wa-sXm"/>
                             <constraint firstItem="wJD-mm-qSk" firstAttribute="leading" secondItem="D1B-JG-dVV" secondAttribute="trailing" constant="8" id="WUS-SF-dgk"/>
+                            <constraint firstItem="bxR-5C-3kH" firstAttribute="top" secondItem="D1B-JG-dVV" secondAttribute="bottom" constant="16" id="WlT-ih-zFR"/>
+                            <constraint firstItem="ljS-Wu-10R" firstAttribute="leading" secondItem="Lao-bb-60p" secondAttribute="trailing" constant="18" id="Wy0-cn-bkP"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="80O-Pg-RqG" secondAttribute="trailing" constant="10" id="XUK-PI-Jzp"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="bVQ-AQ-mmB" secondAttribute="trailing" constant="10" id="XYt-kK-jmu"/>
                             <constraint firstItem="bVQ-AQ-mmB" firstAttribute="leading" secondItem="YWl-Ru-VQK" secondAttribute="trailing" constant="18" id="Y99-Ry-LZv"/>
+                            <constraint firstItem="wJD-mm-qSk" firstAttribute="top" secondItem="5gq-Nk-p8g" secondAttribute="bottom" constant="9" id="Z3z-IG-qBa"/>
+                            <constraint firstItem="ddr-1b-lQI" firstAttribute="top" secondItem="YWl-Ru-VQK" secondAttribute="bottom" constant="15" id="Zms-LY-atg"/>
                             <constraint firstItem="38r-6F-fCL" firstAttribute="top" secondItem="bVQ-AQ-mmB" secondAttribute="bottom" constant="8" id="aOj-29-HCf"/>
-                            <constraint firstItem="ljS-Wu-10R" firstAttribute="leading" secondItem="Lao-bb-60p" secondAttribute="trailing" constant="12" id="b8Q-fr-vHo"/>
                             <constraint firstItem="YWl-Ru-VQK" firstAttribute="top" secondItem="m9P-Et-9zO" secondAttribute="bottom" constant="14" id="cd8-cx-99g"/>
                             <constraint firstItem="5Wv-8f-tga" firstAttribute="width" secondItem="bAc-ZS-N9w" secondAttribute="width" id="chv-hN-yKz"/>
-                            <constraint firstItem="Lao-bb-60p" firstAttribute="leading" secondItem="zXp-An-Foz" secondAttribute="trailing" constant="15" id="dll-YX-LKt"/>
                             <constraint firstItem="bAc-ZS-N9w" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="em8-2U-QSA"/>
                             <constraint firstItem="zXp-An-Foz" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="fdc-RN-laG"/>
-                            <constraint firstItem="ddr-1b-lQI" firstAttribute="top" secondItem="YWl-Ru-VQK" secondAttribute="bottom" constant="17" id="gdo-58-tGA"/>
+                            <constraint firstItem="6IR-3j-Mef" firstAttribute="top" secondItem="jXb-rQ-ckB" secondAttribute="bottom" constant="10" id="hLD-eZ-QmU"/>
                             <constraint firstItem="DKQ-M9-eEc" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="ha5-gc-xQa"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="38r-6F-fCL" secondAttribute="trailing" constant="10" id="hsX-Sc-LrS"/>
                             <constraint firstItem="bVQ-AQ-mmB" firstAttribute="top" secondItem="m9P-Et-9zO" secondAttribute="bottom" constant="8" id="huS-es-DkE"/>
                             <constraint firstItem="jXb-rQ-ckB" firstAttribute="top" secondItem="DQC-Uu-IrW" secondAttribute="bottom" constant="8" id="iDy-5L-4jt"/>
+                            <constraint firstItem="D1B-JG-dVV" firstAttribute="top" secondItem="Vd3-B5-QTi" secondAttribute="bottom" constant="19" id="inR-Rr-DSH"/>
                             <constraint firstItem="4YX-x4-MeN" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="j9p-zT-Hv3"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="DQC-Uu-IrW" secondAttribute="trailing" constant="10" id="jJ2-6P-MhK"/>
+                            <constraint firstItem="Lao-bb-60p" firstAttribute="leading" secondItem="zXp-An-Foz" secondAttribute="trailing" constant="31" id="mT4-N7-v7x"/>
+                            <constraint firstItem="9a7-Ax-l5y" firstAttribute="bottom" secondItem="DKQ-M9-eEc" secondAttribute="bottom" constant="8" id="n6A-yH-Iie"/>
                             <constraint firstItem="5Wv-8f-tga" firstAttribute="height" secondItem="bAc-ZS-N9w" secondAttribute="height" id="o4n-Ee-C4q"/>
                             <constraint firstItem="Lao-bb-60p" firstAttribute="top" secondItem="t0X-Tj-cLT" secondAttribute="bottom" constant="9" id="oQF-A1-lMX"/>
                             <constraint firstItem="9a7-Ax-l5y" firstAttribute="trailing" secondItem="m9P-Et-9zO" secondAttribute="trailing" constant="10" id="pFu-8H-Y8S"/>
@@ -900,10 +930,12 @@
                             <constraint firstItem="ljS-Wu-10R" firstAttribute="top" secondItem="t0X-Tj-cLT" secondAttribute="bottom" constant="8" id="psK-Pi-qbo"/>
                             <constraint firstItem="t0X-Tj-cLT" firstAttribute="leading" secondItem="bxR-5C-3kH" secondAttribute="trailing" constant="51" id="qX4-DT-LW8"/>
                             <constraint firstItem="5gq-Nk-p8g" firstAttribute="top" secondItem="jXb-rQ-ckB" secondAttribute="bottom" constant="8" id="rox-rk-OgJ"/>
-                            <constraint firstItem="5gq-Nk-p8g" firstAttribute="leading" secondItem="6IR-3j-Mef" secondAttribute="trailing" constant="12" id="tSr-w6-IKE"/>
+                            <constraint firstItem="5Wv-8f-tga" firstAttribute="centerY" secondItem="bAc-ZS-N9w" secondAttribute="centerY" id="u7q-Ka-zni"/>
                             <constraint firstItem="DQC-Uu-IrW" firstAttribute="top" secondItem="38r-6F-fCL" secondAttribute="bottom" constant="8" id="uLK-zb-XPp"/>
                             <constraint firstItem="D1B-JG-dVV" firstAttribute="leading" secondItem="9a7-Ax-l5y" secondAttribute="leading" constant="10" id="uRx-rM-3VR"/>
-                            <constraint firstItem="wJD-mm-qSk" firstAttribute="top" secondItem="6IR-3j-Mef" secondAttribute="bottom" constant="8" id="vAq-xS-uMO"/>
+                            <constraint firstItem="Vd3-B5-QTi" firstAttribute="top" secondItem="v9p-AP-D0j" secondAttribute="bottom" constant="15" id="vEe-Gd-SlZ"/>
+                            <constraint firstItem="5gq-Nk-p8g" firstAttribute="leading" secondItem="6IR-3j-Mef" secondAttribute="trailing" constant="18" id="vMl-Bt-31b"/>
+                            <constraint firstItem="80O-Pg-RqG" firstAttribute="leading" secondItem="4YX-x4-MeN" secondAttribute="trailing" constant="108" id="ywl-9l-3Qe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9a7-Ax-l5y"/>
                         <connections>
@@ -1015,18 +1047,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MDPet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgC-yx-Xyo">
-                                <rect key="frame" x="85" y="78" width="205" height="76"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="63"/>
+                                <rect key="frame" x="84.5" y="78" width="206.5" height="61.5"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="63"/>
                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1h3-eC-ifN" userLabel="Text Field Login Password">
-                                <rect key="frame" x="70" y="306" width="235" height="34"/>
+                                <rect key="frame" x="70" y="295.5" width="235" height="38"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-VQ-Fc7">
-                                <rect key="frame" x="70" y="360" width="235" height="38"/>
+                                <rect key="frame" x="70" y="361" width="235" height="38"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="hYA-Po-Mdd"/>
@@ -1040,7 +1073,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUf-YL-Q60">
-                                <rect key="frame" x="70" y="414" width="235" height="38"/>
+                                <rect key="frame" x="70" y="407" width="235" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="CDz-rJ-kFC"/>
                                 </constraints>
@@ -1053,7 +1086,8 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ljy-G0-Qlo" userLabel="Text Field Login Email">
-                                <rect key="frame" x="70" y="264" width="235" height="34"/>
+                                <rect key="frame" x="70" y="249.5" width="235" height="38"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
@@ -1061,19 +1095,24 @@
                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="1h3-eC-ifN" secondAttribute="trailing" constant="54" id="5dG-Yl-ASM"/>
+                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="height" secondItem="Ljy-G0-Qlo" secondAttribute="height" id="AlI-Oa-qjF"/>
                             <constraint firstItem="ZgC-yx-Xyo" firstAttribute="top" secondItem="lYL-Jy-Y4A" secondAttribute="top" constant="78" id="Cfq-Fm-TaF"/>
+                            <constraint firstItem="1h3-eC-ifN" firstAttribute="height" secondItem="Ljy-G0-Qlo" secondAttribute="height" id="KMM-1U-8EX"/>
+                            <constraint firstItem="NUf-YL-Q60" firstAttribute="top" secondItem="K1L-VQ-Fc7" secondAttribute="bottom" constant="8" id="MEL-Ag-8ZH"/>
                             <constraint firstItem="K1L-VQ-Fc7" firstAttribute="leading" secondItem="VKC-Bf-8yo" secondAttribute="leadingMargin" constant="54" id="NH7-Ef-89b"/>
                             <constraint firstItem="1h3-eC-ifN" firstAttribute="leading" secondItem="VKC-Bf-8yo" secondAttribute="leadingMargin" constant="54" id="Qp9-lU-tVn"/>
+                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="ZAa-Ea-ZwE"/>
+                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="top" secondItem="1h3-eC-ifN" secondAttribute="bottom" constant="27.5" id="agh-Sb-Vfx"/>
                             <constraint firstItem="Ljy-G0-Qlo" firstAttribute="top" secondItem="ZgC-yx-Xyo" secondAttribute="bottom" constant="110" id="cNa-aR-hZc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ljy-G0-Qlo" secondAttribute="trailing" constant="54" id="dy2-oT-vZm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NUf-YL-Q60" secondAttribute="trailing" constant="54" id="eN7-dI-nvC"/>
+                            <constraint firstItem="lYL-Jy-Y4A" firstAttribute="bottom" secondItem="NUf-YL-Q60" secondAttribute="bottom" constant="222" id="ehC-er-cEY"/>
                             <constraint firstItem="1h3-eC-ifN" firstAttribute="top" secondItem="Ljy-G0-Qlo" secondAttribute="bottom" constant="8" id="eld-8H-hng"/>
                             <constraint firstItem="Ljy-G0-Qlo" firstAttribute="leading" secondItem="VKC-Bf-8yo" secondAttribute="leadingMargin" constant="54" id="kWp-ac-EyT"/>
-                            <constraint firstItem="NUf-YL-Q60" firstAttribute="top" secondItem="K1L-VQ-Fc7" secondAttribute="bottom" constant="16" id="kbX-tB-RLU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K1L-VQ-Fc7" secondAttribute="trailing" constant="54" id="npv-BJ-XSx"/>
+                            <constraint firstItem="1h3-eC-ifN" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="pZK-eU-oSZ"/>
                             <constraint firstItem="NUf-YL-Q60" firstAttribute="leading" secondItem="VKC-Bf-8yo" secondAttribute="leadingMargin" constant="54" id="pmc-aX-WIM"/>
                             <constraint firstItem="ZgC-yx-Xyo" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="uN8-MK-X6P"/>
-                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="top" secondItem="1h3-eC-ifN" secondAttribute="bottom" constant="20" id="vlL-C0-fdn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lYL-Jy-Y4A"/>
                     </view>

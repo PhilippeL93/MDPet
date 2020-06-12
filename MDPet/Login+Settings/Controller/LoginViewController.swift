@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
 
     // MARK: Constants
     let loginToList = "LoginToList"
+    var userUid: UserUid!
 
     // MARK: Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
@@ -31,7 +32,8 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
                 self.textFieldLoginEmail.text = nil
                 self.textFieldLoginPassword.text = nil
-                print("login user.UserID : \(String(describing: user?.uid))")
+//                print("login user.UserID : \(String(describing: user?.uid))")
+                UserUid.uid = user!.uid
             }
         }
     }
