@@ -19,14 +19,18 @@
 		372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */; };
 		372CFFD42486A2A400984537 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD32486A2A400984537 /* User.swift */; };
 		372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD52486A72400984537 /* VeterinaryItem.swift */; };
+		3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */; };
+		3741A18E2495F22A00E3D858 /* getFirebasePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A18D2495F22A00E3D858 /* getFirebasePicture.swift */; };
+		3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */; };
+		3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */; };
 		3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CEF623EDC53D002B8999 /* TabBarViewController.swift */; };
 		3748CF1B23EDE48C002B8999 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748CF1A23EDE48C002B8999 /* CloudKit.framework */; };
 		3748CF1D23EEA0B1002B8999 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF1C23EEA0B1002B8999 /* PetViewController.swift */; };
 		3748CF2123EF194B002B8999 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2023EF194B002B8999 /* Races.swift */; };
 		3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2223EFE84B002B8999 /* SettingsButton.swift */; };
-		3748CF2523EFEA5D002B8999 /* SettingsImagePetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsImagePetView.swift */; };
+		3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */; };
 		3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF4823F06623002B8999 /* VeterinayViewController.swift */; };
-		37A6588E248A86DC0063867C /* PresentPetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588D248A86DC0063867C /* PresentPetsCell.swift */; };
+		37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588D248A86DC0063867C /* PresentPetCell.swift */; };
 		37A6589024922C610063867C /* UserUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588F24922C610063867C /* UserUid.swift */; };
 		37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12923FC112100CF6247 /* UIViewController+Alert.swift */; };
 		37CED12C23FC114400CF6247 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12B23FC114400CF6247 /* Errors.swift */; };
@@ -63,14 +67,18 @@
 		372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinariesListTableViewController.swift; sourceTree = "<group>"; };
 		372CFFD32486A2A400984537 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		372CFFD52486A72400984537 /* VeterinaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinaryItem.swift; sourceTree = "<group>"; };
+		3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVeterinaryCell.swift; sourceTree = "<group>"; };
+		3741A18D2495F22A00E3D858 /* getFirebasePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getFirebasePicture.swift; sourceTree = "<group>"; };
+		3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmVeterinarySuppressViewController.swift; sourceTree = "<group>"; };
+		3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPetSuppressViewController.swift; sourceTree = "<group>"; };
 		3748CEF623EDC53D002B8999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		3748CF1A23EDE48C002B8999 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3748CF1C23EEA0B1002B8999 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
 		3748CF2023EF194B002B8999 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		3748CF2223EFE84B002B8999 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
-		3748CF2423EFEA5D002B8999 /* SettingsImagePetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsImagePetView.swift; sourceTree = "<group>"; };
+		3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCornerBorderRadiusView.swift; sourceTree = "<group>"; };
 		3748CF4823F06623002B8999 /* VeterinayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VeterinayViewController.swift; sourceTree = "<group>"; };
-		37A6588D248A86DC0063867C /* PresentPetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPetsCell.swift; sourceTree = "<group>"; };
+		37A6588D248A86DC0063867C /* PresentPetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPetCell.swift; sourceTree = "<group>"; };
 		37A6588F24922C610063867C /* UserUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUid.swift; sourceTree = "<group>"; };
 		37CED12923FC112100CF6247 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		37CED12B23FC114400CF6247 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 		37A6587E248A7A390063867C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */,
 				3748CF2223EFE84B002B8999 /* SettingsButton.swift */,
 				3715EAC8239188E800CAA9E7 /* Main.storyboard */,
 			);
@@ -197,6 +206,7 @@
 			children = (
 				372CFFCB248682FA00984537 /* PetsListTableViewController.swift */,
 				3748CF1C23EEA0B1002B8999 /* PetViewController.swift */,
+				3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -204,8 +214,7 @@
 		37A65882248A7A780063867C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3748CF2423EFEA5D002B8999 /* SettingsImagePetView.swift */,
-				37A6588D248A86DC0063867C /* PresentPetsCell.swift */,
+				37A6588D248A86DC0063867C /* PresentPetCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +234,7 @@
 			children = (
 				372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */,
 				3748CF4823F06623002B8999 /* VeterinayViewController.swift */,
+				3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -232,6 +242,7 @@
 		37A65885248A7AB90063867C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -248,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */,
+				3741A18D2495F22A00E3D858 /* getFirebasePicture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -491,23 +503,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */,
 				37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */,
 				37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */,
+				3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */,
 				3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */,
 				3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */,
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
-				37A6588E248A86DC0063867C /* PresentPetsCell.swift in Sources */,
+				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
+				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
 				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
 				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
 				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
-				3748CF2523EFEA5D002B8999 /* SettingsImagePetView.swift in Sources */,
+				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
 				3748CF1D23EEA0B1002B8999 /* PetViewController.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
+				3741A18E2495F22A00E3D858 /* getFirebasePicture.swift in Sources */,
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
 				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,

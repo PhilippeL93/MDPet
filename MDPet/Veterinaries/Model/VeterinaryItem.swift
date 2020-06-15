@@ -13,6 +13,7 @@ struct VeterinaryItem {
 
     let ref: DatabaseReference?
     let key: String
+    var clinicSwitch: Bool
     let clinicName: String
     let veterinaryName: String
     let veterinaryFirstName: String
@@ -23,13 +24,14 @@ struct VeterinaryItem {
     let veterinaryPhone: String
     let veterinaryEmail: String
 
-    init(clinic: String, key: String = "",
+    init(clinicSwitch: Bool, clinic: String, key: String = "",
          name: String, firstName: String,
          streetOne: String, streetTwo: String,
          postalCode: String, city: String,
          phone: String, email: String) {
         self.ref = nil
         self.key = key
+        self.clinicSwitch = clinicSwitch
         self.clinicName = clinic
         self.veterinaryName = name
         self.veterinaryFirstName = firstName
@@ -44,9 +46,10 @@ struct VeterinaryItem {
     init?(snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
+            let clinicSwitch = value["clinicSwitch"] as? Bool,
             let clinicName = value["clinicName"] as? String,
             let veterinaryName = value["veterinaryName"] as? String,
-            let veterinaryFirstName = value["veterinarveterinaryItemyFirstName"] as? String,
+            let veterinaryFirstName = value["veterinaryFirstName"] as? String,
             let veterinaryStreetOne = value["veterinaryStreetOne"] as? String,
             let veterinaryStreetTwo = value["veterinaryStreetTwo"] as? String,
             let veterinaryPostalCode = value["veterinaryPostalCode"] as? String,
@@ -59,6 +62,7 @@ struct VeterinaryItem {
 
     self.ref = snapshot.ref
                 self.key = snapshot.key
+    self.clinicSwitch = clinicSwitch
     self.clinicName = clinicName
     self.veterinaryName = veterinaryName
     self.veterinaryFirstName = veterinaryFirstName
@@ -72,6 +76,7 @@ struct VeterinaryItem {
 
   func toAnyObject() -> Any {
     return [
+        "clinicSwitch": clinicSwitch,
         "clinicName": clinicName,
         "veterinaryName": veterinaryName,
         "veterinaryFirstName": veterinaryFirstName,

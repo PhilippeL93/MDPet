@@ -1,5 +1,5 @@
 //
-//  SettingsImagePetView.swift
+//  SettingsCornerBorderRadiusView.swift
 //  MDPet
 //
 //  Created by Philippe on 09/02/2020.
@@ -10,11 +10,11 @@ import UIKit
 
 @IBDesignable
 
-// MARK: class SettingsImagePetView
+// MARK: class SettingsCornerBorderRadiusView
 ///    in order to manage
 ///    - border in color
 ///    - rounded corner
-class SettingsImagePetView: UIImageView {
+class SettingsCornerBorderRadiusView: UIImageView {
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
