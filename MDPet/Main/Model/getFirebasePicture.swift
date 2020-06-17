@@ -16,10 +16,10 @@ class GetFirebasePicture {
     let imageCache = NSCache<NSString, AnyObject>()
 
     func getPicture(URLPicture: String, callback: @escaping (Bool, UIImage?) -> Void) {
-        if let cachedImage = imageCache.object(forKey: URLPicture as NSString) as? UIImage {
-            callback(false, cachedImage)
-            return
-        }
+//        if let cachedImage = imageCache.object(forKey: URLPicture as NSString) as? UIImage {
+//            callback(false, cachedImage)
+//            return
+//        }
         let url = URL(string: URLPicture)
         if url != nil {
             URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in

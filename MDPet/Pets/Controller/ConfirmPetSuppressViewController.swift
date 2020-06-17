@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension Notification.Name {
-    static let navigationBarPetToTrue = Notification.Name("navigationBarPetToTrue")
-}
+//extension Notification.Name {
+//    static let navigationBarPetToTrue = Notification.Name("navigationBarPetToTrue")
+//}
 
 class ConfirmPetSuppressViewController: UIViewController {
 
@@ -21,12 +21,12 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
 
-    @IBAction func cancelSuppressVeterinary(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
-        self.removeAnimate()
-        self.view.removeFromSuperview()
+    @IBAction func cancelSuppressPet(_ sender: Any) {
+                NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
+                self.removeAnimate()
+                self.view.removeFromSuperview()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showAnimate()

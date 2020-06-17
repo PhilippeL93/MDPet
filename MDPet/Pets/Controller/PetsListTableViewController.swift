@@ -81,24 +81,22 @@ extension PetsListTableViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemPet", for: indexPath)
             as? PresentPetCell else {
-            return UITableViewCell()
+                return UITableViewCell()
         }
 
         let petItem = items[indexPath.row]
-
-        cell.configurePetCell(with: petItem.petName, URLPicture: petItem.petURLPicture, birthDate: petItem.petBirthDate)
+        cell.configurePetCell(name: petItem.petName,
+                              URLPicture: petItem.petURLPicture,
+                              birthDate: petItem.petBirthDate) { (success) in
+                                if !success {
+                                    return
+                                }
+        }
         return cell
-//        cell.configurePetCell(name: petItem.petName,
-//                              URLPicture: petItem.petURLPicture,
-//                              birthDate: petItem.petBirthDate) { (success) in
-//                                if !success {
-//                                    return
-//                                }
-//        }
-//        return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,5 +119,6 @@ extension PetsListTableViewController: UITableViewDelegate {
         destVC.typeOfCall = "update"
         destVC.petItem = petItem
         self.show(destVC, sender: self)
+//        self.present(destVC, animated: true, completion: nil)
     }
 }

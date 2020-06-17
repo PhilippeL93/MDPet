@@ -68,13 +68,16 @@ class PetViewController: UIViewController {
     @IBAction func addPetPhoto(_ sender: Any) {
         selectImageOrCamera(animated: true)
     }
-
     @IBAction func savePet(_ sender: Any) {
         createOrUpdatePet()
     }
-
     @IBAction func suppressPet(_ sender: Any) {
         getSuppressedPet()
+    }
+    @IBAction func backToPets(_ sender: UIBarButtonItem) {
+        activeField?.resignFirstResponder()
+        activeField = nil
+        checkUpdatePetDone()
     }
 
 // MARK: - override
@@ -92,6 +95,7 @@ class PetViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: .navigationBarPetToTrue, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .isToUpdate, object: nil)
     }
 
 // MARK: - @objc func
@@ -104,6 +108,17 @@ class PetViewController: UIViewController {
     }
     @objc func navigationBarPetToTrue(notification: Notification) {
         navigationController?.navigationBar.isUserInteractionEnabled = true
+    }
+    @objc func isPetToUpdate(notification: Notification) {
+        navigationController?.navigationBar.isUserInteractionEnabled = true
+        var isToUpdate = true
+        if let object = notification.object as? Bool {
+            isToUpdate = object
+        }
+        if isToUpdate == false {
+        navigationController?.popViewController(animated: true)
+            return
+        }
     }
     @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
         checkChangeDone()
@@ -257,6 +272,8 @@ class PetViewController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(navigationBarPetToTrue),
                                                name: .navigationBarPetToTrue, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(isPetToUpdate),
+                                               name: .isToUpdate, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(returnTextView(gesture:))))
     }
@@ -271,33 +288,11 @@ class PetViewController: UIViewController {
     private func initiatePictureView() {
         petPicture.image = nil
         if let URLPicture = petItem?.petURLPicture {
-//            GetFirebasePicture.shared.getPicture(URLPicture: URLPicture) { (success, picture) in
-//                if success, let picture = picture {
-//                    self.petPicture.image = picture
-//                }
-//                self.initiateFieldsView()
-//            }
-            if let cachedImage = imageCache.object(forKey: URLPicture as NSString) as? UIImage {
-                petPicture.image = cachedImage
-                return
-            }
-            let url = URL(string: URLPicture)
-            if url != nil {
-                URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                    guard response != nil else {
-                        return
-                    }
-                    DispatchQueue.main.async(execute: {
-                        if let downloadedImage = UIImage(data: data!) {
-                            self.imageCache.setObject(downloadedImage, forKey: URLPicture as NSString)
-                            self.petPicture.image = downloadedImage
-                        }
-                    })
-                }).resume()
+            GetFirebasePicture.shared.getPicture(URLPicture: URLPicture) { (success, picture) in
+                if success, let picture = picture {
+                    self.petPicture.image = picture
+                }
+                self.initiateFieldsView()
             }
         }
         initiateFieldsView()
@@ -418,12 +413,10 @@ class PetViewController: UIViewController {
                     self.updatePetStorage(petURLPicture: petURLPicture, uniqueUUID: uniqueUUID)
                 })
             })
-//            dismiss(animated: true, completion: nil)
         } else {
             updatePetStorage(petURLPicture: "", uniqueUUID: uniqueUUID)
         }
-        dismiss(animated: true, completion: nil)
-        toggleSavePetButton(shown: false)
+        navigationController?.popViewController(animated: true)
     }
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
         petItem = PetItem(
@@ -451,6 +444,21 @@ class PetViewController: UIViewController {
                 return
         }
         destVC.petKey = petKey
+        self.addChild(destVC)
+        destVC.view.frame = self.view.frame
+        self.view.addSubview(destVC.view)
+        destVC.didMove(toParent: self)
+    }
+    private func checkUpdatePetDone() {
+        if savePetButton.isEnabled == false {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "confirmUpdate")
+            as? ConfirmUpdateViewController else {
+                return
+        }
         self.addChild(destVC)
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)

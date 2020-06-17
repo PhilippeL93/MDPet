@@ -1,34 +1,34 @@
 //
-//  ConfirmVeterinarySuppressViewController.swift
+//  ConfirmUpdateViewController.swift
 //  MDPet
 //
-//  Created by Philippe on 15/06/2020.
+//  Created by Philippe on 16/06/2020.
 //  Copyright © 2020 Philippe. All rights reserved.
 //
 
 import UIKit
 
-class ConfirmVeterinarySuppressViewController: UIViewController {
+class ConfirmUpdateViewController: UIViewController {
 
-    @IBAction func suppressVeterinary(_ sender: UIButton) {
-        gestSuppressVeterinary()
-        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
+    @IBAction func cancelUpdate(_ sender: UIButton) {
+        isToUpdate = false
+        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: "navigationBarVeterinaryToTrue")
+        NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
         self.removeAnimate()
         self.view.removeFromSuperview()
     }
-
-    @IBAction func cancelSuppressVeterinary(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
+    @IBAction func continueUpdate(_ sender: UIButton) {
+        isToUpdate = true
+        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: "navigationBarVeterinaryToTrue")
+        NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
         self.removeAnimate()
         self.view.removeFromSuperview()
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showAnimate()
     }
-
-    var veterinaryKey: String = ""
+    var isToUpdate = true
 
         // MARK: - functions
         ///   showAnimate in order animate pollutants view when it's apperaed
@@ -52,8 +52,5 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
                 }
         }
         )
-    }
-    private func gestSuppressVeterinary() {
-
     }
 }

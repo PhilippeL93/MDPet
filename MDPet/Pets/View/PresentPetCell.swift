@@ -16,45 +16,16 @@ class PresentPetCell: UITableViewCell {
 
     let imageCache = NSCache<NSString, AnyObject>()
 
-    func configurePetCell(with name: String, URLPicture: String, birthDate: String ) {
-    petNameLabel.text = name
-    petBirthDateLabel.text = birthDate
-    petPicture.image = nil
-        if let cachedImage = imageCache.object(forKey: URLPicture as NSString) as? UIImage {
-            petPicture.image = cachedImage
-            return
-        }
-        let url = URL(string: URLPicture)
-        if url != nil {
-            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard response != nil else {
-                    return
-                }
-                DispatchQueue.main.async(execute: {
-                    if let downloadedImage = UIImage(data: data!) {
-                        self.imageCache.setObject(downloadedImage, forKey: URLPicture as NSString)
-                        self.petPicture.image = downloadedImage
-                    }
-                })
-            }).resume()
-        }
-}
+    func configurePetCell(name: String, URLPicture: String, birthDate: String, callback: @escaping (Bool) -> Void ) {
+        petPicture.image = nil
 
-//    func configurePetCell(name: String, URLPicture: String, birthDate: String, callback: @escaping (Bool) -> Void ) {
-//        petNameLabel.text = name
-//        petBirthDateLabel.text = birthDate
-//
-//        petPicture.image = nil
-//
-//        GetFirebasePicture.shared.getPicture(URLPicture: URLPicture) { (success, picture) in
-//            if success, let picture = picture {
-//                self.petPicture.image = picture
-//            }
-//        }
-//        callback(true)
-//    }
+        GetFirebasePicture.shared.getPicture(URLPicture: URLPicture) { (success, picture) in
+            if success, let picture = picture {
+                self.petPicture.image = picture
+            }
+            self.petNameLabel.text = name
+            self.petBirthDateLabel.text = birthDate
+        }
+        callback(true)
+    }
 }
