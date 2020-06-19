@@ -8,32 +8,28 @@
 
 import UIKit
 
-//extension Notification.Name {
-//    static let navigationBarPetToTrue = Notification.Name("navigationBarPetToTrue")
-//}
-
 class ConfirmPetSuppressViewController: UIViewController {
 
+    // MARK: - buttons
     @IBAction func suppressPet(_ sender: UIButton) {
         gestSuppressPet()
-        NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
-        self.removeAnimate()
-        self.view.removeFromSuperview()
+        prepareToGoBack()
     }
 
     @IBAction func cancelSuppressPet(_ sender: Any) {
-                NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
-                self.removeAnimate()
-                self.view.removeFromSuperview()
+        prepareToGoBack()
     }
 
+    // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showAnimate()
     }
+
+    // MARK: - var
     var petKey: String = ""
 
-// MARK: - functions
+    // MARK: - functions
         ///   showAnimate in order animate pollutants view when it's apperaed
     private func showAnimate() {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -57,7 +53,12 @@ class ConfirmPetSuppressViewController: UIViewController {
         }
         )
     }
+    private func prepareToGoBack() {
+        NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
+        self.removeAnimate()
+        self.view.removeFromSuperview()
+    }
     private func gestSuppressPet() {
-        
+
     }
 }

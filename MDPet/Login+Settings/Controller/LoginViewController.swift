@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     // MARK: Constants
     let loginToList = "LoginToList"
     var userUid: UserUid!
+//    private var activeField: UITextField?
 
     // MARK: Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
@@ -44,6 +45,12 @@ class LoginViewController: UIViewController {
     @IBAction func signUpDidTouch(_ sender: Any) {
         handleRegister()
     }
+
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        textFieldLoginEmail.resignFirstResponder()
+        textFieldLoginPassword.resignFirstResponder()
+    }
+
     private func handleLogin() {
         guard
             let email = textFieldLoginEmail.text,

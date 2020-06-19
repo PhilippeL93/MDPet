@@ -10,28 +10,27 @@ import UIKit
 
 class ConfirmVeterinarySuppressViewController: UIViewController {
 
+    // MARK: - buttons
     @IBAction func suppressVeterinary(_ sender: UIButton) {
         gestSuppressVeterinary()
-        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
-        self.removeAnimate()
-        self.view.removeFromSuperview()
+        prepareToGoBack()
     }
 
     @IBAction func cancelSuppressVeterinary(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
-        self.removeAnimate()
-        self.view.removeFromSuperview()
+        prepareToGoBack()
     }
 
+    // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showAnimate()
     }
 
+    // MARK: - var
     var veterinaryKey: String = ""
 
-        // MARK: - functions
-        ///   showAnimate in order animate pollutants view when it's apperaed
+    // MARK: - functions
+    ///   showAnimate in order animate pollutants view when it's apperaed
     private func showAnimate() {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0
@@ -52,6 +51,11 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
                 }
         }
         )
+    }
+    private func prepareToGoBack() {
+        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
+        self.removeAnimate()
+        self.view.removeFromSuperview()
     }
     private func gestSuppressVeterinary() {
 
