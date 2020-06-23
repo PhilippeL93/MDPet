@@ -20,11 +20,10 @@ class PetsListTableViewController: UIViewController {
     let listToUsers = "ListToUsers"
 
     // MARK: Properties
-    var items: [PetItem] = []
+    var petItems: [PetItem] = []
     var user: User!
     var databaseRef = Database.database().reference(withPath: "pets-item")
     let usersRef = Database.database().reference(withPath: "online")
-//    var userUid: UserUid!
 
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
@@ -33,43 +32,42 @@ class PetsListTableViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-                let path = UserUid.uid + "-pets-item"
+        let path = UserUid.uid + "-pets-item"
 
-                databaseRef = Database.database().reference(withPath: "\(path)")
+        databaseRef = Database.database().reference(withPath: "\(path)")
 
-                databaseRef.queryOrdered(byChild: "petBirthDate").observe(.value, with: { snapshot in
-                  var newItems: [PetItem] = []
-                  for child in snapshot.children {
-                    if let snapshot = child as? DataSnapshot,
-                      let petItem = PetItem(snapshot: snapshot) {
-                      newItems.append(petItem)
-                    }
-                  }
-                  self.items = newItems
-                  self.tableView.reloadData()
-                })
-
-                Auth.auth().addStateDidChangeListener { auth, user in
-                    guard let user = user else { return }
-                    self.user = User(authData: user)
-
-                    let currentUserRef = self.usersRef.child(self.user.uid)
-                    currentUserRef.setValue(self.user.email)
-                    currentUserRef.onDisconnectRemoveValue()
+        databaseRef.queryOrdered(byChild: "petBirthDate").observe(.value, with: { snapshot in
+            var newItems: [PetItem] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let petItem = PetItem(snapshot: snapshot) {
+                    newItems.append(petItem)
                 }
-                usersRef.observe(.value, with: { snapshot in
-        //          if snapshot.exists() {
-        //            self.userCountBarButtonItem?.title = snapshot.childrenCount.description
-        //          } else {
-        //            self.userCountBarButtonItem?.title = "0"
-        //          }
-                })
+            }
+            self.petItems = newItems
+            self.tableView.reloadData()
+        })
+        Auth.auth().addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+
+            let currentUserRef = self.usersRef.child(self.user.uid)
+            currentUserRef.setValue(self.user.email)
+            currentUserRef.onDisconnectRemoveValue()
+        }
+        usersRef.observe(.value, with: { snapshot in
+            //          if snapshot.exists() {
+            //            self.userCountBarButtonItem?.title = snapshot.childrenCount.description
+            //          } else {
+            //            self.userCountBarButtonItem?.title = "0"
+            //          }
+        })
     }
     private func createNewPet() {
-                guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "newPetController")
-                            as? NewPetViewController else {
-//        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
-//            as? PetViewController else {
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "newPetController")
+            as? NewPetViewController else {
+                //        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
+                //            as? PetViewController else {
                 return
         }
         destVC.typeOfCall = "create"
@@ -90,7 +88,7 @@ extension PetsListTableViewController: UITableViewDataSource {
                 return UITableViewCell()
         }
 
-        let petItem = items[indexPath.row]
+        let petItem = petItems[indexPath.row]
         cell.configurePetCell(name: petItem.petName,
                               URLPicture: petItem.petURLPicture,
                               birthDate: petItem.petBirthDate) { (success) in
@@ -102,7 +100,7 @@ extension PetsListTableViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return petItems.count
     }
 }
 
@@ -119,7 +117,7 @@ extension PetsListTableViewController: UITableViewDelegate {
 //            as? PetViewController else {
                 return
         }
-        let petItem = items[indexPath.row]
+        let petItem = petItems[indexPath.row]
         destVC.typeOfCall = "update"
         destVC.petItem = petItem
         self.show(destVC, sender: self)

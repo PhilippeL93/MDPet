@@ -16,6 +16,8 @@
 		372CEF72249B68B7002AEAF5 /* VaccinesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF71249B68B7002AEAF5 /* VaccinesListTableViewController.swift */; };
 		372CEF77249B692F002AEAF5 /* ConsultationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */; };
 		372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */; };
+		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
+		372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */; };
 		372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFC9248676B600984537 /* SettingsViewController.swift */; };
 		372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCB248682FA00984537 /* PetsListTableViewController.swift */; };
 		372CFFCE2486839200984537 /* PetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCD2486839200984537 /* PetItem.swift */; };
@@ -28,7 +30,7 @@
 		3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */; };
 		3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CEF623EDC53D002B8999 /* TabBarViewController.swift */; };
 		3748CF1B23EDE48C002B8999 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748CF1A23EDE48C002B8999 /* CloudKit.framework */; };
-		3748CF1D23EEA0B1002B8999 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF1C23EEA0B1002B8999 /* PetViewController.swift */; };
+		3748CF1D23EEA0B1002B8999 /* ZZ_PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF1C23EEA0B1002B8999 /* ZZ_PetViewController.swift */; };
 		3748CF2123EF194B002B8999 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2023EF194B002B8999 /* Races.swift */; };
 		3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2223EFE84B002B8999 /* SettingsButton.swift */; };
 		3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */; };
@@ -69,6 +71,8 @@
 		372CEF71249B68B7002AEAF5 /* VaccinesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListTableViewController.swift; sourceTree = "<group>"; };
 		372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListTableViewController.swift; sourceTree = "<group>"; };
 		372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPetViewController.swift; sourceTree = "<group>"; };
+		372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentConsultationCell.swift; sourceTree = "<group>"; };
+		372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVaccineCell.swift; sourceTree = "<group>"; };
 		372CFFC9248676B600984537 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		372CFFCB248682FA00984537 /* PetsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsListTableViewController.swift; sourceTree = "<group>"; };
 		372CFFCD2486839200984537 /* PetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetItem.swift; sourceTree = "<group>"; };
@@ -81,7 +85,7 @@
 		3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPetSuppressViewController.swift; sourceTree = "<group>"; };
 		3748CEF623EDC53D002B8999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		3748CF1A23EDE48C002B8999 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		3748CF1C23EEA0B1002B8999 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
+		3748CF1C23EEA0B1002B8999 /* ZZ_PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZ_PetViewController.swift; sourceTree = "<group>"; };
 		3748CF2023EF194B002B8999 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		3748CF2223EFE84B002B8999 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCornerBorderRadiusView.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 		372CEF70249B6879002AEAF5 /* Vaccines */ = {
 			isa = PBXGroup;
 			children = (
+				372CEFBB249FD00B002AEAF5 /* Model */,
+				372CEFBA249FD002002AEAF5 /* View */,
 				372CEF73249B68EB002AEAF5 /* Controller */,
 			);
 			path = Vaccines;
@@ -192,6 +198,8 @@
 		372CEF74249B68FA002AEAF5 /* Consultations */ = {
 			isa = PBXGroup;
 			children = (
+				372CEFBD249FD01C002AEAF5 /* Model */,
+				372CEFBC249FD015002AEAF5 /* View */,
 				372CEF75249B6917002AEAF5 /* Controller */,
 			);
 			path = Consultations;
@@ -203,6 +211,36 @@
 				372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		372CEFBA249FD002002AEAF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		372CEFBB249FD00B002AEAF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		372CEFBC249FD015002AEAF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		372CEFBD249FD01C002AEAF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		37A6587D248A7A1F0063867C /* Main */ = {
@@ -249,9 +287,9 @@
 			isa = PBXGroup;
 			children = (
 				372CFFCB248682FA00984537 /* PetsListTableViewController.swift */,
-				3748CF1C23EEA0B1002B8999 /* PetViewController.swift */,
-				3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */,
 				372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */,
+				3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */,
+				3748CF1C23EEA0B1002B8999 /* ZZ_PetViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -558,12 +596,14 @@
 				3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */,
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
+				372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */,
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
 				372CEF72249B68B7002AEAF5 /* VaccinesListTableViewController.swift in Sources */,
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
+				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
 				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
 				372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */,
 				37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */,
@@ -572,7 +612,7 @@
 				372CEF77249B692F002AEAF5 /* ConsultationsListTableViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
-				3748CF1D23EEA0B1002B8999 /* PetViewController.swift in Sources */,
+				3748CF1D23EEA0B1002B8999 /* ZZ_PetViewController.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
 				3741A18E2495F22A00E3D858 /* getFirebasePicture.swift in Sources */,
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,

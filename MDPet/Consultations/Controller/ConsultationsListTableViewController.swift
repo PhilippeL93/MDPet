@@ -20,8 +20,8 @@ extension ConsultationsListTableViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemPet", for: indexPath)
-            as? PresentPetCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemConsultation", for: indexPath)
+            as? PresentConsultationCell else {
                 return UITableViewCell()
         }
 

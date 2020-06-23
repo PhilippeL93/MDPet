@@ -448,6 +448,7 @@
                         <outlet property="clinicNameField" destination="zrX-4I-PEq" id="Ta7-yg-bVr"/>
                         <outlet property="clinicSwitch" destination="bsy-hf-Nqe" id="9oK-yw-jQl"/>
                         <outlet property="saveVeterinaryButton" destination="4jc-SK-IYk" id="BtV-y0-tob"/>
+                        <outlet property="suppressVeterinaryButton" destination="O8k-rp-zp6" id="zme-BI-jEG"/>
                         <outlet property="veterinaryCityField" destination="0JH-dR-rA2" id="Mev-fc-hrh"/>
                         <outlet property="veterinaryEmailField" destination="3C6-X4-1RO" id="ajs-7d-Ykq"/>
                         <outlet property="veterinaryFirstNameField" destination="DKg-mr-PBT" id="ezl-tv-crN"/>
@@ -790,7 +791,7 @@
                                                         </constraints>
                                                         <state key="normal" title="Photo"/>
                                                         <connections>
-                                                            <action selector="aaPetPhoto:" destination="xbp-Gj-2Jk" eventType="touchUpInside" id="etA-fx-OSW"/>
+                                                            <action selector="addPetPhoto:" destination="xbp-Gj-2Jk" eventType="touchUpInside" id="71B-Lz-Q2Q"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q3u-WD-B39" userLabel="Pet Picture">
@@ -857,12 +858,16 @@
                                                 </segments>
                                             </segmentedControl>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date de naissance" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="02y-cG-e25" userLabel="Pet Birth Date Field">
-                                                <rect key="frame" x="226.5" y="323" width="140.5" height="34"/>
+                                                <rect key="frame" x="156" y="323" width="211" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="F1z-tO-LZp"/>
+                                                    <constraint firstAttribute="width" constant="211" id="zWg-Vc-7M7"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="birthDateEditingDidBegin:" destination="xbp-Gj-2Jk" eventType="editingDidBegin" id="TWl-8d-skW"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Race" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eCW-QL-fmP" userLabel="Pet Race Field">
                                                 <rect key="frame" x="112" y="367" width="255" height="34"/>
@@ -899,13 +904,17 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date Stérilisation" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j21-V4-H4B" userLabel="Pet Sterilized Date Field">
-                                                <rect key="frame" x="226.5" y="672" width="140.5" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date Stérilisation" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="j21-V4-H4B" userLabel="Pet Sterilized Date Field">
+                                                <rect key="frame" x="156" y="672" width="211" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="Jco-Pn-LgL"/>
+                                                    <constraint firstAttribute="width" constant="211" id="h9R-O7-TMn"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="sterilizedDateEditingDidBegin:" destination="xbp-Gj-2Jk" eventType="editingDidBegin" id="6BE-JZ-0BB"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9q-4E-apH" userLabel="Pet Name Label">
                                                 <rect key="frame" x="8" y="245" width="37" height="21"/>
@@ -916,29 +925,40 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date sevrage" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vcl-Dm-dit" userLabel="Pet Weaning Date Field">
-                                                <rect key="frame" x="226.5" y="716" width="140.5" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date sevrage" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vcl-Dm-dit" userLabel="Pet Weaning Date Field">
+                                                <rect key="frame" x="156" y="716" width="211" height="34"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="211" id="Wxo-Ls-cJ1"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="YS8-TQ-JGa"/>
                                                     <constraint firstAttribute="height" constant="34" id="kHU-aW-u9A"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="weaningDateEditingDidBegin:" destination="xbp-Gj-2Jk" eventType="editingDidBegin" id="Hvn-yY-9ei"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date décès" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n1C-VT-8vA" userLabel="Pet Death Date Field">
-                                                <rect key="frame" x="226.5" y="760" width="140.5" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date décès" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="n1C-VT-8vA" userLabel="Pet Death Date Field">
+                                                <rect key="frame" x="156" y="760" width="211" height="34"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="211" id="AaZ-J5-HgS"/>
                                                     <constraint firstAttribute="height" constant="34" id="eRq-nR-fsS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="deathDateEditingDidBegin:" destination="xbp-Gj-2Jk" eventType="editingDidBegin" id="UfR-IC-G2F"/>
+                                                </connections>
                                             </textField>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pmb-GH-J7f">
-                                                <rect key="frame" x="163" y="674" width="51" height="31"/>
+                                                <rect key="frame" x="98" y="674" width="51" height="31"/>
                                             </switch>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-d6-Hsv" userLabel="Pet Suppress">
                                                 <rect key="frame" x="0.0" y="926" width="375" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Lkd-vC-Pb6"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Supprimer la fiche">
@@ -961,6 +981,9 @@
                                                         <state key="normal" title="Vaccins">
                                                             <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="tCa-9S-iPD" kind="show" id="cCu-Ab-C9g"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YN-Y2-e9s" userLabel="Pet Consultations">
                                                         <rect key="frame" x="184" y="0.0" width="175" height="30"/>
@@ -970,6 +993,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <state key="normal" title="Consultations"/>
+                                                        <connections>
+                                                            <segue destination="W1Q-K3-nyc" kind="show" id="EzT-f7-iH2"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -988,8 +1014,11 @@
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="xbp-Gj-2Jk" id="Qq0-r9-2x9"/>
+                                                </connections>
                                             </textView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vétérinaire" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqk-zN-FWY" userLabel="Pet Veterinary Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vétérinaire" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eqk-zN-FWY" userLabel="Pet Veterinary Field">
                                                 <rect key="frame" x="112" y="628" width="255" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="dS3-DC-8WE"/>
@@ -1061,7 +1090,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="efM-OR-hke">
-                                                <rect key="frame" x="163" y="717" width="51" height="32"/>
+                                                <rect key="frame" x="98" y="717" width="51" height="32"/>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1071,17 +1100,14 @@
                                             <constraint firstItem="eqk-zN-FWY" firstAttribute="width" secondItem="rBW-Wc-LkY" secondAttribute="width" id="1Lc-dN-qH5"/>
                                             <constraint firstItem="EgM-8r-qsA" firstAttribute="top" secondItem="jMd-53-zHd" secondAttribute="bottom" constant="24" id="2HH-19-Dx6"/>
                                             <constraint firstItem="n1C-VT-8vA" firstAttribute="top" secondItem="vcl-Dm-dit" secondAttribute="bottom" constant="10" id="2JC-mu-ILX"/>
-                                            <constraint firstItem="n1C-VT-8vA" firstAttribute="width" secondItem="vcl-Dm-dit" secondAttribute="width" id="30S-7K-OOu"/>
                                             <constraint firstAttribute="trailing" secondItem="eqk-zN-FWY" secondAttribute="trailing" constant="8" id="3IF-zq-gbz"/>
                                             <constraint firstItem="eCW-QL-fmP" firstAttribute="leading" secondItem="EgM-8r-qsA" secondAttribute="trailing" constant="23" id="3V6-lr-8Cq"/>
                                             <constraint firstAttribute="trailing" secondItem="JFT-MJ-M8b" secondAttribute="trailing" constant="8" id="4TT-tP-nM8"/>
                                             <constraint firstAttribute="trailing" secondItem="eCW-QL-fmP" secondAttribute="trailing" constant="8" id="4tA-Ya-WQj"/>
-                                            <constraint firstItem="n1C-VT-8vA" firstAttribute="leading" secondItem="HjD-AR-8Vo" secondAttribute="trailing" constant="108" id="5Ng-Qu-tEJ"/>
                                             <constraint firstItem="j21-V4-H4B" firstAttribute="top" secondItem="eqk-zN-FWY" secondAttribute="bottom" constant="10" id="60n-ua-0Lx"/>
                                             <constraint firstItem="efM-OR-hke" firstAttribute="centerY" secondItem="vcl-Dm-dit" secondAttribute="centerY" id="6B6-Ci-3rb"/>
                                             <constraint firstItem="eBv-Rs-wqF" firstAttribute="top" secondItem="6Iy-Zr-wvV" secondAttribute="bottom" constant="10" id="7BJ-ke-lKc"/>
                                             <constraint firstItem="kvb-d6-Hsv" firstAttribute="centerX" secondItem="JFT-MJ-M8b" secondAttribute="centerX" id="7Ut-Vu-MdP"/>
-                                            <constraint firstItem="vcl-Dm-dit" firstAttribute="width" secondItem="02y-cG-e25" secondAttribute="width" id="7b6-8a-U7I"/>
                                             <constraint firstAttribute="trailing" secondItem="mK0-z5-e9m" secondAttribute="trailing" constant="8" id="8Hf-PA-Iu6"/>
                                             <constraint firstItem="eqk-zN-FWY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ncx-SC-8Zt" secondAttribute="trailing" constant="8" symbolic="YES" id="8Or-xQ-4AU"/>
                                             <constraint firstAttribute="trailing" secondItem="mK0-z5-e9m" secondAttribute="trailing" constant="8" id="9GZ-Tj-ObE"/>
@@ -1102,9 +1128,10 @@
                                             <constraint firstItem="6Iy-Zr-wvV" firstAttribute="leading" secondItem="rBW-Wc-LkY" secondAttribute="leading" id="FWH-QY-3Ib"/>
                                             <constraint firstAttribute="trailing" secondItem="TA2-FX-9Kd" secondAttribute="trailing" constant="8" id="GQk-kK-Q9W"/>
                                             <constraint firstItem="Ia4-PL-Vos" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="GbP-U1-DjU"/>
-                                            <constraint firstItem="02y-cG-e25" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jMd-53-zHd" secondAttribute="trailing" constant="8" symbolic="YES" id="IOS-vT-gAy"/>
+                                            <constraint firstItem="n1C-VT-8vA" firstAttribute="width" secondItem="02y-cG-e25" secondAttribute="width" id="HVu-KA-jDW"/>
                                             <constraint firstItem="qqK-Tk-0Cn" firstAttribute="top" secondItem="r9q-4E-apH" secondAttribute="bottom" constant="21" id="IW0-RO-ffe"/>
                                             <constraint firstItem="dN2-N7-b0t" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="Jda-tq-Blg"/>
+                                            <constraint firstItem="vcl-Dm-dit" firstAttribute="width" secondItem="02y-cG-e25" secondAttribute="width" id="Jpa-bb-zsn"/>
                                             <constraint firstItem="rBW-Wc-LkY" firstAttribute="top" secondItem="0N7-Mb-8yz" secondAttribute="bottom" constant="10" id="K64-d1-sc6"/>
                                             <constraint firstItem="5ke-6m-w1P" firstAttribute="top" secondItem="Gsc-Rw-ttS" secondAttribute="top" constant="23" id="M7H-3s-Uwe"/>
                                             <constraint firstItem="aTZ-W0-qaD" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="M8Y-6b-QgQ"/>
@@ -1112,14 +1139,12 @@
                                             <constraint firstItem="kvb-d6-Hsv" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" id="N0M-XY-e1Z"/>
                                             <constraint firstItem="Ia4-PL-Vos" firstAttribute="top" secondItem="EgM-8r-qsA" secondAttribute="bottom" constant="24" id="OOz-wt-zzb"/>
                                             <constraint firstItem="kvb-d6-Hsv" firstAttribute="top" secondItem="JFT-MJ-M8b" secondAttribute="bottom" constant="82" id="P0E-aa-WoQ"/>
-                                            <constraint firstItem="j21-V4-H4B" firstAttribute="width" secondItem="02y-cG-e25" secondAttribute="width" id="PRl-tQ-v0u"/>
                                             <constraint firstItem="aTZ-W0-qaD" firstAttribute="top" secondItem="Ncx-SC-8Zt" secondAttribute="bottom" constant="24" id="Q4M-IB-6j3"/>
                                             <constraint firstAttribute="trailing" secondItem="vcl-Dm-dit" secondAttribute="trailing" constant="8" id="QNu-VA-BAx"/>
                                             <constraint firstItem="Ncx-SC-8Zt" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="RQ0-ws-CFu"/>
                                             <constraint firstItem="5ke-6m-w1P" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="112" id="SOP-em-jB4"/>
                                             <constraint firstItem="5ke-6m-w1P" firstAttribute="centerX" secondItem="Gsc-Rw-ttS" secondAttribute="centerX" id="SXN-mg-ag1"/>
                                             <constraint firstAttribute="trailing" secondItem="5ke-6m-w1P" secondAttribute="trailing" constant="112" id="Slf-Uc-nbN"/>
-                                            <constraint firstItem="efM-OR-hke" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jg0-8n-Paq" secondAttribute="trailing" constant="8" symbolic="YES" id="StR-FF-tnc"/>
                                             <constraint firstAttribute="trailing" secondItem="pT8-nb-LUK" secondAttribute="trailing" constant="8" id="TPs-ec-9eB"/>
                                             <constraint firstAttribute="trailing" secondItem="j21-V4-H4B" secondAttribute="trailing" constant="8" id="UG2-YJ-XHF"/>
                                             <constraint firstItem="HjD-AR-8Vo" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="VP8-Ce-u1A"/>
@@ -1127,15 +1152,14 @@
                                             <constraint firstAttribute="trailing" secondItem="mK0-z5-e9m" secondAttribute="trailing" constant="8" id="WLQ-f0-Rgb"/>
                                             <constraint firstItem="r9q-4E-apH" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="WTg-Sf-AmF"/>
                                             <constraint firstItem="Jg0-8n-Paq" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="XPH-ns-vyN"/>
-                                            <constraint firstItem="efM-OR-hke" firstAttribute="centerX" secondItem="JFT-MJ-M8b" secondAttribute="centerX" id="XwR-iN-9k7"/>
+                                            <constraint firstItem="02y-cG-e25" firstAttribute="leading" secondItem="jMd-53-zHd" secondAttribute="trailing" constant="7.5" id="YfO-l3-1O1"/>
                                             <constraint firstItem="JFT-MJ-M8b" firstAttribute="top" secondItem="n1C-VT-8vA" secondAttribute="bottom" constant="20" id="Yzx-ol-OW4"/>
                                             <constraint firstItem="jMd-53-zHd" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="ZFJ-4t-qrS"/>
                                             <constraint firstItem="TA2-FX-9Kd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qqK-Tk-0Cn" secondAttribute="trailing" constant="8" symbolic="YES" id="ZKo-d6-7ld"/>
                                             <constraint firstItem="D5B-Ta-hiX" firstAttribute="top" secondItem="Ia4-PL-Vos" secondAttribute="bottom" constant="24" id="ZZu-aB-sjz"/>
-                                            <constraint firstItem="j21-V4-H4B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pmb-GH-J7f" secondAttribute="trailing" constant="8" symbolic="YES" id="aee-MQ-K0X"/>
-                                            <constraint firstItem="pmb-GH-J7f" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aTZ-W0-qaD" secondAttribute="trailing" constant="8" symbolic="YES" id="b8N-bj-Mep"/>
                                             <constraint firstItem="mK0-z5-e9m" firstAttribute="width" secondItem="rBW-Wc-LkY" secondAttribute="width" id="bOO-Tv-UBg"/>
                                             <constraint firstItem="6Iy-Zr-wvV" firstAttribute="leading" secondItem="mK0-z5-e9m" secondAttribute="leading" id="bn6-XN-Z2D"/>
+                                            <constraint firstItem="j21-V4-H4B" firstAttribute="leading" secondItem="pmb-GH-J7f" secondAttribute="trailing" constant="9" id="ccq-s0-h9B"/>
                                             <constraint firstItem="r9q-4E-apH" firstAttribute="top" secondItem="0N7-Mb-8yz" secondAttribute="bottom" constant="17" id="dSN-uk-XGP"/>
                                             <constraint firstItem="r95-Gi-YqL" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="dfH-YE-JZY"/>
                                             <constraint firstAttribute="trailing" secondItem="n1C-VT-8vA" secondAttribute="trailing" constant="8" id="dxe-jN-C7S"/>
@@ -1152,14 +1176,15 @@
                                             <constraint firstItem="dN2-N7-b0t" firstAttribute="top" secondItem="r95-Gi-YqL" secondAttribute="bottom" constant="44" id="kic-z0-wN4"/>
                                             <constraint firstItem="qqK-Tk-0Cn" firstAttribute="top" secondItem="r9q-4E-apH" secondAttribute="bottom" constant="21" id="lhO-H4-0hm"/>
                                             <constraint firstItem="6Iy-Zr-wvV" firstAttribute="leading" secondItem="eCW-QL-fmP" secondAttribute="leading" id="lho-MZ-bbB"/>
+                                            <constraint firstItem="pmb-GH-J7f" firstAttribute="leading" secondItem="aTZ-W0-qaD" secondAttribute="trailing" constant="11.5" id="mCa-Pp-YGC"/>
                                             <constraint firstItem="EgM-8r-qsA" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="meB-oa-5Ty"/>
                                             <constraint firstAttribute="height" constant="1000" id="moj-Me-hwe"/>
                                             <constraint firstItem="JFT-MJ-M8b" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="oux-x5-sBJ"/>
                                             <constraint firstAttribute="trailing" secondItem="02y-cG-e25" secondAttribute="trailing" constant="8" id="p4Z-Sq-A8u"/>
+                                            <constraint firstItem="vcl-Dm-dit" firstAttribute="leading" secondItem="efM-OR-hke" secondAttribute="trailing" constant="9" id="pqa-xG-Hmf"/>
                                             <constraint firstItem="6Iy-Zr-wvV" firstAttribute="top" secondItem="eCW-QL-fmP" secondAttribute="bottom" constant="10" id="q87-vd-LeO"/>
                                             <constraint firstItem="HjD-AR-8Vo" firstAttribute="top" secondItem="Jg0-8n-Paq" secondAttribute="bottom" constant="24" id="qjt-lp-kpL"/>
                                             <constraint firstItem="pT8-nb-LUK" firstAttribute="top" secondItem="eBv-Rs-wqF" secondAttribute="bottom" constant="10" id="rEa-rj-Lua"/>
-                                            <constraint firstItem="vcl-Dm-dit" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="efM-OR-hke" secondAttribute="trailing" constant="8" symbolic="YES" id="rFf-Ib-ksR"/>
                                             <constraint firstAttribute="trailing" secondItem="mK0-z5-e9m" secondAttribute="trailing" constant="8" id="rWz-kN-gsg"/>
                                             <constraint firstItem="qqK-Tk-0Cn" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="snJ-dA-OOb"/>
                                             <constraint firstItem="eqk-zN-FWY" firstAttribute="top" secondItem="mK0-z5-e9m" secondAttribute="bottom" constant="10" id="tDd-JG-BSF"/>
@@ -1167,6 +1192,8 @@
                                             <constraint firstAttribute="bottom" secondItem="kvb-d6-Hsv" secondAttribute="bottom" constant="30" id="wxl-VQ-05M"/>
                                             <constraint firstItem="02y-cG-e25" firstAttribute="top" secondItem="TA2-FX-9Kd" secondAttribute="bottom" constant="10" id="xaU-jf-ovp"/>
                                             <constraint firstItem="mK0-z5-e9m" firstAttribute="top" secondItem="pT8-nb-LUK" secondAttribute="bottom" constant="10" id="ySJ-A4-gRe"/>
+                                            <constraint firstItem="j21-V4-H4B" firstAttribute="width" secondItem="02y-cG-e25" secondAttribute="width" id="yfP-xh-uIt"/>
+                                            <constraint firstItem="n1C-VT-8vA" firstAttribute="leading" secondItem="HjD-AR-8Vo" secondAttribute="trailing" constant="37.5" id="z61-HX-u8m"/>
                                             <constraint firstItem="r9q-4E-apH" firstAttribute="top" secondItem="0N7-Mb-8yz" secondAttribute="bottom" constant="17" id="zX9-GB-Xqz"/>
                                             <constraint firstItem="TA2-FX-9Kd" firstAttribute="top" secondItem="rBW-Wc-LkY" secondAttribute="bottom" constant="10" id="zgF-Ec-K29"/>
                                             <constraint firstItem="pT8-nb-LUK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r95-Gi-YqL" secondAttribute="trailing" constant="6" id="zkm-oa-RVP"/>
@@ -1208,7 +1235,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="petBirthDateField" destination="02y-cG-e25" id="UOo-0V-50I"/>
-                        <outlet property="petBreederField" destination="mK0-z5-e9m" id="MpJ-eQ-Gts"/>
+                        <outlet property="petBreederView" destination="mK0-z5-e9m" id="3UJ-wO-uDU"/>
                         <outlet property="petColorField" destination="6Iy-Zr-wvV" id="Il3-2g-q7Z"/>
                         <outlet property="petDeathDateField" destination="n1C-VT-8vA" id="LBb-ji-boq"/>
                         <outlet property="petGenderSegmentedControl" destination="TA2-FX-9Kd" id="E4E-s7-lZq"/>
@@ -1225,11 +1252,12 @@
                         <outlet property="petWeaningSwitch" destination="efM-OR-hke" id="6zG-CB-y3s"/>
                         <outlet property="savePetButton" destination="EjX-bg-sqx" id="MgN-yi-wfQ"/>
                         <outlet property="scrollView" destination="EdO-FT-pDO" id="QE6-jb-HoA"/>
+                        <outlet property="suppressPetButton" destination="kvb-d6-Hsv" id="irT-OF-dZn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4S-o3-pHZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2546" y="-1301"/>
+            <point key="canvasLocation" x="2544.8000000000002" y="-1301.1994002998501"/>
         </scene>
         <!--Pet-->
         <scene sceneID="aDm-Wm-eSI">
@@ -1439,9 +1467,6 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="tCa-9S-iPD" kind="show" id="URF-YO-ATo"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-M9-eEc" userLabel="Pet Suppress" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="629" width="375" height="30"/>
@@ -1500,9 +1525,6 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="W1Q-K3-nyc" kind="show" id="cnt-Gg-7tB"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9f5-Lu-LEl" userLabel="View Image Pet" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
                                 <rect key="frame" x="159" y="8" width="57" height="57"/>
@@ -1663,12 +1685,12 @@
         <scene sceneID="9W7-Te-Tjy">
             <objects>
                 <tableViewController id="tCa-9S-iPD" userLabel="Vaccines List Table View Controller" customClass="VaccinesListTableViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qfT-UG-khc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qfT-UG-khc" userLabel="Vaccines Table View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tHM-Vy-fcw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemVaccine" id="tHM-Vy-fcw" userLabel="Vaccines Table View">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tHM-Vy-fcw" id="4lX-RI-1c8">
@@ -1690,18 +1712,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iv4-jM-GK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5913" y="-861"/>
+            <point key="canvasLocation" x="3554" y="-1527"/>
         </scene>
         <!--Consultations Table View Controller-->
         <scene sceneID="RqQ-Hm-qNu">
             <objects>
                 <tableViewController id="W1Q-K3-nyc" userLabel="Consultations Table View Controller" customClass="ConsultationsListTableViewControllrt" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="O5N-6S-4P9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="O5N-6S-4P9" userLabel="Consultations Table View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CC2-fQ-ctU">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemConsultation" id="CC2-fQ-ctU" userLabel="Consultations Table View">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CC2-fQ-ctU" id="8Y9-no-6XX">
@@ -1723,7 +1745,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUx-Rp-Jq4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5913" y="-78"/>
+            <point key="canvasLocation" x="3553" y="-833"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="XZx-tj-kcm">

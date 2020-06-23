@@ -12,25 +12,20 @@ class ConfirmUpdateViewController: UIViewController {
 
     @IBAction func cancelUpdate(_ sender: UIButton) {
         isToUpdate = false
-        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: "navigationBarVeterinaryToTrue")
-        NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
-        self.removeAnimate()
-        self.view.removeFromSuperview()
+        prepareToGoBack()
     }
     @IBAction func continueUpdate(_ sender: UIButton) {
         isToUpdate = true
-        NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: "navigationBarVeterinaryToTrue")
-        NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
-        self.removeAnimate()
-        self.view.removeFromSuperview()
+        prepareToGoBack()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showAnimate()
     }
     var isToUpdate = true
+    var petOrVeterinary = ""
 
-        // MARK: - functions
+// MARK: - functions
         ///   showAnimate in order animate pollutants view when it's apperaed
     private func showAnimate() {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -52,5 +47,17 @@ class ConfirmUpdateViewController: UIViewController {
                 }
         }
         )
+    }
+    private func prepareToGoBack() {
+        if petOrVeterinary == "veterinary" {
+            NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue,
+                                            object: "navigationBarVeterinaryToTrue")
+        } else {
+            NotificationCenter.default.post(name: .navigationBarPetToTrue,
+                                            object: "navigationBarPetToTrue")
+        }
+        NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
+        self.removeAnimate()
+        self.view.removeFromSuperview()
     }
 }

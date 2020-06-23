@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class ConfirmVeterinarySuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressVeterinary(_ sender: UIButton) {
+        hasBeenDeleted = true
         gestSuppressVeterinary()
         prepareToGoBack()
     }
 
     @IBAction func cancelSuppressVeterinary(_ sender: UIButton) {
+        hasBeenDeleted = false
         prepareToGoBack()
     }
 
@@ -28,6 +31,8 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
 
     // MARK: - var
     var veterinaryKey: String = ""
+    var databaseRef = Database.database().reference(withPath: "veterinaries-item")
+    var hasBeenDeleted = true
 
     // MARK: - functions
     ///   showAnimate in order animate pollutants view when it's apperaed
@@ -53,11 +58,19 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
         )
     }
     private func prepareToGoBack() {
+        NotificationCenter.default.post(name: .hasBeenDeleted, object: hasBeenDeleted)
         NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
         self.removeAnimate()
         self.view.removeFromSuperview()
     }
     private func gestSuppressVeterinary() {
-
+        let path = UserUid.uid + "-veterinaries-item"
+        databaseRef = Database.database().reference(withPath: "\(path)")
+        let deleteRef = databaseRef.child(veterinaryKey)
+        deleteRef.removeValue { error, _  in
+            if let error = error {
+                print("=============== error \(error)")
+            }
+        }
     }
 }

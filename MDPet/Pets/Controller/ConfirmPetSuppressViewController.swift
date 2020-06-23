@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressPet(_ sender: UIButton) {
+        hasBeenDeleted = true
         gestSuppressPet()
         prepareToGoBack()
     }
 
     @IBAction func cancelSuppressPet(_ sender: Any) {
+        hasBeenDeleted = false
         prepareToGoBack()
     }
 
@@ -27,7 +30,10 @@ class ConfirmPetSuppressViewController: UIViewController {
     }
 
     // MARK: - var
-    var petKey: String = ""
+    var petItem: PetItem?
+    var databaseRef = Database.database().reference(withPath: "pets-item")
+    var imageRef = Storage.storage().reference().child("pets-images")
+    var hasBeenDeleted = true
 
     // MARK: - functions
         ///   showAnimate in order animate pollutants view when it's apperaed
@@ -54,11 +60,28 @@ class ConfirmPetSuppressViewController: UIViewController {
         )
     }
     private func prepareToGoBack() {
+        NotificationCenter.default.post(name: .hasBeenDeleted, object: hasBeenDeleted)
         NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
         self.removeAnimate()
         self.view.removeFromSuperview()
     }
     private func gestSuppressPet() {
-
+        let path = UserUid.uid + "-pets-item"
+        databaseRef = Database.database().reference(withPath: "\(path)")
+        let deleteRef = databaseRef.child(petItem!.key)
+        if !(petItem?.petURLPicture.isEmpty)! {
+            let petKey = petItem?.key
+            let imageDeleteRef = imageRef.child("\(petKey ?? "").png")
+            imageDeleteRef.delete { error in
+                if let error = error {
+                    print("=============== error \(error)")
+                }
+            }
+        }
+        deleteRef.removeValue { error, _  in
+            if let error = error {
+                print("=============== error \(error)")
+            }
+        }
     }
 }

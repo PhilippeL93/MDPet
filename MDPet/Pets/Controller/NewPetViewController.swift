@@ -26,19 +26,19 @@ class NewPetViewController: UIViewController {
     @IBOutlet weak var petWeaningSwitch: UISwitch!
     @IBOutlet weak var petWeaningDateField: UITextField!
     @IBOutlet weak var petDeathDateField: UITextField!
-    @IBOutlet weak var petBreederField: UITextView!
-
+    @IBOutlet weak var petBreederView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var savePetButton: UIBarButtonItem!
+    @IBOutlet weak var suppressPetButton: UIButton!
 
     // MARK: - variables
     private let imagePicker = UIImagePickerController()
     private var pickerViewGender = UIPickerView()
     private var datePickerBirthDate: UIDatePicker?
     private var petSterilized: UISwitch?
-    private var datePickerSterilized: UIDatePicker?
+    private var datePickerSterilizedDate: UIDatePicker?
     private var petWeaning: UISwitch?
-    private var datePickerWeaning: UIDatePicker?
+    private var datePickerWeaningDate: UIDatePicker?
     private var datePickerDeathDate: UIDatePicker?
     private var pickerViewVeterinary = UIPickerView()
     private var pickerViewRace = UIPickerView()
@@ -50,6 +50,7 @@ class NewPetViewController: UIViewController {
     private var dateFormatter = DateFormatter()
     private var selectedRace: String = ""
     private var selectedVeterinaryKey: String = ""
+    private var typeFieldOrView: String = ""
 
     var veterinariesItems: [VeterinaryItem] = []
     var typeOfCall: String = ""
@@ -62,7 +63,7 @@ class NewPetViewController: UIViewController {
 
 // MARK: - buttons
 
-    @IBAction func aaPetPhoto(_ sender: Any) {
+    @IBAction func addPetPhoto(_ sender: Any) {
         selectImageOrCamera(animated: true)
     }
     @IBAction func savePet(_ sender: Any) {
@@ -88,6 +89,52 @@ class NewPetViewController: UIViewController {
         let rowRaces = getRowRaceFromKey(raceToSearch: petRaceField.text!)
         pickerViewRace.selectRow(rowRaces, inComponent: 0, animated: true)
     }
+    @IBAction func birthDateEditingDidBegin(_ sender: Any) {
+        formatDate()
+        if petBirthDateField.text!.isEmpty {
+            let date = Date()
+            petBirthDateField.text = dateFormatter.string(from: date)
+        } else {
+            let birthDate = dateFormatter.date(from: petItem!.petBirthDate)
+            datePickerBirthDate?.date = birthDate!
+        }
+    }
+    @IBAction func sterilizedDateEditingDidBegin(_ sender: Any) {
+        guard petSterilizedSwitch.isOn else {
+            return
+        }
+        formatDate()
+        if petSterilizedDateField.text!.isEmpty {
+            let date = Date()
+            petSterilizedDateField.text = dateFormatter.string(from: date)
+        } else {
+            let sterilizedDate = dateFormatter.date(from: petItem!.petSterilizedDate)
+            datePickerSterilizedDate?.date = sterilizedDate!
+        }
+    }
+    @IBAction func weaningDateEditingDidBegin(_ sender: Any) {
+        guard petWeaningSwitch.isOn else {
+            return
+        }
+        formatDate()
+        if petWeaningDateField.text!.isEmpty {
+            let date = Date()
+            petWeaningDateField.text = dateFormatter.string(from: date)
+        } else {
+            let weaningDate = dateFormatter.date(from: petItem!.petWeaningDate)
+            datePickerWeaningDate?.date = weaningDate!
+        }
+    }
+    @IBAction func deathDateEditingDidBegin(_ sender: Any) {
+        formatDate()
+        if petDeathDateField.text!.isEmpty {
+            let date = Date()
+            petDeathDateField.text = dateFormatter.string(from: date)
+        } else {
+            let deathDate = dateFormatter.date(from: petItem!.petWeaningDate)
+            datePickerDeathDate?.date = deathDate!
+        }
+    }
 
 // MARK: - override
     override func viewDidLoad() {
@@ -99,21 +146,34 @@ class NewPetViewController: UIViewController {
         toggleSavePetButton(shown: false)
         initiateObserver()
         initiateVeterinariesList()
+        initiateView()
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: .navigationBarPetToTrue, object: nil)
         NotificationCenter.default.removeObserver(self, name: .isToUpdate, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .hasBeenDeleted, object: nil)
     }
-
+}
+    extension NewPetViewController {
 // MARK: - @objc func
-    @objc func returnTextView(gesture: UIGestureRecognizer) {
-        guard activeField != nil else {
+    @objc func returnView(gesture: UIGestureRecognizer) {
+        guard !typeFieldOrView.isEmpty else {
             return
         }
-        activeField?.resignFirstResponder()
-        activeField = nil
+        if typeFieldOrView == "UITextField" {
+            guard activeField != nil else {
+                return
+            }
+            activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            activeField?.resignFirstResponder()
+            activeField = nil
+        } else {
+            petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            petBreederView.resignFirstResponder()
+        }
+        typeFieldOrView = ""
     }
     @objc func navigationBarPetToTrue(notification: Notification) {
         navigationController?.navigationBar.isUserInteractionEnabled = true
@@ -129,6 +189,15 @@ class NewPetViewController: UIViewController {
             return
         }
     }
+    @objc func isPetDeleted(notification: Notification) {
+        var hasBeenDeleted = false
+        if let object = notification.object as? Bool {
+            hasBeenDeleted = object
+        }
+        if hasBeenDeleted == true {
+            navigationController?.popViewController(animated: true)
+        }
+    }
     @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
         checkChangeDone()
         petRaceField.text = ""
@@ -142,8 +211,9 @@ class NewPetViewController: UIViewController {
         self.pickerViewGender.reloadAllComponents()
     }
     @objc func dateChangedBirthDate(datePicker: UIDatePicker) {
+        petBirthDateField.text = dateFormatter.string(from: datePicker.date)
         checkChangeDone()
-        formatDate()
+            formatDate()
         petBirthDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func petTatooFieldDidChange(_ textField: UITextField) {
@@ -160,9 +230,9 @@ class NewPetViewController: UIViewController {
         checkChangeDone()
     }
     @objc func dateChangedSterilized(datePicker: UIDatePicker) {
+        petSterilizedDateField.text = dateFormatter.string(from: datePicker.date)
         checkChangeDone()
         formatDate()
-        petSterilizedDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func petVeterinaryFieldDidChange(_ textField: UITextField) {
         checkChangeDone()
@@ -176,13 +246,10 @@ class NewPetViewController: UIViewController {
     @objc func petParticularSignsFieldDidChange(_ textField: UITextField) {
         checkChangeDone()
     }
-//    @objc func petBreederFieldDidChange(_ textField: UITextView) {
-//        checkChangeDone()
-//    }
     @objc func petWeaningSwitchDidChange(_ textField: UISwitch) {
         if petWeaningSwitch.isOn == true {
             petWeaningDateField.isEnabled = true
-            petWeaningDateField.text = petItem?.petSterilizedDate
+            petWeaningDateField.text = petItem?.petWeaningDate
         } else {
             petWeaningDateField.isEnabled = false
             petWeaningDateField.text =  ""
@@ -190,72 +257,14 @@ class NewPetViewController: UIViewController {
         checkChangeDone()
     }
     @objc func dateChangedWeaning(datePicker: UIDatePicker) {
+        petWeaningDateField.text = dateFormatter.string(from: datePicker.date)
         checkChangeDone()
         formatDate()
-        petWeaningDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func dateChangedDeathDate(datePicker: UIDatePicker) {
+        petDeathDateField.text = dateFormatter.string(from: datePicker.date)
         checkChangeDone()
         formatDate()
-        petDeathDateField.text = dateFormatter.string(from: datePicker.date)
-    }
-
-    private func checkChangeDone() {
-        if petTypeSegmentedControl.selectedSegmentIndex != petItem?.petType {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petNameField.text != petItem?.petName {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petGenderSegmentedControl.selectedSegmentIndex != petItem?.petGender {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petBirthDateField.text != petItem?.petBirthDate {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petTatooField.text != petItem?.petTatoo {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petSterilizedSwitch.isOn != petItem?.petSterilized {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petSterilizedDateField.text != petItem?.petSterilizedDate {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        var selectedVeterinaryName = ""
-        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: petItem!.petVeterinary)
-        if rowVeterinary != -1 {
-            selectedVeterinaryName = veterinariesItems[rowVeterinary].veterinaryName
-            }
-        if petVeterinaryField.text != selectedVeterinaryName {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petRaceField.text != petItem?.petRace {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petWeaningSwitch.isOn != petItem?.petWeaning {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petWeaningDateField.text != petItem?.petWeaningDate {
-            toggleSavePetButton(shown: true)
-            return
-        }
-        if petDeathDateField.text != petItem?.petDeathDate {
-            toggleSavePetButton(shown: true)
-            return
-        } else {
-            toggleSavePetButton(shown: false)
-        }
     }
     private func formatDate() {
         dateFormatter.locale = localeLanguage
@@ -268,7 +277,6 @@ class NewPetViewController: UIViewController {
         createObserverPetName()
         createObserverPetColor()
         createObserverPetParticularSigns()
-//        createObserverpetBreeder()
         createObserverPetGenderSegmentedCtrl()
         createObserverDatePickerBirthDate()
         createObserverPetTatoo()
@@ -284,8 +292,6 @@ class NewPetViewController: UIViewController {
         petNameField.delegate = self
         petColorField.delegate = self
         petParticularSignsField.delegate = self
-//        petBreederField.delegate = self
-//        PetBreederField.
         petBirthDateField.delegate = self
         petTatooField.delegate = self
         petSterilizedDateField.delegate = self
@@ -293,6 +299,7 @@ class NewPetViewController: UIViewController {
         petRaceField.delegate = self
         petWeaningDateField.delegate = self
         petDeathDateField.delegate = self
+        petBreederView.delegate = self
     }
     private func initiateObserver() {
         NotificationCenter.default.addObserver(self,
@@ -305,16 +312,25 @@ class NewPetViewController: UIViewController {
                                                name: .navigationBarPetToTrue, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(isPetToUpdate),
                                                name: .isToUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(isPetDeleted),
+                                               name: .hasBeenDeleted, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                              action: #selector(returnTextView(gesture:))))
+                                                              action: #selector(returnView(gesture:))))
     }
     private func initiateView() {
         if typeOfCall == "create" {
             savePetButton.title = "Ajouter"
+            self.title = "Nouvel animal"
+            suppressPetButton.isHidden = true
+            petSterilizedSwitch.isOn = false
+            petSterilizedDateField.isEnabled = false
+            petWeaningSwitch.isOn = false
+            petWeaningDateField.isEnabled = false
         } else {
             savePetButton.title = "Modifier"
+            self.title = "Modification animal"
+            initiatePictureView()
         }
-        initiatePictureView()
     }
     private func initiatePictureView() {
         petPicture.image = nil
@@ -323,7 +339,6 @@ class NewPetViewController: UIViewController {
                 if success, let picture = picture {
                     self.petPicture.image = picture
                 }
-                self.initiateFieldsView()
             }
         }
         initiateFieldsView()
@@ -343,12 +358,10 @@ class NewPetViewController: UIViewController {
             petSterilizedSwitch.isOn = false
             petSterilizedDateField.isEnabled = false
         }
-
         let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: petItem!.petVeterinary)
         if rowVeterinary != -1 {
             petVeterinaryField.text = veterinariesItems[rowVeterinary].veterinaryName
         }
-
         selectedVeterinaryKey = petItem?.petVeterinary ?? ""
         petRaceField.text = petItem?.petRace
         if petItem?.petWeaning == true {
@@ -360,8 +373,14 @@ class NewPetViewController: UIViewController {
         }
         petWeaningDateField.text = petItem?.petWeaningDate
         petDeathDateField.text = petItem?.petDeathDate
+        petColorField.text = petItem?.petColor
+        petBreederView.text = petItem?.petBreeder
+        petParticularSignsField.text = petItem?.petParticularSigns
     }
     private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
+        guard veterinariesItems.count != 0 else {
+            return -1
+        }
         for indice in 0...veterinariesItems.count-1
             where veterinariesItems[indice].key == veterinaryToSearch {
                 return indice
@@ -372,22 +391,22 @@ class NewPetViewController: UIViewController {
         var rowRace: Int = 0
         switch petTypeSegmentedControl.selectedSegmentIndex {
         case 0:
-            rowRace = test(races: catRaces)
+            rowRace = searchRow(races: catRaces)
             return rowRace
         case 1:
-            rowRace = test(races: dogRaces)
+            rowRace = searchRow(races: dogRaces)
             return rowRace
         case 2:
-            rowRace = test(races: rabbitRaces)
+            rowRace = searchRow(races: rabbitRaces)
             return rowRace
         case 3:
-            rowRace = test(races: rodentRaces)
+            rowRace = searchRow(races: rodentRaces)
             return rowRace
         default:
             return -1
         }
     }
-    private func test(races: [String]) -> Int {
+    private func searchRow(races: [String]) -> Int {
         for indice in 0...races.count-1
             where races[indice] == petRaceField.text! {
                 return indice
@@ -409,7 +428,7 @@ class NewPetViewController: UIViewController {
             }
             self.veterinariesItems = newItems
         })
-        usersRef.observe(.value, with: { snapshot in
+        databaseRef.observe(.value, with: { snapshot in
             if self.typeOfCall == "update" {
                 self.initiateView()
             }
@@ -441,10 +460,8 @@ class NewPetViewController: UIViewController {
     private func toggleSavePetButton(shown: Bool) {
         switch shown {
         case true:
-//            savePetButton.tintColor = #colorLiteral(red: 1, green: 0.2730214596, blue: 0.2258683443, alpha: 1)
             savePetButton.isEnabled = true
         case false:
-//            savePetButton.tintColor = #colorLiteral(red: 0.7256230712, green: 0.725236237, blue: 0.7426275611, alpha: 1)
             savePetButton.isEnabled = false
         }
     savePetButton.isEnabled = shown
@@ -453,6 +470,77 @@ class NewPetViewController: UIViewController {
 }
 
 extension NewPetViewController {
+
+    private func checkChangeDone() {
+        if petTypeSegmentedControl.selectedSegmentIndex != petItem?.petType {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petNameField.text != petItem?.petName {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petGenderSegmentedControl.selectedSegmentIndex != petItem?.petGender {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petBirthDateField.text != petItem?.petBirthDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petRaceField.text != petItem?.petRace {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petColorField.text != petItem?.petColor {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petParticularSignsField.text != petItem?.petParticularSigns {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petTatooField.text != petItem?.petTatoo {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petBreederView.text != petItem?.petBreeder {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        var selectedVeterinaryName = ""
+        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: petItem!.petVeterinary)
+        if rowVeterinary != -1 {
+            selectedVeterinaryName = veterinariesItems[rowVeterinary].veterinaryName
+            }
+        if petVeterinaryField.text != selectedVeterinaryName {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petSterilizedSwitch.isOn != petItem?.petSterilized {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petSterilizedDateField.text != petItem?.petSterilizedDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petWeaningSwitch.isOn != petItem?.petWeaning {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petWeaningDateField.text != petItem?.petWeaningDate {
+            toggleSavePetButton(shown: true)
+            return
+        }
+        if petDeathDateField.text != petItem?.petDeathDate {
+            toggleSavePetButton(shown: true)
+            return
+        } else {
+            toggleSavePetButton(shown: false)
+        }
+    }
+
     private func createObserverPetName() {
         petNameField?.addTarget(self,
                                 action: #selector(NewPetViewController.petNameFieldDidChange(_:)),
@@ -468,9 +556,6 @@ extension NewPetViewController {
                                            action: #selector(NewPetViewController.petParticularSignsFieldDidChange(_:)),
                                            for: .editingChanged)
     }
-//    private func createObseverPetBreeder() {
-//        petBreederField?.addtarget
-//    }
     private func createObserverPetTatoo() {
         petTatooField?.addTarget(self,
                                 action: #selector(NewPetViewController.petTatooFieldDidChange(_:)),
@@ -491,13 +576,13 @@ extension NewPetViewController {
                                 for: .touchUpInside)
     }
     private func createObserverDatePickerSterilized() {
-        datePickerSterilized = UIDatePicker()
-        datePickerSterilized?.datePickerMode = .date
-        datePickerSterilized?.locale = localeLanguage
-        datePickerSterilized?.addTarget(self,
+        datePickerSterilizedDate = UIDatePicker()
+        datePickerSterilizedDate?.datePickerMode = .date
+        datePickerSterilizedDate?.locale = localeLanguage
+        datePickerSterilizedDate?.addTarget(self,
                                        action: #selector(NewPetViewController.dateChangedSterilized(datePicker:)),
                                        for: .valueChanged)
-        petSterilizedDateField.inputView = datePickerSterilized
+        petSterilizedDateField.inputView = datePickerSterilizedDate
     }
     private func createObserverWeaningSwitch() {
         petWeaningSwitch?.addTarget(self,
@@ -505,13 +590,13 @@ extension NewPetViewController {
                                 for: .touchUpInside)
     }
     private func createObserverDatePickerWeaning() {
-        datePickerWeaning = UIDatePicker()
-        datePickerWeaning?.datePickerMode = .date
-        datePickerWeaning?.locale = localeLanguage
-        datePickerWeaning?.addTarget(self,
+        datePickerWeaningDate = UIDatePicker()
+        datePickerWeaningDate?.datePickerMode = .date
+        datePickerWeaningDate?.locale = localeLanguage
+        datePickerWeaningDate?.addTarget(self,
                                        action: #selector(NewPetViewController.dateChangedWeaning(datePicker:)),
                                        for: .valueChanged)
-        petWeaningDateField.inputView = datePickerWeaning
+        petWeaningDateField.inputView = datePickerWeaningDate
     }
     private func createObserverDatePickerDeathDate() {
         datePickerDeathDate = UIDatePicker()
@@ -640,7 +725,10 @@ extension NewPetViewController {
             race: String(petRaceField.text ?? ""),
             weaning: petWeaningSwitch.isOn,
             weaningDate: String(petWeaningDateField.text ?? ""),
-            deathDate: String(petDeathDateField.text ?? ""))
+            deathDate: String(petDeathDateField.text ?? ""),
+            color: String(petColorField.text ?? ""),
+            breeder: String(petBreederView.text ?? ""),
+            particularSigns: String(petParticularSignsField.text ?? ""))
         let petItemRef = databaseRef.child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
     }
@@ -650,7 +738,7 @@ extension NewPetViewController {
             as? ConfirmPetSuppressViewController else {
                 return
         }
-        destVC.petKey = petKey
+        destVC.petItem = petItem
         self.addChild(destVC)
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
@@ -667,6 +755,7 @@ extension NewPetViewController {
                 return
         }
         self.addChild(destVC)
+        destVC.petOrVeterinary = "pet"
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
         destVC.didMove(toParent: self)
@@ -760,7 +849,6 @@ extension NewPetViewController: UINavigationControllerDelegate, UIImagePickerCon
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             selectedImageFromPicker = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-
             selectedImageFromPicker = originalImage
         }
 
@@ -783,66 +871,76 @@ extension NewPetViewController: UINavigationControllerDelegate, UIImagePickerCon
 // MARK: - UITextFieldDelegate
 extension NewPetViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        typeFieldOrView = "UITextField"
         activeField = textField
-//        lastOffset = view.frame.origin
+        activeField?.textColor = #colorLiteral(red: 1, green: 0.2730214596, blue: 0.2258683443, alpha: 1)
         lastOffset = self.scrollView.contentOffset
-        print("=========================== textFieldShouldBeginEditing \(lastOffset)")
         return true
     }
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activeField?.resignFirstResponder()
         activeField = nil
         return true
     }
 }
-
+extension NewPetViewController: UITextViewDelegate {
+    internal func textViewDidBeginEditing(_ textView: UITextView) {
+        typeFieldOrView = "UITextView"
+    }
+    internal func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        typeFieldOrView = "UITextView"
+        lastOffset = self.scrollView.contentOffset
+        petBreederView.textColor =  #colorLiteral(red: 1, green: 0.2730214596, blue: 0.2258683443, alpha: 1)
+        return true
+    }
+    internal func textViewDidEndEditing(_ textView: UITextView) {
+        checkChangeDone()
+        petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        petBreederView.resignFirstResponder()
+    }
+}
 // MARK: - Keyboard Handling
 private extension NewPetViewController {
     @objc private func keyboardWillShow(notification: NSNotification) {
         if keyboardHeight != nil {
             return
         }
-        if activeField != nil {
+        if !typeFieldOrView.isEmpty {
             if let keyboardSize =
-                (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                keyboardHeight = keyboardSize.height + 40
+                (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                keyboardHeight = keyboardSize.height
                 constraintContentHeight = keyboardHeight + view.frame.size.height
-
-//                let distanceToBottom =
-//                    self.view.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
-                let distanceToBottom =
-                    self.scrollView.frame.size.height
+                var distanceToBottom: CGFloat = 0
+                if typeFieldOrView == "UITextField" {
+                    distanceToBottom =
+                        self.scrollView.frame.size.height
                         - (activeField?.frame.origin.y)!
                         - (activeField?.frame.size.height)!
-
+                } else {
+                    distanceToBottom =
+                        self.scrollView.frame.size.height
+                        - (petBreederView.frame.origin.y)
+                        - (petBreederView.frame.size.height)
+                }
                 if distanceToBottom > keyboardHeight {
                     return
                 }
                 //            if distanceToBottom < 0 {
                 //                distanceToBottom = 0
                 //            }
-                let collapseSpace = (keyboardHeight - distanceToBottom + 10) * -1
-print("============================= collapseSpace \(collapseSpace)")
-                print("============================= self.lastOffset.x \(self.lastOffset.x)")
-                print("============================= self.lastOffset.y \(self.lastOffset.y)")
-//                UIView.animate(withDuration: 0.3, animations: {
-//                    self.view.frame.origin = CGPoint(x: self.lastOffset.x, y: collapseSpace)
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.scrollView.frame.origin = CGPoint(x: self.lastOffset.x, y: collapseSpace)
-
-                    })
+                let collapseSpace = (keyboardHeight - distanceToBottom + 10)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace)
+                })
             }
         }
     }
     @objc private func keyboardWillHide(notification: NSNotification) {
-//        UIView.animate(withDuration: 0.3) {
-//            self.view.frame.origin = CGPoint(x: 0, y: 0)
         UIView.animate(withDuration: 0.3) {
-            self.scrollView.frame.origin = CGPoint(x: 0, y: 0)
+            self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            self.scrollView.contentOffset = self.lastOffset
         }
         keyboardHeight = nil
-        self.scrollView.contentOffset = self.lastOffset
-        print("============================= self.scrollView.contentOffset \(self.scrollView.contentOffset)")
     }
 }

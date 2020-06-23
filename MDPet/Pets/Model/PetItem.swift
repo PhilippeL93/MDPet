@@ -26,6 +26,9 @@ struct PetItem {
     var petWeaning: Bool
     var petWeaningDate: String
     var petDeathDate: String
+    var petColor: String
+    var petBreeder: String
+    var petParticularSigns: String
 
     init(name: String, key: String = "",
          URLPicture: String, type: Int,
@@ -33,7 +36,9 @@ struct PetItem {
          tatoo: String, sterilized: Bool,
          sterilizedDate: String, veterinary: String,
          race: String, weaning: Bool,
-         weaningDate: String, deathDate: String) {
+         weaningDate: String, deathDate: String,
+         color: String, breeder: String,
+         particularSigns: String) {
         self.ref = nil
         self.key = key
         self.petName = name
@@ -49,6 +54,9 @@ struct PetItem {
         self.petWeaning = weaning
         self.petWeaningDate = weaningDate
         self.petDeathDate = deathDate
+        self.petColor = color
+        self.petBreeder = breeder
+        self.petParticularSigns = particularSigns
     }
 
     init?(snapshot: DataSnapshot) {
@@ -66,7 +74,10 @@ struct PetItem {
             let petRace = value["petRace"] as? String,
             let petWeaning = value["petWeaning"] as? Bool,
             let petWeaningDate = value["petWeaningDate"] as? String ,
-            let petDeathDate = value["petDeathDate"] as? String
+            let petDeathDate = value["petDeathDate"] as? String,
+            let petColor = value["petColor"] as? String,
+            let petBreeder = value["petBreeder"] as? String,
+            let petParticularSigns = value["petParticularSigns"] as? String
             else {
                 return nil
         }
@@ -86,6 +97,9 @@ struct PetItem {
         self.petWeaning = petWeaning
         self.petWeaningDate = petWeaningDate
         self.petDeathDate = petDeathDate
+        self.petColor = petColor
+        self.petBreeder = petBreeder
+        self.petParticularSigns = petParticularSigns
   }
 
     func toAnyObject() -> Any {
@@ -102,7 +116,10 @@ struct PetItem {
             "petRace": petRace,
             "petWeaning": petWeaning,
             "petWeaningDate": petWeaningDate,
-            "petDeathDate": petDeathDate
+            "petDeathDate": petDeathDate,
+            "petColor": petColor,
+            "petBreeder": petBreeder,
+            "petParticularSigns": petParticularSigns
         ]
     }
 }

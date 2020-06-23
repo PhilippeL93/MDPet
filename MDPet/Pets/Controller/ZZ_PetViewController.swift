@@ -597,21 +597,21 @@ extension PetViewController {
         navigationController?.popViewController(animated: true)
     }
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
-        petItem = PetItem(
-            name: String(self.petNameField.text ?? ""),
-            key: "",
-            URLPicture: petURLPicture,
-            type: petTypeSegmentedControl.selectedSegmentIndex,
-            gender: petGenderSegmentedControl.selectedSegmentIndex,
-            birthDate: String(petBirthDateField.text ?? ""),
-            tatoo: String(petTatooField.text ?? ""),
-            sterilized: petSterilizedSwitch.isOn,
-            sterilizedDate: String(petSterilizedDateField.text ?? ""),
-            veterinary: String(selectedVeterinaryKey),
-            race: String(petRaceField.text ?? ""),
-            weaning: petWeaningSwitch.isOn,
-            weaningDate: String(petWeaningDateField.text ?? ""),
-            deathDate: String(petDeathDateField.text ?? ""))
+//        petItem = PetItem(
+//            name: String(self.petNameField.text ?? ""),
+//            key: "",
+//            URLPicture: petURLPicture,
+//            type: petTypeSegmentedControl.selectedSegmentIndex,
+//            gender: petGenderSegmentedControl.selectedSegmentIndex,
+//            birthDate: String(petBirthDateField.text ?? ""),
+//            tatoo: String(petTatooField.text ?? ""),
+//            sterilized: petSterilizedSwitch.isOn,
+//            sterilizedDate: String(petSterilizedDateField.text ?? ""),
+//            veterinary: String(selectedVeterinaryKey),
+//            race: String(petRaceField.text ?? ""),
+//            weaning: petWeaningSwitch.isOn,
+//            weaningDate: String(petWeaningDateField.text ?? ""),
+//            deathDate: String(petDeathDateField.text ?? ""))
         let petItemRef = databaseRef.child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
     }
@@ -621,7 +621,7 @@ extension PetViewController {
             as? ConfirmPetSuppressViewController else {
                 return
         }
-        destVC.petKey = petKey
+//        destVC.petKey = petKey
         self.addChild(destVC)
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
