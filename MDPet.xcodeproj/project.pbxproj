@@ -18,6 +18,8 @@
 		372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */; };
 		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
 		372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */; };
+		372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */; };
+		372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */; };
 		372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFC9248676B600984537 /* SettingsViewController.swift */; };
 		372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCB248682FA00984537 /* PetsListTableViewController.swift */; };
 		372CFFCE2486839200984537 /* PetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCD2486839200984537 /* PetItem.swift */; };
@@ -25,7 +27,7 @@
 		372CFFD42486A2A400984537 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD32486A2A400984537 /* User.swift */; };
 		372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD52486A72400984537 /* VeterinaryItem.swift */; };
 		3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */; };
-		3741A18E2495F22A00E3D858 /* getFirebasePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A18D2495F22A00E3D858 /* getFirebasePicture.swift */; };
+		3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */; };
 		3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */; };
 		3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */; };
 		3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CEF623EDC53D002B8999 /* TabBarViewController.swift */; };
@@ -73,6 +75,8 @@
 		372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPetViewController.swift; sourceTree = "<group>"; };
 		372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentConsultationCell.swift; sourceTree = "<group>"; };
 		372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVaccineCell.swift; sourceTree = "<group>"; };
+		372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVeterinaries.swift; sourceTree = "<group>"; };
+		372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebasePets.swift; sourceTree = "<group>"; };
 		372CFFC9248676B600984537 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		372CFFCB248682FA00984537 /* PetsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsListTableViewController.swift; sourceTree = "<group>"; };
 		372CFFCD2486839200984537 /* PetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetItem.swift; sourceTree = "<group>"; };
@@ -80,7 +84,7 @@
 		372CFFD32486A2A400984537 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		372CFFD52486A72400984537 /* VeterinaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinaryItem.swift; sourceTree = "<group>"; };
 		3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVeterinaryCell.swift; sourceTree = "<group>"; };
-		3741A18D2495F22A00E3D858 /* getFirebasePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getFirebasePicture.swift; sourceTree = "<group>"; };
+		3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebasePicture.swift; sourceTree = "<group>"; };
 		3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmVeterinarySuppressViewController.swift; sourceTree = "<group>"; };
 		3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPetSuppressViewController.swift; sourceTree = "<group>"; };
 		3748CEF623EDC53D002B8999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -342,7 +346,9 @@
 			isa = PBXGroup;
 			children = (
 				3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */,
-				3741A18D2495F22A00E3D858 /* getFirebasePicture.swift */,
+				3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */,
+				372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */,
+				372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -597,8 +603,10 @@
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
 				372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */,
+				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
+				372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
 				372CEF72249B68B7002AEAF5 /* VaccinesListTableViewController.swift in Sources */,
@@ -614,7 +622,7 @@
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
 				3748CF1D23EEA0B1002B8999 /* ZZ_PetViewController.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
-				3741A18E2495F22A00E3D858 /* getFirebasePicture.swift in Sources */,
+				3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */,
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,

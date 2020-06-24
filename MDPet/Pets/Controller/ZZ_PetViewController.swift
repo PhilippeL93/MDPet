@@ -296,7 +296,7 @@ class PetViewController: UIViewController {
         if typeOfCall == "create" {
             savePetButton.title = "Ajouter"
         } else {
-            savePetButton.title = "Modifier"
+            savePetButton.title = "OK"
         }
         initiatePictureView()
     }

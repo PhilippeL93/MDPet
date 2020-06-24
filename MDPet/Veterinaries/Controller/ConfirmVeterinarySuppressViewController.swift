@@ -69,7 +69,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
         let deleteRef = databaseRef.child(veterinaryKey)
         deleteRef.removeValue { error, _  in
             if let error = error {
-                print("=============== error \(error)")
+                print("error \(error)")
             }
         }
     }

@@ -74,13 +74,13 @@ class ConfirmPetSuppressViewController: UIViewController {
             let imageDeleteRef = imageRef.child("\(petKey ?? "").png")
             imageDeleteRef.delete { error in
                 if let error = error {
-                    print("=============== error \(error)")
+                    print("error \(error)")
                 }
             }
         }
         deleteRef.removeValue { error, _  in
             if let error = error {
-                print("=============== error \(error)")
+                print("error \(error)")
             }
         }
     }

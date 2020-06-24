@@ -58,7 +58,7 @@ class NewPetViewController: UIViewController {
     var petKey: String = ""
     var databaseRef = Database.database().reference(withPath: "pets-item")
     var imageRef = Storage.storage().reference().child("pets-images")
-    let usersRef = Database.database().reference(withPath: "online")
+//    let usersRef = Database.database().reference(withPath: "online")
     private var pathPet: String = ""
 
 // MARK: - buttons
@@ -95,7 +95,7 @@ class NewPetViewController: UIViewController {
             let date = Date()
             petBirthDateField.text = dateFormatter.string(from: date)
         } else {
-            let birthDate = dateFormatter.date(from: petItem!.petBirthDate)
+            let birthDate = dateFormatter.date(from: petBirthDateField.text!)
             datePickerBirthDate?.date = birthDate!
         }
     }
@@ -108,7 +108,7 @@ class NewPetViewController: UIViewController {
             let date = Date()
             petSterilizedDateField.text = dateFormatter.string(from: date)
         } else {
-            let sterilizedDate = dateFormatter.date(from: petItem!.petSterilizedDate)
+            let sterilizedDate = dateFormatter.date(from: petSterilizedDateField.text!)
             datePickerSterilizedDate?.date = sterilizedDate!
         }
     }
@@ -121,7 +121,7 @@ class NewPetViewController: UIViewController {
             let date = Date()
             petWeaningDateField.text = dateFormatter.string(from: date)
         } else {
-            let weaningDate = dateFormatter.date(from: petItem!.petWeaningDate)
+            let weaningDate = dateFormatter.date(from: petWeaningDateField.text!)
             datePickerWeaningDate?.date = weaningDate!
         }
     }
@@ -131,7 +131,7 @@ class NewPetViewController: UIViewController {
             let date = Date()
             petDeathDateField.text = dateFormatter.string(from: date)
         } else {
-            let deathDate = dateFormatter.date(from: petItem!.petWeaningDate)
+            let deathDate = dateFormatter.date(from: petDeathDateField.text!)
             datePickerDeathDate?.date = deathDate!
         }
     }
@@ -145,7 +145,16 @@ class NewPetViewController: UIViewController {
         createDelegate()
         toggleSavePetButton(shown: false)
         initiateObserver()
-        initiateVeterinariesList()
+        GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
+            if success {
+                self.veterinariesItems = veterinariesItems
+                if self.typeOfCall == "update" {
+                    self.initiatePictureView()
+                }
+            } else {
+                print("erreur")
+            }
+        }
         initiateView()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -327,9 +336,8 @@ class NewPetViewController: UIViewController {
             petWeaningSwitch.isOn = false
             petWeaningDateField.isEnabled = false
         } else {
-            savePetButton.title = "Modifier"
+            savePetButton.title = "OK"
             self.title = "Modification animal"
-            initiatePictureView()
         }
     }
     private func initiatePictureView() {
@@ -412,32 +420,6 @@ class NewPetViewController: UIViewController {
                 return indice
         }
         return -1
-    }
-    private func initiateVeterinariesList() {
-        let pathVeterinary = UserUid.uid + "-veterinaries-item"
-
-        databaseRef = Database.database().reference(withPath: "\(pathVeterinary)")
-
-        databaseRef.queryOrdered(byChild: "veterinaryName").observe(.value, with: { snapshot in
-            var newItems: [VeterinaryItem] = []
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let veterinaryItem = VeterinaryItem(snapshot: snapshot) {
-                    newItems.append(veterinaryItem)
-                }
-            }
-            self.veterinariesItems = newItems
-        })
-        databaseRef.observe(.value, with: { snapshot in
-            if self.typeOfCall == "update" {
-                self.initiateView()
-            }
-            //          if snapshot.exists() {
-            //            self.userCountBarButtonItem?.title = snapshot.childrenCount.description
-            //          } else {
-            //            self.userCountBarButtonItem?.title = "0"
-            //          }
-        })
     }
     private func checkPetComplete() {
         guard let petName = petNameField.text else {

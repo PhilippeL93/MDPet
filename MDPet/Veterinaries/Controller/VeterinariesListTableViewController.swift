@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class VeterinariesListTableViewController: UIViewController {
 
@@ -21,44 +20,18 @@ class VeterinariesListTableViewController: UIViewController {
 
     // MARK: Properties
     var veterinariesItems: [VeterinaryItem] = []
-    var user: User!
-    var databaseRef = Database.database().reference(withPath: "veterinaries-item")
-    let usersRef = Database.database().reference(withPath: "online")
 
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
         super.viewDidLoad()
-        let path = UserUid.uid + "-veterinaries-item"
-
-        databaseRef = Database.database().reference(withPath: "\(path)")
-
-        databaseRef.queryOrdered(byChild: "veterinaryName").observe(.value, with: { snapshot in
-          var newItems: [VeterinaryItem] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let veterinaryItem = VeterinaryItem(snapshot: snapshot) {
-              newItems.append(veterinaryItem)
+        GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
+            if success {
+                self.veterinariesItems = veterinariesItems
+                self.tableView.reloadData()
+            } else {
+                print("erreur")
             }
-          }
-          self.veterinariesItems = newItems
-          self.tableView.reloadData()
-        })
-
-        Auth.auth().addStateDidChangeListener { auth, user in
-            guard let user = user else { return }
-            self.user = User(authData: user)
-
-            let currentUserRef = self.usersRef.child(self.user.uid)
-            currentUserRef.setValue(self.user.email)
-            currentUserRef.onDisconnectRemoveValue()
         }
-        usersRef.observe(.value, with: { snapshot in
-            //          if snapshot.exists() {
-            //            self.userCountBarButtonItem?.title = snapshot.childrenCount.description
-            //          } else {
-            //            self.userCountBarButtonItem?.title = "0"
-            //          }
-        })
     }
     private func createNewVeterinary() {
         guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "veterinaryController")
