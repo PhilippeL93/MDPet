@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37130ECC24A62D3F007E7151 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37130ECB24A62D3F007E7151 /* Raleway-Medium.ttf */; };
 		3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EAC2239188E800CAA9E7 /* AppDelegate.swift */; };
 		3715EACA239188E800CAA9E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAC8239188E800CAA9E7 /* Main.storyboard */; };
 		3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */; };
 		3715EACF239188E800CAA9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3715EACE239188E800CAA9E7 /* Assets.xcassets */; };
 		3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */; };
 		3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* MDPetTests.swift */; };
-		372CEF72249B68B7002AEAF5 /* VaccinesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF71249B68B7002AEAF5 /* VaccinesListTableViewController.swift */; };
 		372CEF77249B692F002AEAF5 /* ConsultationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */; };
 		372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */; };
 		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
@@ -37,8 +37,13 @@
 		3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2223EFE84B002B8999 /* SettingsButton.swift */; };
 		3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */; };
 		3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF4823F06623002B8999 /* VeterinayViewController.swift */; };
+		3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */; };
+		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
+		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
+		375578A424A6287D00CA1252 /* vaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A324A6287D00CA1252 /* vaccineViewController.swift */; };
 		37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588D248A86DC0063867C /* PresentPetCell.swift */; };
 		37A6589024922C610063867C /* UserUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588F24922C610063867C /* UserUid.swift */; };
+		37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A981DD24A4E26200F491E2 /* Diseases.swift */; };
 		37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12923FC112100CF6247 /* UIViewController+Alert.swift */; };
 		37CED12C23FC114400CF6247 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12B23FC114400CF6247 /* Errors.swift */; };
 		37CED12E23FC154200CF6247 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12D23FC154200CF6247 /* Pets.swift */; };
@@ -60,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37130ECB24A62D3F007E7151 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Medium.ttf"; path = "../../../../../../Desktop/Raleway/Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		3715EABF239188E800CAA9E7 /* MDPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715EAC2239188E800CAA9E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3715EAC9239188E800CAA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,7 +76,6 @@
 		3715EAD8239188E900CAA9E7 /* MDPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MDPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715EADC239188E900CAA9E7 /* MDPetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPetTests.swift; sourceTree = "<group>"; };
 		3715EADE239188E900CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		372CEF71249B68B7002AEAF5 /* VaccinesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListTableViewController.swift; sourceTree = "<group>"; };
 		372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListTableViewController.swift; sourceTree = "<group>"; };
 		372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPetViewController.swift; sourceTree = "<group>"; };
 		372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentConsultationCell.swift; sourceTree = "<group>"; };
@@ -94,8 +99,13 @@
 		3748CF2223EFE84B002B8999 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCornerBorderRadiusView.swift; sourceTree = "<group>"; };
 		3748CF4823F06623002B8999 /* VeterinayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VeterinayViewController.swift; sourceTree = "<group>"; };
+		3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListViewController.swift; sourceTree = "<group>"; };
+		3755789F24A5E88400CA1252 /* VaccineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineItem.swift; sourceTree = "<group>"; };
+		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
+		375578A324A6287D00CA1252 /* vaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vaccineViewController.swift; sourceTree = "<group>"; };
 		37A6588D248A86DC0063867C /* PresentPetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPetCell.swift; sourceTree = "<group>"; };
 		37A6588F24922C610063867C /* UserUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUid.swift; sourceTree = "<group>"; };
+		37A981DD24A4E26200F491E2 /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
 		37CED12923FC112100CF6247 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		37CED12B23FC114400CF6247 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		37CED12D23FC154200CF6247 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
@@ -194,7 +204,8 @@
 		372CEF73249B68EB002AEAF5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				372CEF71249B68B7002AEAF5 /* VaccinesListTableViewController.swift */,
+				3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */,
+				375578A324A6287D00CA1252 /* vaccineViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,6 +239,8 @@
 		372CEFBB249FD00B002AEAF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				37A981DD24A4E26200F491E2 /* Diseases.swift */,
+				3755789F24A5E88400CA1252 /* VaccineItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +362,7 @@
 				3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */,
 				372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */,
 				372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */,
+				375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -399,6 +413,7 @@
 				3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */,
 				3715EAC2239188E800CAA9E7 /* AppDelegate.swift */,
 				3715EACE239188E800CAA9E7 /* Assets.xcassets */,
+				37130ECB24A62D3F007E7151 /* Raleway-Medium.ttf */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -499,6 +514,7 @@
 			files = (
 				3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */,
 				37CED13223FD1F0700CF6247 /* GoogleService-Info.plist in Resources */,
+				37130ECC24A62D3F007E7151 /* Raleway-Medium.ttf in Resources */,
 				3715EACF239188E800CAA9E7 /* Assets.xcassets in Resources */,
 				3715EACA239188E800CAA9E7 /* Main.storyboard in Resources */,
 			);
@@ -605,11 +621,11 @@
 				372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */,
 				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
+				37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
 				372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
-				372CEF72249B68B7002AEAF5 /* VaccinesListTableViewController.swift in Sources */,
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
 				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
@@ -620,8 +636,12 @@
 				372CEF77249B692F002AEAF5 /* ConsultationsListTableViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
+				3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */,
+				375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */,
 				3748CF1D23EEA0B1002B8999 /* ZZ_PetViewController.swift in Sources */,
+				375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
+				375578A424A6287D00CA1252 /* vaccineViewController.swift in Sources */,
 				3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */,
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,

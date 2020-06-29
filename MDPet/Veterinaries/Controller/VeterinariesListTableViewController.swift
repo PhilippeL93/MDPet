@@ -15,8 +15,6 @@ class VeterinariesListTableViewController: UIViewController {
     @IBAction func addNewVeterinary(_ sender: UIBarButtonItem) {
         createNewVeterinary()
     }
-    // MARK: Constants
-    let listToUsers = "ListToUsers"
 
     // MARK: Properties
     var veterinariesItems: [VeterinaryItem] = []

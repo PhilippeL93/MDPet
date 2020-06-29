@@ -63,7 +63,7 @@ class PetViewController: UIViewController {
 // MARK: - buttons
     ///   
     @IBAction func addPetPhoto(_ sender: Any) {
-        selectImageOrCamera(animated: true)
+//        selectImageOrCamera(animated: true)
     }
     @IBAction func savePet(_ sender: Any) {
         createOrUpdatePet()
@@ -523,19 +523,19 @@ extension PetViewController {
     ///   selectImageOrCamera in order to choose between
     ///    - photo from library of Iphone ==> call function getImage with parameter photo
     ///    - to take a photo with camera ==> call function getImage with parameter camera
-    private func selectImageOrCamera(animated: Bool) {
-        let alert = UIAlertController(title: "Choix", message: "Que voulez vous faire?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Sélectionner une photo", style: .default, handler: { (_) in
-            self.getImage(source: "photo")
-        }))
-        alert.addAction(UIAlertAction(title: "Prendre une photo", style: .default, handler: { (_)in
-            self.getImage(source: "camera")
-        }))
-        alert.addAction(UIAlertAction(title: "Abandonnner", style: .cancel, handler: { (_)in
-        }))
-        present(alert, animated: true, completion: {
-        })
-    }
+//    private func selectImageOrCamera(animated: Bool) {
+//        let alert = UIAlertController(title: "Choix", message: "Que voulez vous faire?", preferredStyle: .actionSheet)
+//        alert.addAction(UIAlertAction(title: "Sélectionner une photo", style: .default, handler: { (_) in
+//            self.getImage(source: "photo")
+//        }))
+//        alert.addAction(UIAlertAction(title: "Prendre une photo", style: .default, handler: { (_)in
+//            self.getImage(source: "camera")
+//        }))
+//        alert.addAction(UIAlertAction(title: "Abandonnner", style: .cancel, handler: { (_)in
+//        }))
+//        present(alert, animated: true, completion: {
+//        })
+//    }
 
     ///   getImage in order to call imagePickerController
     ///     - if photo direct imagePickerController with source photoLibrary
@@ -716,39 +716,39 @@ extension PetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 // MARK: - extension for getting image
 extension PetViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
-        if error != nil {
-            getErrors(type: .saveFailed)
-        }
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        var selectedImageFromPicker: UIImage?
-
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-
-            selectedImageFromPicker = originalImage
-        }
-
-        if let selectedImage = selectedImageFromPicker {
-            petPicture.image = selectedImage
-            checkPetComplete()
-        }
-        dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_
-        input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-    }
+//    func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
+//        if error != nil {
+//            getErrors(type: .saveFailed)
+//        }
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController,
+//                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+//        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+//
+//        var selectedImageFromPicker: UIImage?
+//
+//        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+//            selectedImageFromPicker = editedImage
+//        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+//
+//            selectedImageFromPicker = originalImage
+//        }
+//
+//        if let selectedImage = selectedImageFromPicker {
+//            petPicture.image = selectedImage
+//            checkPetComplete()
+//        }
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_
+//        input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+//        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+//    }
 }
 
 // MARK: - UITextFieldDelegate

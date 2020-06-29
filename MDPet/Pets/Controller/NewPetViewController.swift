@@ -30,6 +30,7 @@ class NewPetViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var savePetButton: UIBarButtonItem!
     @IBOutlet weak var suppressPetButton: UIButton!
+    @IBOutlet weak var vaccinesButton: UIButton!
 
     // MARK: - variables
     private let imagePicker = UIImagePickerController()
@@ -58,7 +59,6 @@ class NewPetViewController: UIViewController {
     var petKey: String = ""
     var databaseRef = Database.database().reference(withPath: "pets-item")
     var imageRef = Storage.storage().reference().child("pets-images")
-//    let usersRef = Database.database().reference(withPath: "online")
     private var pathPet: String = ""
 
 // MARK: - buttons
@@ -149,7 +149,7 @@ class NewPetViewController: UIViewController {
             if success {
                 self.veterinariesItems = veterinariesItems
                 if self.typeOfCall == "update" {
-                    self.initiatePictureView()
+                    self.initiatePetView()
                 }
             } else {
                 print("erreur")
@@ -167,7 +167,7 @@ class NewPetViewController: UIViewController {
 }
     extension NewPetViewController {
 // MARK: - @objc func
-    @objc func returnView(gesture: UIGestureRecognizer) {
+    @objc func tapGestuireRecognizer(gesture: UIGestureRecognizer) {
         guard !typeFieldOrView.isEmpty else {
             return
         }
@@ -175,11 +175,19 @@ class NewPetViewController: UIViewController {
             guard activeField != nil else {
                 return
             }
-            activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            if #available(iOS 13.0, *) {
+                activeField?.textColor = UIColor.label
+            } else {
+                activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            }
             activeField?.resignFirstResponder()
             activeField = nil
         } else {
-            petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            if #available(iOS 13.0, *) {
+                petBreederView.textColor = UIColor.label
+            } else {
+                petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            }
             petBreederView.resignFirstResponder()
         }
         typeFieldOrView = ""
@@ -211,6 +219,15 @@ class NewPetViewController: UIViewController {
         checkChangeDone()
         petRaceField.text = ""
         self.pickerViewRace.reloadAllComponents()
+        guard let petType =
+            petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
+            return
+        }
+        if petType == "Rongeur" {
+            vaccinesButton.isHidden = true
+        } else {
+            vaccinesButton.isHidden = false
+        }
     }
     @objc func petNameFieldDidChange(_ textField: UITextField) {
         checkChangeDone()
@@ -324,7 +341,7 @@ class NewPetViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(isPetDeleted),
                                                name: .hasBeenDeleted, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                              action: #selector(returnView(gesture:))))
+                                                              action: #selector(tapGestuireRecognizer(gesture:))))
     }
     private func initiateView() {
         if typeOfCall == "create" {
@@ -340,6 +357,10 @@ class NewPetViewController: UIViewController {
             self.title = "Modification animal"
         }
     }
+    private func initiatePetView() {
+        initiatePictureView()
+        initiateFieldsView()
+    }
     private func initiatePictureView() {
         petPicture.image = nil
         if let URLPicture = petItem?.petURLPicture {
@@ -349,7 +370,6 @@ class NewPetViewController: UIViewController {
                 }
             }
         }
-        initiateFieldsView()
     }
     private func initiateFieldsView() {
         petKey = petItem?.key ?? ""
@@ -384,6 +404,13 @@ class NewPetViewController: UIViewController {
         petColorField.text = petItem?.petColor
         petBreederView.text = petItem?.petBreeder
         petParticularSignsField.text = petItem?.petParticularSigns
+        guard let petType =
+            petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
+            return
+        }
+        if petType == "Rongeur" {
+            vaccinesButton.isHidden = true
+        }
     }
     private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
         guard veterinariesItems.count != 0 else {
@@ -662,7 +689,10 @@ extension NewPetViewController {
     }
     private func createOrUpdatePet() {
         databaseRef = Database.database().reference(withPath: "\(pathPet)")
-        var storageRef = imageRef.child("\(String(describing: petItem?.key)).png")
+//        guard let petKey = petItem?.key else {
+//            return
+//        }
+        var storageRef = imageRef.child("\(String(describing: petKey)).png")
         var uniqueUUID = petKey
 
         if typeOfCall == "create" {
@@ -681,9 +711,9 @@ extension NewPetViewController {
                         print(err)
                         return
                     }
-                    guard let url = url else {
-                        return }
-                    let petURLPicture = url.absoluteString
+//                    guard let url = url else {
+//                        return }
+                    let petURLPicture = (url?.absoluteString) ?? ""
                     self.updatePetStorage(petURLPicture: petURLPicture, uniqueUUID: uniqueUUID)
                 })
             })
@@ -859,6 +889,17 @@ extension NewPetViewController: UITextFieldDelegate {
         lastOffset = self.scrollView.contentOffset
         return true
     }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let previousActiveField = activeField
+        activeField = textField
+//        activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        if #available(iOS 13.0, *) {
+            activeField?.textColor = UIColor.label
+        } else {
+            activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+        activeField = previousActiveField
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activeField?.resignFirstResponder()
@@ -866,6 +907,7 @@ extension NewPetViewController: UITextFieldDelegate {
         return true
     }
 }
+// MARK: - UITextViewDelegate
 extension NewPetViewController: UITextViewDelegate {
     internal func textViewDidBeginEditing(_ textView: UITextView) {
         typeFieldOrView = "UITextView"
@@ -878,7 +920,11 @@ extension NewPetViewController: UITextViewDelegate {
     }
     internal func textViewDidEndEditing(_ textView: UITextView) {
         checkChangeDone()
-        petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        if #available(iOS 13.0, *) {
+            petBreederView.textColor = UIColor.label
+        } else {
+            petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
         petBreederView.resignFirstResponder()
     }
 }
