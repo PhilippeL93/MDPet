@@ -19,7 +19,7 @@ struct VaccineItem {
     var vaccineDate: String
     var vaccineURLThumbnail: String
     var vaccineVeterinary: String
-    var vaccineDiseases: [String]
+    var vaccineDiseases: DiseaseByVaccine
 //    var vaccineDiseaseDetail: Diseases
 //    var vaccineChlamydia: String
 //    var vaccineCoryza: String
@@ -30,7 +30,7 @@ struct VaccineItem {
     init(name: String, key: String = "",
          number: Int, injection: String,
          date: String, URLThumbnail: String,
-         veterinary: String, diseases: [String]) {
+         veterinary: String, diseases: DiseaseByVaccine) {
 //         chlamydia: String,
 //         coryza: String, leukemia: String,
 //         rabies: String, typhus: String) {
@@ -59,7 +59,7 @@ struct VaccineItem {
             let vaccineDate = value["vaccineDate"] as? String,
             let vaccineURLThumbnail = value["vaccineURLThumbnail"] as? String,
             let vaccineVeterinary = value["vaccineVetrinary"] as? String,
-            let vaccineDiseases = value["vaccineDiseaes"] as? [String]
+            let vaccineDiseases = value["vaccineDiseaes"] as? DiseaseByVaccine
 //            let vaccineChlamydia = value["vaccineChlamydia"] as? String,
 //            let vaccineCoryza = value["vaccineCoryza"] as? String ,
 //            let vaccineLeukemia = value["vaccineLeukemia"] as? String,
@@ -103,7 +103,7 @@ struct VaccineItem {
     }
 }
 
-struct Diseases {
-    var diseaseName : String
-    var diseaseIsOn: Bool
-}
+//struct Diseases {
+//    var diseaseName : String
+//    var diseaseIsOn: Bool
+//}

@@ -77,6 +77,16 @@ class NewPetViewController: UIViewController {
         activeField = nil
         checkUpdatePetDone()
     }
+    @IBAction func vaccineButtom(_ sender: Any) {
+        getVaccines()
+    }
+    @IBAction func consultationsButton(_ sender: Any) {
+        getConsultations()
+    }
+    //    @IBAction func goToConsultations(_ sender: Any) {
+//        getConsultations()
+//    }
+    
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !petVeterinaryField.text!.isEmpty {
             let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: selectedVeterinaryKey)
@@ -167,135 +177,135 @@ class NewPetViewController: UIViewController {
 }
     extension NewPetViewController {
 // MARK: - @objc func
-    @objc func tapGestuireRecognizer(gesture: UIGestureRecognizer) {
-        guard !typeFieldOrView.isEmpty else {
-            return
-        }
-        if typeFieldOrView == "UITextField" {
-            guard activeField != nil else {
+        @objc func tapGestuireRecognizer(gesture: UIGestureRecognizer) {
+            guard !typeFieldOrView.isEmpty else {
                 return
             }
-            if #available(iOS 13.0, *) {
-                activeField?.textColor = UIColor.label
+            if typeFieldOrView == "UITextField" {
+                guard activeField != nil else {
+                    return
+                }
+                if #available(iOS 13.0, *) {
+                    activeField?.textColor = UIColor.label
+                } else {
+                    activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                }
+                activeField?.resignFirstResponder()
+                activeField = nil
             } else {
-                activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                if #available(iOS 13.0, *) {
+                    petBreederView.textColor = UIColor.label
+                } else {
+                    petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                }
+                petBreederView.resignFirstResponder()
             }
-            activeField?.resignFirstResponder()
-            activeField = nil
-        } else {
-            if #available(iOS 13.0, *) {
-                petBreederView.textColor = UIColor.label
+            typeFieldOrView = ""
+        }
+        @objc func navigationBarPetToTrue(notification: Notification) {
+            navigationController?.navigationBar.isUserInteractionEnabled = true
+        }
+        @objc func isPetToUpdate(notification: Notification) {
+            navigationController?.navigationBar.isUserInteractionEnabled = true
+            var isToUpdate = true
+            if let object = notification.object as? Bool {
+                isToUpdate = object
+            }
+            if isToUpdate == false {
+                navigationController?.popViewController(animated: true)
+                return
+            }
+        }
+        @objc func isPetDeleted(notification: Notification) {
+            var hasBeenDeleted = false
+            if let object = notification.object as? Bool {
+                hasBeenDeleted = object
+            }
+            if hasBeenDeleted == true {
+                navigationController?.popViewController(animated: true)
+            }
+        }
+        @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
+            checkChangeDone()
+            petRaceField.text = ""
+            self.pickerViewRace.reloadAllComponents()
+            guard let petType =
+                petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
+                    return
+            }
+            if petType == "Rongeur" {
+                vaccinesButton.isHidden = true
             } else {
-                petBreederView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                vaccinesButton.isHidden = false
             }
-            petBreederView.resignFirstResponder()
         }
-        typeFieldOrView = ""
-    }
-    @objc func navigationBarPetToTrue(notification: Notification) {
-        navigationController?.navigationBar.isUserInteractionEnabled = true
-    }
-    @objc func isPetToUpdate(notification: Notification) {
-        navigationController?.navigationBar.isUserInteractionEnabled = true
-        var isToUpdate = true
-        if let object = notification.object as? Bool {
-            isToUpdate = object
+        @objc func petNameFieldDidChange(_ textField: UITextField) {
+            checkChangeDone()
         }
-        if isToUpdate == false {
-        navigationController?.popViewController(animated: true)
-            return
+        @objc func textChangedPetGenderSegmentedCtrl(genderSegmentedCtrl: UISegmentedControl) {
+            checkChangeDone()
+            self.pickerViewGender.reloadAllComponents()
         }
-    }
-    @objc func isPetDeleted(notification: Notification) {
-        var hasBeenDeleted = false
-        if let object = notification.object as? Bool {
-            hasBeenDeleted = object
-        }
-        if hasBeenDeleted == true {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-    @objc func textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl: UISegmentedControl) {
-        checkChangeDone()
-        petRaceField.text = ""
-        self.pickerViewRace.reloadAllComponents()
-        guard let petType =
-            petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
-            return
-        }
-        if petType == "Rongeur" {
-            vaccinesButton.isHidden = true
-        } else {
-            vaccinesButton.isHidden = false
-        }
-    }
-    @objc func petNameFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
-    }
-    @objc func textChangedPetGenderSegmentedCtrl(genderSegmentedCtrl: UISegmentedControl) {
-        checkChangeDone()
-        self.pickerViewGender.reloadAllComponents()
-    }
-    @objc func dateChangedBirthDate(datePicker: UIDatePicker) {
-        petBirthDateField.text = dateFormatter.string(from: datePicker.date)
-        checkChangeDone()
+        @objc func dateChangedBirthDate(datePicker: UIDatePicker) {
+            petBirthDateField.text = dateFormatter.string(from: datePicker.date)
+            checkChangeDone()
             formatDate()
-        petBirthDateField.text = dateFormatter.string(from: datePicker.date)
-    }
-    @objc func petTatooFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
-    }
-    @objc func petSterilizedSwitchDidChange(_ textField: UISwitch) {
-        if petSterilizedSwitch.isOn == true {
-            petSterilizedDateField.isEnabled = true
-            petSterilizedDateField.text = petItem?.petSterilizedDate
-        } else {
-            petSterilizedDateField.isEnabled = false
-            petSterilizedDateField.text =  ""
+            petBirthDateField.text = dateFormatter.string(from: datePicker.date)
         }
-        checkChangeDone()
-    }
-    @objc func dateChangedSterilized(datePicker: UIDatePicker) {
-        petSterilizedDateField.text = dateFormatter.string(from: datePicker.date)
-        checkChangeDone()
-        formatDate()
-    }
-    @objc func petVeterinaryFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
-    }
-    @objc func petRaceFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
-    }
-    @objc func petColorFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
-    }
-    @objc func petParticularSignsFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
-    }
-    @objc func petWeaningSwitchDidChange(_ textField: UISwitch) {
-        if petWeaningSwitch.isOn == true {
-            petWeaningDateField.isEnabled = true
-            petWeaningDateField.text = petItem?.petWeaningDate
-        } else {
-            petWeaningDateField.isEnabled = false
-            petWeaningDateField.text =  ""
+        @objc func petTatooFieldDidChange(_ textField: UITextField) {
+            checkChangeDone()
         }
-        checkChangeDone()
-    }
-    @objc func dateChangedWeaning(datePicker: UIDatePicker) {
-        petWeaningDateField.text = dateFormatter.string(from: datePicker.date)
-        checkChangeDone()
-        formatDate()
-    }
-    @objc func dateChangedDeathDate(datePicker: UIDatePicker) {
-        petDeathDateField.text = dateFormatter.string(from: datePicker.date)
-        checkChangeDone()
-        formatDate()
-    }
-    private func formatDate() {
-        dateFormatter.locale = localeLanguage
-        dateFormatter.dateFormat = "dd MMMM yyyy"
-    }
+        @objc func petSterilizedSwitchDidChange(_ textField: UISwitch) {
+            if petSterilizedSwitch.isOn == true {
+                petSterilizedDateField.isEnabled = true
+                petSterilizedDateField.text = petItem?.petSterilizedDate
+            } else {
+                petSterilizedDateField.isEnabled = false
+                petSterilizedDateField.text =  ""
+            }
+            checkChangeDone()
+        }
+        @objc func dateChangedSterilized(datePicker: UIDatePicker) {
+            petSterilizedDateField.text = dateFormatter.string(from: datePicker.date)
+            checkChangeDone()
+            formatDate()
+        }
+        @objc func petVeterinaryFieldDidChange(_ textField: UITextField) {
+            checkChangeDone()
+        }
+        @objc func petRaceFieldDidChange(_ textField: UITextField) {
+            checkChangeDone()
+        }
+        @objc func petColorFieldDidChange(_ textField: UITextField) {
+            checkChangeDone()
+        }
+        @objc func petParticularSignsFieldDidChange(_ textField: UITextField) {
+            checkChangeDone()
+        }
+        @objc func petWeaningSwitchDidChange(_ textField: UISwitch) {
+            if petWeaningSwitch.isOn == true {
+                petWeaningDateField.isEnabled = true
+                petWeaningDateField.text = petItem?.petWeaningDate
+            } else {
+                petWeaningDateField.isEnabled = false
+                petWeaningDateField.text =  ""
+            }
+            checkChangeDone()
+        }
+        @objc func dateChangedWeaning(datePicker: UIDatePicker) {
+            petWeaningDateField.text = dateFormatter.string(from: datePicker.date)
+            checkChangeDone()
+            formatDate()
+        }
+        @objc func dateChangedDeathDate(datePicker: UIDatePicker) {
+            petDeathDateField.text = dateFormatter.string(from: datePicker.date)
+            checkChangeDone()
+            formatDate()
+        }
+        private func formatDate() {
+            dateFormatter.locale = localeLanguage
+            dateFormatter.dateFormat = "dd MMMM yyyy"
+        }
 
 // MARK: - functions
     private func createObserver() {
@@ -744,6 +754,24 @@ extension NewPetViewController {
         let petItemRef = databaseRef.child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
     }
+    private func getVaccines() {
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "listVaccines")
+            as? VaccinesListViewController else {
+                return
+        }
+        destVC.petItem = petItem
+        self.show(destVC, sender: self)
+    }
+    private func getConsultations() {
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "listConsultations")
+            as? ConsultationsListViewController else {
+                return
+        }
+        destVC.petItem = petItem
+        self.show(destVC, sender: self)
+    }
     private func getSuppressedPet() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
         guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "confirmPetSuppress")
@@ -882,14 +910,14 @@ extension NewPetViewController: UINavigationControllerDelegate, UIImagePickerCon
 
 // MARK: - UITextFieldDelegate
 extension NewPetViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         typeFieldOrView = "UITextField"
         activeField = textField
         activeField?.textColor = #colorLiteral(red: 1, green: 0.2730214596, blue: 0.2258683443, alpha: 1)
         lastOffset = self.scrollView.contentOffset
         return true
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
+     func textFieldDidEndEditing(_ textField: UITextField) {
         let previousActiveField = activeField
         activeField = textField
 //        activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -900,7 +928,7 @@ extension NewPetViewController: UITextFieldDelegate {
         }
         activeField = previousActiveField
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activeField?.resignFirstResponder()
         activeField = nil

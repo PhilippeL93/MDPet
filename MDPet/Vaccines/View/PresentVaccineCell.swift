@@ -34,35 +34,39 @@ class PresentVaccineCell: UITableViewCell {
         diseaseSevenLabel.isHidden = true
         diseaseEightLabel.isHidden = true
 
-        for indice in 0...vaccineItem.vaccineDiseases.count-1 {
-            switch indice {
-            case 0:
-                diseaseOneLabel.text = vaccineItem.vaccineDiseases[indice]
-                diseaseOneLabel.isHidden = false
-                diseaseTwoLabel.isHidden = false
-            case 1:
-                diseaseTwoLabel.text = vaccineItem.vaccineDiseases[indice]
-            case 2:
-                diseaseThreeLabel.text = vaccineItem.vaccineDiseases[indice]
-                diseaseThreeLabel.isHidden = false
-                diseaseFourLabel.isHidden = false
-            case 3:
-                diseaseFourLabel.text = vaccineItem.vaccineDiseases[indice]
-            case 4:
-                diseaseFiveLabel.text = vaccineItem.vaccineDiseases[indice]
-                diseaseFiveLabel.isHidden = false
-                diseaseSixLabel.isHidden = false
-            case 5:
-                diseaseSixLabel.text = vaccineItem.vaccineDiseases[indice]
-            case 6:
-                diseaseSevenLabel.text = vaccineItem.vaccineDiseases[indice]
-                diseaseSevenLabel.isHidden = false
-                diseaseEightLabel.isHidden = false
-            case 7:
-                diseaseEightLabel.text = vaccineItem.vaccineDiseases[indice]
-            default: break
-            }
-        }
+//        for indice in 0...vaccineItem.vaccineDiseases.count-1 {
+//            switch indice {
+//            case 0:
+////                diseaseOneLabel.text = vaccineItem.vaccineDiseases[indice]
+//                diseaseOneLabel.isHidden = false
+//                diseaseTwoLabel.isHidden = false
+//            case 1:
+//                print("=")
+////                diseaseTwoLabel.text = vaccineItem.vaccineDiseases[indice]
+//            case 2:
+////                diseaseThreeLabel.text = vaccineItem.vaccineDiseases[indice]
+//                diseaseThreeLabel.isHidden = false
+//                diseaseFourLabel.isHidden = false
+//            case 3:
+////                diseaseFourLabel.text = vaccineItem.vaccineDiseases[indice]
+//                print("=")
+//            case 4:
+////                diseaseFiveLabel.text = vaccineItem.vaccineDiseases[indice]
+//                diseaseFiveLabel.isHidden = false
+//                diseaseSixLabel.isHidden = false
+//            case 5:
+////                diseaseSixLabel.text = vaccineItem.vaccineDiseases[indice]
+//                print("=")
+//            case 6:
+////                diseaseSevenLabel.text = vaccineItem.vaccineDiseases[indice]
+//                diseaseSevenLabel.isHidden = false
+//                diseaseEightLabel.isHidden = false
+//            case 7:
+////                diseaseEightLabel.text = vaccineItem.vaccineDiseases[indice]
+//                print("=")
+//            default: break
+//            }
+//        }
 //        diseaseOneLabel.text = vaccineItem.vaccineChlamydia
 //        diseaseTwoLabel.text = vaccineItem.vaccineCoryza
 //        diseaseThreeLabel.text = vaccineItem.vaccine

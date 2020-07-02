@@ -14,7 +14,7 @@
 		3715EACF239188E800CAA9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3715EACE239188E800CAA9E7 /* Assets.xcassets */; };
 		3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */; };
 		3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* MDPetTests.swift */; };
-		372CEF77249B692F002AEAF5 /* ConsultationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */; };
+		372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */; };
 		372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */; };
 		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
 		372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */; };
@@ -32,11 +32,14 @@
 		3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */; };
 		3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CEF623EDC53D002B8999 /* TabBarViewController.swift */; };
 		3748CF1B23EDE48C002B8999 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748CF1A23EDE48C002B8999 /* CloudKit.framework */; };
-		3748CF1D23EEA0B1002B8999 /* ZZ_PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF1C23EEA0B1002B8999 /* ZZ_PetViewController.swift */; };
 		3748CF2123EF194B002B8999 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2023EF194B002B8999 /* Races.swift */; };
 		3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2223EFE84B002B8999 /* SettingsButton.swift */; };
 		3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */; };
 		3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF4823F06623002B8999 /* VeterinayViewController.swift */; };
+		375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */; };
+		375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D224ADE6E9006B5912 /* ConsultationItem.swift */; };
+		375317D524AE0EC1006B5912 /* DiseasesByVaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D424AE0EC1006B5912 /* DiseasesByVaccine.swift */; };
+		375317D724AE129C006B5912 /* DiseasesSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D624AE129C006B5912 /* DiseasesSelected.swift */; };
 		3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */; };
 		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
 		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
@@ -51,7 +54,7 @@
 		37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED13C23FD329500CF6247 /* LoginViewController.swift */; };
 		37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */; };
 		37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAC249919AB0077FEFB /* Notification.swift */; };
-		3E992D69A120A26696CC06C7 /* Pods_MDPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43122717C3CC3EFF581CE13 /* Pods_MDPet.framework */; };
+		63648A39CE01CAD4FAFD4A5F /* Pods_MDPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +79,7 @@
 		3715EAD8239188E900CAA9E7 /* MDPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MDPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715EADC239188E900CAA9E7 /* MDPetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPetTests.swift; sourceTree = "<group>"; };
 		3715EADE239188E900CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListTableViewController.swift; sourceTree = "<group>"; };
+		372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListViewController.swift; sourceTree = "<group>"; };
 		372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPetViewController.swift; sourceTree = "<group>"; };
 		372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentConsultationCell.swift; sourceTree = "<group>"; };
 		372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVaccineCell.swift; sourceTree = "<group>"; };
@@ -94,11 +97,14 @@
 		3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPetSuppressViewController.swift; sourceTree = "<group>"; };
 		3748CEF623EDC53D002B8999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		3748CF1A23EDE48C002B8999 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		3748CF1C23EEA0B1002B8999 /* ZZ_PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZ_PetViewController.swift; sourceTree = "<group>"; };
 		3748CF2023EF194B002B8999 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		3748CF2223EFE84B002B8999 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCornerBorderRadiusView.swift; sourceTree = "<group>"; };
 		3748CF4823F06623002B8999 /* VeterinayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VeterinayViewController.swift; sourceTree = "<group>"; };
+		375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseConsultations.swift; sourceTree = "<group>"; };
+		375317D224ADE6E9006B5912 /* ConsultationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItem.swift; sourceTree = "<group>"; };
+		375317D424AE0EC1006B5912 /* DiseasesByVaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseasesByVaccine.swift; sourceTree = "<group>"; };
+		375317D624AE129C006B5912 /* DiseasesSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseasesSelected.swift; sourceTree = "<group>"; };
 		3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListViewController.swift; sourceTree = "<group>"; };
 		3755789F24A5E88400CA1252 /* VaccineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineItem.swift; sourceTree = "<group>"; };
 		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
@@ -113,9 +119,9 @@
 		37CED13C23FD329500CF6247 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUpdateViewController.swift; sourceTree = "<group>"; };
 		37DE5AAC249919AB0077FEFB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		4498EBA997883770DE3A14B4 /* Pods-MDPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.debug.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.debug.xcconfig"; sourceTree = "<group>"; };
-		6A0361249EED7021680EE7FA /* Pods-MDPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.release.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.release.xcconfig"; sourceTree = "<group>"; };
-		C43122717C3CC3EFF581CE13 /* Pods_MDPet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDPet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.release.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.release.xcconfig"; sourceTree = "<group>"; };
+		AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDPet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.debug.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +129,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E992D69A120A26696CC06C7 /* Pods_MDPet.framework in Frameworks */,
 				3748CF1B23EDE48C002B8999 /* CloudKit.framework in Frameworks */,
+				63648A39CE01CAD4FAFD4A5F /* Pods_MDPet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				3748CF1A23EDE48C002B8999 /* CloudKit.framework */,
-				C43122717C3CC3EFF581CE13 /* Pods_MDPet.framework */,
+				AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,7 +229,7 @@
 		372CEF75249B6917002AEAF5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				372CEF76249B692F002AEAF5 /* ConsultationsListTableViewController.swift */,
+				372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -241,6 +247,8 @@
 			children = (
 				37A981DD24A4E26200F491E2 /* Diseases.swift */,
 				3755789F24A5E88400CA1252 /* VaccineItem.swift */,
+				375317D424AE0EC1006B5912 /* DiseasesByVaccine.swift */,
+				375317D624AE129C006B5912 /* DiseasesSelected.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +264,7 @@
 		372CEFBD249FD01C002AEAF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				375317D224ADE6E9006B5912 /* ConsultationItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,7 +315,6 @@
 				372CFFCB248682FA00984537 /* PetsListTableViewController.swift */,
 				372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */,
 				3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */,
-				3748CF1C23EEA0B1002B8999 /* ZZ_PetViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -363,6 +371,7 @@
 				372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */,
 				372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */,
 				375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */,
+				375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -421,8 +430,8 @@
 		8D4C012181DFEEA986A64931 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4498EBA997883770DE3A14B4 /* Pods-MDPet.debug.xcconfig */,
-				6A0361249EED7021680EE7FA /* Pods-MDPet.release.xcconfig */,
+				B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */,
+				5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -434,13 +443,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3715EAE1239188E900CAA9E7 /* Build configuration list for PBXNativeTarget "MDPet" */;
 			buildPhases = (
-				53915A90E668E6119C37DE7E /* [CP] Check Pods Manifest.lock */,
+				ABEA4854FAE02257CA6FA760 /* [CP] Check Pods Manifest.lock */,
 				3715EABB239188E800CAA9E7 /* Sources */,
 				3715EABC239188E800CAA9E7 /* Frameworks */,
 				3715EABD239188E800CAA9E7 /* Resources */,
 				3715EAEB23918A8E00CAA9E7 /* ShellScript */,
-				7602223B04249D5FEF3FA9E4 /* [CP] Embed Pods Frameworks */,
-				37CED13B23FD29DB00CF6247 /* ShellScript */,
+				2CFCD4BC0DF293BE04608A40 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -530,6 +538,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2CFCD4BC0DF293BE04608A40 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MDPet/Pods-MDPet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MDPet/Pods-MDPet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MDPet/Pods-MDPet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3715EAEB23918A8E00CAA9E7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,24 +572,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		37CED13B23FD29DB00CF6247 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
-		};
-		53915A90E668E6119C37DE7E /* [CP] Check Pods Manifest.lock */ = {
+		ABEA4854FAE02257CA6FA760 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,23 +594,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7602223B04249D5FEF3FA9E4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MDPet/Pods-MDPet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MDPet/Pods-MDPet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MDPet/Pods-MDPet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -622,6 +613,7 @@
 				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
 				37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */,
+				375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
 				372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
@@ -632,14 +624,15 @@
 				372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */,
 				37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */,
 				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
+				375317D524AE0EC1006B5912 /* DiseasesByVaccine.swift in Sources */,
 				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
-				372CEF77249B692F002AEAF5 /* ConsultationsListTableViewController.swift in Sources */,
+				372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
 				3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */,
 				375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */,
-				3748CF1D23EEA0B1002B8999 /* ZZ_PetViewController.swift in Sources */,
 				375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */,
+				375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
 				375578A424A6287D00CA1252 /* VaccineViewController.swift in Sources */,
 				3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */,
@@ -647,6 +640,7 @@
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
 				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,
+				375317D724AE129C006B5912 /* DiseasesSelected.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,7 +798,7 @@
 		};
 		3715EAE2239188E900CAA9E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4498EBA997883770DE3A14B4 /* Pods-MDPet.debug.xcconfig */;
+			baseConfigurationReference = B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MDPet/MDPet.entitlements;
@@ -827,7 +821,7 @@
 		};
 		3715EAE3239188E900CAA9E7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A0361249EED7021680EE7FA /* Pods-MDPet.release.xcconfig */;
+			baseConfigurationReference = 5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MDPet/MDPetRelease.entitlements;

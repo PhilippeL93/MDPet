@@ -9,6 +9,6 @@
 import UIKit
 
 class PresentConsultationCell: UITableViewCell {
-    
+
     @IBOutlet var tableView: UITableView!
 }

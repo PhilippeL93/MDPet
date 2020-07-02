@@ -1,5 +1,5 @@
 //
-//  ConsultationsListTableViewController.swift
+//  ConsultationsListViewController.swift
 //  MDPet
 //
 //  Created by Philippe on 18/06/2020.
@@ -8,19 +8,48 @@
 
 import UIKit
 
-class ConsultationsListTableViewController: UIViewController {
+class ConsultationsListViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var petNameLabel: UILabel!
+    
+    @IBAction func backToPet(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func addNewConsultation(_ sender: Any) {
+    }
+
+    // MARK: Properties
+    var petItem: PetItem?
+    var consultationItems: [ConsultationItem] = []
+
+    // MARK: UIViewController Lifecycle
+      override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        GetFirebaseConsultations.shared.observeConsultations { (success, consultationItems) in
+            if success {
+                self.consultationItems = consultationItems
+                self.tableView.reloadData()
+            } else {
+                print("erreur")
+            }
+        }
+    }
 }
 
 // MARK: - extension Data for tableView
-extension ConsultationsListTableViewController: UITableViewDataSource {
+extension ConsultationsListViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemConsultation", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemConsultation", for: indexPath)
             as? PresentConsultationCell else {
                 return UITableViewCell()
         }
@@ -42,7 +71,7 @@ extension ConsultationsListTableViewController: UITableViewDataSource {
     }
 }
 // MARK: - extension Delegate
-extension ConsultationsListTableViewController: UITableViewDelegate {
+extension ConsultationsListViewController: UITableViewDelegate {
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             let size = tableView.frame.height / 8
             return size

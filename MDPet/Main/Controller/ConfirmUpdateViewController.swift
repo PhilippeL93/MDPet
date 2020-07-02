@@ -52,9 +52,14 @@ class ConfirmUpdateViewController: UIViewController {
         if petOrVeterinary == "veterinary" {
             NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue,
                                             object: "navigationBarVeterinaryToTrue")
-        } else {
+        }
+        if petOrVeterinary == "pet" {
             NotificationCenter.default.post(name: .navigationBarPetToTrue,
                                             object: "navigationBarPetToTrue")
+        }
+        if petOrVeterinary == "vaccine" {
+            NotificationCenter.default.post(name: .navigationBarPetToTrue,
+                                            object: "navigationBarVaccineToTrue")
         }
         NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
         self.removeAnimate()

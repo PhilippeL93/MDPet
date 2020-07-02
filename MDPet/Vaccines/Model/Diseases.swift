@@ -14,7 +14,7 @@ let catDiseases = ["Chlamydiose",
                 "Rage",
                 "Typhus"]
 
-let dogDiseases = ["Hépatite Infectieuse ou de Rubarth",
+let dogDiseases = ["Hépatite Infectieuse (Rubarth)",
                 "Leishmaniose",
                 "Leptospirose",
                 "Maladie de Carré",

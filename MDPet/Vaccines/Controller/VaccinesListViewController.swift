@@ -12,16 +12,20 @@ class VaccinesListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var petNameLabel: UILabel!
-    
+
     @IBAction func addNewVaccine(_ sender: UIBarButtonItem) {
         createNewVaccine()
     }
-
+    @IBAction func backToPet(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     // MARK: Properties
+    var petItem: PetItem?
     var vaccineItems: [VaccineItem] = []
 
     // MARK: UIViewController Lifecycle
-      override func viewDidLoad() {
+    override func viewDidLoad() {
+        petNameLabel.text = petItem?.petName
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +44,7 @@ class VaccinesListViewController: UIViewController {
             as? VaccineViewController else {
                 return
         }
+        destVC.petItem = petItem
         destVC.typeOfCall = "create"
         self.show(destVC, sender: self)
     }

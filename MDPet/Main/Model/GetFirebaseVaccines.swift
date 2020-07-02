@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import Firebase
 
 class GetFirebaseVaccines {
@@ -21,7 +20,7 @@ class GetFirebaseVaccines {
 
             databaseRef = Database.database().reference(withPath: "\(path)")
 
-            let query = databaseRef.queryOrdered(byChild: "vaccineDatee")
+            let query = databaseRef.queryOrdered(byChild: "vaccineNumber")
             query.observe(.value, with: { snapshot in
                 var newItems: [VaccineItem] = []
                 for child in snapshot.children {
