@@ -28,17 +28,28 @@ struct PetItem {
     var petDeathDate: String
     var petColor: String
     var petBreeder: String
+    var petURLBreeder: String
     var petParticularSigns: String
+    var petPedigree: Bool
+    var petPedigreeNumber: String
+    var petMotherName: String
+    var petFatherName: String
 
     init(name: String, key: String = "",
          URLPicture: String, type: Int,
          gender: Int, birthDate: String,
-         tatoo: String, sterilized: Bool,
+         tatoo: String,
+         sterilized: Bool,
          sterilizedDate: String, veterinary: String,
-         race: String, weaning: Bool,
+         race: String,
+         weaning: Bool,
          weaningDate: String, deathDate: String,
          color: String, breeder: String,
-         particularSigns: String) {
+         URLBreeder: String,
+         particularSigns: String,
+         pedigree: Bool,
+         pedigreeNumber: String,
+         motherName: String, fatherName: String) {
         self.ref = nil
         self.key = key
         self.petName = name
@@ -56,7 +67,12 @@ struct PetItem {
         self.petDeathDate = deathDate
         self.petColor = color
         self.petBreeder = breeder
+        self.petURLBreeder = URLBreeder
         self.petParticularSigns = particularSigns
+        self.petPedigree = pedigree
+        self.petPedigreeNumber = pedigreeNumber
+        self.petMotherName = motherName
+        self.petFatherName = fatherName
     }
 
     init?(snapshot: DataSnapshot) {
@@ -77,11 +93,15 @@ struct PetItem {
             let petDeathDate = value["petDeathDate"] as? String,
             let petColor = value["petColor"] as? String,
             let petBreeder = value["petBreeder"] as? String,
-            let petParticularSigns = value["petParticularSigns"] as? String
+            let petURLBreeder = value["petURLBreeder"] as? String,
+            let petParticularSigns = value["petParticularSigns"] as? String,
+            let petPedigree = value["petPedigree"] as? Bool,
+            let petPedigreeNumber = value["petPedigreeNumber"] as? String,
+            let petMotherName = value["petMotherName"] as? String,
+            let petFatherName = value["petFatherName"] as? String
             else {
                 return nil
         }
-
         self.ref = snapshot.ref
         self.key = snapshot.key
         self.petName = petName
@@ -99,8 +119,13 @@ struct PetItem {
         self.petDeathDate = petDeathDate
         self.petColor = petColor
         self.petBreeder = petBreeder
+        self.petURLBreeder = petURLBreeder
         self.petParticularSigns = petParticularSigns
-  }
+        self.petPedigree = petPedigree
+        self.petPedigreeNumber = petPedigreeNumber
+        self.petMotherName = petMotherName
+        self.petFatherName = petFatherName
+    }
 
     func toAnyObject() -> Any {
         return [
@@ -119,7 +144,12 @@ struct PetItem {
             "petDeathDate": petDeathDate,
             "petColor": petColor,
             "petBreeder": petBreeder,
-            "petParticularSigns": petParticularSigns
+            "petURLBreeder": petURLBreeder,
+            "petParticularSigns": petParticularSigns,
+            "petPedigree": petPedigree,
+            "petPedigreeNumber": petPedigreeNumber,
+            "petMotherName": petMotherName,
+            "petFatherName": petFatherName
         ]
     }
 }

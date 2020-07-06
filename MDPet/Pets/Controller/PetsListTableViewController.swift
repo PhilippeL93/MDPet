@@ -27,7 +27,6 @@ class PetsListTableViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        print("========================================= viewWillAppear viewWillAppear viewWillAppear")
         super.viewDidLoad()
         GetFirebasePets.shared.observePets { (success, petItems) in
             if success {
