@@ -65,11 +65,11 @@ class VaccineViewController: UIViewController {
     var petItem: PetItem?
     var vaccineKey: String = ""
     var vaccineItem: VaccineItem?
-//    var diseases: Diseases?
     var databaseRef = Database.database().reference(withPath: "vaccines-item")
     var imageRef = Storage.storage().reference().child("pets-images")
-    var diseasesPet: DiseaseByVaccine?
     private var pathVaccine: String = ""
+    var petDiseases: [String] = []
+    var petDiseasesSwitch: [Bool] = []
 
     // MARK: - buttons
 
@@ -105,7 +105,7 @@ class VaccineViewController: UIViewController {
     // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        pathVaccine = UserUid.uid + petItem!.key + "-vaccines-item"
+        pathVaccine = UserUid.uid + "-vaccines-item" + petItem!.key
         databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
         petNameLabel.text = petItem?.petName
         createObserver()
@@ -174,27 +174,35 @@ class VaccineViewController: UIViewController {
         checkChangeDone()
     }
     @objc func diseaseSwitchOneDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[0] =  switchOne.isOn
         checkChangeDone()
     }
     @objc func  diseaseSwitchTwoDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[1] =  switchTwo.isOn
         checkChangeDone()
     }
     @objc func diseaseSwitchThreeDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[2] =  switchThree.isOn
         checkChangeDone()
     }
     @objc func diseaseSwitchFourDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[3] =  switchFour.isOn
         checkChangeDone()
     }
     @objc func diseaseSwitchFiveDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[4] =  switchFive.isOn
         checkChangeDone()
     }
     @objc func diseaseSwitchSixDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[5] =  switchSix.isOn
         checkChangeDone()
     }
     @objc func diseaseSwitchSevenDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[6] =  switchSeven.isOn
         checkChangeDone()
     }
     @objc func diseaseSwitchEightDidChange(_ textField: UISwitch) {
+        petDiseasesSwitch[7] =  switchEight.isOn
         checkChangeDone()
     }
 }
@@ -265,83 +273,67 @@ extension VaccineViewController {
             switchEight.isOn = false
             switchEight.isHidden = true
             diseaseEightLabel.isHidden = true
-            var petType: [String] = []
             switch petItem?.petType {
             case 0:
-                petType = catDiseases
+                petDiseases = catDiseases
+                petDiseasesSwitch = catDiseasesSwitch
             case 1:
-                petType = dogDiseases
+                petDiseases = dogDiseases
+                petDiseasesSwitch = dogDiseasesSwitch
             case 2:
-                petType = rabbitDiseases
+                petDiseases = rabbitDiseases
+                petDiseasesSwitch = rabbitDiseasesSwitch
             default:
                 print("other")
             }
-//            diseasesPet = DiseaseByVaccine(petName: petItem!.petName)
-            diseasesPet = DiseaseByVaccine()
-            for indice in 0...petType.count-1 {
+            for indice in 0...petDiseases.count-1 {
                 if indice == 0 {
                     switchOne.isOn = true
                     switchOne.isHidden = false
                     diseaseOneLabel.isHidden = false
-                    diseaseOneLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseOneLabel.text = petDiseases[indice]
                 }
                 if indice == 1 {
                     switchTwo.isOn = true
                     switchTwo.isHidden = false
                     diseaseTwoLabel.isHidden = false
-                    diseaseTwoLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseTwoLabel.text = petDiseases[indice]
                 }
                 if indice == 2 {
                     switchThree.isOn = true
                     switchThree.isHidden = false
                     diseaseThreeLabel.isHidden = false
-                    diseaseThreeLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseThreeLabel.text = petDiseases[indice]
                 }
                 if indice == 3 {
                     switchFour.isOn = true
                     switchFour.isHidden = false
                     diseaseFourLabel.isHidden = false
-                    diseaseFourLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseFourLabel.text = petDiseases[indice]
                 }
                 if indice == 4 {
                     switchFive.isOn = true
                     switchFive.isHidden = false
                     diseaseFiveLabel.isHidden = false
-                    diseaseFiveLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseFiveLabel.text = petDiseases[indice]
                 }
                 if indice == 5 {
                     switchSix.isOn = true
                     switchSix.isHidden = false
                     diseaseSixLabel.isHidden = false
-                    diseaseSixLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseSixLabel.text = petDiseases[indice]
                 }
                 if indice == 6 {
                     switchSeven.isOn = true
                     switchSeven.isHidden = false
                     diseaseSevenLabel.isHidden = false
-                    diseaseSevenLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseSevenLabel.text = petDiseases[indice]
                 }
                 if indice == 7 {
                     switchEight.isOn = true
                     switchEight.isHidden = false
                     diseaseEightLabel.isHidden = false
-                    diseaseEightLabel.text = petType[indice]
-                    let diseaseSselected = DiseasesSelected(diseaseName: petType[indice], diseaseSwitch: true)
-                    diseasesPet!.addDisease(diseaseSelected: diseaseSselected)
+                    diseaseEightLabel.text = petDiseases[indice]
                 }
             }
         } else {
@@ -368,12 +360,104 @@ extension VaccineViewController {
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
         vaccineDateField.text = vaccineItem?.vaccineDate
         vaccineNameField.text = vaccineItem?.vaccineName
+        switchOne.isOn = false
+        switchOne.isHidden = true
+        diseaseOneLabel.isHidden = true
+        switchTwo.isOn = false
+        switchTwo.isHidden = true
+        diseaseTwoLabel.isHidden = true
+        switchThree.isOn = false
+        switchThree.isHidden = true
+        diseaseThreeLabel.isHidden = true
+        switchFour.isOn = false
+        switchFour.isHidden = true
+        diseaseFourLabel.isHidden = true
+        switchFive.isOn = false
+        switchFive.isHidden = true
+        diseaseFiveLabel.isHidden = true
+        switchSix.isOn = false
+        switchSix.isHidden = true
+        diseaseSixLabel.isHidden = true
+        switchSeven.isOn = false
+        switchSeven.isHidden = true
+        diseaseSevenLabel.isHidden = true
+        switchEight.isOn = false
+        switchEight.isHidden = true
+        diseaseEightLabel.isHidden = true
+        petDiseasesSwitch = vaccineItem!.vaccineSwitchDiseases
+        petDiseases = vaccineItem!.vaccineDiseases
+
         let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: vaccineItem!.vaccineVeterinary)
         if rowVeterinary != -1 {
             vaccineVeterinaryField.text = veterinariesItems[rowVeterinary].veterinaryName
         }
         selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
-
+        for indice in 0...(vaccineItem?.vaccineDiseases.count)!-1 {
+           if indice == 0 {
+                diseaseOneLabel.isHidden = false
+                diseaseOneLabel.text = vaccineItem?.vaccineDiseases[indice]
+                switchOne.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchOne.isOn = true
+                }
+            }
+            if indice == 1 {
+                switchTwo.isHidden = false
+                diseaseTwoLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseTwoLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchTwo.isOn = true
+                }
+            }
+            if indice == 2 {
+                switchThree.isHidden = false
+                diseaseThreeLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseThreeLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchThree.isOn = true
+                }
+            }
+            if indice == 3 {
+                switchFour.isHidden = false
+                diseaseFourLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseFourLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchFour.isOn = true
+                }
+            }
+            if indice == 4 {
+                switchFive.isHidden = false
+                diseaseFiveLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseFiveLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchFive.isOn = true
+                }
+            }
+            if indice == 5 {
+                switchSix.isHidden = false
+                diseaseSixLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseSixLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchSix.isOn = true
+                }
+            }
+            if indice == 6 {
+                switchSeven.isHidden = false
+                diseaseSevenLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseSevenLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchSeven.isOn = true
+                }
+            }
+            if indice == 7 {
+                switchEight.isHidden = false
+                diseaseEightLabel.text = vaccineItem?.vaccineDiseases[indice]
+                diseaseEightLabel.isHidden = false
+                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
+                    switchEight.isOn = true
+                }
+            }
+        }
     }
     private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
         guard veterinariesItems.count != 0 else {
@@ -386,6 +470,7 @@ extension VaccineViewController {
         return -1
     }
     private func checkUpdateVaccinesDone() {
+        checkChangeDone()
         if saveVaccineButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
@@ -435,8 +520,6 @@ extension VaccineViewController {
         navigationController?.popViewController(animated: true)
     }
     private func updateVaccineStorage(vaccineURLThumbnail: String, uniqueUUID: String) {
-//        let vaccineDiseases = catDiseases
-//        let vaccineDiseases = diseasesPet
         vaccineItem = VaccineItem(
             name: String(vaccineNameField.text ?? ""),
             key: "",
@@ -444,8 +527,9 @@ extension VaccineViewController {
             injection: String(vaccineInjectionField.text ?? ""),
             date: String(vaccineDateField.text ?? ""),
             URLThumbnail: vaccineURLThumbnail,
-            veterinary: String(vaccineVeterinaryField.text ?? ""),
-            diseases: diseasesPet!)
+            veterinary: String(selectedVeterinaryKey),
+            diseases: petDiseases,
+            switchDiseasess: petDiseasesSwitch)
         let vaccineItemRef = databaseRef.child(uniqueUUID)
         vaccineItemRef.setValue(vaccineItem?.toAnyObject())
     }
@@ -490,7 +574,45 @@ extension VaccineViewController {
     saveVaccineButton.isAccessibilityElement = shown
     }
     private func checkChangeDone() {
-
+        if vaccineInjectionField.text != vaccineItem?.vaccineInjection {
+            toggleSaveVaccineButton(shown: true)
+            return
+        }
+        if vaccineDateField.text != vaccineItem?.vaccineDate {
+            toggleSaveVaccineButton(shown: true)
+            return
+        }
+        if vaccineNameField.text != vaccineItem?.vaccineName {
+            toggleSaveVaccineButton(shown: true)
+            return
+        }
+        var switchUpdated: Bool = false
+        for indice in 0...(vaccineItem?.vaccineDiseases.count)!-1 {
+            switchUpdated = getSwitchUpdated(switchField: petDiseasesSwitch[indice],
+                                             switchFirebase: vaccineItem!.vaccineSwitchDiseases[indice])
+            if switchUpdated == true {
+                toggleSaveVaccineButton(shown: true)
+                return
+            }
+        }
+        var selectedVeterinaryName = ""
+        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: vaccineItem!.vaccineVeterinary)
+        if rowVeterinary != -1 {
+            selectedVeterinaryName = veterinariesItems[rowVeterinary].veterinaryName
+        }
+        if vaccineVeterinaryField.text != selectedVeterinaryName {
+            toggleSaveVaccineButton(shown: true)
+            return
+        } else {
+            toggleSaveVaccineButton(shown: false)
+        }
+    }
+    private func getSwitchUpdated(switchField: Bool, switchFirebase: Bool) -> Bool {
+        if switchField != switchFirebase {
+            return true
+        } else {
+            return false
+        }
     }
     private func createObserverVaccineInjection() {
         vaccineInjectionField?.addTarget(self,

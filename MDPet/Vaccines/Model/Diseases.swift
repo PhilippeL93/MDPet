@@ -25,3 +25,21 @@ let dogDiseases = ["Hépatite Infectieuse (Rubarth)",
 
 let rabbitDiseases = ["Maladie virale hémorragique",
                    "Myxomatose"]
+
+let catDiseasesSwitch = [true,
+                         true,
+                         true,
+                         true,
+                         true]
+
+let dogDiseasesSwitch = [true,
+                         true,
+                         true,
+                         true,
+                         true,
+                         true,
+                         true,
+                         true]
+
+let rabbitDiseasesSwitch = [true,
+                            true]

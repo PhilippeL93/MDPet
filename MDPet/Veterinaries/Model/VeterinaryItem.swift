@@ -23,12 +23,14 @@ struct VeterinaryItem {
     let veterinaryCity: String
     let veterinaryPhone: String
     let veterinaryEmail: String
+    let veterinaryNumber: String
 
     init(clinicSwitch: Bool, clinic: String, key: String = "",
          name: String, firstName: String,
          streetOne: String, streetTwo: String,
          postalCode: String, city: String,
-         phone: String, email: String) {
+         phone: String, email: String,
+         number: String) {
         self.ref = nil
         self.key = key
         self.clinicSwitch = clinicSwitch
@@ -41,6 +43,7 @@ struct VeterinaryItem {
         self.veterinaryCity = city
         self.veterinaryPhone = phone
         self.veterinaryEmail = email
+        self.veterinaryNumber = number
     }
 
     init?(snapshot: DataSnapshot) {
@@ -55,23 +58,25 @@ struct VeterinaryItem {
             let veterinaryPostalCode = value["veterinaryPostalCode"] as? String,
             let veterinaryCity = value["veterinaryCity"] as? String,
             let veterinaryPhone = value["veterinaryPhone"] as? String,
-            let veterinaryEmail = value["veterinaryEmail"] as? String
-        else {
-            return nil
+            let veterinaryEmail = value["veterinaryEmail"] as? String,
+            let veterinaryNumber = value["veterinaryNumber"] as? String
+            else {
+                return nil
         }
 
-    self.ref = snapshot.ref
-                self.key = snapshot.key
-    self.clinicSwitch = clinicSwitch
-    self.clinicName = clinicName
-    self.veterinaryName = veterinaryName
-    self.veterinaryFirstName = veterinaryFirstName
-    self.veterinaryStreetOne = veterinaryStreetOne
-    self.veterinaryStreetTwo = veterinaryStreetTwo
-    self.veterinaryPostalCode = veterinaryPostalCode
-    self.veterinaryCity = veterinaryCity
-    self.veterinaryPhone = veterinaryPhone
-    self.veterinaryEmail = veterinaryEmail
+        self.ref = snapshot.ref
+        self.key = snapshot.key
+        self.clinicSwitch = clinicSwitch
+        self.clinicName = clinicName
+        self.veterinaryName = veterinaryName
+        self.veterinaryFirstName = veterinaryFirstName
+        self.veterinaryStreetOne = veterinaryStreetOne
+        self.veterinaryStreetTwo = veterinaryStreetTwo
+        self.veterinaryPostalCode = veterinaryPostalCode
+        self.veterinaryCity = veterinaryCity
+        self.veterinaryPhone = veterinaryPhone
+        self.veterinaryEmail = veterinaryEmail
+        self.veterinaryNumber = veterinaryNumber
   }
 
   func toAnyObject() -> Any {
@@ -85,7 +90,8 @@ struct VeterinaryItem {
         "veterinaryPostalCode": veterinaryPostalCode,
         "veterinaryCity": veterinaryCity,
         "veterinaryPhone": veterinaryPhone,
-        "veterinaryEmail": veterinaryEmail
+        "veterinaryEmail": veterinaryEmail,
+        "veterinaryNumber": veterinaryNumber
     ]
   }
 }

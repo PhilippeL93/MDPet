@@ -12,7 +12,7 @@ class ConsultationsListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var petNameLabel: UILabel!
-    
+
     @IBAction func backToPet(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }

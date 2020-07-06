@@ -30,7 +30,7 @@ class VaccinesListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-        GetFirebaseVaccines.shared.observeVaccines { (success, vaccineItems) in
+        GetFirebaseVaccines.shared.observeVaccines(petKey: petItem!.key) { (success, vaccineItems) in
             if success {
                 self.vaccineItems = vaccineItems
                 self.tableView.reloadData()
@@ -79,13 +79,14 @@ extension VaccinesListViewController: UITableViewDelegate {
         return size
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "veterinaryController")
-//            as? VeterinaryViewController else {
-//                return
-//        }
-//        let veterinaryItem = veterinariesItems[indexPath.row]
-//        destVC.typeOfCall = "update"
-//        destVC.veterinaryItem = veterinaryItem
-//        self.show(destVC, sender: self)
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "vaccineController")
+            as? VaccineViewController else {
+                return
+        }
+        let vaccineItem = vaccineItems[indexPath.row]
+        destVC.typeOfCall = "update"
+        destVC.petItem = petItem
+        destVC.vaccineItem = vaccineItem
+        self.show(destVC, sender: self)
     }
 }

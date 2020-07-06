@@ -19,21 +19,15 @@ struct VaccineItem {
     var vaccineDate: String
     var vaccineURLThumbnail: String
     var vaccineVeterinary: String
-    var vaccineDiseases: DiseaseByVaccine
-//    var vaccineDiseaseDetail: Diseases
-//    var vaccineChlamydia: String
-//    var vaccineCoryza: String
-//    var vaccineLeukemia: String
-//    var vaccineRabies: String
-//    var vaccineTyphus: String
+    var vaccineDiseases: [String]
+    let vaccineSwitchDiseases: [Bool]
 
     init(name: String, key: String = "",
          number: Int, injection: String,
          date: String, URLThumbnail: String,
-         veterinary: String, diseases: DiseaseByVaccine) {
-//         chlamydia: String,
-//         coryza: String, leukemia: String,
-//         rabies: String, typhus: String) {
+         veterinary: String,
+         diseases: [String],
+         switchDiseasess: [Bool]) {
         self.ref = nil
         self.key = key
         self.vaccineNumber = number
@@ -43,11 +37,7 @@ struct VaccineItem {
         self.vaccineURLThumbnail = URLThumbnail
         self.vaccineVeterinary = veterinary
         self.vaccineDiseases = diseases
-//        self.vaccineChlamydia = chlamydia
-//        self.vaccineCoryza = coryza
-//        self.vaccineLeukemia = leukemia
-//        self.vaccineRabies = rabies
-//        self.vaccineTyphus = typhus
+        self.vaccineSwitchDiseases = switchDiseasess
     }
 
     init?(snapshot: DataSnapshot) {
@@ -58,13 +48,9 @@ struct VaccineItem {
             let vaccineName = value["vaccineName"] as? String,
             let vaccineDate = value["vaccineDate"] as? String,
             let vaccineURLThumbnail = value["vaccineURLThumbnail"] as? String,
-            let vaccineVeterinary = value["vaccineVetrinary"] as? String,
-            let vaccineDiseases = value["vaccineDiseaes"] as? DiseaseByVaccine
-//            let vaccineChlamydia = value["vaccineChlamydia"] as? String,
-//            let vaccineCoryza = value["vaccineCoryza"] as? String ,
-//            let vaccineLeukemia = value["vaccineLeukemia"] as? String,
-//            let vaccineRabies = value["vaccineRabies"] as? String,
-//            let vaccineTyphus = value["vaccineTyphus"] as? String
+            let vaccineVeterinary = value["vaccineVeterinary"] as? String,
+            let vaccineDiseases = value["vaccineDiseases"] as? [String],
+            let vaccineSwitchDiseases = value["vaccineSwitchDiseases"] as? [Bool]
             else {
                 return nil
         }
@@ -78,11 +64,7 @@ struct VaccineItem {
         self.vaccineURLThumbnail = vaccineURLThumbnail
         self.vaccineVeterinary = vaccineVeterinary
         self.vaccineDiseases = vaccineDiseases
-//        self.vaccineChlamydia = vaccineChlamydia
-//        self.vaccineCoryza = vaccineCoryza
-//        self.vaccineLeukemia = vaccineLeukemia
-//        self.vaccineRabies = vaccineRabies
-//        self.vaccineTyphus = vaccineTyphus
+        self.vaccineSwitchDiseases = vaccineSwitchDiseases
   }
 
     func toAnyObject() -> Any {
@@ -93,17 +75,8 @@ struct VaccineItem {
             "vaccineDate": vaccineDate,
             "vaccineURLThumbnail": vaccineURLThumbnail,
             "vaccineVeterinary": vaccineVeterinary,
-            "vaccineDiseases": vaccineDiseases
-//            "vaccineChlamydia": vaccineChlamydia,
-//            "vaccineCoryza": vaccineCoryza,
-//            "vaccineLeukemia": vaccineLeukemia,
-//            "vaccineRabies": vaccineRabies,
-//            "vaccineTyphus": vaccineTyphus
+            "vaccineDiseases": vaccineDiseases,
+            "vaccineSwitchDiseases": vaccineSwitchDiseases
         ]
     }
 }
-
-//struct Diseases {
-//    var diseaseName : String
-//    var diseaseIsOn: Bool
-//}

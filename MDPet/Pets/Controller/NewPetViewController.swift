@@ -31,6 +31,7 @@ class NewPetViewController: UIViewController {
     @IBOutlet weak var savePetButton: UIBarButtonItem!
     @IBOutlet weak var suppressPetButton: UIButton!
     @IBOutlet weak var vaccinesButton: UIButton!
+    @IBOutlet weak var consultationsButton: UIButton!
 
     // MARK: - variables
     private let imagePicker = UIImagePickerController()
@@ -83,10 +84,6 @@ class NewPetViewController: UIViewController {
     @IBAction func consultationsButton(_ sender: Any) {
         getConsultations()
     }
-    //    @IBAction func goToConsultations(_ sender: Any) {
-//        getConsultations()
-//    }
-    
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !petVeterinaryField.text!.isEmpty {
             let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: selectedVeterinaryKey)
@@ -233,10 +230,12 @@ class NewPetViewController: UIViewController {
                 petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
                     return
             }
-            if petType == "Rongeur" {
-                vaccinesButton.isHidden = true
-            } else {
-                vaccinesButton.isHidden = false
+            if typeOfCall == "update" {
+                if petType == "Rongeur" {
+                    vaccinesButton.isHidden = true
+                } else {
+                    vaccinesButton.isHidden = false
+                }
             }
         }
         @objc func petNameFieldDidChange(_ textField: UITextField) {
@@ -358,6 +357,8 @@ class NewPetViewController: UIViewController {
             savePetButton.title = "Ajouter"
             self.title = "Nouvel animal"
             suppressPetButton.isHidden = true
+            vaccinesButton.isHidden = true
+            consultationsButton.isHidden = true
             petSterilizedSwitch.isOn = false
             petSterilizedDateField.isEnabled = false
             petWeaningSwitch.isOn = false
@@ -418,8 +419,10 @@ class NewPetViewController: UIViewController {
             petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
             return
         }
-        if petType == "Rongeur" {
+        if typeOfCall == "update" {
+            if petType == "Rongeur" {
             vaccinesButton.isHidden = true
+        }
         }
     }
     private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
@@ -491,14 +494,18 @@ class NewPetViewController: UIViewController {
 extension NewPetViewController {
 
     private func checkChangeDone() {
-        if petTypeSegmentedControl.selectedSegmentIndex != petItem?.petType {
-            toggleSavePetButton(shown: true)
-            return
-        }
         if petNameField.text != petItem?.petName {
             toggleSavePetButton(shown: true)
             return
         }
+        if petTypeSegmentedControl.selectedSegmentIndex != petItem?.petType {
+            toggleSavePetButton(shown: true)
+            return
+        }
+//        if petNameField.text != petItem?.petName {
+//            toggleSavePetButton(shown: true)
+//            return
+//        }
         if petGenderSegmentedControl.selectedSegmentIndex != petItem?.petGender {
             toggleSavePetButton(shown: true)
             return
@@ -730,7 +737,7 @@ extension NewPetViewController {
         } else {
             updatePetStorage(petURLPicture: "", uniqueUUID: uniqueUUID)
         }
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
     }
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
         petItem = PetItem(
@@ -753,6 +760,7 @@ extension NewPetViewController {
             particularSigns: String(petParticularSignsField.text ?? ""))
         let petItemRef = databaseRef.child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
+        navigationController?.popViewController(animated: true)
     }
     private func getVaccines() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
@@ -785,6 +793,7 @@ extension NewPetViewController {
         destVC.didMove(toParent: self)
     }
     private func checkUpdatePetDone() {
+        checkChangeDone()
         if savePetButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return

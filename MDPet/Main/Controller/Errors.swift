@@ -12,4 +12,5 @@ import Foundation
 enum Errors: String {
     case noCamera = "Désolé, cet appareil n'a pas d'appareil photo"
     case saveFailed = "Image non sauvegardée"
+    case duplicateVeterinary = "Numéro ordinal déjà utilisé"
 }

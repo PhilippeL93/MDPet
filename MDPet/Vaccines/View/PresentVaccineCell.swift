@@ -34,46 +34,52 @@ class PresentVaccineCell: UITableViewCell {
         diseaseSevenLabel.isHidden = true
         diseaseEightLabel.isHidden = true
 
-//        for indice in 0...vaccineItem.vaccineDiseases.count-1 {
-//            switch indice {
-//            case 0:
-////                diseaseOneLabel.text = vaccineItem.vaccineDiseases[indice]
-//                diseaseOneLabel.isHidden = false
-//                diseaseTwoLabel.isHidden = false
-//            case 1:
-//                print("=")
-////                diseaseTwoLabel.text = vaccineItem.vaccineDiseases[indice]
-//            case 2:
-////                diseaseThreeLabel.text = vaccineItem.vaccineDiseases[indice]
-//                diseaseThreeLabel.isHidden = false
-//                diseaseFourLabel.isHidden = false
-//            case 3:
-////                diseaseFourLabel.text = vaccineItem.vaccineDiseases[indice]
-//                print("=")
-//            case 4:
-////                diseaseFiveLabel.text = vaccineItem.vaccineDiseases[indice]
-//                diseaseFiveLabel.isHidden = false
-//                diseaseSixLabel.isHidden = false
-//            case 5:
-////                diseaseSixLabel.text = vaccineItem.vaccineDiseases[indice]
-//                print("=")
-//            case 6:
-////                diseaseSevenLabel.text = vaccineItem.vaccineDiseases[indice]
-//                diseaseSevenLabel.isHidden = false
-//                diseaseEightLabel.isHidden = false
-//            case 7:
-////                diseaseEightLabel.text = vaccineItem.vaccineDiseases[indice]
-//                print("=")
-//            default: break
-//            }
-//        }
-//        diseaseOneLabel.text = vaccineItem.vaccineChlamydia
-//        diseaseTwoLabel.text = vaccineItem.vaccineCoryza
-//        diseaseThreeLabel.text = vaccineItem.vaccine
-//        diseaseFourLabel.text = vaccineItem.vaccine
-//        diseaseFiveLabel.text = vaccineItem.vaccine
-//        diseaseSixLabel.text = vaccineItem.vaccine
-//        diseaseSevenLabel.text = vaccineItem.vaccine
-//        diseaseEightLabel.text = vaccineItem.vaccine
+        diseaseOneLabel.text = ""
+        diseaseTwoLabel.text = ""
+        diseaseThreeLabel.text = ""
+        diseaseFourLabel.text = ""
+        diseaseFiveLabel.text = ""
+        diseaseSixLabel.text = ""
+        diseaseSevenLabel.text = ""
+        diseaseEightLabel.text = ""
+
+        var diseasesToDisplay: [String] = []
+        for indice in 0...vaccineItem.vaccineDiseases.count-1
+            where vaccineItem.vaccineSwitchDiseases[indice] == true {
+                diseasesToDisplay.append(vaccineItem.vaccineDiseases[indice])
+        }
+        for indice in 0...diseasesToDisplay.count-1 {
+            switch indice {
+            case 0:
+                diseaseOneLabel.isHidden = false
+                diseaseOneLabel.text = diseasesToDisplay[indice]
+                diseaseTwoLabel.isHidden = false
+            case 1:
+                diseaseTwoLabel.isHidden = false
+                diseaseTwoLabel.text = diseasesToDisplay[indice]
+                diseaseFourLabel.isHidden = false
+            case 2:
+                diseaseThreeLabel.isHidden = false
+                diseaseThreeLabel.text = diseasesToDisplay[indice]
+            case 3:
+                diseaseFourLabel.isHidden = false
+                diseaseFourLabel.text = diseasesToDisplay[indice]
+            case 4:
+                diseaseFiveLabel.isHidden = false
+                diseaseFiveLabel.text = diseasesToDisplay[indice]
+                diseaseSixLabel.isHidden = false
+            case 5:
+                diseaseSixLabel.isHidden = false
+                diseaseSixLabel.text = diseasesToDisplay[indice]
+            case 6:
+                diseaseSevenLabel.isHidden = false
+                diseaseSevenLabel.text = diseasesToDisplay[indice]
+                diseaseEightLabel.isHidden = false
+            case 7:
+                diseaseEightLabel.isHidden = false
+                diseaseEightLabel.text = diseasesToDisplay[indice]
+            default: break
+            }
+        }
     }
 }

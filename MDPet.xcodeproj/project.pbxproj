@@ -38,8 +38,7 @@
 		3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF4823F06623002B8999 /* VeterinayViewController.swift */; };
 		375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */; };
 		375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D224ADE6E9006B5912 /* ConsultationItem.swift */; };
-		375317D524AE0EC1006B5912 /* DiseasesByVaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D424AE0EC1006B5912 /* DiseasesByVaccine.swift */; };
-		375317D724AE129C006B5912 /* DiseasesSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D624AE129C006B5912 /* DiseasesSelected.swift */; };
+		375317D924AF6295006B5912 /* SwitchDisease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D824AF6295006B5912 /* SwitchDisease.swift */; };
 		3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */; };
 		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
 		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
@@ -103,8 +102,7 @@
 		3748CF4823F06623002B8999 /* VeterinayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VeterinayViewController.swift; sourceTree = "<group>"; };
 		375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseConsultations.swift; sourceTree = "<group>"; };
 		375317D224ADE6E9006B5912 /* ConsultationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItem.swift; sourceTree = "<group>"; };
-		375317D424AE0EC1006B5912 /* DiseasesByVaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseasesByVaccine.swift; sourceTree = "<group>"; };
-		375317D624AE129C006B5912 /* DiseasesSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseasesSelected.swift; sourceTree = "<group>"; };
+		375317D824AF6295006B5912 /* SwitchDisease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDisease.swift; sourceTree = "<group>"; };
 		3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListViewController.swift; sourceTree = "<group>"; };
 		3755789F24A5E88400CA1252 /* VaccineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineItem.swift; sourceTree = "<group>"; };
 		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
@@ -247,8 +245,7 @@
 			children = (
 				37A981DD24A4E26200F491E2 /* Diseases.swift */,
 				3755789F24A5E88400CA1252 /* VaccineItem.swift */,
-				375317D424AE0EC1006B5912 /* DiseasesByVaccine.swift */,
-				375317D624AE129C006B5912 /* DiseasesSelected.swift */,
+				375317D824AF6295006B5912 /* SwitchDisease.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -622,9 +619,9 @@
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
 				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
 				372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */,
+				375317D924AF6295006B5912 /* SwitchDisease.swift in Sources */,
 				37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */,
 				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
-				375317D524AE0EC1006B5912 /* DiseasesByVaccine.swift in Sources */,
 				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
 				372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
@@ -640,7 +637,6 @@
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
 				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,
-				375317D724AE129C006B5912 /* DiseasesSelected.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

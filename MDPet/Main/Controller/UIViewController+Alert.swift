@@ -26,6 +26,8 @@ extension UIViewController {
             alert(message: Errors.noCamera.rawValue, title: "Pas d'appareil photo")
         case .saveFailed:
             alert(message: Errors.saveFailed.rawValue, title: "Sauvegarde interrompue")
+        case .duplicateVeterinary:
+            alert(message: Errors.duplicateVeterinary.rawValue, title: "Veterinaire déjà existant")
         }
     }
 
@@ -36,6 +38,8 @@ extension UIViewController {
             return Errors.noCamera.rawValue
         case .saveFailed:
             return Errors.saveFailed.rawValue
+        case .duplicateVeterinary:
+            return Errors.duplicateVeterinary.rawValue
         }
     }
 }
