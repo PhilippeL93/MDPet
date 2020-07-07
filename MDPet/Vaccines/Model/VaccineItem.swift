@@ -20,7 +20,7 @@ struct VaccineItem {
     var vaccineURLThumbnail: String
     var vaccineVeterinary: String
     var vaccineDiseases: [String]
-    let vaccineSwitchDiseases: [Bool]
+    var vaccineSwitchDiseases: [Bool]
 
     init(name: String, key: String = "",
          number: Int, injection: String,

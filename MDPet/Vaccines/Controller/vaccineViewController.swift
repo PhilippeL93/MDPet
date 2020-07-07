@@ -11,27 +11,12 @@ import Firebase
 
 class VaccineViewController: UIViewController {
 
+    @IBOutlet weak var tableView: SelfSizedTableView!
     @IBOutlet weak var petNameLabel: UILabel!
     @IBOutlet weak var vaccineInjectionField: UITextField!
     @IBOutlet weak var vaccineDateField: UITextField!
     @IBOutlet weak var vaccineNameField: UITextField!
     @IBOutlet weak var vaccineVeterinaryField: UITextField!
-    @IBOutlet weak var diseaseOneLabel: UILabel!
-    @IBOutlet weak var switchOne: UISwitch!
-    @IBOutlet weak var diseaseTwoLabel: UILabel!
-    @IBOutlet weak var switchTwo: UISwitch!
-    @IBOutlet weak var diseaseThreeLabel: UILabel!
-    @IBOutlet weak var switchThree: UISwitch!
-    @IBOutlet weak var diseaseFourLabel: UILabel!
-    @IBOutlet weak var switchFour: UISwitch!
-    @IBOutlet weak var diseaseFiveLabel: UILabel!
-    @IBOutlet weak var switchFive: UISwitch!
-    @IBOutlet weak var diseaseSixLabel: UILabel!
-    @IBOutlet weak var switchSix: UISwitch!
-    @IBOutlet weak var diseaseSevenLabel: UILabel!
-    @IBOutlet weak var switchSeven: UISwitch!
-    @IBOutlet weak var diseaseEightLabel: UILabel!
-    @IBOutlet weak var switchEight: UISwitch!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var saveVaccineButton: UIBarButtonItem!
 
@@ -43,14 +28,6 @@ class VaccineViewController: UIViewController {
     private var datePickerVaccineDate: UIDatePicker?
     private var vaccineName: UITextField?
     private var pickerViewVeterinary = UIPickerView()
-    private var diseaseSwitchOne: UISwitch?
-    private var diseaseSwitchTwo: UISwitch?
-    private var diseaseSwitchThree: UISwitch?
-    private var diseaseSwitchFour: UISwitch?
-    private var diseaseSwitchFive: UISwitch?
-    private var diseaseSwitchSix: UISwitch?
-    private var diseaseSwitchSeven: UISwitch?
-    private var diseaseSwitchEight: UISwitch?
     private var activeField: UITextField?
     private var lastOffset: CGPoint!
     private var keyboardHeight: CGFloat!
@@ -59,6 +36,7 @@ class VaccineViewController: UIViewController {
     private var dateFormatter = DateFormatter()
     private var selectedRace: String = ""
     private var selectedVeterinaryKey: String = ""
+    private var petDiseasesCount: Int = 0
 
     var veterinariesItems: [VeterinaryItem] = []
     var typeOfCall: String = ""
@@ -122,7 +100,40 @@ class VaccineViewController: UIViewController {
                 print("erreur")
             }
         }
+        switch petItem?.petType {
+        case 0:
+            petDiseases = catDiseases
+            petDiseasesSwitch = catDiseasesSwitch
+            petDiseasesCount = catDiseases.count
+        case 1:
+            petDiseases = dogDiseases
+            petDiseasesSwitch = dogDiseasesSwitch
+            petDiseasesCount = dogDiseases.count
+        case 2:
+            petDiseases = rabbitDiseases
+            petDiseasesSwitch = rabbitDiseasesSwitch
+            petDiseasesCount = rabbitDiseases.count
+        default:
+            petDiseasesCount = 0
+        }
+        if typeOfCall == "create" {
+            vaccineItem = VaccineItem(
+                name: "",
+                key: "",
+                number: 1,
+                injection: "",
+                date: "",
+                URLThumbnail: "",
+                veterinary: "",
+                diseases: petDiseases,
+                switchDiseasess: petDiseasesSwitch)
+        }
         initiateView()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.maxHeight = CGFloat(44 * petDiseasesCount)
+        tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -173,38 +184,6 @@ class VaccineViewController: UIViewController {
     @objc func vaccineVeterinaryFieldDidChange(_ textField: UITextField) {
         checkChangeDone()
     }
-    @objc func diseaseSwitchOneDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[0] =  switchOne.isOn
-        checkChangeDone()
-    }
-    @objc func  diseaseSwitchTwoDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[1] =  switchTwo.isOn
-        checkChangeDone()
-    }
-    @objc func diseaseSwitchThreeDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[2] =  switchThree.isOn
-        checkChangeDone()
-    }
-    @objc func diseaseSwitchFourDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[3] =  switchFour.isOn
-        checkChangeDone()
-    }
-    @objc func diseaseSwitchFiveDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[4] =  switchFive.isOn
-        checkChangeDone()
-    }
-    @objc func diseaseSwitchSixDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[5] =  switchSix.isOn
-        checkChangeDone()
-    }
-    @objc func diseaseSwitchSevenDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[6] =  switchSeven.isOn
-        checkChangeDone()
-    }
-    @objc func diseaseSwitchEightDidChange(_ textField: UISwitch) {
-        petDiseasesSwitch[7] =  switchEight.isOn
-        checkChangeDone()
-    }
 }
 extension VaccineViewController {
     // MARK: - functions
@@ -213,14 +192,6 @@ extension VaccineViewController {
         createObserverDatePickerVaccineDate()
         createObserverVaccineName()
         createObserverVeterinaryPickerView()
-        createObserverSwitchOne()
-        createObserverSwitchTwo()
-        createObserverSwitchThree()
-        createObserverSwitchFour()
-        createObserverSwitchFive()
-        createObserverSwitchSix()
-        createObserverSwitchSeven()
-        createObserverSwitchEight()
     }
     private func createDelegate() {
         vaccineInjectionField.delegate = self
@@ -249,93 +220,6 @@ extension VaccineViewController {
             saveVaccineButton.title = "Ajouter"
             self.title = "Nouveau vaccin"
 //            suppressVaccineButton.isHidden = true
-            switchOne.isOn = false
-            switchOne.isHidden = true
-            diseaseOneLabel.isHidden = true
-            switchTwo.isOn = true
-            switchTwo.isHidden = true
-            diseaseTwoLabel.isHidden = true
-            switchThree.isOn = false
-            switchThree.isHidden = true
-            diseaseThreeLabel.isHidden = true
-            switchFour.isOn = false
-            switchFour.isHidden = true
-            diseaseFourLabel.isHidden = true
-            switchFive.isOn = false
-            switchFive.isHidden = true
-            diseaseFiveLabel.isHidden = true
-            switchSix.isOn = false
-            switchSix.isHidden = true
-            diseaseSixLabel.isHidden = true
-            switchSeven.isOn = false
-            switchSeven.isHidden = true
-            diseaseSevenLabel.isHidden = true
-            switchEight.isOn = false
-            switchEight.isHidden = true
-            diseaseEightLabel.isHidden = true
-            switch petItem?.petType {
-            case 0:
-                petDiseases = catDiseases
-                petDiseasesSwitch = catDiseasesSwitch
-            case 1:
-                petDiseases = dogDiseases
-                petDiseasesSwitch = dogDiseasesSwitch
-            case 2:
-                petDiseases = rabbitDiseases
-                petDiseasesSwitch = rabbitDiseasesSwitch
-            default:
-                print("other")
-            }
-            for indice in 0...petDiseases.count-1 {
-                if indice == 0 {
-                    switchOne.isOn = true
-                    switchOne.isHidden = false
-                    diseaseOneLabel.isHidden = false
-                    diseaseOneLabel.text = petDiseases[indice]
-                }
-                if indice == 1 {
-                    switchTwo.isOn = true
-                    switchTwo.isHidden = false
-                    diseaseTwoLabel.isHidden = false
-                    diseaseTwoLabel.text = petDiseases[indice]
-                }
-                if indice == 2 {
-                    switchThree.isOn = true
-                    switchThree.isHidden = false
-                    diseaseThreeLabel.isHidden = false
-                    diseaseThreeLabel.text = petDiseases[indice]
-                }
-                if indice == 3 {
-                    switchFour.isOn = true
-                    switchFour.isHidden = false
-                    diseaseFourLabel.isHidden = false
-                    diseaseFourLabel.text = petDiseases[indice]
-                }
-                if indice == 4 {
-                    switchFive.isOn = true
-                    switchFive.isHidden = false
-                    diseaseFiveLabel.isHidden = false
-                    diseaseFiveLabel.text = petDiseases[indice]
-                }
-                if indice == 5 {
-                    switchSix.isOn = true
-                    switchSix.isHidden = false
-                    diseaseSixLabel.isHidden = false
-                    diseaseSixLabel.text = petDiseases[indice]
-                }
-                if indice == 6 {
-                    switchSeven.isOn = true
-                    switchSeven.isHidden = false
-                    diseaseSevenLabel.isHidden = false
-                    diseaseSevenLabel.text = petDiseases[indice]
-                }
-                if indice == 7 {
-                    switchEight.isOn = true
-                    switchEight.isHidden = false
-                    diseaseEightLabel.isHidden = false
-                    diseaseEightLabel.text = petDiseases[indice]
-                }
-            }
         } else {
             saveVaccineButton.title = "OK"
             self.title = "Modification vaccin"
@@ -360,30 +244,6 @@ extension VaccineViewController {
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
         vaccineDateField.text = vaccineItem?.vaccineDate
         vaccineNameField.text = vaccineItem?.vaccineName
-        switchOne.isOn = false
-        switchOne.isHidden = true
-        diseaseOneLabel.isHidden = true
-        switchTwo.isOn = false
-        switchTwo.isHidden = true
-        diseaseTwoLabel.isHidden = true
-        switchThree.isOn = false
-        switchThree.isHidden = true
-        diseaseThreeLabel.isHidden = true
-        switchFour.isOn = false
-        switchFour.isHidden = true
-        diseaseFourLabel.isHidden = true
-        switchFive.isOn = false
-        switchFive.isHidden = true
-        diseaseFiveLabel.isHidden = true
-        switchSix.isOn = false
-        switchSix.isHidden = true
-        diseaseSixLabel.isHidden = true
-        switchSeven.isOn = false
-        switchSeven.isHidden = true
-        diseaseSevenLabel.isHidden = true
-        switchEight.isOn = false
-        switchEight.isHidden = true
-        diseaseEightLabel.isHidden = true
         petDiseasesSwitch = vaccineItem!.vaccineSwitchDiseases
         petDiseases = vaccineItem!.vaccineDiseases
 
@@ -392,72 +252,6 @@ extension VaccineViewController {
             vaccineVeterinaryField.text = veterinariesItems[rowVeterinary].veterinaryName
         }
         selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
-        for indice in 0...(vaccineItem?.vaccineDiseases.count)!-1 {
-           if indice == 0 {
-                diseaseOneLabel.isHidden = false
-                diseaseOneLabel.text = vaccineItem?.vaccineDiseases[indice]
-                switchOne.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchOne.isOn = true
-                }
-            }
-            if indice == 1 {
-                switchTwo.isHidden = false
-                diseaseTwoLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseTwoLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchTwo.isOn = true
-                }
-            }
-            if indice == 2 {
-                switchThree.isHidden = false
-                diseaseThreeLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseThreeLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchThree.isOn = true
-                }
-            }
-            if indice == 3 {
-                switchFour.isHidden = false
-                diseaseFourLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseFourLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchFour.isOn = true
-                }
-            }
-            if indice == 4 {
-                switchFive.isHidden = false
-                diseaseFiveLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseFiveLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchFive.isOn = true
-                }
-            }
-            if indice == 5 {
-                switchSix.isHidden = false
-                diseaseSixLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseSixLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchSix.isOn = true
-                }
-            }
-            if indice == 6 {
-                switchSeven.isHidden = false
-                diseaseSevenLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseSevenLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchSeven.isOn = true
-                }
-            }
-            if indice == 7 {
-                switchEight.isHidden = false
-                diseaseEightLabel.text = vaccineItem?.vaccineDiseases[indice]
-                diseaseEightLabel.isHidden = false
-                if vaccineItem?.vaccineSwitchDiseases[indice] == true {
-                    switchEight.isOn = true
-                }
-            }
-        }
     }
     private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
         guard veterinariesItems.count != 0 else {
@@ -640,46 +434,6 @@ extension VaccineViewController {
                                 for: .editingChanged )
         vaccineVeterinaryField.inputView = pickerViewVeterinary
     }
-    private func createObserverSwitchOne() {
-        switchOne?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchOneDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchTwo() {
-        switchTwo?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchTwoDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchThree() {
-        switchThree?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchThreeDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchFour() {
-        switchFour?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchFourDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchFive() {
-        switchFive?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchFiveDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchSix() {
-        switchSix?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchSixDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchSeven() {
-        switchSeven?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchSevenDidChange(_:)),
-                                for: .touchUpInside)
-    }
-    private func createObserverSwitchEight() {
-        switchEight?.addTarget(self,
-                                action: #selector(VaccineViewController.diseaseSwitchEightDidChange(_:)),
-                                for: .touchUpInside)
-    }
     private func formatDate() {
         dateFormatter.locale = localeLanguage
         dateFormatter.dateFormat = "dd MMMM yyyy"
@@ -770,7 +524,45 @@ extension VaccineViewController: UINavigationControllerDelegate, UIImagePickerCo
         return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
     }
 }
+// MARK: - extension Data for tableView
+extension VaccineViewController: UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemVaccineDetail", for: indexPath)
+            as? PresentVaccineDetailCell else {
+            return UITableViewCell()
+        }
+
+        let vaccineDisease = vaccineItem?.vaccineDiseases[indexPath.row]
+        let vaccineDiseaseSwitch = vaccineItem?.vaccineSwitchDiseases[indexPath.row]
+        cell.cellDelegateVaccine = self
+        cell.indexSelected = indexPath
+        cell.configureVaccineDetailCell(with: vaccineDisease!, vaccineDiseaseSwitch: vaccineDiseaseSwitch!)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (vaccineItem?.vaccineDiseases.count)!
+    }
+
+}
+// MARK: - extension Delegate
+extension VaccineViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let size = tableView.frame.height / 8
+        return size
+    }
+}
+// MARK: - extension Delegate protocol
+extension VaccineViewController: TableViewClickVaccine {
+    func onClickCellVaccine(index: Int, switchDisease: Bool) {
+        petDiseasesSwitch[index] =  switchDisease
+        checkChangeDone()
+    }
+}
 // MARK: - UITextFieldDelegate
 extension VaccineViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
