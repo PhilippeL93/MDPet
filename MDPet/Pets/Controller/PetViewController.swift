@@ -1,5 +1,5 @@
 //
-//  NewPetViewController.swift
+//  PetViewController.swift
 //  MDPet
 //
 //  Created by Philippe on 18/06/2020.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class NewPetViewController: UIViewController {
+class PetViewController: UIViewController {
 
     @IBOutlet weak var petTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var petPicture: UIImageView!
@@ -180,7 +180,7 @@ class NewPetViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .hasBeenDeleted, object: nil)
     }
 }
-    extension NewPetViewController {
+    extension PetViewController {
 // MARK: - @objc func
         @objc func tapGestuireRecognizer(gesture: UIGestureRecognizer) {
             guard !typeFieldOrView.isEmpty else {
@@ -562,7 +562,7 @@ class NewPetViewController: UIViewController {
     }
 }
 
-extension NewPetViewController {
+extension PetViewController {
 
     private func checkChangeDone() {
         if petNameField.text != petItem?.petName {
@@ -659,22 +659,22 @@ extension NewPetViewController {
 
     private func createObserverPetName() {
         petNameField?.addTarget(self,
-                                action: #selector(NewPetViewController.petNameFieldDidChange(_:)),
+                                action: #selector(PetViewController.petNameFieldDidChange(_:)),
                                 for: .editingChanged)
     }
      private func createObserverPetColor() {
          petColorField?.addTarget(self,
-                                 action: #selector(NewPetViewController.petColorFieldDidChange(_:)),
+                                 action: #selector(PetViewController.petColorFieldDidChange(_:)),
                                  for: .editingChanged)
     }
     private func createObserverPetParticularSigns() {
         petParticularSignsField?.addTarget(self,
-                                           action: #selector(NewPetViewController.petParticularSignsFieldDidChange(_:)),
+                                           action: #selector(PetViewController.petParticularSignsFieldDidChange(_:)),
                                            for: .editingChanged)
     }
     private func createObserverPetTatoo() {
         petTatooField?.addTarget(self,
-                                action: #selector(NewPetViewController.petTatooFieldDidChange(_:)),
+                                action: #selector(PetViewController.petTatooFieldDidChange(_:)),
                                 for: .editingChanged)
     }
     private func createObserverDatePickerBirthDate() {
@@ -682,13 +682,13 @@ extension NewPetViewController {
         datePickerBirthDate?.datePickerMode = .date
         datePickerBirthDate?.locale = localeLanguage
         datePickerBirthDate?.addTarget(self,
-                                       action: #selector(NewPetViewController.dateChangedBirthDate(datePicker:)),
+                                       action: #selector(PetViewController.dateChangedBirthDate(datePicker:)),
                                        for: .valueChanged)
         petBirthDateField.inputView = datePickerBirthDate
     }
     private func createObserverSterilizedSwitch() {
         petSterilizedSwitch?.addTarget(self,
-                                action: #selector(NewPetViewController.petSterilizedSwitchDidChange(_:)),
+                                action: #selector(PetViewController.petSterilizedSwitchDidChange(_:)),
                                 for: .touchUpInside)
     }
     private func createObserverDatePickerSterilized() {
@@ -696,13 +696,13 @@ extension NewPetViewController {
         datePickerSterilizedDate?.datePickerMode = .date
         datePickerSterilizedDate?.locale = localeLanguage
         datePickerSterilizedDate?.addTarget(self,
-                                       action: #selector(NewPetViewController.dateChangedSterilized(datePicker:)),
+                                       action: #selector(PetViewController.dateChangedSterilized(datePicker:)),
                                        for: .valueChanged)
         petSterilizedDateField.inputView = datePickerSterilizedDate
     }
     private func createObserverWeaningSwitch() {
         petWeaningSwitch?.addTarget(self,
-                                action: #selector(NewPetViewController.petWeaningSwitchDidChange(_:)),
+                                action: #selector(PetViewController.petWeaningSwitchDidChange(_:)),
                                 for: .touchUpInside)
     }
     private func createObserverDatePickerWeaning() {
@@ -710,7 +710,7 @@ extension NewPetViewController {
         datePickerWeaningDate?.datePickerMode = .date
         datePickerWeaningDate?.locale = localeLanguage
         datePickerWeaningDate?.addTarget(self,
-                                       action: #selector(NewPetViewController.dateChangedWeaning(datePicker:)),
+                                       action: #selector(PetViewController.dateChangedWeaning(datePicker:)),
                                        for: .valueChanged)
         petWeaningDateField.inputView = datePickerWeaningDate
     }
@@ -719,59 +719,59 @@ extension NewPetViewController {
         datePickerDeathDate?.datePickerMode = .date
         datePickerDeathDate?.locale = localeLanguage
         datePickerDeathDate?.addTarget(self,
-                                       action: #selector(NewPetViewController.dateChangedDeathDate(datePicker:)),
+                                       action: #selector(PetViewController.dateChangedDeathDate(datePicker:)),
                                        for: .valueChanged)
         petDeathDateField.inputView = datePickerDeathDate
     }
     private func createObserverRacePickerView() {
         pickerViewRace.delegate = self
         petRaceField?.addTarget(self,
-                                action: #selector(NewPetViewController.petRaceFieldDidChange(_:)),
+                                action: #selector(PetViewController.petRaceFieldDidChange(_:)),
                                 for: .editingChanged)
         petRaceField.inputView = pickerViewRace
     }
     private func createObserverVeterinaryPickerView() {
         pickerViewVeterinary.delegate = self
         petVeterinaryField?.addTarget(self,
-                                action: #selector(NewPetViewController.petVeterinaryFieldDidChange(_:)),
+                                action: #selector(PetViewController.petVeterinaryFieldDidChange(_:)),
                                 for: .editingChanged )
         petVeterinaryField.inputView = pickerViewVeterinary
     }
     private func createObserverPetTypeSegmentedCtrl() {
         petTypeSegmentedControl?.addTarget(self,
                                        action: #selector(
-                                       NewPetViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
+                                       PetViewController.textChangedPetTypeSegmentedCtrl(typeSegmentedCtrl:)),
                                        for: .valueChanged)
     }
     private func createObserverPetGenderSegmentedCtrl() {
         petGenderSegmentedControl?.addTarget(self,
                                        action: #selector(
-                                       NewPetViewController.textChangedPetGenderSegmentedCtrl(genderSegmentedCtrl:)),
+                                       PetViewController.textChangedPetGenderSegmentedCtrl(genderSegmentedCtrl:)),
                                        for: .valueChanged)
     }
     private func createObserverPetURLBreederField() {
         petURLBreederField?.addTarget(self,
-                                action: #selector(NewPetViewController.petURLBreederFieldDidChange(_:)),
+                                action: #selector(PetViewController.petURLBreederFieldDidChange(_:)),
                                 for: .editingChanged)
     }
     private func createObserverPedigreeSwitch() {
         petPedigreeSwitch?.addTarget(self,
-                                action: #selector(NewPetViewController.petPedigreeSwitchDidChange(_:)),
+                                action: #selector(PetViewController.petPedigreeSwitchDidChange(_:)),
                                 for: .touchUpInside)
     }
     private func createObserverPedigreeNumber() {
         petPedigreeNumberField?.addTarget(self,
-                                action: #selector(NewPetViewController.petPedigreeNumberFieldDidChange(_:)),
+                                action: #selector(PetViewController.petPedigreeNumberFieldDidChange(_:)),
                                 for: .editingChanged)
     }
     private func createObserverPetMotherNameField() {
         petMotherNameField?.addTarget(self,
-                                action: #selector(NewPetViewController.petMotherNameFieldDidChange(_:)),
+                                action: #selector(PetViewController.petMotherNameFieldDidChange(_:)),
                                 for: .editingChanged)
     }
     private func createObserverPetFatherNameField() {
         petFatherNameField?.addTarget(self,
-                                action: #selector(NewPetViewController.petFatherNameFieldDidChange(_:)),
+                                action: #selector(PetViewController.petFatherNameFieldDidChange(_:)),
                                 for: .editingChanged)
     }
     // MARK: - images management
@@ -857,28 +857,17 @@ extension NewPetViewController {
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
 
         petItem = PetItem(
-            name: "",
-            key: "",
-            URLPicture: "",
-            type: 0,
-            gender: 0,
-            birthDate: "",
-            tatoo: "",
-            sterilized: false,
-            sterilizedDate: "",
-            veterinary: "",
-            race: "",
-            weaning: false,
-            weaningDate: "",
-            deathDate: "",
-            color: "",
-            breeder: "",
-            URLBreeder: "",
-            particularSigns: "",
-            pedigree: false,
-            pedigreeNumber: "",
-            motherName: "",
-            fatherName: ""
+            name: "", key: "",
+            URLPicture: "", type: 0,
+            gender: 0, birthDate: "",
+            tatoo: "", sterilized: false,
+            sterilizedDate: "", veterinary: "",
+            race: "", weaning: false,
+            weaningDate: "", deathDate: "",
+            color: "", breeder: "",
+            URLBreeder: "", particularSigns: "",
+            pedigree: false, pedigreeNumber: "",
+            motherName: "", fatherName: ""
         )
         petItem?.petName = String(petNameField.text ?? "")
         petItem?.petURLPicture = petURLPicture
@@ -956,7 +945,7 @@ extension NewPetViewController {
     }
 }
 // MARK: - extension for UIPickerView
-extension NewPetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension PetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -1026,7 +1015,7 @@ extension NewPetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 }
 
 // MARK: - extension for getting image
-extension NewPetViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension PetViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
         if error != nil {
@@ -1063,7 +1052,7 @@ extension NewPetViewController: UINavigationControllerDelegate, UIImagePickerCon
 }
 
 // MARK: - UITextFieldDelegate
-extension NewPetViewController: UITextFieldDelegate {
+extension PetViewController: UITextFieldDelegate {
      func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         typeFieldOrView = "UITextField"
         activeField = textField
@@ -1090,7 +1079,7 @@ extension NewPetViewController: UITextFieldDelegate {
     }
 }
 // MARK: - UITextViewDelegate
-extension NewPetViewController: UITextViewDelegate {
+extension PetViewController: UITextViewDelegate {
     internal func textViewDidBeginEditing(_ textView: UITextView) {
         typeFieldOrView = "UITextView"
     }
@@ -1111,7 +1100,7 @@ extension NewPetViewController: UITextViewDelegate {
     }
 }
 // MARK: - Keyboard Handling
-private extension NewPetViewController {
+private extension PetViewController {
     @objc private func keyboardWillShow(notification: NSNotification) {
         if keyboardHeight != nil {
             return

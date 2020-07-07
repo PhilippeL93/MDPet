@@ -15,7 +15,7 @@
 		3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */; };
 		3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* MDPetTests.swift */; };
 		372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */; };
-		372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */; };
+		372CEF79249BA8AA002AEAF5 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* PetViewController.swift */; };
 		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
 		372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */; };
 		372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */; };
@@ -51,6 +51,7 @@
 		37CED12E23FC154200CF6247 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12D23FC154200CF6247 /* Pets.swift */; };
 		37CED13223FD1F0700CF6247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */; };
 		37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED13C23FD329500CF6247 /* LoginViewController.swift */; };
+		37D0384924B45D8100449A69 /* SettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0384824B45D8100449A69 /* SettingService.swift */; };
 		37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */; };
 		37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAC249919AB0077FEFB /* Notification.swift */; };
 		63648A39CE01CAD4FAFD4A5F /* Pods_MDPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */; };
@@ -79,7 +80,7 @@
 		3715EADC239188E900CAA9E7 /* MDPetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPetTests.swift; sourceTree = "<group>"; };
 		3715EADE239188E900CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListViewController.swift; sourceTree = "<group>"; };
-		372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPetViewController.swift; sourceTree = "<group>"; };
+		372CEF78249BA8AA002AEAF5 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
 		372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentConsultationCell.swift; sourceTree = "<group>"; };
 		372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVaccineCell.swift; sourceTree = "<group>"; };
 		372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVeterinaries.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		37CED12D23FC154200CF6247 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
 		37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37CED13C23FD329500CF6247 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		37D0384824B45D8100449A69 /* SettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingService.swift; sourceTree = "<group>"; };
 		37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUpdateViewController.swift; sourceTree = "<group>"; };
 		37DE5AAC249919AB0077FEFB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.release.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.release.xcconfig"; sourceTree = "<group>"; };
@@ -310,7 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				372CFFCB248682FA00984537 /* PetsListTableViewController.swift */,
-				372CEF78249BA8AA002AEAF5 /* NewPetViewController.swift */,
+				372CEF78249BA8AA002AEAF5 /* PetViewController.swift */,
 				3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */,
 			);
 			path = Controller;
@@ -396,6 +398,7 @@
 			children = (
 				372CFFD32486A2A400984537 /* User.swift */,
 				37A6588F24922C610063867C /* UserUid.swift */,
+				37D0384824B45D8100449A69 /* SettingService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -618,7 +621,7 @@
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
 				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
-				372CEF79249BA8AA002AEAF5 /* NewPetViewController.swift in Sources */,
+				372CEF79249BA8AA002AEAF5 /* PetViewController.swift in Sources */,
 				375317D924AF6295006B5912 /* SwitchDisease.swift in Sources */,
 				37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */,
 				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
@@ -636,6 +639,7 @@
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
+				37D0384924B45D8100449A69 /* SettingService.swift in Sources */,
 				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

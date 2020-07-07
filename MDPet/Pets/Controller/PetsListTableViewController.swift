@@ -38,8 +38,8 @@ class PetsListTableViewController: UIViewController {
         }
     }
     private func createNewPet() {
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "newPetController")
-            as? NewPetViewController else {
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
+            as? PetViewController else {
                 //        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
                 //            as? PetViewController else {
                 return
@@ -85,8 +85,8 @@ extension PetsListTableViewController: UITableViewDelegate {
         return size
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "newPetController")
-                    as? NewPetViewController else {
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
+                    as? PetViewController else {
 //        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "petController")
 //            as? PetViewController else {
                 return
