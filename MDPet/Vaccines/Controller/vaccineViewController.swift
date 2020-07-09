@@ -41,18 +41,30 @@ class VaccineViewController: UIViewController {
     var veterinariesItems: [VeterinaryItem] = []
     var typeOfCall: String = ""
     var petItem: PetItem?
-    var vaccineKey: String = ""
     var vaccineItem: VaccineItem?
-    var databaseRef = Database.database().reference(withPath: "vaccines-item")
-    var imageRef = Storage.storage().reference().child("pets-images")
+    var imagePickerNew: ImagePicker!
+    private var vaccineKey: String = ""
+    private var databaseRef = Database.database().reference(withPath: "vaccines-item")
+    private var imageRef = Storage.storage().reference().child("pets-images")
     private var pathVaccine: String = ""
-    var petDiseases: [String] = []
-    var petDiseasesSwitch: [Bool] = []
+    private var petDiseases: [String] = []
+    private var petDiseasesSwitch: [Bool] = []
+
+    private var fieldsUpdated: [String: Bool] = [:] {
+        didSet {
+            var oneFieldHasBeenUpdated = false
+            for (_, hasBeenUpdated) in fieldsUpdated
+                where hasBeenUpdated == true {
+                    oneFieldHasBeenUpdated = true
+            }
+            toggleSaveVaccineButton(shown: oneFieldHasBeenUpdated)
+        }
+    }
 
     // MARK: - buttons
 
-    @IBAction func addThumbnailButton(_ sender: Any) {
-        selectImageOrCamera(animated: true)
+    @IBAction func addThumbnailButton( _ sender: UIButton) {
+        imagePickerNew.present(from: sender)
     }
     @IBAction func saveVaccine(_ sender: Any) {
         createOrUpdateVaccine()
@@ -100,34 +112,7 @@ class VaccineViewController: UIViewController {
                 print("erreur")
             }
         }
-        switch petItem?.petType {
-        case 0:
-            petDiseases = catDiseases
-            petDiseasesSwitch = catDiseasesSwitch
-            petDiseasesCount = catDiseases.count
-        case 1:
-            petDiseases = dogDiseases
-            petDiseasesSwitch = dogDiseasesSwitch
-            petDiseasesCount = dogDiseases.count
-        case 2:
-            petDiseases = rabbitDiseases
-            petDiseasesSwitch = rabbitDiseasesSwitch
-            petDiseasesCount = rabbitDiseases.count
-        default:
-            petDiseasesCount = 0
-        }
-        if typeOfCall == "create" {
-            vaccineItem = VaccineItem(
-                name: "",
-                key: "",
-                number: 1,
-                injection: "",
-                date: "",
-                URLThumbnail: "",
-                veterinary: "",
-                diseases: petDiseases,
-                switchDiseasess: petDiseasesSwitch)
-        }
+        initDiseases()
         initiateView()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -139,7 +124,7 @@ class VaccineViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: .navigationBarVaccineToTrue, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .isToUpdate, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .vaccineIsToUpdate, object: nil)
         NotificationCenter.default.removeObserver(self, name: .hasBeenDeleted, object: nil)
     }
     // MARK: - @objc func
@@ -169,21 +154,46 @@ class VaccineViewController: UIViewController {
             return
         }
     }
-    @objc func vaccineInjectionFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
+    @objc func vaccineInjectionFieldDidEnd(_ textField: UITextField) {
+        if vaccineInjectionField.text != vaccineItem?.vaccineInjection {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineInjectionUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineInjectionUpdated")
+        }
     }
     @objc func dateChangedVaccineDate(datePicker: UIDatePicker) {
         vaccineDateField.text = dateFormatter.string(from: datePicker.date)
-        checkChangeDone()
+        if vaccineDateField.text != vaccineItem?.vaccineDate {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineDateUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
+        }
         formatDate()
         vaccineDateField.text = dateFormatter.string(from: datePicker.date)
     }
-    @objc func vaccineNameFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
+    @objc func vaccineNameFieldDidEnd(_ textField: UITextField) {
+        if vaccineNameField.text != vaccineItem?.vaccineName {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineNameUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineNameUpdated")
+        }
     }
-    @objc func vaccineVeterinaryFieldDidChange(_ textField: UITextField) {
-        checkChangeDone()
+    @objc func vaccineVeterinaryFieldDidEnd(_ textField: UITextField) {
+        var selectedVeterinaryName = ""
+        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: vaccineItem!.vaccineVeterinary)
+        if rowVeterinary != -1 {
+            selectedVeterinaryName = veterinariesItems[rowVeterinary].veterinaryName
+        }
+        if vaccineVeterinaryField.text != selectedVeterinaryName {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineVeterinaryUpdated")
+        }
     }
+    private func updateDictionnaryFieldsUpdated(updated: Bool, forKey: String) {
+        fieldsUpdated.updateValue(updated, forKey: forKey)
+    }
+
 }
 extension VaccineViewController {
     // MARK: - functions
@@ -209,7 +219,7 @@ extension VaccineViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(navigationBarVaccineToTrue),
                                                name: .navigationBarVaccineToTrue, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(isVaccineToUpdate),
-                                               name: .isToUpdate, object: nil)
+                                               name: .vaccineIsToUpdate, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(isVaccineDeleted),
 //                                               name: .hasBeenDeleted, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
@@ -239,6 +249,36 @@ extension VaccineViewController {
             }
         }
     }
+    private func initDiseases() {
+        switch petItem?.petType {
+        case 0:
+            petDiseases = catDiseases
+            petDiseasesSwitch = catDiseasesSwitch
+            petDiseasesCount = catDiseases.count
+        case 1:
+            petDiseases = dogDiseases
+            petDiseasesSwitch = dogDiseasesSwitch
+            petDiseasesCount = dogDiseases.count
+        case 2:
+            petDiseases = rabbitDiseases
+            petDiseasesSwitch = rabbitDiseasesSwitch
+            petDiseasesCount = rabbitDiseases.count
+        default:
+            petDiseasesCount = 0
+        }
+        if typeOfCall == "create" {
+            vaccineItem = VaccineItem(
+                name: "",
+                key: "",
+                number: 1,
+                injection: "",
+                date: "",
+                URLThumbnail: "",
+                veterinary: "",
+                diseases: petDiseases,
+                switchDiseasess: petDiseasesSwitch)
+        }
+    }
     private func initiateFieldsView() {
         vaccineKey = vaccineItem?.key ?? ""
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
@@ -264,7 +304,6 @@ extension VaccineViewController {
         return -1
     }
     private func checkUpdateVaccinesDone() {
-        checkChangeDone()
         if saveVaccineButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
@@ -275,7 +314,7 @@ extension VaccineViewController {
                 return
         }
         self.addChild(destVC)
-        destVC.petOrVeterinary = "pet"
+        destVC.typeOfCaller = TypeOfCaller.vaccine
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
         destVC.didMove(toParent: self)
@@ -367,40 +406,7 @@ extension VaccineViewController {
     saveVaccineButton.isEnabled = shown
     saveVaccineButton.isAccessibilityElement = shown
     }
-    private func checkChangeDone() {
-        if vaccineInjectionField.text != vaccineItem?.vaccineInjection {
-            toggleSaveVaccineButton(shown: true)
-            return
-        }
-        if vaccineDateField.text != vaccineItem?.vaccineDate {
-            toggleSaveVaccineButton(shown: true)
-            return
-        }
-        if vaccineNameField.text != vaccineItem?.vaccineName {
-            toggleSaveVaccineButton(shown: true)
-            return
-        }
-        var switchUpdated: Bool = false
-        for indice in 0...(vaccineItem?.vaccineDiseases.count)!-1 {
-            switchUpdated = getSwitchUpdated(switchField: petDiseasesSwitch[indice],
-                                             switchFirebase: vaccineItem!.vaccineSwitchDiseases[indice])
-            if switchUpdated == true {
-                toggleSaveVaccineButton(shown: true)
-                return
-            }
-        }
-        var selectedVeterinaryName = ""
-        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: vaccineItem!.vaccineVeterinary)
-        if rowVeterinary != -1 {
-            selectedVeterinaryName = veterinariesItems[rowVeterinary].veterinaryName
-        }
-        if vaccineVeterinaryField.text != selectedVeterinaryName {
-            toggleSaveVaccineButton(shown: true)
-            return
-        } else {
-            toggleSaveVaccineButton(shown: false)
-        }
-    }
+
     private func getSwitchUpdated(switchField: Bool, switchFirebase: Bool) -> Bool {
         if switchField != switchFirebase {
             return true
@@ -410,8 +416,8 @@ extension VaccineViewController {
     }
     private func createObserverVaccineInjection() {
         vaccineInjectionField?.addTarget(self,
-                                         action: #selector(VaccineViewController.vaccineInjectionFieldDidChange(_:)),
-                                         for: .editingChanged)
+                                         action: #selector(VaccineViewController.vaccineInjectionFieldDidEnd(_:)),
+                                         for: .editingDidEnd)
     }
     private func createObserverDatePickerVaccineDate() {
         datePickerVaccineDate = UIDatePicker()
@@ -424,14 +430,14 @@ extension VaccineViewController {
     }
     private func createObserverVaccineName() {
         vaccineNameField?.addTarget(self,
-                                         action: #selector(VaccineViewController.vaccineNameFieldDidChange(_:)),
-                                         for: .editingChanged)
+                                         action: #selector(VaccineViewController.vaccineNameFieldDidEnd(_:)),
+                                         for: .editingDidEnd)
     }
     private func createObserverVeterinaryPickerView() {
         pickerViewVeterinary.delegate = self
         vaccineVeterinaryField?.addTarget(self,
-                                action: #selector(VaccineViewController.vaccineVeterinaryFieldDidChange(_:)),
-                                for: .editingChanged )
+                                action: #selector(VaccineViewController.vaccineVeterinaryFieldDidEnd(_:)),
+                                for: .editingDidEnd )
         vaccineVeterinaryField.inputView = pickerViewVeterinary
     }
     private func formatDate() {
@@ -440,90 +446,6 @@ extension VaccineViewController {
     }
 }
 
-extension VaccineViewController {
-// MARK: - images management
-///   selectImageOrCamera in order to choose between
-///    - photo from library of Iphone ==> call function getImage with parameter photo
-///    - to take a photo with camera ==> call function getImage with parameter camera
-    private func selectImageOrCamera(animated: Bool) {
-        let alert = UIAlertController(title: "Choix", message: "Que voulez vous faire?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Sélectionner une photo", style: .default, handler: { (_) in
-            self.getImage(source: "photo")
-        }))
-        alert.addAction(UIAlertAction(title: "Prendre une photo", style: .default, handler: { (_)in
-            self.getImage(source: "camera")
-        }))
-        alert.addAction(UIAlertAction(title: "Abandonnner", style: .cancel, handler: { (_)in
-        }))
-        present(alert, animated: true, completion: {
-        })
-    }
-
-///   getImage in order to call imagePickerController
-///     - if photo direct imagePickerController with source photoLibrary
-///     - if camera verifying available on this device
-///         - if camera available call of imagePickerController with source camera
-///             - else error noCamera
-    private func getImage(source: String) {
-        let source = source
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        switch source {
-        case "photo":
-            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-            imagePicker.modalPresentationStyle = .fullScreen
-        case "camera":
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                imagePicker.sourceType = UIImagePickerController.SourceType.camera
-                imagePicker.cameraCaptureMode = .photo
-                imagePicker.modalPresentationStyle = .fullScreen
-            } else {
-                getErrors(type: .noCamera)
-            }
-        default:
-            break
-        }
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true)
-    }
-}
-
-// MARK: - extension for getting image
-extension VaccineViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    func imagePicker(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
-        if error != nil {
-            getErrors(type: .saveFailed)
-        }
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        var selectedImageFromPicker: UIImage?
-
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-
-        if let selectedImage = selectedImageFromPicker {
-            thumbnailImageView.image = selectedImage
-            checkVaccineComplete()
-        }
-        dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_
-        input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-    }
-}
 // MARK: - extension Data for tableView
 extension VaccineViewController: UITableViewDataSource {
 
@@ -560,7 +482,12 @@ extension VaccineViewController: UITableViewDelegate {
 extension VaccineViewController: TableViewClickVaccine {
     func onClickCellVaccine(index: Int, switchDisease: Bool) {
         petDiseasesSwitch[index] =  switchDisease
-        checkChangeDone()
+        let fieldToUpdated = "vaccineSwitchDiseases" + String(index) + "Updated"
+        if petDiseasesSwitch[index] != vaccineItem?.vaccineSwitchDiseases[index] {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: fieldToUpdated)
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: fieldToUpdated)
+        }
     }
 }
 // MARK: - UITextFieldDelegate
@@ -603,10 +530,9 @@ extension VaccineViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            selectedVeterinaryKey = veterinariesItems[row].key
-            vaccineVeterinaryField.text = veterinariesItems[row].veterinaryName
-            checkChangeDone()
-//            petVeterinaryField.resignFirstResponder()
+        selectedVeterinaryKey = veterinariesItems[row].key
+        vaccineVeterinaryField.text = veterinariesItems[row].veterinaryName
+        //            petVeterinaryField.resignFirstResponder()
     }
 }
 // MARK: - Keyboard Handling

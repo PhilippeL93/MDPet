@@ -57,10 +57,10 @@ class PresentVaccineCell: UITableViewCell {
             case 1:
                 diseaseTwoLabel.isHidden = false
                 diseaseTwoLabel.text = diseasesToDisplay[indice]
-                diseaseFourLabel.isHidden = false
             case 2:
                 diseaseThreeLabel.isHidden = false
                 diseaseThreeLabel.text = diseasesToDisplay[indice]
+                diseaseFourLabel.isHidden = false
             case 3:
                 diseaseFourLabel.isHidden = false
                 diseaseFourLabel.text = diseasesToDisplay[indice]

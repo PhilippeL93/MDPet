@@ -12,6 +12,8 @@ extension Notification.Name {
     static let navigationBarVeterinaryToTrue = Notification.Name("navigationBarVeterinaryToTrue")
     static let navigationBarPetToTrue = Notification.Name("navigationBarPetToTrue")
     static let navigationBarVaccineToTrue = Notification.Name("navigationBarVaccineToTrue")
-    static let isToUpdate = Notification.Name("isToUpdate")
+    static let petIsToUpdate = Notification.Name("petIsToUpdate")
+    static let veterinaryIsToUpdate = Notification.Name("veterinaryIsToUpdate")
+    static let vaccineIsToUpdate = Notification.Name("vaccineIsToUpdate")
     static let hasBeenDeleted = Notification.Name("hasBeenDeleted")
 }

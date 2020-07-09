@@ -32,27 +32,5 @@ class GetFirebaseVeterinaries {
             self.veterinariesItems = newItems
             callback(true, self.veterinariesItems)
         })
-
-//        databaseRef.queryOrdered(byChild: "veterinaryName").observe(.value, with: { snapshot in
-//            var newItems: [VeterinaryItem] = []
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let veterinaryItem = VeterinaryItem(snapshot: snapshot) {
-//                    newItems.append(veterinaryItem)
-//                }
-//            }
-//            self.veterinariesItems = newItems
-//            print("====================== self.veterinariesItems \(self.veterinariesItems.count)")
-//            callback(true, self.veterinariesItems)
-//            print("===================== self.veterinariesItems \(self.veterinariesItems)")
-//        })
-
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            guard let user = user else { return }
-//            self.user = User(authData: user)
-//            let currentUserRef = self.usersRef.child(self.user.uid)
-//            currentUserRef.setValue(self.user.email)
-//            currentUserRef.onDisconnectRemoveValue()
-//        }
     }
 }

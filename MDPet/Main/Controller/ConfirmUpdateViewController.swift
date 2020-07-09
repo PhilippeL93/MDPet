@@ -23,7 +23,7 @@ class ConfirmUpdateViewController: UIViewController {
         self.showAnimate()
     }
     var isToUpdate = true
-    var petOrVeterinary = ""
+    var typeOfCaller: TypeOfCaller?
 
 // MARK: - functions
         ///   showAnimate in order animate pollutants view when it's apperaed
@@ -49,19 +49,22 @@ class ConfirmUpdateViewController: UIViewController {
         )
     }
     private func prepareToGoBack() {
-        if petOrVeterinary == "veterinary" {
+        switch typeOfCaller {
+        case .veterinary:
             NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue,
                                             object: "navigationBarVeterinaryToTrue")
-        }
-        if petOrVeterinary == "pet" {
+                        NotificationCenter.default.post(name: .veterinaryIsToUpdate, object: isToUpdate)
+        case .pet:
             NotificationCenter.default.post(name: .navigationBarPetToTrue,
                                             object: "navigationBarPetToTrue")
-        }
-        if petOrVeterinary == "vaccine" {
-            NotificationCenter.default.post(name: .navigationBarPetToTrue,
+            NotificationCenter.default.post(name: .petIsToUpdate, object: isToUpdate)
+        case .vaccine:
+            NotificationCenter.default.post(name: .navigationBarVaccineToTrue,
                                             object: "navigationBarVaccineToTrue")
+            NotificationCenter.default.post(name: .vaccineIsToUpdate, object: isToUpdate)
+        case .none:
+            print("error")
         }
-        NotificationCenter.default.post(name: .isToUpdate, object: isToUpdate)
         self.removeAnimate()
         self.view.removeFromSuperview()
     }
