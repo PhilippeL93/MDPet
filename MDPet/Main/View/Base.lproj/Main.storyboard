@@ -245,7 +245,7 @@
         <!--Veterinary-->
         <scene sceneID="KLb-ya-L0m">
             <objects>
-                <viewController storyboardIdentifier="veterinaryController" id="z5o-3h-AKK" userLabel="Veterinary" customClass="VeterinaryViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VeterinaryController" id="z5o-3h-AKK" userLabel="Veterinary" customClass="VeterinaryViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CUe-Ea-XJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -457,7 +457,7 @@
         <!--Confirm Veterinary Suppress View Controller-->
         <scene sceneID="VEY-7F-xQg">
             <objects>
-                <viewController storyboardIdentifier="confirmVeterinarySuppress" id="b3I-vH-qBr" userLabel="Confirm Veterinary Suppress View Controller" customClass="ConfirmVeterinarySuppressViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmVeterinarySuppress" id="b3I-vH-qBr" userLabel="Confirm Veterinary Suppress View Controller" customClass="ConfirmVeterinarySuppressViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B8z-5A-IGZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -767,10 +767,10 @@
             </objects>
             <point key="canvasLocation" x="2463" y="-815"/>
         </scene>
-        <!--Pet New-->
+        <!--Pet-->
         <scene sceneID="XqL-Rt-cMI">
             <objects>
-                <viewController storyboardIdentifier="petController" id="xbp-Gj-2Jk" userLabel="Pet New" customClass="PetViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PetController" id="xbp-Gj-2Jk" userLabel="Pet" customClass="PetViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3uH-D7-TIs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1020"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -840,7 +840,7 @@
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sexe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqK-Tk-0Cn" userLabel="Pet Gender Label">
-                                                <rect key="frame" x="8" y="253" width="31.5" height="21"/>
+                                                <rect key="frame" x="8" y="253" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="6MV-Sv-JA7"/>
                                                 </constraints>
@@ -916,7 +916,7 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9q-4E-apH" userLabel="Pet Name Label">
-                                                <rect key="frame" x="8" y="213" width="30.5" height="21"/>
+                                                <rect key="frame" x="8" y="213" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="eos-NB-tkW"/>
                                                 </constraints>
@@ -1038,25 +1038,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couleur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ia4-PL-Vos" userLabel="Pet Color Label">
-                                                <rect key="frame" x="8" y="380" width="49" height="16.5"/>
+                                                <rect key="frame" x="8" y="380" width="52.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Particularités" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-Ta-hiX" userLabel="Pet Particular Signs Label">
-                                                <rect key="frame" x="8" y="422.5" width="76" height="15.5"/>
+                                                <rect key="frame" x="8" y="422.5" width="80" height="15.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eleveur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dN2-N7-b0t" userLabel="Pet Breeder Label">
-                                                <rect key="frame" x="8" y="532" width="46.5" height="16.5"/>
+                                                <rect key="frame" x="8" y="532" width="50" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vétérinaire" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-SC-8Zt" userLabel="Pet Veterinary Label">
-                                                <rect key="frame" x="8" y="633.5" width="66.5" height="11.5"/>
+                                                <rect key="frame" x="8" y="633.5" width="71" height="11.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1080,7 +1080,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r95-Gi-YqL" userLabel="Pet Tatoo Label">
-                                                <rect key="frame" x="8" y="467.5" width="80.5" height="16.5"/>
+                                                <rect key="frame" x="8" y="467.5" width="85" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1335,7 +1335,7 @@
         <!--Vaccines List View Controller-->
         <scene sceneID="GMo-Mf-ea9">
             <objects>
-                <viewController storyboardIdentifier="listVaccines" id="8ay-E0-Ahw" customClass="VaccinesListViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListVaccines" id="8ay-E0-Ahw" customClass="VaccinesListViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wjJ-EH-hfk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1600,7 +1600,7 @@
         <!--Vaccine-->
         <scene sceneID="ToZ-P8-3Fr">
             <objects>
-                <viewController storyboardIdentifier="vaccineController" id="IJE-KT-xET" userLabel="Vaccine" customClass="VaccineViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VaccineController" id="IJE-KT-xET" userLabel="Vaccine" customClass="VaccineViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIq-4u-3Fe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1612,7 +1612,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn8-rG-V5M" userLabel="Pet Name Label">
-                                                <rect key="frame" x="139" y="16" width="97.5" height="26"/>
+                                                <rect key="frame" x="136.5" y="16" width="102.5" height="26"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1625,7 +1625,7 @@
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date vaccin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fcf-vA-Ao1" userLabel="Vaccine Date Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date vaccin" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fcf-vA-Ao1" userLabel="Vaccine Date Field">
                                                 <rect key="frame" x="199" y="58" width="168" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="HeY-1A-B0j"/>
@@ -1652,22 +1652,29 @@
                                                     <action selector="veterinaryEditingDidBegin:" destination="IJE-KT-xET" eventType="editingDidBegin" id="vhT-Ul-tPQ"/>
                                                 </connections>
                                             </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42E-Sp-7Jm" userLabel="Under Line">
+                                                <rect key="frame" x="8" y="227" width="359" height="1"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="axa-ml-lC8"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="jLh-He-sRb">
-                                                <rect key="frame" x="0.0" y="190" width="375" height="263"/>
+                                                <rect key="frame" x="0.0" y="229" width="375" height="263"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="100" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Al0-1O-PDd" customClass="SelfSizedTableView" customModule="MDPet" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="itemVaccineDetail" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemVaccineDetail" id="JJJ-6P-CYy" userLabel="Vaccine Table View Cell" customClass="PresentVaccineDetailCell" customModule="MDPet" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemVaccineDetail" id="JJJ-6P-CYy" userLabel="Vaccine Table View Cell" customClass="PresentVaccineDetailCell" customModule="MDPet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JJJ-6P-CYy" id="9fb-9d-R3B">
                                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-aV-dSu">
-                                                                            <rect key="frame" x="320" y="8" width="51" height="35.5"/>
+                                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-aV-dSu">
+                                                                            <rect key="frame" x="320" y="8" width="51" height="31"/>
                                                                             <connections>
                                                                                 <action selector="touchUpSwitchDisease:" destination="JJJ-6P-CYy" eventType="valueChanged" id="vqs-KR-5Df"/>
                                                                             </connections>
@@ -1678,7 +1685,7 @@
                                                                                 <constraint firstAttribute="height" constant="21" id="DDZ-Yr-bp0"/>
                                                                                 <constraint firstAttribute="width" constant="304" id="M1y-DR-cGu"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -1687,7 +1694,7 @@
                                                                         <constraint firstItem="Nr7-xu-mFF" firstAttribute="leading" secondItem="9fb-9d-R3B" secondAttribute="leadingMargin" constant="-7" id="AXR-Df-0u8"/>
                                                                         <constraint firstItem="Nr7-xu-mFF" firstAttribute="top" secondItem="9fb-9d-R3B" secondAttribute="topMargin" id="D5E-xV-hSs"/>
                                                                         <constraint firstItem="Nr7-xu-mFF" firstAttribute="centerY" secondItem="9fb-9d-R3B" secondAttribute="centerY" id="azM-Hu-Ovj"/>
-                                                                        <constraint firstItem="nkZ-aV-dSu" firstAttribute="top" secondItem="9fb-9d-R3B" secondAttribute="topMargin" constant="-7" id="iov-4f-VBZ"/>
+                                                                        <constraint firstItem="nkZ-aV-dSu" firstAttribute="top" secondItem="9fb-9d-R3B" secondAttribute="topMargin" constant="-3" id="iov-4f-VBZ"/>
                                                                         <constraint firstItem="nkZ-aV-dSu" firstAttribute="leading" secondItem="Nr7-xu-mFF" secondAttribute="trailing" constant="8" id="jY3-bC-nyT"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
@@ -1749,6 +1756,27 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="135" translatesAutoresizingMaskIntoConstraints="NO" id="OqS-jJ-wk0" userLabel="Stack View Vaccine Done">
+                                                <rect key="frame" x="8" y="188" width="359" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vaccination effectuée" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRF-BB-maI" userLabel="Vaccine Done">
+                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="31"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aGn-db-19s" userLabel="Vaccine Done Switch">
+                                                        <rect key="frame" x="310" y="0.0" width="51" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8nQ-cl-frX">
+                                                <rect key="frame" x="167" y="132" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Dau-IF-Y2q"/>
+                                                    <constraint firstAttribute="width" constant="40" id="k4v-8M-G2Z"/>
+                                                </constraints>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Fcf-vA-Ao1" secondAttribute="trailing" constant="8" id="0Ly-T4-9RQ"/>
@@ -1756,23 +1784,33 @@
                                             <constraint firstItem="3qa-fM-GVT" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" constant="8" id="1WV-oJ-jC5"/>
                                             <constraint firstItem="FZG-5h-Kyu" firstAttribute="height" secondItem="xfM-ZK-Xvq" secondAttribute="height" id="1eB-a9-BXF"/>
                                             <constraint firstAttribute="trailing" secondItem="xfM-ZK-Xvq" secondAttribute="trailing" constant="8" id="2vu-It-bRF"/>
-                                            <constraint firstItem="jLh-He-sRb" firstAttribute="top" secondItem="FZG-5h-Kyu" secondAttribute="bottom" constant="10" id="7If-d2-SDc"/>
+                                            <constraint firstItem="8nQ-cl-frX" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" constant="167" id="3up-a0-pfm"/>
                                             <constraint firstAttribute="trailing" secondItem="N20-c8-gCg" secondAttribute="trailing" id="7mT-Ec-aaf"/>
                                             <constraint firstItem="Fcf-vA-Ao1" firstAttribute="leading" secondItem="3qa-fM-GVT" secondAttribute="trailing" constant="23" id="Avu-id-rSW"/>
+                                            <constraint firstItem="8nQ-cl-frX" firstAttribute="top" secondItem="Ovy-OQ-p8f" secondAttribute="top" constant="132" id="CuW-1K-WSM"/>
                                             <constraint firstAttribute="trailing" secondItem="jLh-He-sRb" secondAttribute="trailing" id="Ftx-pN-5c5"/>
                                             <constraint firstItem="Fcf-vA-Ao1" firstAttribute="top" secondItem="vn8-rG-V5M" secondAttribute="bottom" constant="16" id="HhJ-Ms-nFf"/>
                                             <constraint firstItem="FZG-5h-Kyu" firstAttribute="width" secondItem="xfM-ZK-Xvq" secondAttribute="width" id="Izi-xk-tzg"/>
+                                            <constraint firstItem="OqS-jJ-wk0" firstAttribute="top" secondItem="FZG-5h-Kyu" secondAttribute="bottom" constant="8" id="JrV-8g-PcR"/>
+                                            <constraint firstItem="42E-Sp-7Jm" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" constant="8" id="KqO-Zs-zx2"/>
                                             <constraint firstItem="N20-c8-gCg" firstAttribute="top" secondItem="Ovy-OQ-p8f" secondAttribute="top" constant="831" id="QRG-C2-1ic"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FZG-5h-Kyu" secondAttribute="trailing" constant="8" id="Qxn-0X-8Zf"/>
                                             <constraint firstItem="3qa-fM-GVT" firstAttribute="top" secondItem="vn8-rG-V5M" secondAttribute="bottom" constant="16" id="Vms-wr-oF7"/>
+                                            <constraint firstAttribute="trailing" secondItem="OqS-jJ-wk0" secondAttribute="trailing" constant="8" id="W9W-t9-dz6"/>
                                             <constraint firstItem="xfM-ZK-Xvq" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" constant="8" id="WXe-q8-yul"/>
                                             <constraint firstItem="vn8-rG-V5M" firstAttribute="centerX" secondItem="Ovy-OQ-p8f" secondAttribute="centerX" id="auN-GF-1eY"/>
                                             <constraint firstItem="N20-c8-gCg" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" id="bTk-7E-fOo"/>
+                                            <constraint firstAttribute="trailing" secondItem="42E-Sp-7Jm" secondAttribute="trailing" constant="8" id="bae-pd-4oZ"/>
+                                            <constraint firstItem="42E-Sp-7Jm" firstAttribute="top" secondItem="OqS-jJ-wk0" secondAttribute="bottom" constant="8" id="cUx-PV-lbz"/>
+                                            <constraint firstItem="OqS-jJ-wk0" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" constant="8" id="d8M-gO-et7"/>
                                             <constraint firstItem="FZG-5h-Kyu" firstAttribute="top" secondItem="xfM-ZK-Xvq" secondAttribute="bottom" constant="10" id="f1u-zl-lin"/>
                                             <constraint firstItem="vn8-rG-V5M" firstAttribute="top" secondItem="Ovy-OQ-p8f" secondAttribute="top" constant="16" id="i1c-Jc-t3Q"/>
                                             <constraint firstAttribute="bottom" secondItem="N20-c8-gCg" secondAttribute="bottom" constant="19" id="jFU-Kq-gkw"/>
                                             <constraint firstItem="FZG-5h-Kyu" firstAttribute="leading" secondItem="xfM-ZK-Xvq" secondAttribute="leading" id="lq4-oL-ef1"/>
                                             <constraint firstItem="3qa-fM-GVT" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" constant="8" id="o1Q-lw-iGo"/>
+                                            <constraint firstAttribute="trailing" secondItem="8nQ-cl-frX" secondAttribute="trailing" constant="168" id="pNo-Ih-5nW"/>
                                             <constraint firstItem="jLh-He-sRb" firstAttribute="leading" secondItem="Ovy-OQ-p8f" secondAttribute="leading" id="qX6-lu-SWc"/>
+                                            <constraint firstItem="jLh-He-sRb" firstAttribute="top" secondItem="42E-Sp-7Jm" secondAttribute="bottom" constant="1" id="rp2-gb-rPR"/>
                                             <constraint firstItem="Fcf-vA-Ao1" firstAttribute="width" secondItem="3qa-fM-GVT" secondAttribute="width" id="wwg-pg-X2f"/>
                                         </constraints>
                                     </view>
@@ -1812,12 +1850,14 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="850"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="8nQ-cl-frX" id="L4H-zg-iaL"/>
                         <outlet property="petNameLabel" destination="vn8-rG-V5M" id="vwO-fh-vaT"/>
                         <outlet property="saveVaccineButton" destination="hmN-f4-zFH" id="xrD-9U-emD"/>
                         <outlet property="scrollView" destination="tQf-MT-nsk" id="7Cc-I4-ryy"/>
                         <outlet property="tableView" destination="Al0-1O-PDd" id="2CS-of-DGf"/>
                         <outlet property="thumbnailImageView" destination="nU3-ZU-JOn" id="SkP-1s-Yrt"/>
                         <outlet property="vaccineDateField" destination="Fcf-vA-Ao1" id="nHG-74-883"/>
+                        <outlet property="vaccineDoneSwitch" destination="aGn-db-19s" id="16c-vQ-dzd"/>
                         <outlet property="vaccineInjectionField" destination="3qa-fM-GVT" id="Qao-u1-Ewv"/>
                         <outlet property="vaccineNameField" destination="xfM-ZK-Xvq" id="0Qn-79-wNP"/>
                         <outlet property="vaccineVeterinaryField" destination="FZG-5h-Kyu" id="MWM-fl-Eeg"/>
@@ -1825,18 +1865,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCW-N8-8Bk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6343" y="-1156"/>
+            <point key="canvasLocation" x="6341.6000000000004" y="-1156.8215892053975"/>
+        </scene>
+        <!--Consultation-->
+        <scene sceneID="1Am-jb-C5A">
+            <objects>
+                <viewController id="ibQ-5h-4AM" userLabel="Consultation" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h1T-gu-4XN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZh-lw-JJF" userLabel="Pet Name Label">
+                                <rect key="frame" x="158.5" y="10" width="58.5" height="26"/>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vétérinaire" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iLH-LI-HXG" userLabel="Consultation Veterinary Field">
+                                <rect key="frame" x="8" y="52" width="359" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date consultation" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fWN-LU-baL" userLabel="Consultation Date Field">
+                                <rect key="frame" x="199" y="94" width="168" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="RZh-lw-JJF" firstAttribute="top" secondItem="Y1U-Ck-YzC" secondAttribute="top" constant="10" id="qak-13-n18"/>
+                            <constraint firstItem="RZh-lw-JJF" firstAttribute="centerX" secondItem="h1T-gu-4XN" secondAttribute="centerX" id="sxq-nm-5u2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y1U-Ck-YzC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s5T-dk-Wel" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6346.3999999999996" y="-368.36581709145429"/>
         </scene>
         <!--Consultations List View Controller-->
         <scene sceneID="evD-pJ-UJU">
             <objects>
-                <viewController storyboardIdentifier="listConsultations" id="jZp-7h-Ef1" userLabel="Consultations List View Controller" customClass="ConsultationsListViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListConsultations" id="jZp-7h-Ef1" userLabel="Consultations List View Controller" customClass="ConsultationsListViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K0O-Lx-bLK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ec-gr-XTc">
-                                <rect key="frame" x="139" y="10" width="97.5" height="26"/>
+                                <rect key="frame" x="136.5" y="10" width="102.5" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="oaO-NZ-J9g"/>
                                 </constraints>
@@ -1876,7 +1955,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hUd-qm-Mp1">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Jpt-k4-3Nm" userLabel="Back">
+                        <barButtonItem key="leftBarButtonItem" title="Animal" id="Jpt-k4-3Nm" userLabel="Back">
                             <connections>
                                 <action selector="backToPet:" destination="jZp-7h-Ef1" id="j3Y-9H-n7N"/>
                             </connections>
@@ -2015,7 +2094,7 @@
         <!--Confirm Pet Suppress View Controller-->
         <scene sceneID="dGj-Lm-4fm">
             <objects>
-                <viewController storyboardIdentifier="confirmPetSuppress" id="s0W-nT-wZw" userLabel="Confirm Pet Suppress View Controller" customClass="ConfirmPetSuppressViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmPetSuppress" id="s0W-nT-wZw" userLabel="Confirm Pet Suppress View Controller" customClass="ConfirmPetSuppressViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VTh-G3-MP9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2164,7 +2243,7 @@
         <!--Confirm Update View Controller-->
         <scene sceneID="BCx-28-yoE">
             <objects>
-                <viewController storyboardIdentifier="confirmUpdate" id="bDF-3I-ufm" userLabel="Confirm Update View Controller" customClass="ConfirmUpdateViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmUpdate" id="bDF-3I-ufm" userLabel="Confirm Update View Controller" customClass="ConfirmUpdateViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Brb-lq-RSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

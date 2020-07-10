@@ -27,6 +27,7 @@ class ConsultationsListViewController: UIViewController {
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
         super.viewDidLoad()
+        petNameLabel.text = petItem?.petName
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
@@ -39,6 +40,15 @@ class ConsultationsListViewController: UIViewController {
             }
         }
     }
+    private func createNewConsultation() {
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConsultationController")
+            as? ConsultationViewController else {
+                return
+        }
+        destVC.petItem = petItem
+        destVC.typeOfCall = "create"
+        self.show(destVC, sender: self)
+    }
 }
 
 // MARK: - extension Data for tableView
@@ -49,7 +59,7 @@ extension ConsultationsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemConsultation", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemConsultation", for: indexPath)
             as? PresentConsultationCell else {
                 return UITableViewCell()
         }
@@ -66,8 +76,8 @@ extension ConsultationsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return items.count
-        return 1
+        return consultationItems.count
+//        return 1
     }
 }
 // MARK: - extension Delegate
@@ -77,13 +87,14 @@ extension ConsultationsListViewController: UITableViewDelegate {
             return size
         }
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "veterinaryController")
-    //            as? VeterinaryViewController else {
-    //                return
-    //        }
-    //        let veterinaryItem = veterinariesItems[indexPath.row]
-    //        destVC.typeOfCall = "update"
-    //        destVC.veterinaryItem = veterinaryItem
-    //        self.show(destVC, sender: self)
+            guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConsultationController")
+                as? ConsultationViewController else {
+                    return
+            }
+            let consultationItem = consultationItems[indexPath.row]
+            destVC.typeOfCall = "update"
+            destVC.petItem = petItem
+            destVC.consultationItem = consultationItem
+            self.show(destVC, sender: self)
         }
 }

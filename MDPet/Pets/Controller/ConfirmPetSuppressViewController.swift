@@ -31,6 +31,7 @@ class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - var
     var petItem: PetItem?
+//    var vaccineItem: [VaccineItem] = []
     var databaseRef = Database.database().reference(withPath: "pets-item")
     var imageRef = Storage.storage().reference().child("pets-images")
     var hasBeenDeleted = true
@@ -47,7 +48,6 @@ class ConfirmPetSuppressViewController: UIViewController {
         )
     }
 
-    ///   removeAnimate in order animate pollutants view when it's disapperaed
     private func removeAnimate() {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -67,10 +67,10 @@ class ConfirmPetSuppressViewController: UIViewController {
     }
     private func gestSuppressPet() {
         let path = UserUid.uid + "-pets-item"
+        let petKey = petItem?.key
         databaseRef = Database.database().reference(withPath: "\(path)")
-        let deleteRef = databaseRef.child(petItem!.key)
+        let deleteRefPet = databaseRef.child(petItem!.key)
         if !(petItem?.petURLPicture.isEmpty)! {
-            let petKey = petItem?.key
             let imageDeleteRef = imageRef.child("\(petKey ?? "").png")
             imageDeleteRef.delete { error in
                 if let error = error {
@@ -78,9 +78,15 @@ class ConfirmPetSuppressViewController: UIViewController {
                 }
             }
         }
-        deleteRef.removeValue { error, _  in
-            if let error = error {
-                print("error \(error)")
+        GetFirebaseVaccines.shared.deleteVaccines(petKey: petKey!) { (success) in
+            if success {
+                deleteRefPet.removeValue { error, _  in
+                    if let error = error {
+                        print("error \(error)")
+                    }
+                }
+            } else {
+                print("erreur")
             }
         }
     }

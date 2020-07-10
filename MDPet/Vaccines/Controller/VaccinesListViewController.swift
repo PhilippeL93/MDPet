@@ -25,8 +25,8 @@ class VaccinesListViewController: UIViewController {
 
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
-        petNameLabel.text = petItem?.petName
         super.viewDidLoad()
+        petNameLabel.text = petItem?.petName
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class VaccinesListViewController: UIViewController {
         }
     }
     private func createNewVaccine() {
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "vaccineController")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "VaccineController")
             as? VaccineViewController else {
                 return
         }
@@ -79,7 +79,7 @@ extension VaccinesListViewController: UITableViewDelegate {
         return size
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "vaccineController")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "VaccineController")
             as? VaccineViewController else {
                 return
         }

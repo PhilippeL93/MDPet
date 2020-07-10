@@ -40,7 +40,6 @@ class PetViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
-    private let imagePicker = UIImagePickerController()
     private var pickerViewGender = UIPickerView()
     private var datePickerBirthDate: UIDatePicker?
     private var petSterilized: UISwitch?
@@ -69,7 +68,7 @@ class PetViewController: UIViewController {
     private var imageRef = Storage.storage().reference().child("pets-images")
     private var pathPet: String = ""
 
-    var imagePickerNew: ImagePicker!
+    var imagePicker: ImagePicker!
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -78,13 +77,18 @@ class PetViewController: UIViewController {
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
             }
-            toggleSavePetButton(shown: oneFieldHasBeenUpdated)
+            if typeOfCall == "create" {
+                toggleSavePetButton(shown: false)
+                checkPetComplete()
+            } else {
+                toggleSavePetButton(shown: oneFieldHasBeenUpdated)
+            }
         }
     }
 // MARK: - buttons
 
     @IBAction func addPetPhoto(_ sender: UIButton) {
-        imagePickerNew.present(from: sender)
+        imagePicker.present(from: sender)
     }
     @IBAction func savePet(_ sender: Any) {
         createOrUpdatePet()
@@ -183,7 +187,7 @@ class PetViewController: UIViewController {
             }
         }
         initiateView()
-        self.imagePickerNew = ImagePicker(presentationController: self, delegate: self)
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -813,7 +817,7 @@ extension PetViewController {
 //        navigationController?.popViewController(animated: true)
     }
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
-
+        toggleActivityIndicator(shown: true)
         petItem = PetItem(
             name: "", key: "",
             URLPicture: "", type: 0,
@@ -851,12 +855,12 @@ extension PetViewController {
 
         let petItemRef = databaseRef.child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
-        toggleActivityIndicator(shown: true)
+//        toggleActivityIndicator(shown: true)
         navigationController?.popViewController(animated: true)
     }
     private func getVaccines() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "listVaccines")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ListVaccines")
             as? VaccinesListViewController else {
                 return
         }
@@ -865,7 +869,7 @@ extension PetViewController {
     }
     private func getConsultations() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "listConsultations")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ListConsultations")
             as? ConsultationsListViewController else {
                 return
         }
@@ -874,7 +878,7 @@ extension PetViewController {
     }
     private func getSuppressedPet() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "confirmPetSuppress")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmPetSuppress")
             as? ConfirmPetSuppressViewController else {
                 return
         }
@@ -890,7 +894,7 @@ extension PetViewController {
             return
         }
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "confirmUpdate")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmUpdate")
             as? ConfirmUpdateViewController else {
                 return
         }
@@ -1066,6 +1070,10 @@ private extension PetViewController {
 extension PetViewController: ImagePickerDelegate {
 
     func didSelect(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
         self.petPicture.image = image
+        updateDictionnaryFieldsUpdated(updated: true, forKey: "petPictureUpdated")
     }
 }

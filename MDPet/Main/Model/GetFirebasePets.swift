@@ -35,7 +35,9 @@ class GetFirebasePets {
     }
     func readPets(veterinaryToSearch: String, callback: @escaping (Bool, Bool) -> Void) {
         let path = UserUid.uid + "-pets-item"
+
         var veterinaryFound = false
+
         databaseRef = Database.database().reference(withPath: "\(path)")
 
         let query = databaseRef.queryOrdered(byChild: "petVeterinary")

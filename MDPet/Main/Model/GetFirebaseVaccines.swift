@@ -45,6 +45,43 @@ class GetFirebaseVaccines {
             callback(true, self.vaccineItems)
         })
     }
+    func readVaccines(petKey: String, callback: @escaping (Bool, [VaccineItem]) -> Void) {
+        let path = UserUid.uid + "-vaccines-item" + petKey
+
+        databaseRef = Database.database().reference(withPath: "\(path)")
+
+        let query = databaseRef
+        query.observeSingleEvent(of: .value, with: { snapshot in
+            self.newItems = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let vaccineItem = VaccineItem(snapshot: snapshot) {
+                    self.newItems.append(vaccineItem)
+                }
+            }
+            self.vaccineItems = self.newItems
+            callback(true, self.vaccineItems)
+        })
+    }
+    func deleteVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
+        let path = UserUid.uid + "-vaccines-item" + petKey
+
+        databaseRef = Database.database().reference(withPath: "\(path)")
+
+        let query = databaseRef
+        query.observeSingleEvent(of: .value, with: { snapshot in
+            self.newItems = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let vaccineItem = VaccineItem(snapshot: snapshot) {
+                    let vaccineKey = vaccineItem.key
+                    let deleteRefVaccine = self.databaseRef.child(vaccineKey)
+                    deleteRefVaccine.removeValue()
+                }
+            }
+            callback(true)
+        })
+    }
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
             if wayToSort == "fromDMAToAMD" {

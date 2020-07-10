@@ -44,6 +44,8 @@
 		375578A424A6287D00CA1252 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A324A6287D00CA1252 /* VaccineViewController.swift */; };
 		379AB36324B75B5000C056A1 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* Type.swift */; };
 		379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36624B767BA00C056A1 /* ImagePicker.swift */; };
+		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
+		379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */; };
 		37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588D248A86DC0063867C /* PresentPetCell.swift */; };
 		37A6589024922C610063867C /* UserUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588F24922C610063867C /* UserUid.swift */; };
 		37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A981DD24A4E26200F491E2 /* Diseases.swift */; };
@@ -112,6 +114,8 @@
 		375578A324A6287D00CA1252 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
 		379AB36224B75B5000C056A1 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		379AB36624B767BA00C056A1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
+		379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationViewController.swift; sourceTree = "<group>"; };
 		37A6588D248A86DC0063867C /* PresentPetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPetCell.swift; sourceTree = "<group>"; };
 		37A6588F24922C610063867C /* UserUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUid.swift; sourceTree = "<group>"; };
 		37A981DD24A4E26200F491E2 /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */,
+				379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			children = (
 				37A981DD24A4E26200F491E2 /* Diseases.swift */,
 				3755789F24A5E88400CA1252 /* VaccineItem.swift */,
+				379AB36824B8715200C056A1 /* CalandarVaccines.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -631,6 +637,7 @@
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
 				379AB36324B75B5000C056A1 /* Type.swift in Sources */,
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
+				379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */,
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
 				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
 				372CEF79249BA8AA002AEAF5 /* PetViewController.swift in Sources */,
@@ -643,6 +650,7 @@
 				379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */,
 				3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */,
 				375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */,
+				379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */,
 				375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */,
 				375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,

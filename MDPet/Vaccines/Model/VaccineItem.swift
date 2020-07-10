@@ -21,13 +21,15 @@ struct VaccineItem {
     var vaccineVeterinary: String
     var vaccineDiseases: [String]
     var vaccineSwitchDiseases: [Bool]
+    var vaccineDone: Bool
 
     init(name: String, key: String = "",
          number: Int, injection: String,
          date: String, URLThumbnail: String,
          veterinary: String,
          diseases: [String],
-         switchDiseasess: [Bool]) {
+         switchDiseasess: [Bool],
+         done: Bool) {
         self.ref = nil
         self.key = key
         self.vaccineNumber = number
@@ -38,6 +40,7 @@ struct VaccineItem {
         self.vaccineVeterinary = veterinary
         self.vaccineDiseases = diseases
         self.vaccineSwitchDiseases = switchDiseasess
+        self.vaccineDone = done
     }
 
     init?(snapshot: DataSnapshot) {
@@ -50,7 +53,8 @@ struct VaccineItem {
             let vaccineURLThumbnail = value["vaccineURLThumbnail"] as? String,
             let vaccineVeterinary = value["vaccineVeterinary"] as? String,
             let vaccineDiseases = value["vaccineDiseases"] as? [String],
-            let vaccineSwitchDiseases = value["vaccineSwitchDiseases"] as? [Bool]
+            let vaccineSwitchDiseases = value["vaccineSwitchDiseases"] as? [Bool],
+            let vaccineDone = value["vaccineDone"] as? Bool
             else {
                 return nil
         }
@@ -65,6 +69,7 @@ struct VaccineItem {
         self.vaccineVeterinary = vaccineVeterinary
         self.vaccineDiseases = vaccineDiseases
         self.vaccineSwitchDiseases = vaccineSwitchDiseases
+        self.vaccineDone = vaccineDone
   }
 
     func toAnyObject() -> Any {
@@ -76,7 +81,8 @@ struct VaccineItem {
             "vaccineURLThumbnail": vaccineURLThumbnail,
             "vaccineVeterinary": vaccineVeterinary,
             "vaccineDiseases": vaccineDiseases,
-            "vaccineSwitchDiseases": vaccineSwitchDiseases
+            "vaccineSwitchDiseases": vaccineSwitchDiseases,
+            "vaccineDone": vaccineDone
         ]
     }
 }

@@ -32,7 +32,7 @@ class VeterinariesListTableViewController: UIViewController {
         }
     }
     private func createNewVeterinary() {
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "veterinaryController")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "VeterinaryController")
             as? VeterinaryViewController else {
                 return
         }
@@ -72,7 +72,7 @@ extension VeterinariesListTableViewController: UITableViewDelegate {
         return size
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "veterinaryController")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "VeterinaryController")
             as? VeterinaryViewController else {
                 return
         }

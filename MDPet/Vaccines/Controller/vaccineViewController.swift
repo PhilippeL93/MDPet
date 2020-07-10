@@ -19,16 +19,17 @@ class VaccineViewController: UIViewController {
     @IBOutlet weak var vaccineVeterinaryField: UITextField!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var saveVaccineButton: UIBarButtonItem!
-
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var vaccineDoneSwitch: UISwitch!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
-    private let imagePicker = UIImagePickerController()
     private var vaccineInjection: UITextField?
     private var datePickerVaccineDate: UIDatePicker?
     private var vaccineName: UITextField?
     private var pickerViewVeterinary = UIPickerView()
     private var activeField: UITextField?
+    private var vaccineDone: UISwitch?
     private var lastOffset: CGPoint!
     private var keyboardHeight: CGFloat!
     private var constraintContentHeight: CGFloat!
@@ -42,7 +43,7 @@ class VaccineViewController: UIViewController {
     var typeOfCall: String = ""
     var petItem: PetItem?
     var vaccineItem: VaccineItem?
-    var imagePickerNew: ImagePicker!
+    var imagePicker: ImagePicker!
     private var vaccineKey: String = ""
     private var databaseRef = Database.database().reference(withPath: "vaccines-item")
     private var imageRef = Storage.storage().reference().child("pets-images")
@@ -57,14 +58,19 @@ class VaccineViewController: UIViewController {
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
             }
-            toggleSaveVaccineButton(shown: oneFieldHasBeenUpdated)
+            if typeOfCall == "create" {
+                toggleSaveVaccineButton(shown: false)
+                checkVaccineComplete()
+            } else {
+                toggleSaveVaccineButton(shown: oneFieldHasBeenUpdated)
+            }
         }
     }
 
     // MARK: - buttons
 
     @IBAction func addThumbnailButton( _ sender: UIButton) {
-        imagePickerNew.present(from: sender)
+        imagePicker.present(from: sender)
     }
     @IBAction func saveVaccine(_ sender: Any) {
         createOrUpdateVaccine()
@@ -98,10 +104,11 @@ class VaccineViewController: UIViewController {
         pathVaccine = UserUid.uid + "-vaccines-item" + petItem!.key
         databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
         petNameLabel.text = petItem?.petName
+        toggleActivityIndicator(shown: false)
         createObserver()
         createDelegate()
-        toggleSaveVaccineButton(shown: false)
         initiateObserver()
+        toggleSaveVaccineButton(shown: false)
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
@@ -114,6 +121,7 @@ class VaccineViewController: UIViewController {
         }
         initDiseases()
         initiateView()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -190,6 +198,13 @@ class VaccineViewController: UIViewController {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineVeterinaryUpdated")
         }
     }
+    @objc func vaccineDoneSwitchDidChange(_ textField: UISwitch) {
+        if vaccineDoneSwitch.isOn != vaccineItem?.vaccineDone {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineDoneSwitchUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDoneSwitchUpdated")
+        }
+    }
     private func updateDictionnaryFieldsUpdated(updated: Bool, forKey: String) {
         fieldsUpdated.updateValue(updated, forKey: forKey)
     }
@@ -202,6 +217,7 @@ extension VaccineViewController {
         createObserverDatePickerVaccineDate()
         createObserverVaccineName()
         createObserverVeterinaryPickerView()
+        createObserverVaccineDoneSwitch()
     }
     private func createDelegate() {
         vaccineInjectionField.delegate = self
@@ -276,7 +292,8 @@ extension VaccineViewController {
                 URLThumbnail: "",
                 veterinary: "",
                 diseases: petDiseases,
-                switchDiseasess: petDiseasesSwitch)
+                switchDiseasess: petDiseasesSwitch,
+                done: false)
         }
     }
     private func initiateFieldsView() {
@@ -284,6 +301,11 @@ extension VaccineViewController {
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
         vaccineDateField.text = vaccineItem?.vaccineDate
         vaccineNameField.text = vaccineItem?.vaccineName
+        if vaccineItem?.vaccineDone == true {
+            vaccineDoneSwitch.isOn = true
+        } else {
+            vaccineDoneSwitch.isOn = false
+        }
         petDiseasesSwitch = vaccineItem!.vaccineSwitchDiseases
         petDiseases = vaccineItem!.vaccineDiseases
 
@@ -292,6 +314,9 @@ extension VaccineViewController {
             vaccineVeterinaryField.text = veterinariesItems[rowVeterinary].veterinaryName
         }
         selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
+    }
+    private func toggleActivityIndicator(shown: Bool) {
+        activityIndicator.isHidden = !shown
     }
     private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
         guard veterinariesItems.count != 0 else {
@@ -309,7 +334,7 @@ extension VaccineViewController {
             return
         }
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "confirmUpdate")
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmUpdate")
             as? ConfirmUpdateViewController else {
                 return
         }
@@ -353,6 +378,7 @@ extension VaccineViewController {
         navigationController?.popViewController(animated: true)
     }
     private func updateVaccineStorage(vaccineURLThumbnail: String, uniqueUUID: String) {
+        toggleActivityIndicator(shown: true)
         vaccineItem = VaccineItem(
             name: String(vaccineNameField.text ?? ""),
             key: "",
@@ -362,7 +388,8 @@ extension VaccineViewController {
             URLThumbnail: vaccineURLThumbnail,
             veterinary: String(selectedVeterinaryKey),
             diseases: petDiseases,
-            switchDiseasess: petDiseasesSwitch)
+            switchDiseasess: petDiseasesSwitch,
+            done: vaccineDoneSwitch.isOn)
         let vaccineItemRef = databaseRef.child(uniqueUUID)
         vaccineItemRef.setValue(vaccineItem?.toAnyObject())
     }
@@ -389,9 +416,6 @@ extension VaccineViewController {
             return
         }
         guard !vaccineVeterinary.isEmpty else {
-            return
-        }
-        guard (thumbnailImageView.image?.pngData()) != nil else {
             return
         }
         toggleSaveVaccineButton(shown: true)
@@ -440,6 +464,11 @@ extension VaccineViewController {
                                 for: .editingDidEnd )
         vaccineVeterinaryField.inputView = pickerViewVeterinary
     }
+    private func createObserverVaccineDoneSwitch() {
+        vaccineDoneSwitch?.addTarget(self,
+                                     action: #selector(VaccineViewController.vaccineDoneSwitchDidChange(_:)),
+                                     for: .touchUpInside)
+    }
     private func formatDate() {
         dateFormatter.locale = localeLanguage
         dateFormatter.dateFormat = "dd MMMM yyyy"
@@ -453,7 +482,7 @@ extension VaccineViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemVaccineDetail", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemVaccineDetail", for: indexPath)
             as? PresentVaccineDetailCell else {
             return UITableViewCell()
         }
@@ -568,5 +597,21 @@ private extension VaccineViewController {
             self.scrollView.contentOffset = self.lastOffset
         }
         keyboardHeight = nil
+    }
+}
+extension VaccineViewController: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        let image = image
+        if image != nil {
+
+        } else {
+
+        }
+//        guard let image = image else {
+//            return
+//        }
+        self.thumbnailImageView.image = image
+        updateDictionnaryFieldsUpdated(updated: true, forKey: "thumbnailImageUpdated")
     }
 }
