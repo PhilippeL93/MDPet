@@ -13,52 +13,67 @@ struct ConsultationItem {
 
     let ref: DatabaseReference?
     let key: String
-    var consultationNumber: Int
-    var consultationName: String
+    var consultationReason: String
     var consultationDate: String
     var consultationVeterinary: String
-    var consultationDiseases: [String]
+    var consultationReport: String
+    var consultationWeight: String
+    var consultationSize: String
+//    var consultationDiseases: [String]
 
-    init(name: String, key: String = "",
-         number: Int, date: String,
-         veterinary: String, diseases: [String]) {
+    init(key: String = "",
+         reason: String,
+         date: String,
+         veterinary: String,
+         report: String,
+         weight: String,
+         size: String,
+         diseases: [String]) {
         self.ref = nil
         self.key = key
-        self.consultationNumber = number
-        self.consultationName = name
+        self.consultationReason = reason
         self.consultationDate = date
         self.consultationVeterinary = veterinary
-        self.consultationDiseases = diseases
+        self.consultationReport = report
+        self.consultationWeight = weight
+        self.consultationSize = size
+//        self.consultationDiseases = diseases
     }
 
     init?(snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
-            let consultationNumber = value["consultationNumber"] as? Int,
-            let consultationName = value["consultationName"] as? String,
+            let consultationReason = value["consultationReason"] as? String,
             let consultationDate = value["consultationDate"] as? String,
-            let consultationVeterinary = value["consultationVetrinary"] as? String,
-            let consultationDiseases = value["consultationDiseaes"] as? [String]
+            let consultationVeterinary = value["consultationVeterinary"] as? String,
+            let consultationReport = value["consultationReport"] as? String,
+            let consultationWeight = value["consultationWeight"] as? String,
+            let consultationSize = value["consultationSize"] as? String
+//            let consultationDiseases = value["consultationDiseaes"] as? [String]
             else {
                 return nil
         }
 
         self.ref = snapshot.ref
         self.key = snapshot.key
-        self.consultationNumber = consultationNumber
-        self.consultationName = consultationName
+        self.consultationReason = consultationReason
         self.consultationDate = consultationDate
         self.consultationVeterinary = consultationVeterinary
-        self.consultationDiseases = consultationDiseases
+        self.consultationReport = consultationReport
+        self.consultationWeight = consultationWeight
+        self.consultationSize = consultationSize
+//        self.consultationDiseases = consultationDiseases
   }
 
     func toAnyObject() -> Any {
         return [
-            "consultationNumber": consultationNumber,
-            "consultationName": consultationName,
+            "consultationReason": consultationReason,
             "consultationDate": consultationDate,
             "consultationVeterinary": consultationVeterinary,
-            "consultationDiseases": consultationDiseases
+            "consultationReport": consultationReport,
+            "consultationWeight": consultationWeight,
+            "consultationSize": consultationSize
+//            "consultationDiseases": consultationDiseases
         ]
     }
 }

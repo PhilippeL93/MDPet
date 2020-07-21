@@ -33,4 +33,15 @@ class GetFirebaseVeterinaries {
             callback(true, self.veterinariesItems)
         })
     }
+    func getVeterinaryNameFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
+        guard veterinariesItems.count != 0 else {
+            callback(false, "", -1)
+            return
+        }
+        for indice in 0...veterinariesItems.count-1
+            where veterinariesItems[indice].key == veterinaryToSearch {
+                callback(true, veterinariesItems[indice].veterinaryName, indice)
+        }
+        callback(false, "", -1)
+    }
 }

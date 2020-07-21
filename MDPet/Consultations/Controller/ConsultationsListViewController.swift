@@ -18,6 +18,7 @@ class ConsultationsListViewController: UIViewController {
     }
 
     @IBAction func addNewConsultation(_ sender: Any) {
+         createNewConsultation()
     }
 
     // MARK: Properties
@@ -31,7 +32,7 @@ class ConsultationsListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-        GetFirebaseConsultations.shared.observeConsultations { (success, consultationItems) in
+        GetFirebaseConsultations.shared.observeConsultations(petKey: petItem!.key) { (success, consultationItems) in
             if success {
                 self.consultationItems = consultationItems
                 self.tableView.reloadData()
@@ -64,20 +65,17 @@ extension ConsultationsListViewController: UITableViewDataSource {
                 return UITableViewCell()
         }
 
-//        let petItem = items[indexPath.row]
-//        cell.configurePetCell(name: petItem.petName,
-//                              URLPicture: petItem.petURLPicture,
-//                              birthDate: petItem.petBirthDate) { (success) in
-//                                if !success {
-//                                    return
-//                                }
-//        }
+        let consultationItem = consultationItems[indexPath.row]
+        cell.configureConsultationCell(consultationItem: consultationItem) { (success) in
+            if !success {
+                return
+            }
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return consultationItems.count
-//        return 1
     }
 }
 // MARK: - extension Delegate

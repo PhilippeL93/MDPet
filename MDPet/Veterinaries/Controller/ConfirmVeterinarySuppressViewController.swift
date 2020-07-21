@@ -13,13 +13,13 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressVeterinary(_ sender: UIButton) {
-        hasBeenDeleted = true
+        veterinayHasBeenDeleted = true
         gestSuppressVeterinary()
         prepareToGoBack()
     }
 
     @IBAction func cancelSuppressVeterinary(_ sender: UIButton) {
-        hasBeenDeleted = false
+        veterinayHasBeenDeleted = false
         prepareToGoBack()
     }
 
@@ -32,7 +32,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
     // MARK: - var
     var veterinaryKey: String = ""
     var databaseRef = Database.database().reference(withPath: "veterinaries-item")
-    var hasBeenDeleted = true
+    var veterinayHasBeenDeleted = true
 
     // MARK: - functions
     ///   showAnimate in order animate pollutants view when it's apperaed
@@ -58,7 +58,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
         )
     }
     private func prepareToGoBack() {
-        NotificationCenter.default.post(name: .hasBeenDeleted, object: hasBeenDeleted)
+        NotificationCenter.default.post(name: .veterinayHasBeenDeleted, object: veterinayHasBeenDeleted)
         NotificationCenter.default.post(name: .navigationBarVeterinaryToTrue, object: self)
         self.removeAnimate()
         self.view.removeFromSuperview()

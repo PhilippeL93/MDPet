@@ -12,4 +12,5 @@ enum TypeOfCaller {
     case pet
     case veterinary
     case vaccine
+    case consultation
 }

@@ -12,7 +12,7 @@ import Firebase
 class VaccineViewController: UIViewController {
 
     @IBOutlet weak var tableView: SelfSizedTableView!
-    @IBOutlet weak var petNameLabel: UILabel!
+    @IBOutlet weak var vaccinePetNameLabel: UILabel!
     @IBOutlet weak var vaccineInjectionField: UITextField!
     @IBOutlet weak var vaccineDateField: UITextField!
     @IBOutlet weak var vaccineNameField: UITextField!
@@ -38,6 +38,7 @@ class VaccineViewController: UIViewController {
     private var selectedRace: String = ""
     private var selectedVeterinaryKey: String = ""
     private var petDiseasesCount: Int = 0
+    var selectedVeterinaryName = ""
 
     var veterinariesItems: [VeterinaryItem] = []
     var typeOfCall: String = ""
@@ -78,12 +79,16 @@ class VaccineViewController: UIViewController {
     @IBAction func backToVaccines(_ sender: UIBarButtonItem) {
         activeField?.resignFirstResponder()
         activeField = nil
-        checkUpdateVaccinesDone()
+        checkUpdateVaccineDone()
     }
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !vaccineVeterinaryField.text!.isEmpty {
-            let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: selectedVeterinaryKey)
-            pickerViewVeterinary.selectRow(rowVeterinary, inComponent: 0, animated: true)
+            GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+            veterinaryToSearch: selectedVeterinaryKey) { (success, _, rowVeterinary) in
+                if success {
+                    self.pickerViewVeterinary.selectRow(rowVeterinary, inComponent: 0, animated: true)
+                }
+            }
         } else {
             pickerViewVeterinary.selectRow(0, inComponent: 0, animated: true)
         }
@@ -103,11 +108,11 @@ class VaccineViewController: UIViewController {
         super.viewDidLoad()
         pathVaccine = UserUid.uid + "-vaccines-item" + petItem!.key
         databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
-        petNameLabel.text = petItem?.petName
+        vaccinePetNameLabel.text = petItem?.petName
         toggleActivityIndicator(shown: false)
-        createObserver()
-        createDelegate()
-        initiateObserver()
+        createObserverVaccine()
+        createDelegateVaccine()
+        initiateObserverVaccine()
         toggleSaveVaccineButton(shown: false)
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
@@ -120,7 +125,7 @@ class VaccineViewController: UIViewController {
             }
         }
         initDiseases()
-        initiateView()
+        initiateButtonVaccineView()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -133,7 +138,7 @@ class VaccineViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: .navigationBarVaccineToTrue, object: nil)
         NotificationCenter.default.removeObserver(self, name: .vaccineIsToUpdate, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .hasBeenDeleted, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .vaccineHasBeenDeleted, object: nil)
     }
     // MARK: - @objc func
     @objc func tapGestuireRecognizer(gesture: UIGestureRecognizer) {
@@ -187,15 +192,18 @@ class VaccineViewController: UIViewController {
         }
     }
     @objc func vaccineVeterinaryFieldDidEnd(_ textField: UITextField) {
-        var selectedVeterinaryName = ""
-        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: vaccineItem!.vaccineVeterinary)
-        if rowVeterinary != -1 {
-            selectedVeterinaryName = veterinariesItems[rowVeterinary].veterinaryName
-        }
-        if vaccineVeterinaryField.text != selectedVeterinaryName {
-            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
-        } else {
-            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineVeterinaryUpdated")
+        if typeOfCall == "update" {
+            GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+            veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinaryName, _) in
+                if success {
+                    self.selectedVeterinaryName = veterinaryName
+                }
+            }
+            if vaccineVeterinaryField.text != selectedVeterinaryName {
+                updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
+            } else {
+                updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineVeterinaryUpdated")
+            }
         }
     }
     @objc func vaccineDoneSwitchDidChange(_ textField: UISwitch) {
@@ -212,20 +220,20 @@ class VaccineViewController: UIViewController {
 }
 extension VaccineViewController {
     // MARK: - functions
-    private func createObserver() {
+    private func createObserverVaccine() {
         createObserverVaccineInjection()
         createObserverDatePickerVaccineDate()
         createObserverVaccineName()
         createObserverVeterinaryPickerView()
         createObserverVaccineDoneSwitch()
     }
-    private func createDelegate() {
+    private func createDelegateVaccine() {
         vaccineInjectionField.delegate = self
         vaccineDateField.delegate = self
         vaccineNameField.delegate = self
         vaccineVeterinaryField.delegate = self
     }
-    private func initiateObserver() {
+    private func initiateObserverVaccine() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -241,7 +249,7 @@ extension VaccineViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
-    private func initiateView() {
+    private func initiateButtonVaccineView() {
         if typeOfCall == "create" {
             saveVaccineButton.title = "Ajouter"
             self.title = "Nouveau vaccin"
@@ -309,26 +317,18 @@ extension VaccineViewController {
         petDiseasesSwitch = vaccineItem!.vaccineSwitchDiseases
         petDiseases = vaccineItem!.vaccineDiseases
 
-        let rowVeterinary = getVeterinaryNameFromKey(veterinaryToSearch: vaccineItem!.vaccineVeterinary)
-        if rowVeterinary != -1 {
-            vaccineVeterinaryField.text = veterinariesItems[rowVeterinary].veterinaryName
+        GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+        veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinaryName, _) in
+            if success {
+                self.vaccineVeterinaryField.text = veterinaryName
+            }
         }
         selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
     }
     private func toggleActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
     }
-    private func getVeterinaryNameFromKey(veterinaryToSearch: String) -> Int {
-        guard veterinariesItems.count != 0 else {
-            return -1
-        }
-        for indice in 0...veterinariesItems.count-1
-            where veterinariesItems[indice].key == veterinaryToSearch {
-                return indice
-        }
-        return -1
-    }
-    private func checkUpdateVaccinesDone() {
+    private func checkUpdateVaccineDone() {
         if saveVaccineButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
@@ -431,13 +431,14 @@ extension VaccineViewController {
     saveVaccineButton.isAccessibilityElement = shown
     }
 
-    private func getSwitchUpdated(switchField: Bool, switchFirebase: Bool) -> Bool {
-        if switchField != switchFirebase {
-            return true
-        } else {
-            return false
-        }
-    }
+//    ici
+//    private func getSwitchUpdated(switchField: Bool, switchFirebase: Bool) -> Bool {
+//        if switchField != switchFirebase {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     private func createObserverVaccineInjection() {
         vaccineInjectionField?.addTarget(self,
                                          action: #selector(VaccineViewController.vaccineInjectionFieldDidEnd(_:)),

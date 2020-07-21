@@ -12,7 +12,8 @@ import Firebase
 class GetFirebaseVaccines {
 
     static let shared = GetFirebaseVaccines()
-    var databaseRef = Database.database().reference(withPath: "vacciness-item")
+    var databaseRef = Database.database().reference(withPath: "vaccines-item")
+    var imageRef = Storage.storage().reference().child("pets-images")
     var vaccineItems: [VaccineItem] = []
     var newItems: [VaccineItem] = []
 
@@ -35,11 +36,11 @@ class GetFirebaseVaccines {
             }
             if self.newItems.count != 0 {
                 self.dateFormatter.locale = self.localeLanguage
-                self.sortTable(wayToSort: "fromDMAToAMD")
+                self.sortTable(wayToSort: "fromDMYToYMD")
                 self.newItems = self.newItems.sorted(by: {
                     $0.vaccineDate > $1.vaccineDate
                 })
-                self.sortTable(wayToSort: "fromAMDToDMA")
+                self.sortTable(wayToSort: "fromYMDToDMY")
             }
             self.vaccineItems = self.newItems
             callback(true, self.vaccineItems)
@@ -65,9 +66,9 @@ class GetFirebaseVaccines {
     }
     func deleteVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
         let path = UserUid.uid + "-vaccines-item" + petKey
-
+        
         databaseRef = Database.database().reference(withPath: "\(path)")
-
+        
         let query = databaseRef
         query.observeSingleEvent(of: .value, with: { snapshot in
             self.newItems = []
@@ -75,6 +76,14 @@ class GetFirebaseVaccines {
                 if let snapshot = child as? DataSnapshot,
                     let vaccineItem = VaccineItem(snapshot: snapshot) {
                     let vaccineKey = vaccineItem.key
+                    if !vaccineItem.vaccineURLThumbnail.isEmpty {
+                        let imageDeleteRef = self.imageRef.child("\(petKey ).png")
+                        imageDeleteRef.delete { error in
+                            if let error = error {
+                                print("error \(error)")
+                            }
+                        }
+                    }
                     let deleteRefVaccine = self.databaseRef.child(vaccineKey)
                     deleteRefVaccine.removeValue()
                 }
@@ -84,13 +93,13 @@ class GetFirebaseVaccines {
     }
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
-            if wayToSort == "fromDMAToAMD" {
+            if wayToSort == "fromDMYToYMD" {
                 dateFormatter.dateFormat = "dd MMMM yyyy"
             } else {
                 dateFormatter.dateFormat = "yyyyMMdd"
             }
             let dateNewFormat = self.dateFormatter.date(from: newItems[indice].vaccineDate)
-            if wayToSort == "fromDMAToAMD" {
+            if wayToSort == "fromDMYToYMD" {
                 dateFormatter.dateFormat = "yyyyMMdd"
             } else {
                 dateFormatter.dateFormat = "dd MMMM yyyy"

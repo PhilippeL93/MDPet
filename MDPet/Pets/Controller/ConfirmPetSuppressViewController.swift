@@ -13,13 +13,13 @@ class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressPet(_ sender: UIButton) {
-        hasBeenDeleted = true
+        petHasBeenDeleted = true
         gestSuppressPet()
         prepareToGoBack()
     }
 
     @IBAction func cancelSuppressPet(_ sender: Any) {
-        hasBeenDeleted = false
+        petHasBeenDeleted = false
         prepareToGoBack()
     }
 
@@ -31,10 +31,9 @@ class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - var
     var petItem: PetItem?
-//    var vaccineItem: [VaccineItem] = []
     var databaseRef = Database.database().reference(withPath: "pets-item")
     var imageRef = Storage.storage().reference().child("pets-images")
-    var hasBeenDeleted = true
+    var petHasBeenDeleted = true
 
     // MARK: - functions
         ///   showAnimate in order animate pollutants view when it's apperaed
@@ -60,7 +59,7 @@ class ConfirmPetSuppressViewController: UIViewController {
         )
     }
     private func prepareToGoBack() {
-        NotificationCenter.default.post(name: .hasBeenDeleted, object: hasBeenDeleted)
+        NotificationCenter.default.post(name: .petHasBeenDeleted, object: petHasBeenDeleted)
         NotificationCenter.default.post(name: .navigationBarPetToTrue, object: self)
         self.removeAnimate()
         self.view.removeFromSuperview()
@@ -79,6 +78,11 @@ class ConfirmPetSuppressViewController: UIViewController {
             }
         }
         GetFirebaseVaccines.shared.deleteVaccines(petKey: petKey!) { (success) in
+            if !success {
+                print("erreur")
+            }
+        }
+        GetFirebaseConsultations.shared.deleteConsultations(petKey: petKey!) { (success) in
             if success {
                 deleteRefPet.removeValue { error, _  in
                     if let error = error {

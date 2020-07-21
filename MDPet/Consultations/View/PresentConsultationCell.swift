@@ -10,5 +10,28 @@ import UIKit
 
 class PresentConsultationCell: UITableViewCell {
 
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var consultationReasonLabel: UILabel!
+    @IBOutlet weak var consultationVeterinaryLabel: UILabel!
+    @IBOutlet weak var consultationDateLabel: UILabel!
+
+    private let localeLanguage = Locale(identifier: "FR-fr")
+    private var dateFormatter = DateFormatter()
+    var consultationItem: ConsultationItem?
+
+    func configureConsultationCell(consultationItem: ConsultationItem, callback: @escaping (Bool) -> Void ) {
+        dateFormatter.locale = localeLanguage
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateToDisplay = dateFormatter.string(from: dateDMY!)
+        consultationReasonLabel.text = consultationItem.consultationReason
+        consultationDateLabel.text = String(dateToDisplay)
+
+        GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+        veterinaryToSearch: consultationItem.consultationVeterinary) { (success, veterinaryName, _) in
+            if success {
+                self.consultationVeterinaryLabel.text = veterinaryName
+            }
+        }
+    }
 }

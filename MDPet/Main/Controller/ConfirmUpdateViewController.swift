@@ -62,6 +62,10 @@ class ConfirmUpdateViewController: UIViewController {
             NotificationCenter.default.post(name: .navigationBarVaccineToTrue,
                                             object: "navigationBarVaccineToTrue")
             NotificationCenter.default.post(name: .vaccineIsToUpdate, object: isToUpdate)
+        case .consultation:
+            NotificationCenter.default.post(name: .navigationBarConsultationToTrue,
+                                            object: "navigationBarConsultationToTrue")
+            NotificationCenter.default.post(name: .consultationIsToUpdate, object: isToUpdate)
         case .none:
             print("error")
         }

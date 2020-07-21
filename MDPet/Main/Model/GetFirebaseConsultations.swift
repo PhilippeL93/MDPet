@@ -19,8 +19,8 @@ class GetFirebaseConsultations {
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
 
-    func observeConsultations(callback: @escaping (Bool, [ConsultationItem]) -> Void) {
-        let path = UserUid.uid + "-pets-item"
+    func observeConsultations(petKey: String, callback: @escaping (Bool, [ConsultationItem]) -> Void) {
+        let path = UserUid.uid + "-consultations-item" + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 
@@ -43,6 +43,43 @@ class GetFirebaseConsultations {
             }
             self.consultationItems = self.newItems
             callback(true, self.consultationItems)
+        })
+    }
+    func readConsultations(petKey: String, callback: @escaping (Bool, [ConsultationItem]) -> Void) {
+        let path = UserUid.uid + "-vaccines-item" + petKey
+
+        databaseRef = Database.database().reference(withPath: "\(path)")
+
+        let query = databaseRef
+        query.observeSingleEvent(of: .value, with: { snapshot in
+            self.newItems = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let consultationItem = ConsultationItem(snapshot: snapshot) {
+                    self.newItems.append(consultationItem)
+                }
+            }
+            self.consultationItems = self.newItems
+            callback(true, self.consultationItems)
+        })
+    }
+    func deleteConsultations(petKey: String, callback: @escaping (Bool) -> Void) {
+        let path = UserUid.uid + "-consultations-item" + petKey
+
+        databaseRef = Database.database().reference(withPath: "\(path)")
+
+        let query = databaseRef
+        query.observeSingleEvent(of: .value, with: { snapshot in
+            self.newItems = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let consultationItem = ConsultationItem(snapshot: snapshot) {
+                    let consultationKey = consultationItem.key
+                    let deleteRefConsultation = self.databaseRef.child(consultationKey)
+                    deleteRefConsultation.removeValue()
+                }
+            }
+            callback(true)
         })
     }
     private func sortTable(wayToSort: String) {
