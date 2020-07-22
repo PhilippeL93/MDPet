@@ -42,6 +42,7 @@
 		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
 		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
 		3757579024C8949000294274 /* NewVaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757578F24C8949000294274 /* NewVaccineViewController.swift */; };
+		3757579224C8956F00294274 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579124C8956F00294274 /* VaccineViewController.swift */; };
 		379AB36324B75B5000C056A1 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* Type.swift */; };
 		379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36624B767BA00C056A1 /* ImagePicker.swift */; };
 		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
@@ -113,6 +114,7 @@
 		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
 		3757578E24C87D5D00294274 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../../../../Desktop/Raleway/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		3757578F24C8949000294274 /* NewVaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaccineViewController.swift; sourceTree = "<group>"; };
+		3757579124C8956F00294274 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
 		379AB36224B75B5000C056A1 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		379AB36624B767BA00C056A1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */,
 				37D0384C24B4AF6100449A69 /* SelfSizedTableView.swift */,
 				3757578F24C8949000294274 /* NewVaccineViewController.swift */,
+				3757579124C8956F00294274 /* VaccineViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
 				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
 				372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */,
+				3757579224C8956F00294274 /* VaccineViewController.swift in Sources */,
 				3757579024C8949000294274 /* NewVaccineViewController.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
