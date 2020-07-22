@@ -66,9 +66,9 @@ class GetFirebaseVaccines {
     }
     func deleteVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
         let path = UserUid.uid + "-vaccines-item" + petKey
-        
+
         databaseRef = Database.database().reference(withPath: "\(path)")
-        
+
         let query = databaseRef
         query.observeSingleEvent(of: .value, with: { snapshot in
             self.newItems = []

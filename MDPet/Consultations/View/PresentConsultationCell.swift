@@ -27,7 +27,7 @@ class PresentConsultationCell: UITableViewCell {
         consultationReasonLabel.text = consultationItem.consultationReason
         consultationDateLabel.text = String(dateToDisplay)
 
-        GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+        GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
         veterinaryToSearch: consultationItem.consultationVeterinary) { (success, veterinaryName, _) in
             if success {
                 self.consultationVeterinaryLabel.text = veterinaryName

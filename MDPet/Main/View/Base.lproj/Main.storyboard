@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Veterinaries-->
+        <!--Veterinaries Navigation Controller-->
         <scene sceneID="cq4-gP-Jkw">
             <objects>
-                <navigationController id="cxi-L8-lvy" userLabel="Veterinaries" sceneMemberID="viewController">
+                <navigationController id="cxi-L8-lvy" userLabel="Veterinaries Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Vétérinaires" id="KRl-zf-daU">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
@@ -24,9 +24,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
@@ -75,7 +75,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="hG4-tb-nPS"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -153,9 +153,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
@@ -339,7 +339,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8k-rp-zp6" userLabel="SuppressVeterinary" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="627" width="375" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="4qc-Z2-BrO"/>
                                     <constraint firstAttribute="height" constant="30" id="DnX-Js-Lll"/>
@@ -347,7 +347,6 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Supprimer la fiche">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="suppressVeterinary:" destination="z5o-3h-AKK" eventType="touchUpInside" id="ap1-ur-x5p"/>
@@ -362,6 +361,17 @@
                                     <action selector="veterinaryNumberEditingDidEnd:" destination="z5o-3h-AKK" eventType="editingDidEnd" id="QGU-YP-DmK"/>
                                 </connections>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Of2-Th-feg">
+                                <rect key="frame" x="179" y="290" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFy-wT-0DM" userLabel="Call Phone">
+                                <rect key="frame" x="218" y="389" width="20" height="22"/>
+                                <state key="normal" image="phone.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="callVeterinary:" destination="z5o-3h-AKK" eventType="touchUpInside" id="Yti-m7-yVG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -371,6 +381,7 @@
                             <constraint firstItem="LtT-Mh-5zu" firstAttribute="top" secondItem="0JH-dR-rA2" secondAttribute="bottom" constant="8" id="28T-J7-CI5"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="Bnm-T0-9RW" secondAttribute="trailing" constant="165" id="7ii-yL-kjt"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3C6-X4-1RO" secondAttribute="trailing" symbolic="YES" id="8Ms-m8-5ls"/>
+                            <constraint firstItem="xFy-wT-0DM" firstAttribute="centerY" secondItem="LtT-Mh-5zu" secondAttribute="centerY" id="BCf-FI-HIo"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="IRm-dA-8GM" secondAttribute="trailing" constant="265" id="C9e-oB-dyc"/>
                             <constraint firstItem="LtT-Mh-5zu" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="EzZ-qw-bYX"/>
                             <constraint firstItem="AP7-f3-LW2" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="FeC-gA-Vl3"/>
@@ -392,6 +403,7 @@
                             <constraint firstItem="xxS-Ka-87A" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="Yl5-Nz-Oqn"/>
                             <constraint firstItem="EDG-nU-WpY" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="aik-79-zdW"/>
                             <constraint firstItem="zrX-4I-PEq" firstAttribute="top" secondItem="bsy-hf-Nqe" secondAttribute="bottom" constant="8" id="bS6-tx-8Ub"/>
+                            <constraint firstItem="xFy-wT-0DM" firstAttribute="leading" secondItem="LtT-Mh-5zu" secondAttribute="trailing" constant="8" symbolic="YES" id="cIe-S0-Ts5"/>
                             <constraint firstItem="3C6-X4-1RO" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="cY9-ij-Bt1"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="bottom" secondItem="O8k-rp-zp6" secondAttribute="bottom" constant="10" id="ctY-mX-eZm"/>
                             <constraint firstItem="IRm-dA-8GM" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="eI6-mU-moz"/>
@@ -434,6 +446,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Of2-Th-feg" id="rFF-VI-DUl"/>
                         <outlet property="clinicNameField" destination="zrX-4I-PEq" id="Ta7-yg-bVr"/>
                         <outlet property="clinicSwitch" destination="bsy-hf-Nqe" id="9oK-yw-jQl"/>
                         <outlet property="saveVeterinaryButton" destination="4jc-SK-IYk" id="BtV-y0-tob"/>
@@ -603,10 +616,10 @@
             </objects>
             <point key="canvasLocation" x="4017" y="528"/>
         </scene>
-        <!--Pets-->
+        <!--Pets Navigation controller-->
         <scene sceneID="MmO-Lt-hLX">
             <objects>
-                <navigationController id="ZtB-sG-xiW" userLabel="Pets" sceneMemberID="viewController">
+                <navigationController id="ZtB-sG-xiW" userLabel="Pets Navigation controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Animaux" id="Aju-rN-8dV">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
@@ -616,10 +629,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="textShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1015,7 +1028,7 @@
                                                 </connections>
                                             </textView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vétérinaire" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eqk-zN-FWY" userLabel="Pet Veterinary Field">
-                                                <rect key="frame" x="112" y="622" width="255" height="34"/>
+                                                <rect key="frame" x="132" y="622" width="235" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="dS3-DC-8WE"/>
                                                 </constraints>
@@ -1121,10 +1134,34 @@
                                                 <rect key="frame" x="173" y="300" width="30" height="37"/>
                                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </activityIndicatorView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hl-UA-ZDO">
+                                                <rect key="frame" x="87" y="627" width="24" height="24"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-dV-djD" userLabel="Button Call Phone">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="3r8-dV-djD" secondAttribute="height" multiplier="1:1" id="g5i-dO-Fl8"/>
+                                                            <constraint firstAttribute="height" constant="24" id="pgy-wo-fNL"/>
+                                                        </constraints>
+                                                        <state key="normal" image="phone.circle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="callVeterinary:" destination="xbp-Gj-2Jk" eventType="touchUpInside" id="qdg-yA-K9o"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="3r8-dV-djD" secondAttribute="bottom" id="0bq-DY-sGh"/>
+                                                    <constraint firstItem="3r8-dV-djD" firstAttribute="centerY" secondItem="7Hl-UA-ZDO" secondAttribute="centerY" id="ank-Af-Mmd"/>
+                                                    <constraint firstItem="3r8-dV-djD" firstAttribute="centerX" secondItem="7Hl-UA-ZDO" secondAttribute="centerX" id="cYh-jh-VJO"/>
+                                                    <constraint firstItem="3r8-dV-djD" firstAttribute="top" secondItem="7Hl-UA-ZDO" secondAttribute="top" id="fAE-G2-KXJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="3r8-dV-djD" secondAttribute="trailing" id="k1w-rZ-ppD"/>
+                                                    <constraint firstItem="3r8-dV-djD" firstAttribute="leading" secondItem="7Hl-UA-ZDO" secondAttribute="leading" id="n97-ly-U9w"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="eqk-zN-FWY" firstAttribute="width" secondItem="rBW-Wc-LkY" secondAttribute="width" id="1Lc-dN-qH5"/>
                                             <constraint firstItem="jMd-53-zHd" firstAttribute="top" secondItem="TA2-FX-9Kd" secondAttribute="bottom" constant="15" id="2cx-wd-6kF"/>
                                             <constraint firstAttribute="trailing" secondItem="eqk-zN-FWY" secondAttribute="trailing" constant="8" id="3IF-zq-gbz"/>
                                             <constraint firstAttribute="trailing" secondItem="BAh-7n-iTf" secondAttribute="trailing" constant="8" id="3S4-qm-kdd"/>
@@ -1136,7 +1173,6 @@
                                             <constraint firstItem="efM-OR-hke" firstAttribute="centerY" secondItem="vcl-Dm-dit" secondAttribute="centerY" id="6B6-Ci-3rb"/>
                                             <constraint firstItem="kvb-d6-Hsv" firstAttribute="centerX" secondItem="JFT-MJ-M8b" secondAttribute="centerX" id="7Ut-Vu-MdP"/>
                                             <constraint firstAttribute="trailing" secondItem="mK0-z5-e9m" secondAttribute="trailing" constant="8" id="8Hf-PA-Iu6"/>
-                                            <constraint firstItem="eqk-zN-FWY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ncx-SC-8Zt" secondAttribute="trailing" constant="8" symbolic="YES" id="8Or-xQ-4AU"/>
                                             <constraint firstItem="lvj-82-xFX" firstAttribute="width" secondItem="rBW-Wc-LkY" secondAttribute="width" id="8d8-y9-lgt"/>
                                             <constraint firstAttribute="trailing" secondItem="mK0-z5-e9m" secondAttribute="trailing" constant="8" id="9GZ-Tj-ObE"/>
                                             <constraint firstItem="dN2-N7-b0t" firstAttribute="top" secondItem="r95-Gi-YqL" secondAttribute="bottom" constant="48" id="9UR-r2-0gA"/>
@@ -1170,6 +1206,7 @@
                                             <constraint firstItem="Jg0-8n-Paq" firstAttribute="top" secondItem="aTZ-W0-qaD" secondAttribute="bottom" constant="22" id="JM9-6M-ghJ"/>
                                             <constraint firstItem="dN2-N7-b0t" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="Jda-tq-Blg"/>
                                             <constraint firstItem="pmb-GH-J7f" firstAttribute="centerY" secondItem="aTZ-W0-qaD" secondAttribute="centerY" id="Jed-fn-mFb"/>
+                                            <constraint firstItem="7Hl-UA-ZDO" firstAttribute="centerY" secondItem="Ncx-SC-8Zt" secondAttribute="centerY" id="L8F-Kh-gtX"/>
                                             <constraint firstAttribute="trailing" secondItem="NVm-0C-ZkD" secondAttribute="trailing" constant="8" id="Ljh-Vs-ewn"/>
                                             <constraint firstItem="eqk-zN-FWY" firstAttribute="top" secondItem="6qb-aj-qq7" secondAttribute="bottom" constant="8" id="Loe-UE-O8I"/>
                                             <constraint firstItem="eCW-QL-fmP" firstAttribute="top" secondItem="02y-cG-e25" secondAttribute="bottom" constant="8" id="Lqx-5d-nWQ"/>
@@ -1177,6 +1214,7 @@
                                             <constraint firstItem="0N7-Mb-8yz" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="MWb-UM-gJ2"/>
                                             <constraint firstItem="6qb-aj-qq7" firstAttribute="height" secondItem="pT8-nb-LUK" secondAttribute="height" id="Mxy-BR-jxU"/>
                                             <constraint firstItem="kvb-d6-Hsv" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" id="N0M-XY-e1Z"/>
+                                            <constraint firstItem="7Hl-UA-ZDO" firstAttribute="leading" secondItem="Ncx-SC-8Zt" secondAttribute="trailing" constant="8" id="PHB-U0-eOU"/>
                                             <constraint firstAttribute="trailing" secondItem="vcl-Dm-dit" secondAttribute="trailing" constant="8" id="QNu-VA-BAx"/>
                                             <constraint firstItem="eBv-Rs-wqF" firstAttribute="centerY" secondItem="D5B-Ta-hiX" secondAttribute="centerY" id="QyX-rB-1sn"/>
                                             <constraint firstItem="sAi-ZT-7pQ" firstAttribute="leading" secondItem="KZW-Bm-iF2" secondAttribute="trailing" constant="54" id="ROH-To-czS"/>
@@ -1220,6 +1258,7 @@
                                             <constraint firstItem="D5B-Ta-hiX" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="esT-st-e2e"/>
                                             <constraint firstItem="mK0-z5-e9m" firstAttribute="top" secondItem="pT8-nb-LUK" secondAttribute="bottom" constant="8" id="ffV-xd-1eq"/>
                                             <constraint firstItem="6Iy-Zr-wvV" firstAttribute="leading" secondItem="TA2-FX-9Kd" secondAttribute="leading" id="gEe-Oc-BmY"/>
+                                            <constraint firstItem="7Hl-UA-ZDO" firstAttribute="leading" secondItem="Ncx-SC-8Zt" secondAttribute="trailing" constant="8" id="gjo-yU-64Q"/>
                                             <constraint firstItem="BAh-7n-iTf" firstAttribute="height" secondItem="rBW-Wc-LkY" secondAttribute="height" id="gmZ-iX-8Cg"/>
                                             <constraint firstItem="eBv-Rs-wqF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D5B-Ta-hiX" secondAttribute="trailing" constant="5" id="h3k-dc-yob"/>
                                             <constraint firstItem="6Iy-Zr-wvV" firstAttribute="centerY" secondItem="Ia4-PL-Vos" secondAttribute="centerY" id="hak-Y7-8XU"/>
@@ -1241,6 +1280,7 @@
                                             <constraint firstItem="pT8-nb-LUK" firstAttribute="top" secondItem="eBv-Rs-wqF" secondAttribute="bottom" constant="8" id="mft-sG-PDn"/>
                                             <constraint firstItem="NVm-0C-ZkD" firstAttribute="leading" secondItem="sAi-ZT-7pQ" secondAttribute="trailing" constant="13.5" id="nGe-ya-ON2"/>
                                             <constraint firstItem="lvj-82-xFX" firstAttribute="top" secondItem="BAh-7n-iTf" secondAttribute="bottom" constant="8" id="neK-Vw-4dD"/>
+                                            <constraint firstItem="eqk-zN-FWY" firstAttribute="leading" secondItem="7Hl-UA-ZDO" secondAttribute="trailing" constant="21" id="oIk-4a-64F"/>
                                             <constraint firstItem="KZW-Bm-iF2" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="oe9-Wz-hbY"/>
                                             <constraint firstItem="j21-V4-H4B" firstAttribute="top" secondItem="lvj-82-xFX" secondAttribute="bottom" constant="8" id="ohD-sK-gfe"/>
                                             <constraint firstItem="JFT-MJ-M8b" firstAttribute="leading" secondItem="Gsc-Rw-ttS" secondAttribute="leading" constant="8" id="oux-x5-sBJ"/>
@@ -1595,7 +1635,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHD-mb-YuS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4897" y="-1222"/>
+            <point key="canvasLocation" x="4068" y="-1272"/>
         </scene>
         <!--Vaccine-->
         <scene sceneID="ToZ-P8-3Fr">
@@ -1617,7 +1657,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Injection" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qa-fM-GVT" userLabel="Vaccine Injection Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Injection" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3qa-fM-GVT" userLabel="Vaccine Injection Field">
                                                 <rect key="frame" x="8" y="58" width="168" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="xC1-Ng-Qum"/>
@@ -1625,7 +1665,7 @@
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date vaccin" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fcf-vA-Ao1" userLabel="Vaccine Date Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date vaccin" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fcf-vA-Ao1" userLabel="Vaccine Date Field">
                                                 <rect key="frame" x="199" y="58" width="168" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="HeY-1A-B0j"/>
@@ -1636,12 +1676,12 @@
                                                     <action selector="vaccineDateEditingDidBegin:" destination="IJE-KT-xET" eventType="editingDidBegin" id="mzp-o0-BNC"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vaccin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xfM-ZK-Xvq" userLabel="Vaccine Name Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vaccin" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xfM-ZK-Xvq" userLabel="Vaccine Name Field">
                                                 <rect key="frame" x="8" y="102" width="359" height="34"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vétérinaire" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZG-5h-Kyu" userLabel="Vaccine Veterinary Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vétérinaire" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FZG-5h-Kyu" userLabel="Vaccine Veterinary Field">
                                                 <rect key="frame" x="8" y="146" width="359" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="fWo-5S-C6k"/>
@@ -1770,7 +1810,7 @@
                                                     </switch>
                                                 </subviews>
                                             </stackView>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8nQ-cl-frX">
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8nQ-cl-frX">
                                                 <rect key="frame" x="167" y="132" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Dau-IF-Y2q"/>
@@ -1865,7 +1905,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCW-N8-8Bk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6341.6000000000004" y="-1156.8215892053975"/>
+            <point key="canvasLocation" x="4716" y="-1190"/>
         </scene>
         <!--Consultation-->
         <scene sceneID="1Am-jb-C5A">
@@ -1928,6 +1968,10 @@
                                     <action selector="addToCalendar:" destination="ibQ-5h-4AM" eventType="touchUpInside" id="rvz-EH-PyE"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="b3y-SX-ZRG">
+                                <rect key="frame" x="179" y="230" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1970,6 +2014,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="b3y-SX-ZRG" id="MQh-jN-qWb"/>
                         <outlet property="addToCalendarButton" destination="MlM-dQ-3cm" id="T1T-P9-D9f"/>
                         <outlet property="consultationDateField" destination="fWN-LU-baL" id="2x8-Iu-rcc"/>
                         <outlet property="consultationPetNameLabel" destination="RZh-lw-JJF" id="smK-TG-QQc"/>
@@ -1982,7 +2027,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5T-dk-Wel" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6346.3999999999996" y="-368.36581709145429"/>
+            <point key="canvasLocation" x="4727" y="-329"/>
         </scene>
         <!--Consultations List View Controller-->
         <scene sceneID="evD-pJ-UJU">
@@ -2112,7 +2157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtu-XG-ym7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4896.8000000000002" y="-360.2698650674663"/>
+            <point key="canvasLocation" x="4068" y="-328"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="XZx-tj-kcm">
@@ -2216,7 +2261,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="selectedImageTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -2376,7 +2421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kY-4s-el8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4018" y="-815"/>
+            <point key="canvasLocation" x="5366" y="-1272"/>
         </scene>
         <!--Confirm Update View Controller-->
         <scene sceneID="BCx-28-yoE">
@@ -2525,7 +2570,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQb-5u-nTQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4017" y="-168"/>
+            <point key="canvasLocation" x="5406" y="-330"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

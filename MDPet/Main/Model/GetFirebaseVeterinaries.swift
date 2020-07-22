@@ -33,7 +33,7 @@ class GetFirebaseVeterinaries {
             callback(true, self.veterinariesItems)
         })
     }
-    func getVeterinaryNameFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
+    func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
         guard veterinariesItems.count != 0 else {
             callback(false, "", -1)
             return

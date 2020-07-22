@@ -19,6 +19,7 @@ class ConsultationViewController: UIViewController {
     @IBOutlet weak var consultationReportView: UITextView!
     @IBOutlet weak var saveConsultationButton: UIBarButtonItem!
     @IBOutlet weak var addToCalendarButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
     private var consultationReason: UITextField?
@@ -73,7 +74,7 @@ class ConsultationViewController: UIViewController {
     }
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !consultationVeterinaryField.text!.isEmpty {
-            GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: selectedVeterinaryKey) { (success, _, rowVeterinary) in
                 if success {
                     self.pickerViewVeterinary.selectRow(rowVeterinary, inComponent: 0, animated: true)
@@ -96,11 +97,10 @@ class ConsultationViewController: UIViewController {
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
+        toggleActivityIndicator(shown: false)
         pathConsultation = UserUid.uid + "-consultations-item" + petItem!.key
         databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
         consultationPetNameLabel.text = petItem?.petName
-//        ici
-//        toggleActivityIndicator(shown: false)
         createObserverConsultation()
         createDelegateConsultation()
         initiateObserverConsultation()
@@ -183,7 +183,7 @@ class ConsultationViewController: UIViewController {
     }
     @objc func consultationVeterinaryFieldDidEnd(_ textField: UITextField) {
         if typeOfCall == "update" {
-            GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinaryName, _) in
                 if success {
                     self.selectedVeterinaryName = veterinaryName
@@ -218,6 +218,7 @@ class ConsultationViewController: UIViewController {
         consultationDateField.delegate = self
         consultationVeterinaryField.delegate = self
         consultationWeightField.delegate = self
+        consultationReportView.delegate = self
     }
     private func initiateObserverConsultation() {
         NotificationCenter.default.addObserver(self,
@@ -255,7 +256,7 @@ class ConsultationViewController: UIViewController {
         consultationWeightField.text = consultationItem?.consultationWeight
         consultationReportView.text = consultationItem?.consultationReport
 
-        GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+        GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
         veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinaryName, _) in
             if success {
                 self.consultationVeterinaryField.text = veterinaryName
@@ -280,6 +281,7 @@ class ConsultationViewController: UIViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateConsultation() {
+        toggleActivityIndicator(shown: true)
         databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
         //            guard let vaccineKey = vaccineItem?.key else {
         //                return
@@ -303,6 +305,9 @@ class ConsultationViewController: UIViewController {
         let consultationItemRef = databaseRef.child(uniqueUUID)
         consultationItemRef.setValue(consultationItem?.toAnyObject())
         navigationController?.popViewController(animated: true)
+    }
+    private func toggleActivityIndicator(shown: Bool) {
+        activityIndicator.isHidden = !shown
     }
     private func checkConsultationComplete() {
         guard let consultationReason = consultationReasonField.text else {
@@ -337,7 +342,8 @@ class ConsultationViewController: UIViewController {
     }
     private func createObserverConsultationReason() {
         consultationReasonField?.addTarget(self,
-                                         action: #selector(ConsultationViewController.consultationReasonFieldDidEnd(_:)),
+                                         action:
+                                                #selector(ConsultationViewController.consultationReasonFieldDidEnd(_:)),
                                          for: .editingDidEnd)
     }
     private func createObserverConsultationDatePickerView() {
@@ -345,7 +351,8 @@ class ConsultationViewController: UIViewController {
         datePickerConsultationDate?.datePickerMode = .date
         datePickerConsultationDate?.locale = localeLanguage
         datePickerConsultationDate?.addTarget(self,
-                                       action: #selector(ConsultationViewController.dateChangedConsultationDate(datePicker:)),
+                                       action:
+                                                #selector(ConsultationViewController.dateChangedConsultationDate(datePicker:)),
                                        for: .valueChanged)
         consultationDateField.inputView = datePickerConsultationDate
     }
@@ -358,7 +365,8 @@ class ConsultationViewController: UIViewController {
     }
     private func createObserverConsultationWeight() {
         consultationWeightField?.addTarget(self,
-                                         action: #selector(ConsultationViewController.consultationWeightFieldDidEnd(_:)),
+                                         action:
+                                                #selector(ConsultationViewController.consultationWeightFieldDidEnd(_:)),
                                          for: .editingDidEnd)
     }
     private func formatDate() {

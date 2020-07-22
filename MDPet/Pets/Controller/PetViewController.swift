@@ -108,9 +108,12 @@ class PetViewController: UIViewController {
     @IBAction func consultationsButton(_ sender: Any) {
         getConsultations()
     }
+    @IBAction func callVeterinary(_ sender: Any) {
+        callVeterinary()
+    }
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !petVeterinaryField.text!.isEmpty {
-            GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: selectedVeterinaryKey) { (success, _, rowVeterinary) in
                 if success {
                     self.pickerViewVeterinary.selectRow(rowVeterinary, inComponent: 0, animated: true)
@@ -329,7 +332,7 @@ class PetViewController: UIViewController {
         }
         @objc func petVeterinaryFieldDidEnd(_ textField: UITextField) {
             if typeOfCall == "update" {
-                GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+                GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
                 veterinaryToSearch: petItem!.petVeterinary) { (success, veterinaryName, _) in
                     if success {
                         self.selectedVeterinaryName = veterinaryName
@@ -559,7 +562,7 @@ class PetViewController: UIViewController {
             petSterilizedSwitch.isOn = false
             petSterilizedDateField.isEnabled = false
         }
-        GetFirebaseVeterinaries.shared.getVeterinaryNameFromKey(
+        GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
         veterinaryToSearch: petItem!.petVeterinary) { (success, veterinaryName, _) in
             if success {
                 self.petVeterinaryField.text = veterinaryName
@@ -855,7 +858,6 @@ extension PetViewController {
 
         let petItemRef = databaseRef.child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
-//        toggleActivityIndicator(shown: true)
         navigationController?.popViewController(animated: true)
     }
     private func getVaccines() {
@@ -887,6 +889,18 @@ extension PetViewController {
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
         destVC.didMove(toParent: self)
+    }
+    private func callVeterinary() {
+        for indice in 0...veterinariesItems.count - 1
+            where selectedVeterinaryKey == veterinariesItems[indice].key {
+                if let url = URL(string: "telprompt://\(veterinariesItems[indice].veterinaryPhone)") {
+                    let application = UIApplication.shared
+                    guard application.canOpenURL(url) else {
+                        return
+                    }
+                    application.open(url, options: [:], completionHandler: nil)
+                }
+        }
     }
     private func checkUpdatePetDone() {
         if savePetButton.isEnabled == false {
