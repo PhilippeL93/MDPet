@@ -31,7 +31,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
 
     // MARK: - var
     var veterinaryKey: String = ""
-    var databaseRef = Database.database().reference(withPath: "veterinaries-item")
+    var databaseRef = Database.database().reference(withPath: veterinariesItem)
     var veterinayHasBeenDeleted = true
 
     // MARK: - functions
@@ -64,7 +64,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func gestSuppressVeterinary() {
-        let path = UserUid.uid + "-veterinaries-item"
+        let path = UserUid.uid + veterinariesItem
         databaseRef = Database.database().reference(withPath: "\(path)")
         let deleteRef = databaseRef.child(veterinaryKey)
         deleteRef.removeValue { error, _  in

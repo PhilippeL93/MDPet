@@ -12,11 +12,11 @@ import Firebase
 class GetFirebaseVeterinaries {
 
     static let shared = GetFirebaseVeterinaries()
-    var databaseRef = Database.database().reference(withPath: "veterinaries-item")
+    var databaseRef = Database.database().reference(withPath: veterinariesItem)
     var veterinariesItems: [VeterinaryItem] = []
 
     func observeVeterinaries(callback: @escaping (Bool, [VeterinaryItem]) -> Void) {
-        let path = UserUid.uid + "-veterinaries-item"
+        let path = UserUid.uid + veterinariesItem
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 

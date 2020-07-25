@@ -46,11 +46,12 @@ class VaccineViewController: UIViewController {
     var vaccineItem: VaccineItem?
     var imagePicker: ImagePicker!
     private var vaccineKey: String = ""
-    private var databaseRef = Database.database().reference(withPath: "vaccines-item")
-    private var imageRef = Storage.storage().reference().child("pets-images")
+    private var databaseRef = Database.database().reference(withPath: vaccinesItem)
+    private var imageRef = Storage.storage().reference().child(petsInages)
     private var pathVaccine: String = ""
     private var petDiseases: [String] = []
     private var petDiseasesSwitch: [Bool] = []
+    private var vaccineDateToSave: String = ""
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -98,22 +99,26 @@ class VaccineViewController: UIViewController {
         if vaccineDateField.text!.isEmpty {
             let date = Date()
             vaccineDateField.text = dateFormatter.string(from: date)
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            vaccineDateToSave = dateFormatter.string(from: date)
         } else {
-            let  vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
+            dateFormatter.dateFormat = "dd MMMM yyyy"
+            let vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
             datePickerVaccineDate?.date = vaccineDate!
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
+
         }
     }
     // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        pathVaccine = UserUid.uid + "-vaccines-item" + petItem!.key
+        dateFormatter.locale = localeLanguage
+        pathVaccine = UserUid.uid + vaccinesItem + petItem!.key
         databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
-        vaccinePetNameLabel.text = petItem?.petName
-        toggleActivityIndicator(shown: false)
         createObserverVaccine()
         createDelegateVaccine()
         initiateObserverVaccine()
-        toggleSaveVaccineButton(shown: false)
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
@@ -126,7 +131,7 @@ class VaccineViewController: UIViewController {
         }
         initDiseases()
         initiateButtonVaccineView()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -181,6 +186,8 @@ class VaccineViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
         }
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        vaccineDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
         vaccineDateField.text = dateFormatter.string(from: datePicker.date)
     }
@@ -192,6 +199,7 @@ class VaccineViewController: UIViewController {
         }
     }
     @objc func vaccineVeterinaryFieldDidEnd(_ textField: UITextField) {
+        selectedVeterinaryName = ""
         if typeOfCall == "update" {
             GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinaryName, _) in
@@ -199,11 +207,11 @@ class VaccineViewController: UIViewController {
                     self.selectedVeterinaryName = veterinaryName
                 }
             }
-            if vaccineVeterinaryField.text != selectedVeterinaryName {
-                updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
-            } else {
-                updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineVeterinaryUpdated")
-            }
+        }
+        if vaccineVeterinaryField.text != selectedVeterinaryName {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineVeterinaryUpdated")
         }
     }
     @objc func vaccineDoneSwitchDidChange(_ textField: UISwitch) {
@@ -250,6 +258,9 @@ extension VaccineViewController {
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
     private func initiateButtonVaccineView() {
+        vaccinePetNameLabel.text = petItem?.petName
+        toggleActivityIndicator(shown: false)
+        toggleSaveVaccineButton(shown: false)
         if typeOfCall == "create" {
             saveVaccineButton.title = "Ajouter"
             self.title = "Nouveau vaccin"
@@ -307,7 +318,10 @@ extension VaccineViewController {
     private func initiateFieldsView() {
         vaccineKey = vaccineItem?.key ?? ""
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
-        vaccineDateField.text = vaccineItem?.vaccineDate
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let vaccineDate = dateFormatter.date(from: vaccineItem!.vaccineDate)
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        vaccineDateField.text = dateFormatter.string(from: vaccineDate!)
         vaccineNameField.text = vaccineItem?.vaccineName
         if vaccineItem?.vaccineDone == true {
             vaccineDoneSwitch.isOn = true
@@ -329,7 +343,10 @@ extension VaccineViewController {
         activityIndicator.isHidden = !shown
     }
     private func checkUpdateVaccineDone() {
-        if saveVaccineButton.isEnabled == false {
+                if fieldsUpdated.count == 0 {
+        //
+        //        }
+        //        if saveConsultationButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -384,7 +401,8 @@ extension VaccineViewController {
             key: "",
             number: 1,
             injection: String(vaccineInjectionField.text ?? ""),
-            date: String(vaccineDateField.text ?? ""),
+//            date: String(vaccineDateField.text ?? ""),
+            date: String(vaccineDateToSave),
             URLThumbnail: vaccineURLThumbnail,
             veterinary: String(selectedVeterinaryKey),
             diseases: petDiseases,
@@ -471,7 +489,7 @@ extension VaccineViewController {
                                      for: .touchUpInside)
     }
     private func formatDate() {
-        dateFormatter.locale = localeLanguage
+//        dateFormatter.locale = localeLanguage
         dateFormatter.dateFormat = "dd MMMM yyyy"
     }
 }

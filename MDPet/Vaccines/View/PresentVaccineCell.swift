@@ -21,9 +21,16 @@ class PresentVaccineCell: UITableViewCell {
     @IBOutlet weak var diseaseSevenLabel: UILabel!
     @IBOutlet weak var diseaseEightLabel: UILabel!
 
+    private let localeLanguage = Locale(identifier: "FR-fr")
+    private var dateFormatter = DateFormatter()
+
     func configureVaccineCell(with vaccineItem: VaccineItem) {
         vaccineInjectionLabel.text = vaccineItem.vaccineInjection
-        vaccineDateLabel.text = vaccineItem.vaccineDate
+        dateFormatter.locale = localeLanguage
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateDMY = dateFormatter.date(from: vaccineItem.vaccineDate)
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        vaccineDateLabel.text = dateFormatter.string(for: dateDMY)
 
         diseaseOneLabel.isHidden = true
         diseaseTwoLabel.isHidden = true

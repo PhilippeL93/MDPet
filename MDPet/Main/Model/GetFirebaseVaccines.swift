@@ -12,8 +12,8 @@ import Firebase
 class GetFirebaseVaccines {
 
     static let shared = GetFirebaseVaccines()
-    var databaseRef = Database.database().reference(withPath: "vaccines-item")
-    var imageRef = Storage.storage().reference().child("pets-images")
+    var databaseRef = Database.database().reference(withPath: vaccinesItem)
+    var imageRef = Storage.storage().reference().child(petsInages)
     var vaccineItems: [VaccineItem] = []
     var newItems: [VaccineItem] = []
 
@@ -21,7 +21,7 @@ class GetFirebaseVaccines {
     private var dateFormatter = DateFormatter()
 
     func observeVaccines(petKey: String, callback: @escaping (Bool, [VaccineItem]) -> Void) {
-        let path = UserUid.uid + "-vaccines-item" + petKey
+        let path = UserUid.uid + vaccinesItem + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 
@@ -35,19 +35,19 @@ class GetFirebaseVaccines {
                 }
             }
             if self.newItems.count != 0 {
-                self.dateFormatter.locale = self.localeLanguage
-                self.sortTable(wayToSort: "fromDMYToYMD")
+//                self.dateFormatter.locale = self.localeLanguage
+//                self.sortTable(wayToSort: "fromDMYToYMD")
                 self.newItems = self.newItems.sorted(by: {
                     $0.vaccineDate > $1.vaccineDate
                 })
-                self.sortTable(wayToSort: "fromYMDToDMY")
+//                self.sortTable(wayToSort: "fromYMDToDMY")
             }
             self.vaccineItems = self.newItems
             callback(true, self.vaccineItems)
         })
     }
     func readVaccines(petKey: String, callback: @escaping (Bool, [VaccineItem]) -> Void) {
-        let path = UserUid.uid + "-vaccines-item" + petKey
+        let path = UserUid.uid + vaccinesItem + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 
@@ -65,7 +65,7 @@ class GetFirebaseVaccines {
         })
     }
     func deleteVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
-        let path = UserUid.uid + "-vaccines-item" + petKey
+        let path = UserUid.uid + vaccinesItem + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 

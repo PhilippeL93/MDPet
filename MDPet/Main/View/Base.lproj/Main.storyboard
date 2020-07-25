@@ -1013,7 +1013,7 @@
                                                     <constraint firstItem="5YN-Y2-e9s" firstAttribute="height" secondItem="cTH-4C-f4P" secondAttribute="height" id="qUJ-UI-yii"/>
                                                 </constraints>
                                             </stackView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Eleveur" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mK0-z5-e9m" userLabel="Pet Breeder Field">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mK0-z5-e9m" userLabel="Pet Breeder Field">
                                                 <rect key="frame" x="112" y="497" width="255" height="75"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
@@ -1937,7 +1937,7 @@
                                     <action selector="consultationDateEditingDidBegin:" destination="ibQ-5h-4AM" eventType="editingDidBegin" id="hC9-Xx-CLt"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Compte rendu" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-NX-j8Z" userLabel="Consultation Report Text View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-NX-j8Z" userLabel="Consultation Report Text View">
                                 <rect key="frame" x="8" y="170" width="359" height="279"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>

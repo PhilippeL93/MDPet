@@ -12,11 +12,11 @@ import Firebase
 class GetFirebasePets {
 
     static let shared = GetFirebasePets()
-    var databaseRef = Database.database().reference(withPath: "pets-item")
+    var databaseRef = Database.database().reference(withPath: petsItem)
     var petItems: [PetItem] = []
 
     func observePets(callback: @escaping (Bool, [PetItem]) -> Void) {
-        let path = UserUid.uid + "-pets-item"
+        let path = UserUid.uid + petsItem
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 
@@ -34,7 +34,7 @@ class GetFirebasePets {
         })
     }
     func readPets(veterinaryToSearch: String, callback: @escaping (Bool, Bool) -> Void) {
-        let path = UserUid.uid + "-pets-item"
+        let path = UserUid.uid + petsItem
 
         var veterinaryFound = false
 

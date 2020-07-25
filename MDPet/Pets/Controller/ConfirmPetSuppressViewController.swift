@@ -31,8 +31,8 @@ class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - var
     var petItem: PetItem?
-    var databaseRef = Database.database().reference(withPath: "pets-item")
-    var imageRef = Storage.storage().reference().child("pets-images")
+    var databaseRef = Database.database().reference(withPath: petsItem)
+    var imageRef = Storage.storage().reference().child(petsInages)
     var petHasBeenDeleted = true
 
     // MARK: - functions
@@ -65,7 +65,7 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func gestSuppressPet() {
-        let path = UserUid.uid + "-pets-item"
+        let path = UserUid.uid + petsItem
         let petKey = petItem?.key
         databaseRef = Database.database().reference(withPath: "\(path)")
         let deleteRefPet = databaseRef.child(petItem!.key)

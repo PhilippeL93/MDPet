@@ -12,7 +12,7 @@ import Firebase
 class GetFirebaseConsultations {
 
     static let shared = GetFirebaseConsultations()
-    var databaseRef = Database.database().reference(withPath: "consultations-item")
+    var databaseRef = Database.database().reference(withPath: consultationsItem)
     var consultationItems: [ConsultationItem] = []
     var newItems: [ConsultationItem] = []
 
@@ -20,7 +20,7 @@ class GetFirebaseConsultations {
     private var dateFormatter = DateFormatter()
 
     func observeConsultations(petKey: String, callback: @escaping (Bool, [ConsultationItem]) -> Void) {
-        let path = UserUid.uid + "-consultations-item" + petKey
+        let path = UserUid.uid + consultationsItem + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 
@@ -34,19 +34,16 @@ class GetFirebaseConsultations {
                 }
             }
             if self.newItems.count != 0 {
-                self.dateFormatter.locale = self.localeLanguage
-                self.sortTable(wayToSort: "fromDMAToAMD")
                 self.newItems = self.newItems.sorted(by: {
                     $0.consultationDate > $1.consultationDate
                 })
-                self.sortTable(wayToSort: "fromAMDToDMA")
             }
             self.consultationItems = self.newItems
             callback(true, self.consultationItems)
         })
     }
     func readConsultations(petKey: String, callback: @escaping (Bool, [ConsultationItem]) -> Void) {
-        let path = UserUid.uid + "-vaccines-item" + petKey
+        let path = UserUid.uid + consultationsItem + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 
@@ -64,7 +61,7 @@ class GetFirebaseConsultations {
         })
     }
     func deleteConsultations(petKey: String, callback: @escaping (Bool) -> Void) {
-        let path = UserUid.uid + "-consultations-item" + petKey
+        let path = UserUid.uid + consultationsItem + petKey
 
         databaseRef = Database.database().reference(withPath: "\(path)")
 

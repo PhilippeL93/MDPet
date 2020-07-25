@@ -19,8 +19,13 @@ class PresentConsultationCell: UITableViewCell {
     var consultationItem: ConsultationItem?
 
     func configureConsultationCell(consultationItem: ConsultationItem, callback: @escaping (Bool) -> Void ) {
-        dateFormatter.locale = localeLanguage
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+//        dateFormatter.locale = localeLanguage
+//        dateFormatter.dateFormat = "dd MMMM yyyy"
+//        let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+//        let dateToDisplay = dateFormatter.string(from: dateDMY!)
+    
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateToDisplay = dateFormatter.string(from: dateDMY!)

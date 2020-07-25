@@ -65,8 +65,8 @@ class PetViewController: UIViewController {
     var petItem: PetItem?
     private var veterinariesItems: [VeterinaryItem] = []
     private var petKey: String = ""
-    private var databaseRef = Database.database().reference(withPath: "pets-item")
-    private var imageRef = Storage.storage().reference().child("pets-images")
+    private var databaseRef = Database.database().reference(withPath: petsItem)
+    private var imageRef = Storage.storage().reference().child(petsInages)
     private var pathPet: String = ""
 
     var imagePicker: ImagePicker!
@@ -177,12 +177,12 @@ class PetViewController: UIViewController {
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        pathPet = UserUid.uid + "-pets-item"
+        pathPet = UserUid.uid + petsItem
         databaseRef = Database.database().reference(withPath: "\(pathPet)")
-        toggleActivityIndicator(shown: false)
+//        toggleActivityIndicator(shown: false)
         createObserverPet()
         createDelegatePet()
-        toggleSavePetButton(shown: false)
+//        toggleSavePetButton(shown: false)
         initiateObserverPet()
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
@@ -190,12 +190,12 @@ class PetViewController: UIViewController {
                 if self.typeOfCall == "update" {
                     self.initiatePetView()
                 }
+                self.initiateButtonSwitchViewPet()
+                self.imagePicker = ImagePicker(presentationController: self, delegate: self)
             } else {
                 print("erreur")
             }
         }
-        initiateButtonSwitchViewPet()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -331,6 +331,7 @@ class PetViewController: UIViewController {
             formatDate()
         }
         @objc func petVeterinaryFieldDidEnd(_ textField: UITextField) {
+            selectedVeterinaryName = ""
             if typeOfCall == "update" {
                 GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
                 veterinaryToSearch: petItem!.petVeterinary) { (success, veterinaryName, _) in
@@ -338,11 +339,16 @@ class PetViewController: UIViewController {
                         self.selectedVeterinaryName = veterinaryName
                     }
                 }
-                if petVeterinaryField.text != selectedVeterinaryName {
-                    updateDictionnaryFieldsUpdated(updated: true, forKey: "petVeterinaryUpdated")
-                } else {
-                    updateDictionnaryFieldsUpdated(updated: false, forKey: "petVeterinaryUpdated")
-                }
+//                if petVeterinaryField.text != selectedVeterinaryName {
+//                    updateDictionnaryFieldsUpdated(updated: true, forKey: "petVeterinaryUpdated")
+//                } else {
+//                    updateDictionnaryFieldsUpdated(updated: false, forKey: "petVeterinaryUpdated")
+//                }
+            }
+            if petVeterinaryField.text != selectedVeterinaryName {
+                updateDictionnaryFieldsUpdated(updated: true, forKey: "petVeterinaryUpdated")
+            } else {
+                updateDictionnaryFieldsUpdated(updated: false, forKey: "petVeterinaryUpdated")
             }
         }
         @objc func petRaceFieldDidEnd(_ textField: UITextField) {
@@ -512,6 +518,8 @@ class PetViewController: UIViewController {
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
     private func initiateButtonSwitchViewPet() {
+        toggleActivityIndicator(shown: false)
+        toggleSavePetButton(shown: false)
         if typeOfCall == "create" {
             savePetButton.title = "Ajouter"
             self.title = "Nouvel animal"
@@ -531,6 +539,13 @@ class PetViewController: UIViewController {
         } else {
             savePetButton.title = "OK"
             self.title = "Modification animal"
+        }
+        if petBreederView.text.isEmpty {
+            petBreederView.text = "Eleveur"
+            petBreederView.textColor = UIColor.lightGray
+            petBreederView.font = UIFont(name: "raleway", size: 17.0)
+            petBreederView.returnKeyType = .done
+            petBreederView.delegate = self
         }
     }
     private func initiatePetView() {
@@ -903,7 +918,10 @@ extension PetViewController {
         }
     }
     private func checkUpdatePetDone() {
-        if savePetButton.isEnabled == false {
+                if fieldsUpdated.count == 0 {
+        //
+        //        }
+        //        if saveConsultationButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
         }

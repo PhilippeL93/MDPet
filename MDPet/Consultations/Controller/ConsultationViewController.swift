@@ -42,8 +42,9 @@ class ConsultationViewController: UIViewController {
     var petItem: PetItem?
     var consultationItem: ConsultationItem?
     private var consultationKey: String = ""
-    private var databaseRef = Database.database().reference(withPath: "consultations-item")
+    private var databaseRef = Database.database().reference(withPath: consultationsItem)
     private var pathConsultation: String = ""
+    private var consultationDateToSave: String = ""
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -89,33 +90,38 @@ class ConsultationViewController: UIViewController {
         if consultationDateField.text!.isEmpty {
             let date = Date()
             consultationDateField.text = dateFormatter.string(from: date)
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            consultationDateToSave = dateFormatter.string(from: date)
         } else {
-            let  consultationDate = dateFormatter.date(from: consultationDateField.text!)
+            dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+            let consultationDate = dateFormatter.date(from: consultationDateField.text!)
             datePickerConsultationDate?.date = consultationDate!
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            consultationDateToSave = dateFormatter.string(from: consultationDate!)
         }
     }
+
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        toggleActivityIndicator(shown: false)
-        pathConsultation = UserUid.uid + "-consultations-item" + petItem!.key
+        dateFormatter.locale = localeLanguage
+        formatDate()
+        pathConsultation = UserUid.uid + consultationsItem + petItem!.key
         databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
-        consultationPetNameLabel.text = petItem?.petName
         createObserverConsultation()
         createDelegateConsultation()
         initiateObserverConsultation()
-        toggleSaveConsultationButton(shown: false)
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
                 if self.typeOfCall == "update" {
                     self.initiateConsultationView()
                 }
+                self.initiateButtonConsultationView()
             } else {
                 print("erreur")
             }
         }
-        initiateButtonConsultationView()
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -178,10 +184,13 @@ class ConsultationViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
         }
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        consultationDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
         consultationDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func consultationVeterinaryFieldDidEnd(_ textField: UITextField) {
+        selectedVeterinaryName = ""
         if typeOfCall == "update" {
             GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinaryName, _) in
@@ -189,11 +198,11 @@ class ConsultationViewController: UIViewController {
                     self.selectedVeterinaryName = veterinaryName
                 }
             }
-            if consultationVeterinaryField.text != selectedVeterinaryName {
-                updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationVeterinaryUpdated")
-            } else {
-                updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationVeterinaryUpdated")
-            }
+        }
+        if consultationVeterinaryField.text != selectedVeterinaryName {
+            updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationVeterinaryUpdated")
+        } else {
+            updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationVeterinaryUpdated")
         }
     }
     @objc func consultationWeightFieldDidEnd(_ textField: UITextField) {
@@ -238,6 +247,9 @@ class ConsultationViewController: UIViewController {
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
     private func initiateButtonConsultationView() {
+        toggleActivityIndicator(shown: false)
+        toggleSaveConsultationButton(shown: false)
+        consultationPetNameLabel.text = petItem?.petName
         if typeOfCall == "create" {
             saveConsultationButton.title = "Ajouter"
             self.title = "Nouvelle consultation"
@@ -247,12 +259,21 @@ class ConsultationViewController: UIViewController {
             saveConsultationButton.title = "OK"
             self.title = "Modification consultation"
         }
+        if consultationReportView.text.isEmpty {
+            consultationReportView.text = "Compte-rendu"
+            consultationReportView.textColor = UIColor.lightGray
+            consultationReportView.font = UIFont(name: "raleway", size: 17.0)
+            consultationReportView.returnKeyType = .done
+            consultationReportView.delegate = self
+        }
     }
     private func initiateConsultationView() {
         consultationKey = consultationItem?.key ?? ""
         consultationReasonField.text = consultationItem?.consultationReason
-        consultationDateField.text = consultationItem?.consultationDate
-//        ici
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let consultationDate = dateFormatter.date(from: consultationItem!.consultationDate)
+        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+        consultationDateField.text = dateFormatter.string(from: consultationDate!)
         consultationWeightField.text = consultationItem?.consultationWeight
         consultationReportView.text = consultationItem?.consultationReport
 
@@ -265,7 +286,7 @@ class ConsultationViewController: UIViewController {
         selectedVeterinaryKey = consultationItem?.consultationVeterinary ?? ""
     }
     private func checkUpdateConsultationDone() {
-        if saveConsultationButton.isEnabled == false {
+        if fieldsUpdated.count == 0 {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -296,7 +317,7 @@ class ConsultationViewController: UIViewController {
         consultationItem = ConsultationItem(
             key: "",
             reason: String(consultationReasonField.text!),
-            date: String(consultationDateField.text!),
+            date: String(consultationDateToSave),
             veterinary: String(selectedVeterinaryKey),
             report: String(consultationReportView.text!),
             weight: String(consultationWeightField.text!),
@@ -348,12 +369,13 @@ class ConsultationViewController: UIViewController {
     }
     private func createObserverConsultationDatePickerView() {
         datePickerConsultationDate = UIDatePicker()
-        datePickerConsultationDate?.datePickerMode = .date
+        datePickerConsultationDate?.datePickerMode = .dateAndTime
+        datePickerConsultationDate?.minuteInterval = 5
         datePickerConsultationDate?.locale = localeLanguage
         datePickerConsultationDate?.addTarget(self,
                                        action:
                                                 #selector(ConsultationViewController.dateChangedConsultationDate(datePicker:)),
-                                       for: .valueChanged)
+                                       for: .valueChanged )
         consultationDateField.inputView = datePickerConsultationDate
     }
     private func createObserverConsultationVeterinaryPickerView() {
@@ -370,8 +392,8 @@ class ConsultationViewController: UIViewController {
                                          for: .editingDidEnd)
     }
     private func formatDate() {
-        dateFormatter.locale = localeLanguage
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.dateStyle = DateFormatter.Style.full
+        dateFormatter.timeStyle = DateFormatter.Style.short
     }
 }
 // MARK: UITextFieldDelegate
