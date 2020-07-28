@@ -343,10 +343,7 @@ extension VaccineViewController {
         activityIndicator.isHidden = !shown
     }
     private func checkUpdateVaccineDone() {
-                if fieldsUpdated.count == 0 {
-        //
-        //        }
-        //        if saveConsultationButton.isEnabled == false {
+        if saveVaccineButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -634,4 +631,3 @@ extension VaccineViewController: ImagePickerDelegate {
         updateDictionnaryFieldsUpdated(updated: true, forKey: "thumbnailImageUpdated")
     }
 }
-

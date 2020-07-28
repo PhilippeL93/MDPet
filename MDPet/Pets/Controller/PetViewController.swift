@@ -179,10 +179,8 @@ class PetViewController: UIViewController {
         super.viewDidLoad()
         pathPet = UserUid.uid + petsItem
         databaseRef = Database.database().reference(withPath: "\(pathPet)")
-//        toggleActivityIndicator(shown: false)
         createObserverPet()
         createDelegatePet()
-//        toggleSavePetButton(shown: false)
         initiateObserverPet()
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
@@ -339,11 +337,6 @@ class PetViewController: UIViewController {
                         self.selectedVeterinaryName = veterinaryName
                     }
                 }
-//                if petVeterinaryField.text != selectedVeterinaryName {
-//                    updateDictionnaryFieldsUpdated(updated: true, forKey: "petVeterinaryUpdated")
-//                } else {
-//                    updateDictionnaryFieldsUpdated(updated: false, forKey: "petVeterinaryUpdated")
-//                }
             }
             if petVeterinaryField.text != selectedVeterinaryName {
                 updateDictionnaryFieldsUpdated(updated: true, forKey: "petVeterinaryUpdated")
@@ -918,10 +911,7 @@ extension PetViewController {
         }
     }
     private func checkUpdatePetDone() {
-                if fieldsUpdated.count == 0 {
-        //
-        //        }
-        //        if saveConsultationButton.isEnabled == false {
+        if savePetButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
         }

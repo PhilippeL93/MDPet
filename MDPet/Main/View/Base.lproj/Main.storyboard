@@ -182,9 +182,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="P8p-y2-SOx">
                                 <rect key="frame" x="8" y="64" width="359" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Génération automatique vaccination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DB-3q-YAx" userLabel="Automatic Vaccination Generation">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Génération automatique vaccination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DB-3q-YAx" userLabel="Automatic Vaccination Generation Label">
                                         <rect key="frame" x="0.0" y="0.0" width="289" height="31"/>
-                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -197,18 +197,38 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="5wR-k7-tbo">
-                                <rect key="frame" x="8" y="103" width="361" height="31"/>
+                                <rect key="frame" x="8" y="103" width="359" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rappel vaccination activé" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZN-Sb-DDj" userLabel="Vaccination Reminder Activated">
-                                        <rect key="frame" x="0.0" y="0.0" width="289" height="31"/>
-                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rappel vaccination activé" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZN-Sb-DDj" userLabel="Vaccination Reminder Activated Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="287" height="31"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Sc-ei-IaD" userLabel="Switch Vaccination Reminder Activated">
-                                        <rect key="frame" x="312" y="0.0" width="51" height="31"/>
+                                        <rect key="frame" x="310" y="0.0" width="51" height="31"/>
                                         <connections>
                                             <action selector="touchVaccinationReminderActivatedSwitch:" destination="FE6-d0-1zL" eventType="valueChanged" id="JiV-c6-Whc"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="x9Z-ib-3Bx">
+                                <rect key="frame" x="8" y="142" width="359" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Génération consultation dans calendrier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQt-FE-s7g" userLabel="Automatic Generate Event Calendar Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="289" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="289" id="07L-lm-05Q"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-3s-PVB" userLabel="Switch Automatic Generate Event Calendar">
+                                        <rect key="frame" x="310" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="touchAutomaticGenerateEventInCalendar:" destination="FE6-d0-1zL" eventType="valueChanged" id="BS8-UI-ijv"/>
                                         </connections>
                                     </switch>
                                 </subviews>
@@ -219,8 +239,11 @@
                             <constraint firstItem="oyA-Ym-hs0" firstAttribute="trailing" secondItem="P8p-y2-SOx" secondAttribute="trailing" constant="8" id="9ri-fo-l9e"/>
                             <constraint firstItem="P8p-y2-SOx" firstAttribute="leading" secondItem="oyA-Ym-hs0" secondAttribute="leading" constant="8" id="GBc-9N-vO1"/>
                             <constraint firstItem="5wR-k7-tbo" firstAttribute="top" secondItem="P8p-y2-SOx" secondAttribute="bottom" constant="8" id="JTd-VE-Ikw"/>
+                            <constraint firstItem="oyA-Ym-hs0" firstAttribute="trailing" secondItem="x9Z-ib-3Bx" secondAttribute="trailing" constant="8" id="Nc2-bl-rfQ"/>
+                            <constraint firstItem="oyA-Ym-hs0" firstAttribute="trailing" secondItem="5wR-k7-tbo" secondAttribute="trailing" constant="8" id="XHh-2K-Ex3"/>
                             <constraint firstItem="5wR-k7-tbo" firstAttribute="leading" secondItem="oyA-Ym-hs0" secondAttribute="leading" constant="8" id="YyP-jC-QUx"/>
-                            <constraint firstItem="oyA-Ym-hs0" firstAttribute="trailing" secondItem="5wR-k7-tbo" secondAttribute="trailing" constant="6" id="mwB-Hw-FOx"/>
+                            <constraint firstItem="x9Z-ib-3Bx" firstAttribute="leading" secondItem="oyA-Ym-hs0" secondAttribute="leading" constant="8" id="nPQ-GY-wDV"/>
+                            <constraint firstItem="x9Z-ib-3Bx" firstAttribute="top" secondItem="5wR-k7-tbo" secondAttribute="bottom" constant="8" id="rJx-gg-Aym"/>
                             <constraint firstItem="P8p-y2-SOx" firstAttribute="top" secondItem="oyA-Ym-hs0" secondAttribute="top" constant="20" id="tN1-UW-eey"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oyA-Ym-hs0"/>
@@ -234,6 +257,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="automaticGenerateEventInCalendarSwitch" destination="SJ5-3s-PVB" id="oTe-SH-o2j"/>
                         <outlet property="automaticVaccinationGeneratedSwitch" destination="U7B-Jf-NjP" id="RUe-Wy-dbz"/>
                         <outlet property="vaccinationReminderActivatedSwitch" destination="0Sc-ei-IaD" id="2ug-tl-0jr"/>
                     </connections>
@@ -1960,12 +1984,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Add To Calendar">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Manage Calendar">
                                 <rect key="frame" x="81" y="511" width="213" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Ajouter au calendrier"/>
                                 <connections>
-                                    <action selector="addToCalendar:" destination="ibQ-5h-4AM" eventType="touchUpInside" id="rvz-EH-PyE"/>
+                                    <action selector="manageCalendar:" destination="ibQ-5h-4AM" eventType="touchUpInside" id="mal-Tb-qyq"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="b3y-SX-ZRG">
@@ -2015,13 +2039,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="b3y-SX-ZRG" id="MQh-jN-qWb"/>
-                        <outlet property="addToCalendarButton" destination="MlM-dQ-3cm" id="T1T-P9-D9f"/>
                         <outlet property="consultationDateField" destination="fWN-LU-baL" id="2x8-Iu-rcc"/>
                         <outlet property="consultationPetNameLabel" destination="RZh-lw-JJF" id="smK-TG-QQc"/>
                         <outlet property="consultationReasonField" destination="coc-bS-xw6" id="a4Y-7W-a9p"/>
                         <outlet property="consultationReportView" destination="3rY-NX-j8Z" id="AL4-4R-KyO"/>
                         <outlet property="consultationVeterinaryField" destination="iLH-LI-HXG" id="Nw5-GG-EsS"/>
                         <outlet property="consultationWeightField" destination="bwY-u0-3hY" id="puy-Jj-4G0"/>
+                        <outlet property="manageCalendarButton" destination="MlM-dQ-3cm" id="ZO4-gd-9yz"/>
                         <outlet property="saveConsultationButton" destination="ITh-zE-DSR" id="ora-9I-5a2"/>
                     </connections>
                 </viewController>

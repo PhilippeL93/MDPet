@@ -18,7 +18,7 @@ struct ConsultationItem {
     var consultationVeterinary: String
     var consultationReport: String
     var consultationWeight: String
-    var consultationSize: String
+    var consultationIdEvent: String
 //    var consultationDiseases: [String]
 
     init(key: String = "",
@@ -27,7 +27,7 @@ struct ConsultationItem {
          veterinary: String,
          report: String,
          weight: String,
-         size: String,
+         idEvent: String,
          diseases: [String]) {
         self.ref = nil
         self.key = key
@@ -36,7 +36,7 @@ struct ConsultationItem {
         self.consultationVeterinary = veterinary
         self.consultationReport = report
         self.consultationWeight = weight
-        self.consultationSize = size
+        self.consultationIdEvent = idEvent
 //        self.consultationDiseases = diseases
     }
 
@@ -48,7 +48,7 @@ struct ConsultationItem {
             let consultationVeterinary = value["consultationVeterinary"] as? String,
             let consultationReport = value["consultationReport"] as? String,
             let consultationWeight = value["consultationWeight"] as? String,
-            let consultationSize = value["consultationSize"] as? String
+            let consultationIdEvent = value["consultationIdEvent"] as? String
 //            let consultationDiseases = value["consultationDiseaes"] as? [String]
             else {
                 return nil
@@ -61,7 +61,7 @@ struct ConsultationItem {
         self.consultationVeterinary = consultationVeterinary
         self.consultationReport = consultationReport
         self.consultationWeight = consultationWeight
-        self.consultationSize = consultationSize
+        self.consultationIdEvent = consultationIdEvent
 //        self.consultationDiseases = consultationDiseases
   }
 
@@ -72,7 +72,7 @@ struct ConsultationItem {
             "consultationVeterinary": consultationVeterinary,
             "consultationReport": consultationReport,
             "consultationWeight": consultationWeight,
-            "consultationSize": consultationSize
+            "consultationIdEvent": consultationIdEvent
 //            "consultationDiseases": consultationDiseases
         ]
     }

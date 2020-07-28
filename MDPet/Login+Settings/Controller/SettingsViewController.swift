@@ -13,16 +13,19 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var automaticVaccinationGeneratedSwitch: UISwitch!
     @IBOutlet weak var vaccinationReminderActivatedSwitch: UISwitch!
+    @IBOutlet weak var automaticGenerateEventInCalendarSwitch: UISwitch!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-        automaticVaccinationGeneratedSwitch.isOn = SettingService.automaticVaccinationGeneratedSwitch
-        vaccinationReminderActivatedSwitch.isOn = SettingService.vaccinationReminderActivatedSwitch
+        automaticVaccinationGeneratedSwitch.isOn = Settings.automaticVaccinationGeneratedSwitch
+        vaccinationReminderActivatedSwitch.isOn = Settings.vaccinationReminderActivatedSwitch
+        automaticGenerateEventInCalendarSwitch.isOn = Settings.automaticGenerateEventInCalendarSwitch
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        SettingService.automaticVaccinationGeneratedSwitch = automaticVaccinationGeneratedSwitch.isOn
-        SettingService.vaccinationReminderActivatedSwitch = vaccinationReminderActivatedSwitch.isOn
+        Settings.automaticVaccinationGeneratedSwitch = automaticVaccinationGeneratedSwitch.isOn
+        Settings.vaccinationReminderActivatedSwitch = vaccinationReminderActivatedSwitch.isOn
+        Settings.automaticGenerateEventInCalendarSwitch = automaticGenerateEventInCalendarSwitch.isOn
     }
 
     // MARK: Properties
@@ -49,10 +52,13 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func touchAutomaticVaccinationGeneratedSwitch(_ sender: UISwitch) {
-        SettingService.automaticVaccinationGeneratedSwitch = automaticVaccinationGeneratedSwitch.isOn
+        Settings.automaticVaccinationGeneratedSwitch = automaticVaccinationGeneratedSwitch.isOn
     }
 
     @IBAction func touchVaccinationReminderActivatedSwitch(_ sender: UISwitch) {
-        SettingService.vaccinationReminderActivatedSwitch = vaccinationReminderActivatedSwitch.isOn
+        Settings.vaccinationReminderActivatedSwitch = vaccinationReminderActivatedSwitch.isOn
+    }
+    @IBAction func touchAutomaticGenerateEventInCalendar(_ sender: UISwitch) {
+        Settings.automaticGenerateEventInCalendarSwitch = vaccinationReminderActivatedSwitch.isOn
     }
 }

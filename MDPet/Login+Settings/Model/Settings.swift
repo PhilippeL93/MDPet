@@ -1,5 +1,5 @@
 //
-//  SettingService.swift
+//  Settings.swift
 //  MDPet
 //
 //  Created by Philippe on 07/07/2020.
@@ -8,10 +8,11 @@
 
 import Foundation
 
-class SettingService {
+class Settings {
     private struct Keys {
         static let automaticVaccinationGeneratedSwitch = "automaticVaccinationGeneratedSwitch"
         static let vaccinationReminderActivatedSwitch = "vaccinationReminderActivatedSwitch"
+        static let automaticGenerateEventInCalendarSwitch = "automaticGenerateEventInCalendarSwitch"
     }
     static var automaticVaccinationGeneratedSwitch: Bool {
         get {
@@ -27,6 +28,14 @@ class SettingService {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.vaccinationReminderActivatedSwitch)
+        }
+    }
+    static var automaticGenerateEventInCalendarSwitch: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: Keys.automaticGenerateEventInCalendarSwitch)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.automaticGenerateEventInCalendarSwitch)
         }
     }
 }

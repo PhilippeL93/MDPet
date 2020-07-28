@@ -28,6 +28,22 @@ extension UIViewController {
             alert(message: Errors.saveFailed.rawValue, title: "Sauvegarde interrompue")
         case .duplicateVeterinary:
             alert(message: Errors.duplicateVeterinary.rawValue, title: "Veterinaire déjà existant")
+        case .eventAddedSuccessfully:
+            alert(message: Errors.eventAddedSuccessfully.rawValue, title: "Calendrier")
+        case .eventRemovedSuccessfully:
+            alert(message: Errors.eventRemovedSuccessfully.rawValue, title: "Calendrier")
+        case .calendarAccessDeniedOrRestricted:
+            alert(message: Errors.calendarAccessDeniedOrRestricted.rawValue, title: "Calendrier")
+        case .eventNotAddedToCalendar:
+            alert(message: Errors.eventNotAddedToCalendar.rawValue, title: "Calendrier")
+        case .eventAlreadyExistsInCalendar:
+            alert(message: Errors.eventAlreadyExistsInCalendar.rawValue, title: "Calendrier")
+        case .eventNotDeletedToCalendar:
+            alert(message: Errors.eventNotDeletedToCalendar.rawValue, title: "Calendrier")
+        case .eventDoesntExistInCalendar:
+            alert(message: Errors.eventDoesntExistInCalendar.rawValue, title: "Calendrier")
+        case .eventNotUpdatedToCalendar:
+            alert(message: Errors.eventNotUpdatedToCalendar.rawValue, title: "Calendrier")
         }
     }
 
@@ -40,6 +56,22 @@ extension UIViewController {
             return Errors.saveFailed.rawValue
         case .duplicateVeterinary:
             return Errors.duplicateVeterinary.rawValue
+        case .eventAddedSuccessfully:
+            return Errors.eventAddedSuccessfully.rawValue
+        case .eventRemovedSuccessfully:
+            return Errors.eventRemovedSuccessfully.rawValue
+        case .calendarAccessDeniedOrRestricted:
+            return Errors.calendarAccessDeniedOrRestricted.rawValue
+        case .eventNotAddedToCalendar:
+            return Errors.eventNotAddedToCalendar.rawValue
+        case .eventAlreadyExistsInCalendar:
+            return Errors.eventAlreadyExistsInCalendar.rawValue
+        case .eventNotDeletedToCalendar:
+            return Errors.eventNotDeletedToCalendar.rawValue
+        case .eventDoesntExistInCalendar:
+            return Errors.eventDoesntExistInCalendar.rawValue
+        case .eventNotUpdatedToCalendar:
+            return Errors.eventNotUpdatedToCalendar.rawValue
         }
     }
 }

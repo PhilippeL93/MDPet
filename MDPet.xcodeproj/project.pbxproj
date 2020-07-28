@@ -43,7 +43,8 @@
 		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
 		3757579224C8956F00294274 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579124C8956F00294274 /* VaccineViewController.swift */; };
 		3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */; };
-		379AB36324B75B5000C056A1 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* Type.swift */; };
+		3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579524CDC7C900294274 /* EventsCalendarManager.swift */; };
+		379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* TypeOfCaller.swift */; };
 		379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36624B767BA00C056A1 /* ImagePicker.swift */; };
 		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
 		379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */; };
@@ -55,7 +56,7 @@
 		37CED12E23FC154200CF6247 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12D23FC154200CF6247 /* Pets.swift */; };
 		37CED13223FD1F0700CF6247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */; };
 		37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED13C23FD329500CF6247 /* LoginViewController.swift */; };
-		37D0384924B45D8100449A69 /* SettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0384824B45D8100449A69 /* SettingService.swift */; };
+		37D0384924B45D8100449A69 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0384824B45D8100449A69 /* Settings.swift */; };
 		37D0384B24B4995D00449A69 /* PresentVaccineDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0384A24B4995D00449A69 /* PresentVaccineDetailCell.swift */; };
 		37D0384D24B4AF6100449A69 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0384C24B4AF6100449A69 /* SelfSizedTableView.swift */; };
 		37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */; };
@@ -115,7 +116,8 @@
 		3757578E24C87D5D00294274 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../../../../Desktop/Raleway/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		3757579124C8956F00294274 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
 		3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfFirebaseItems.swift; sourceTree = "<group>"; };
-		379AB36224B75B5000C056A1 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		3757579524CDC7C900294274 /* EventsCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarManager.swift; sourceTree = "<group>"; };
+		379AB36224B75B5000C056A1 /* TypeOfCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCaller.swift; sourceTree = "<group>"; };
 		379AB36624B767BA00C056A1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
 		379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +129,7 @@
 		37CED12D23FC154200CF6247 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
 		37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37CED13C23FD329500CF6247 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		37D0384824B45D8100449A69 /* SettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingService.swift; sourceTree = "<group>"; };
+		37D0384824B45D8100449A69 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		37D0384A24B4995D00449A69 /* PresentVaccineDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVaccineDetailCell.swift; sourceTree = "<group>"; };
 		37D0384C24B4AF6100449A69 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUpdateViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */,
 				379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */,
+				3757579524CDC7C900294274 /* EventsCalendarManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -387,7 +390,7 @@
 				372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */,
 				375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */,
 				375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */,
-				379AB36224B75B5000C056A1 /* Type.swift */,
+				379AB36224B75B5000C056A1 /* TypeOfCaller.swift */,
 				3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */,
 			);
 			path = Model;
@@ -416,7 +419,7 @@
 			children = (
 				372CFFD32486A2A400984537 /* User.swift */,
 				37A6588F24922C610063867C /* UserUid.swift */,
-				37D0384824B45D8100449A69 /* SettingService.swift */,
+				37D0384824B45D8100449A69 /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -640,7 +643,7 @@
 				372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
-				379AB36324B75B5000C056A1 /* Type.swift in Sources */,
+				379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */,
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
 				379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */,
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
@@ -651,6 +654,7 @@
 				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
 				372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */,
 				3757579224C8956F00294274 /* VaccineViewController.swift in Sources */,
+				3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
@@ -665,7 +669,7 @@
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
-				37D0384924B45D8100449A69 /* SettingService.swift in Sources */,
+				37D0384924B45D8100449A69 /* Settings.swift in Sources */,
 				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

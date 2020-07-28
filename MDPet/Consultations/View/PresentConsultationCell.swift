@@ -24,7 +24,7 @@ class PresentConsultationCell: UITableViewCell {
 //        let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
 //        dateFormatter.dateFormat = "dd/MM/yyyy"
 //        let dateToDisplay = dateFormatter.string(from: dateDMY!)
-    
+
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
         dateFormatter.dateFormat = "dd/MM/yyyy"

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import EventKit
 
 class ConsultationViewController: UIViewController {
 
@@ -18,7 +19,7 @@ class ConsultationViewController: UIViewController {
     @IBOutlet weak var consultationWeightField: UITextField!
     @IBOutlet weak var consultationReportView: UITextView!
     @IBOutlet weak var saveConsultationButton: UIBarButtonItem!
-    @IBOutlet weak var addToCalendarButton: UIButton!
+    @IBOutlet weak var manageCalendarButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
@@ -35,12 +36,14 @@ class ConsultationViewController: UIViewController {
     private var selectedVeterinaryKey: String = ""
     private var typeFieldOrView: String = ""
     private var selectedVeterinaryName = ""
+    private var consultationIdEvent = ""
 
     var veterinariesItems: [VeterinaryItem] = []
     var consultationsItems: [ConsultationItem] = []
     var typeOfCall: String = ""
     var petItem: PetItem?
     var consultationItem: ConsultationItem?
+    var eventsCalendarManager = EventsCalendarManager()
     private var consultationKey: String = ""
     private var databaseRef = Database.database().reference(withPath: consultationsItem)
     private var pathConsultation: String = ""
@@ -63,10 +66,6 @@ class ConsultationViewController: UIViewController {
     }
     @IBAction func saveConsultation(_ sender: Any) {
         createOrUpdateConsultation()
-    }
-    @IBAction func addToCalendar(_ sender: Any) {
-//        ici
-//        createConsultationInCalendar()
     }
     @IBAction func backToConsultations(_ sender: UIBarButtonItem) {
         activeField?.resignFirstResponder()
@@ -93,7 +92,7 @@ class ConsultationViewController: UIViewController {
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             consultationDateToSave = dateFormatter.string(from: date)
         } else {
-            dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+            formatDate()
             let consultationDate = dateFormatter.date(from: consultationDateField.text!)
             datePickerConsultationDate?.date = consultationDate!
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -272,6 +271,7 @@ class ConsultationViewController: UIViewController {
         consultationReasonField.text = consultationItem?.consultationReason
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let consultationDate = dateFormatter.date(from: consultationItem!.consultationDate)
+        consultationDateToSave = dateFormatter.string(from: consultationDate!)
         dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
         consultationDateField.text = dateFormatter.string(from: consultationDate!)
         consultationWeightField.text = consultationItem?.consultationWeight
@@ -286,7 +286,7 @@ class ConsultationViewController: UIViewController {
         selectedVeterinaryKey = consultationItem?.consultationVeterinary ?? ""
     }
     private func checkUpdateConsultationDone() {
-        if fieldsUpdated.count == 0 {
+        if saveConsultationButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -313,7 +313,9 @@ class ConsultationViewController: UIViewController {
         if typeOfCall == "create" {
             uniqueUUID = UUID().uuidString
         }
-
+        if Settings.automaticGenerateEventInCalendarSwitch == true {
+            manageEventToCalendar()
+        }
         consultationItem = ConsultationItem(
             key: "",
             reason: String(consultationReasonField.text!),
@@ -321,7 +323,7 @@ class ConsultationViewController: UIViewController {
             veterinary: String(selectedVeterinaryKey),
             report: String(consultationReportView.text!),
             weight: String(consultationWeightField.text!),
-            size: "",
+            idEvent: consultationIdEvent,
             diseases: [])
         let consultationItemRef = databaseRef.child(uniqueUUID)
         consultationItemRef.setValue(consultationItem?.toAnyObject())
@@ -361,6 +363,52 @@ class ConsultationViewController: UIViewController {
     saveConsultationButton.isEnabled = shown
     saveConsultationButton.isAccessibilityElement = shown
     }
+}
+extension ConsultationViewController {
+    private func manageEventToCalendar() {
+        var veterinaryIndice = 0
+        for indice in 0...veterinariesItems.count-1
+            where ( selectedVeterinaryKey == veterinariesItems[indice].key) {
+                veterinaryIndice = indice
+        }
+        let store = EKEventStore()
+        let event = EKEvent(eventStore: store)
+        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+        event.title = String(consultationReasonField.text!)
+        event.startDate = dateFormatter.date(from: consultationDateField.text!)
+        event.endDate = event.startDate + 3600
+        event.location = veterinariesItems[veterinaryIndice].veterinaryName
+                        + ", "
+                        + veterinariesItems[veterinaryIndice].veterinaryStreetOne
+                        + ", "
+                        + veterinariesItems[veterinaryIndice].veterinaryPostalCode
+                        + " "
+                        + veterinariesItems[veterinaryIndice].veterinaryCity
+        let eventIdentifier = consultationItem?.consultationIdEvent ?? ""
+        eventsCalendarManager.addEventToCalendar(event: event, eventIdentifier: eventIdentifier) { (result, idEvent) in
+            switch result {
+            case .success:
+                self.consultationIdEvent = idEvent
+                self.updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationIdEventUpdated")
+            case .failure(let error):
+                switch error {
+                case .calendarAccessDeniedOrRestricted:
+                    self.getErrors(type: .calendarAccessDeniedOrRestricted)
+                case .eventNotAddedToCalendar:
+                    self.getErrors(type: .eventNotAddedToCalendar)
+                case .eventAlreadyExistsInCalendar:
+                    self.getErrors(type: .eventAlreadyExistsInCalendar)
+                case .eventNotDeletedToCalendar:
+                    self.getErrors(type: .eventNotDeletedToCalendar)
+                case .eventDoesntExistInCalendar:
+                    self.getErrors(type: .eventDoesntExistInCalendar)
+                case .eventNotUpdatedToCalendar:
+                    self.getErrors(type: .eventNotUpdatedToCalendar)
+                }
+            }
+        }
+    }
+
     private func createObserverConsultationReason() {
         consultationReasonField?.addTarget(self,
                                          action:
@@ -392,8 +440,9 @@ class ConsultationViewController: UIViewController {
                                          for: .editingDidEnd)
     }
     private func formatDate() {
-        dateFormatter.dateStyle = DateFormatter.Style.full
-        dateFormatter.timeStyle = DateFormatter.Style.short
+//        dateFormatter.dateStyle = DateFormatter.Style.full
+        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
+//        dateFormatter.timeStyle = DateFormatter.Style.short
     }
 }
 // MARK: UITextFieldDelegate
