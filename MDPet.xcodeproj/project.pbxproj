@@ -10,7 +10,6 @@
 		37130ECC24A62D3F007E7151 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37130ECB24A62D3F007E7151 /* Raleway-Medium.ttf */; };
 		3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EAC2239188E800CAA9E7 /* AppDelegate.swift */; };
 		3715EACA239188E800CAA9E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAC8239188E800CAA9E7 /* Main.storyboard */; };
-		3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */; };
 		3715EACF239188E800CAA9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3715EACE239188E800CAA9E7 /* Assets.xcassets */; };
 		3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */; };
 		3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* MDPetTests.swift */; };
@@ -51,6 +50,7 @@
 		37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588D248A86DC0063867C /* PresentPetCell.swift */; };
 		37A6589024922C610063867C /* UserUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588F24922C610063867C /* UserUid.swift */; };
 		37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A981DD24A4E26200F491E2 /* Diseases.swift */; };
+		37C227BE24D06E8C00492C59 /* TypeOfCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227BD24D06E8C00492C59 /* TypeOfCall.swift */; };
 		37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12923FC112100CF6247 /* UIViewController+Alert.swift */; };
 		37CED12C23FC114400CF6247 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12B23FC114400CF6247 /* Errors.swift */; };
 		37CED12E23FC154200CF6247 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12D23FC154200CF6247 /* Pets.swift */; };
@@ -79,7 +79,6 @@
 		3715EABF239188E800CAA9E7 /* MDPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715EAC2239188E800CAA9E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3715EAC9239188E800CAA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3715EACC239188E800CAA9E7 /* MDPet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MDPet.xcdatamodel; sourceTree = "<group>"; };
 		3715EACE239188E800CAA9E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3715EAD1239188E800CAA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3715EAD3239188E800CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,6 +123,7 @@
 		37A6588D248A86DC0063867C /* PresentPetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPetCell.swift; sourceTree = "<group>"; };
 		37A6588F24922C610063867C /* UserUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUid.swift; sourceTree = "<group>"; };
 		37A981DD24A4E26200F491E2 /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
+		37C227BD24D06E8C00492C59 /* TypeOfCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCall.swift; sourceTree = "<group>"; };
 		37CED12923FC112100CF6247 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		37CED12B23FC114400CF6247 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		37CED12D23FC154200CF6247 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
@@ -384,13 +384,13 @@
 		37A65887248A7E6B0063867C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */,
 				3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */,
 				372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */,
 				372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */,
 				375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */,
 				375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */,
 				379AB36224B75B5000C056A1 /* TypeOfCaller.swift */,
+				37C227BD24D06E8C00492C59 /* TypeOfCall.swift */,
 				3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */,
 			);
 			path = Model;
@@ -636,7 +636,6 @@
 				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				37D0384B24B4995D00449A69 /* PresentVaccineDetailCell.swift in Sources */,
 				37D0384D24B4AF6100449A69 /* SelfSizedTableView.swift in Sources */,
-				3715EACD239188E800CAA9E7 /* MDPet.xcdatamodeld in Sources */,
 				37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */,
 				375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
@@ -654,6 +653,7 @@
 				372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */,
 				372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */,
 				3757579224C8956F00294274 /* VaccineViewController.swift in Sources */,
+				37C227BE24D06E8C00492C59 /* TypeOfCall.swift in Sources */,
 				3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */,
@@ -947,19 +947,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3715EACB239188E800CAA9E7 /* MDPet.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3715EACC239188E800CAA9E7 /* MDPet.xcdatamodel */,
-			);
-			currentVersion = 3715EACC239188E800CAA9E7 /* MDPet.xcdatamodel */;
-			path = MDPet.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3715EAB7239188E800CAA9E7 /* Project object */;
 }

@@ -227,9 +227,6 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-3s-PVB" userLabel="Switch Automatic Generate Event Calendar">
                                         <rect key="frame" x="310" y="0.0" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="touchAutomaticGenerateEventInCalendar:" destination="FE6-d0-1zL" eventType="valueChanged" id="BS8-UI-ijv"/>
-                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
@@ -2197,20 +2194,23 @@
                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1h3-eC-ifN" userLabel="Text Field Login Password">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1h3-eC-ifN" userLabel="Text Field Login Password">
                                 <rect key="frame" x="70" y="303.5" width="235" height="38"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="zA7-Xp-eBy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-VQ-Fc7">
-                                <rect key="frame" x="70" y="369" width="235" height="38"/>
+                                <rect key="frame" x="70" y="394.5" width="235" height="38"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="hYA-Po-Mdd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Connexion">
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -2218,12 +2218,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUf-YL-Q60">
-                                <rect key="frame" x="70" y="415" width="235" height="38"/>
+                                <rect key="frame" x="70" y="440.5" width="235" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="CDz-rJ-kFC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Sign up">
+                                <state key="normal" title="Inscription">
                                     <color key="titleColor" red="0.92298394439999998" green="0.33495402340000002" blue="0.27055013179999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -2236,21 +2236,34 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIW-qq-i5W" userLabel="Missing Password">
+                                <rect key="frame" x="70" y="349.5" width="235" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="5mY-0m-KUd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="11"/>
+                                <state key="normal" title="Mot de passe oublié ?"/>
+                                <connections>
+                                    <action selector="missingPassword:" destination="ZpG-R2-526" eventType="touchUpInside" id="tNn-Qw-nfr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="wIW-qq-i5W" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="0dX-Vs-Wwn"/>
                             <constraint firstItem="K1L-VQ-Fc7" firstAttribute="height" secondItem="Ljy-G0-Qlo" secondAttribute="height" id="AlI-Oa-qjF"/>
                             <constraint firstItem="ZgC-yx-Xyo" firstAttribute="top" secondItem="lYL-Jy-Y4A" secondAttribute="top" constant="78" id="Cfq-Fm-TaF"/>
                             <constraint firstItem="NUf-YL-Q60" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="FpA-Ol-WhW"/>
+                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="top" secondItem="wIW-qq-i5W" secondAttribute="bottom" constant="20" id="JtL-Lb-Rek"/>
                             <constraint firstItem="1h3-eC-ifN" firstAttribute="height" secondItem="Ljy-G0-Qlo" secondAttribute="height" id="KMM-1U-8EX"/>
                             <constraint firstItem="NUf-YL-Q60" firstAttribute="top" secondItem="K1L-VQ-Fc7" secondAttribute="bottom" constant="8" id="MEL-Ag-8ZH"/>
                             <constraint firstItem="NUf-YL-Q60" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="WnZ-cb-wW4"/>
                             <constraint firstItem="K1L-VQ-Fc7" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="ZAa-Ea-ZwE"/>
-                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="top" secondItem="1h3-eC-ifN" secondAttribute="bottom" constant="27.5" id="agh-Sb-Vfx"/>
                             <constraint firstItem="Ljy-G0-Qlo" firstAttribute="top" secondItem="ZgC-yx-Xyo" secondAttribute="bottom" constant="110" id="cNa-aR-hZc"/>
                             <constraint firstItem="1h3-eC-ifN" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="dX5-ye-ZSk"/>
                             <constraint firstItem="1h3-eC-ifN" firstAttribute="top" secondItem="Ljy-G0-Qlo" secondAttribute="bottom" constant="8" id="eld-8H-hng"/>
+                            <constraint firstItem="wIW-qq-i5W" firstAttribute="top" secondItem="1h3-eC-ifN" secondAttribute="bottom" constant="8" id="k4J-Qh-mHE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K1L-VQ-Fc7" secondAttribute="trailing" constant="54" id="npv-BJ-XSx"/>
                             <constraint firstItem="K1L-VQ-Fc7" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="oi5-IN-LtT"/>
                             <constraint firstItem="1h3-eC-ifN" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="pZK-eU-oSZ"/>
@@ -2263,6 +2276,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="missingPasswordButton" destination="wIW-qq-i5W" id="RVU-0K-yQJ"/>
                         <outlet property="textFieldLoginEmail" destination="Ljy-G0-Qlo" id="bfV-X1-kGe"/>
                         <outlet property="textFieldLoginPassword" destination="1h3-eC-ifN" id="muf-5n-4el"/>
                         <segue destination="F6V-S5-kUn" kind="presentation" identifier="LoginToList" id="75A-IR-byw"/>
@@ -2275,7 +2289,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-330" y="354"/>
+            <point key="canvasLocation" x="-330.39999999999998" y="353.9730134932534"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="yfh-KD-50u">

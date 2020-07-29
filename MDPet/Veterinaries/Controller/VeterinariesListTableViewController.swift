@@ -36,7 +36,8 @@ class VeterinariesListTableViewController: UIViewController {
             as? VeterinaryViewController else {
                 return
         }
-        destVC.typeOfCall = "create"
+//        destVC.typeOfCall = "create"
+        destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
 }
@@ -77,7 +78,7 @@ extension VeterinariesListTableViewController: UITableViewDelegate {
                 return
         }
         let veterinaryItem = veterinariesItems[indexPath.row]
-        destVC.typeOfCall = "update"
+        destVC.typeOfCall = TypeOfCall.update
         destVC.veterinaryItem = veterinaryItem
         self.show(destVC, sender: self)
     }

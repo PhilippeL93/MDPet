@@ -61,7 +61,8 @@ class PetViewController: UIViewController {
     private var typeFieldOrView: String = ""
     private var selectedVeterinaryName = ""
 
-    var typeOfCall: String = ""
+    //    var typeOfCall: String = ""
+    var typeOfCall: TypeOfCall?
     var petItem: PetItem?
     private var veterinariesItems: [VeterinaryItem] = []
     private var petKey: String = ""
@@ -78,7 +79,7 @@ class PetViewController: UIViewController {
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
             }
-            if typeOfCall == "create" {
+            if case .create = typeOfCall {
                 toggleSavePetButton(shown: false)
                 checkPetComplete()
             } else {
@@ -185,7 +186,7 @@ class PetViewController: UIViewController {
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
-                if self.typeOfCall == "update" {
+                if case .update = self.typeOfCall {
                     self.initiatePetView()
                 }
                 self.initiateButtonSwitchViewPet()
@@ -265,7 +266,7 @@ class PetViewController: UIViewController {
                 petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
                     return
             }
-            if typeOfCall == "update" {
+             if case .update = typeOfCall {
                 if petType == "Rongeur" {
                     vaccinesButton.isHidden = true
                 } else {
@@ -330,7 +331,7 @@ class PetViewController: UIViewController {
         }
         @objc func petVeterinaryFieldDidEnd(_ textField: UITextField) {
             selectedVeterinaryName = ""
-            if typeOfCall == "update" {
+            if case .update = typeOfCall {
                 GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
                 veterinaryToSearch: petItem!.petVeterinary) { (success, veterinaryName, _) in
                     if success {
@@ -513,7 +514,7 @@ class PetViewController: UIViewController {
     private func initiateButtonSwitchViewPet() {
         toggleActivityIndicator(shown: false)
         toggleSavePetButton(shown: false)
-        if typeOfCall == "create" {
+        if case .create = typeOfCall {
             savePetButton.title = "Ajouter"
             self.title = "Nouvel animal"
             suppressPetButton.isHidden = true
@@ -609,7 +610,7 @@ class PetViewController: UIViewController {
             petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
             return
         }
-        if typeOfCall == "update" {
+        if case .update = typeOfCall {
             if petType == "Rongeur" {
                 vaccinesButton.isHidden = true
             }
@@ -800,7 +801,7 @@ extension PetViewController {
         var storageRef = imageRef.child("\(String(describing: petKey)).png")
         var uniqueUUID = petKey
 
-        if typeOfCall == "create" {
+        if case .create = typeOfCall {
             uniqueUUID = UUID().uuidString
             storageRef = imageRef.child("\(String(describing: uniqueUUID)).png")
         }

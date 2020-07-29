@@ -45,7 +45,8 @@ class VaccinesListViewController: UIViewController {
                 return
         }
         destVC.petItem = petItem
-        destVC.typeOfCall = "create"
+//        destVC.typeOfCall = "create"
+        destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
 
@@ -84,7 +85,8 @@ extension VaccinesListViewController: UITableViewDelegate {
                 return
         }
         let vaccineItem = vaccineItems[indexPath.row]
-        destVC.typeOfCall = "update"
+//        destVC.typeOfCall = "update"
+        destVC.typeOfCall = TypeOfCall.update
         destVC.petItem = petItem
         destVC.vaccineItem = vaccineItem
         self.show(destVC, sender: self)

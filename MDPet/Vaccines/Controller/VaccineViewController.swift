@@ -41,7 +41,8 @@ class VaccineViewController: UIViewController {
     var selectedVeterinaryName = ""
 
     var veterinariesItems: [VeterinaryItem] = []
-    var typeOfCall: String = ""
+    //    var typeOfCall: String = ""
+    var typeOfCall: TypeOfCall?
     var petItem: PetItem?
     var vaccineItem: VaccineItem?
     var imagePicker: ImagePicker!
@@ -60,7 +61,7 @@ class VaccineViewController: UIViewController {
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
             }
-            if typeOfCall == "create" {
+            if case .create = typeOfCall {
                 toggleSaveVaccineButton(shown: false)
                 checkVaccineComplete()
             } else {
@@ -122,7 +123,7 @@ class VaccineViewController: UIViewController {
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
-                if self.typeOfCall == "update" {
+                if case .update = self.typeOfCall {
                     self.initiateVaccineView()
                 }
             } else {
@@ -200,7 +201,7 @@ class VaccineViewController: UIViewController {
     }
     @objc func vaccineVeterinaryFieldDidEnd(_ textField: UITextField) {
         selectedVeterinaryName = ""
-        if typeOfCall == "update" {
+            if case .update = typeOfCall {
             GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinaryName, _) in
                 if success {
@@ -261,7 +262,7 @@ extension VaccineViewController {
         vaccinePetNameLabel.text = petItem?.petName
         toggleActivityIndicator(shown: false)
         toggleSaveVaccineButton(shown: false)
-        if typeOfCall == "create" {
+        if case .create = typeOfCall {
             saveVaccineButton.title = "Ajouter"
             self.title = "Nouveau vaccin"
 //            suppressVaccineButton.isHidden = true
@@ -301,7 +302,7 @@ extension VaccineViewController {
         default:
             petDiseasesCount = 0
         }
-        if typeOfCall == "create" {
+        if case .create = typeOfCall {
             vaccineItem = VaccineItem(
                 name: "",
                 key: "",
@@ -366,7 +367,7 @@ extension VaccineViewController {
         var storageRef = imageRef.child("\(String(describing: vaccineKey)).png")
         var uniqueUUID = vaccineKey
 
-        if typeOfCall == "create" {
+         if case .create = typeOfCall {
             uniqueUUID = UUID().uuidString
             storageRef = imageRef.child("\(String(describing: uniqueUUID)).png")
         }

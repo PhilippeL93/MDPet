@@ -38,8 +38,6 @@ extension UIViewController {
             alert(message: Errors.eventNotAddedToCalendar.rawValue, title: "Calendrier")
         case .eventAlreadyExistsInCalendar:
             alert(message: Errors.eventAlreadyExistsInCalendar.rawValue, title: "Calendrier")
-        case .eventNotDeletedToCalendar:
-            alert(message: Errors.eventNotDeletedToCalendar.rawValue, title: "Calendrier")
         case .eventDoesntExistInCalendar:
             alert(message: Errors.eventDoesntExistInCalendar.rawValue, title: "Calendrier")
         case .eventNotUpdatedToCalendar:
@@ -66,8 +64,6 @@ extension UIViewController {
             return Errors.eventNotAddedToCalendar.rawValue
         case .eventAlreadyExistsInCalendar:
             return Errors.eventAlreadyExistsInCalendar.rawValue
-        case .eventNotDeletedToCalendar:
-            return Errors.eventNotDeletedToCalendar.rawValue
         case .eventDoesntExistInCalendar:
             return Errors.eventDoesntExistInCalendar.rawValue
         case .eventNotUpdatedToCalendar:

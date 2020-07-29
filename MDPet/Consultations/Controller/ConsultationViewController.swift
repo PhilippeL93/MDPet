@@ -19,7 +19,6 @@ class ConsultationViewController: UIViewController {
     @IBOutlet weak var consultationWeightField: UITextField!
     @IBOutlet weak var consultationReportView: UITextView!
     @IBOutlet weak var saveConsultationButton: UIBarButtonItem!
-    @IBOutlet weak var manageCalendarButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
@@ -40,7 +39,8 @@ class ConsultationViewController: UIViewController {
 
     var veterinariesItems: [VeterinaryItem] = []
     var consultationsItems: [ConsultationItem] = []
-    var typeOfCall: String = ""
+    //    var typeOfCall: String = ""
+    var typeOfCall: TypeOfCall?
     var petItem: PetItem?
     var consultationItem: ConsultationItem?
     var eventsCalendarManager = EventsCalendarManager()
@@ -56,7 +56,7 @@ class ConsultationViewController: UIViewController {
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
             }
-            if typeOfCall == "create" {
+             if case .create = typeOfCall {
                 toggleSaveConsultationButton(shown: false)
                 checkConsultationComplete()
             } else {
@@ -113,7 +113,7 @@ class ConsultationViewController: UIViewController {
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
-                if self.typeOfCall == "update" {
+                if case .update = self.typeOfCall {
                     self.initiateConsultationView()
                 }
                 self.initiateButtonConsultationView()
@@ -190,7 +190,7 @@ class ConsultationViewController: UIViewController {
     }
     @objc func consultationVeterinaryFieldDidEnd(_ textField: UITextField) {
         selectedVeterinaryName = ""
-        if typeOfCall == "update" {
+        if case .update = typeOfCall {
             GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
             veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinaryName, _) in
                 if success {
@@ -249,11 +249,11 @@ class ConsultationViewController: UIViewController {
         toggleActivityIndicator(shown: false)
         toggleSaveConsultationButton(shown: false)
         consultationPetNameLabel.text = petItem?.petName
-        if typeOfCall == "create" {
+        if case .create = typeOfCall {
             saveConsultationButton.title = "Ajouter"
             self.title = "Nouvelle consultation"
-//        ici
-//            suppressConsultationButton.isHidden = true
+            //        ici
+            //            suppressConsultationButton.isHidden = true
         } else {
             saveConsultationButton.title = "OK"
             self.title = "Modification consultation"
@@ -310,7 +310,7 @@ class ConsultationViewController: UIViewController {
 
         var uniqueUUID = consultationKey
 
-        if typeOfCall == "create" {
+        if case .create = typeOfCall {
             uniqueUUID = UUID().uuidString
         }
         if Settings.automaticGenerateEventInCalendarSwitch == true {
@@ -398,8 +398,6 @@ extension ConsultationViewController {
                     self.getErrors(type: .eventNotAddedToCalendar)
                 case .eventAlreadyExistsInCalendar:
                     self.getErrors(type: .eventAlreadyExistsInCalendar)
-                case .eventNotDeletedToCalendar:
-                    self.getErrors(type: .eventNotDeletedToCalendar)
                 case .eventDoesntExistInCalendar:
                     self.getErrors(type: .eventDoesntExistInCalendar)
                 case .eventNotUpdatedToCalendar:

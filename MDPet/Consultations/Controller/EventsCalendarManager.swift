@@ -73,19 +73,6 @@ class EventsCalendarManager: NSObject {
             print("error")
         }
     }
-    // Generate an event which will be then added to the calendar
-    private func generateEvent(event: EKEvent) -> EKEvent {
-        let newEvent = EKEvent(eventStore: eventStore)
-        newEvent.calendar = eventStore.defaultCalendarForNewEvents
-        newEvent.title = event.title
-        newEvent.startDate = event.startDate
-        newEvent.endDate = event.endDate
-        newEvent.location = event.location
-        // Set default alarm 60 minutes before event
-        let alarm = EKAlarm(relativeOffset: -3600)
-        newEvent.addAlarm(alarm)
-        return newEvent
-    }
 
     // Try to save an event to the calendar
     private func addEvent(event: EKEvent, eventIdentifier: String,
@@ -106,23 +93,37 @@ class EventsCalendarManager: NSObject {
                 completion(.failure(.eventAlreadyExistsInCalendar), eventIdentifier)
             }
         } else {
-            let event = eventStore.event(withIdentifier: eventIdentifier)
-            event?.calendar = eventStore.defaultCalendarForNewEvents
-            event?.title = eventToAdd.title
-            event?.startDate = eventToAdd.startDate
-            event?.endDate = eventToAdd.endDate
-            event?.location = eventToAdd.location
+            let eventToUpdate = eventStore.event(withIdentifier: eventIdentifier)
+            eventToUpdate?.calendar = eventStore.defaultCalendarForNewEvents
+            eventToUpdate?.title = eventToAdd.title
+            eventToUpdate?.startDate = eventToAdd.startDate
+            eventToUpdate?.endDate = eventToAdd.endDate
+            eventToUpdate?.location = eventToAdd.location
             // Set default alarm 60 minutes before event
             let alarm = EKAlarm(relativeOffset: -3600)
-            event?.addAlarm(alarm)
+            eventToUpdate?.addAlarm(alarm)
             do {
-                try eventStore.save(event!, span: .thisEvent)
+                try eventStore.save(eventToUpdate!, span: .thisEvent)
             } catch {
                 // Error while trying to create event in calendar
                 completion(.failure(.eventNotUpdatedToCalendar), eventIdentifier)
             }
             completion(.success(true), eventIdentifier)
         }
+    }
+
+    // Generate an event which will be then added to the calendar
+    private func generateEvent(event: EKEvent) -> EKEvent {
+        let newEvent = EKEvent(eventStore: eventStore)
+        newEvent.calendar = eventStore.defaultCalendarForNewEvents
+        newEvent.title = event.title
+        newEvent.startDate = event.startDate
+        newEvent.endDate = event.endDate
+        newEvent.location = event.location
+        // Set default alarm 60 minutes before event
+        let alarm = EKAlarm(relativeOffset: -3600)
+        newEvent.addAlarm(alarm)
+        return newEvent
     }
 
     // Check if the event was already added to the calendar
@@ -155,7 +156,6 @@ enum CustomError: Error {
     case calendarAccessDeniedOrRestricted
     case eventNotAddedToCalendar
     case eventAlreadyExistsInCalendar
-    case eventNotDeletedToCalendar
     case eventDoesntExistInCalendar
     case eventNotUpdatedToCalendar
 }

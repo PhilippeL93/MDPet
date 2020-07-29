@@ -34,7 +34,21 @@ class SettingsViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func signoutButtonPressed(_ sender: AnyObject) {
+        userSignout()
+    }
 
+    @IBAction func touchAutomaticVaccinationGeneratedSwitch(_ sender: UISwitch) {
+        Settings.automaticVaccinationGeneratedSwitch = automaticVaccinationGeneratedSwitch.isOn
+    }
+
+    @IBAction func touchVaccinationReminderActivatedSwitch(_ sender: UISwitch) {
+        Settings.vaccinationReminderActivatedSwitch = vaccinationReminderActivatedSwitch.isOn
+    }
+    @IBAction func touchAutomaticGenerateEventInCalendar(_ sender: UISwitch) {
+        Settings.automaticGenerateEventInCalendarSwitch = vaccinationReminderActivatedSwitch.isOn
+    }
+
+    private func userSignout() {
         let user = Auth.auth().currentUser!
         let onlineRef = Database.database().reference(withPath: "online/\(user.uid)")
         onlineRef.removeValue { (error, _) in
@@ -49,16 +63,5 @@ class SettingsViewController: UIViewController {
                 print("Auth sign out failed: \(error)")
             }
         }
-    }
-
-    @IBAction func touchAutomaticVaccinationGeneratedSwitch(_ sender: UISwitch) {
-        Settings.automaticVaccinationGeneratedSwitch = automaticVaccinationGeneratedSwitch.isOn
-    }
-
-    @IBAction func touchVaccinationReminderActivatedSwitch(_ sender: UISwitch) {
-        Settings.vaccinationReminderActivatedSwitch = vaccinationReminderActivatedSwitch.isOn
-    }
-    @IBAction func touchAutomaticGenerateEventInCalendar(_ sender: UISwitch) {
-        Settings.automaticGenerateEventInCalendarSwitch = vaccinationReminderActivatedSwitch.isOn
     }
 }

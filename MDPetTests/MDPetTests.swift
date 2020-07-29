@@ -7,28 +7,48 @@
 //
 
 import XCTest
-@testable import MDPet
 
-class MDPetTests: XCTestCase {
+@testable import MDPet
+import Fieabase
+
+class AuthenticationGatewayStub: AuthenticationGateway {
+
+    var registeredUser: UserEntity?
+    var registerResult: Result<UserEntity, AuthenticationError>?
+
+    func register(name: String, email: String, password: String, birthdate: Date,
+                  completion: @escaping ((Result<UserEntity, AuthenticationError>) -> Void)) {
+        guard let registerResult = registerResult else { return }
+
+        switch registerResult {
+        case .failure(_):
+            registeredUser = nil
+        case .success(_):
+            registeredUser = UserEntity(identifier: nil, name: name, email: email, birthdate: birthdate)
+        }
+        completion(registerResult)
+    }
+}
+
+class RegisterUserUsecaseTests: XCTestCase {
+
+    // ...
+    private var usecase: RegisterUserUsecase!
+    private var presenter: RegisterUserPresenterStub!
+    private var gateway: AuthenticationGatewayStub!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // Gateway Mock instead Gateway with firebase
+        gateway = AuthenticationGatewayStub()
+        presenter = RegisterUserPresenterStub()
+        usecase = RegisterUserUsecase(gateway: gateway, presenter: presenter)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // ...
+    func testRegisterAnUserWithValidInputSaveDataAndPresentSuccessMessage() {
+        let user = generateUserEntity()
+        // Applying expected behavior in the gateway
+        gateway.registerResult = Result.success(user)
+        // ...
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

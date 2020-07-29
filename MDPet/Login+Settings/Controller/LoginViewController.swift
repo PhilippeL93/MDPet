@@ -14,11 +14,11 @@ class LoginViewController: UIViewController {
     // MARK: Constants
     let loginToList = "LoginToList"
     var userUid: UserUid!
-//    private var activeField: UITextField?
 
     // MARK: Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
+    @IBOutlet weak var missingPasswordButton: UIButton!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
       return .lightContent
@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
 
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
-      super.viewDidLoad()
-
+        super.viewDidLoad()
+        missingPasswordButton.underlineMyText()
         Auth.auth().addStateDidChangeListener { _, user in
             if user != nil {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
@@ -46,6 +46,10 @@ class LoginViewController: UIViewController {
         handleRegister()
     }
 
+    @IBAction func missingPassword(_ sender: Any) {
+        handleMissingPassword()
+    }
+
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         textFieldLoginEmail.resignFirstResponder()
         textFieldLoginPassword.resignFirstResponder()
@@ -62,7 +66,7 @@ class LoginViewController: UIViewController {
         }
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
           if let error = error, user == nil {
-            let alert = UIAlertController(title: "Sign In Failed",
+            let alert = UIAlertController(title: "Connexion a échoué",
                                           message: error.localizedDescription,
                                           preferredStyle: .alert)
 
@@ -73,11 +77,11 @@ class LoginViewController: UIViewController {
         }
     }
     private func handleRegister() {
-        let alert = UIAlertController(title: "Register",
-                                      message: "Register",
+        let alert = UIAlertController(title: "Enregistrement",
+                                      message: "S'enregistrer",
                                       preferredStyle: .alert)
 
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Sauvegarder", style: .default) { _ in
             let emailField = alert.textFields![0]
             let passwordField = alert.textFields![1]
             Auth.auth().createUser(withEmail: emailField.text!,
@@ -86,7 +90,7 @@ class LoginViewController: UIViewController {
                                         Auth.auth().signIn(withEmail: self.textFieldLoginEmail.text!,
                                                            password: self.textFieldLoginPassword.text!)
                                     } else {
-                                        let alert = UIAlertController(title: "Sign In Failed",
+                                        let alert = UIAlertController(title: "Connexion a échoué",
                                                                       message: error?.localizedDescription,
                                                                       preferredStyle: .alert)
                                         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -95,22 +99,42 @@ class LoginViewController: UIViewController {
                                     }
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: "Annuler",
                                          style: .cancel)
 
         alert.addTextField { textEmail in
-          textEmail.placeholder = "Enter your email"
+            textEmail.placeholder = "Entrer votre email"
         }
 
         alert.addTextField { textPassword in
-          textPassword.isSecureTextEntry = true
-          textPassword.placeholder = "Enter your password"
+            textPassword.isSecureTextEntry = true
+            textPassword.placeholder = "Entrer votre Mot de Passe"
         }
 
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
 
         present(alert, animated: true, completion: nil)
+    }
+
+    private func handleMissingPassword() {
+        guard
+            let email = textFieldLoginEmail.text,
+            email.count > 0
+            else {
+                return
+        }
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                let alert = UIAlertController(title: "Email inconnu",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 }
 
@@ -125,4 +149,17 @@ extension LoginViewController: UITextFieldDelegate {
     }
     return true
   }
+}
+
+extension UIButton {
+    func underlineMyText() {
+        guard let text = self.titleLabel?.text else { return }
+
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
+                                      value: NSUnderlineStyle.single.rawValue,
+                                      range: NSRange(location: 0, length: text.count))
+
+        self.setAttributedTitle(attributedString, for: .normal)
+    }
 }
