@@ -1,0 +1,375 @@
+
+/* Class = "UITextField"; placeholder = "Date de naissance"; ObjectID = "02y-cG-e25"; */
+"02y-cG-e25.placeholder" = "Date de naissance";
+
+/* Class = "UITextField"; placeholder = "Ville"; ObjectID = "0JH-dR-rA2"; */
+"0JH-dR-rA2.placeholder" = "Ville";
+
+/* Class = "UISegmentedControl"; 0N7-Mb-8yz.segmentTitles[0] = "Chat"; ObjectID = "0N7-Mb-8yz"; */
+"0N7-Mb-8yz.segmentTitles[0]" = "Chat";
+
+/* Class = "UISegmentedControl"; 0N7-Mb-8yz.segmentTitles[1] = "Chien"; ObjectID = "0N7-Mb-8yz"; */
+"0N7-Mb-8yz.segmentTitles[1]" = "Chien";
+
+/* Class = "UISegmentedControl"; 0N7-Mb-8yz.segmentTitles[2] = "Lapin"; ObjectID = "0N7-Mb-8yz"; */
+"0N7-Mb-8yz.segmentTitles[2]" = "Lapin";
+
+/* Class = "UISegmentedControl"; 0N7-Mb-8yz.segmentTitles[3] = "Rongeur"; ObjectID = "0N7-Mb-8yz"; */
+"0N7-Mb-8yz.segmentTitles[3]" = "Rongeur";
+
+/* Class = "UILabel"; text = "Voulez-vous vraiment supprimer ce vétérinaire?"; ObjectID = "0cE-jG-deo"; */
+"0cE-jG-deo.text" = "Voulez-vous vraiment supprimer ce vétérinaire?";
+
+/* Class = "UITextField"; placeholder = "Mot de passe"; ObjectID = "1h3-eC-ifN"; */
+"1h3-eC-ifN.placeholder" = "Mot de passe";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2a5-a3-X5b"; */
+"2a5-a3-X5b.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2jf-h5-Zbw"; */
+"2jf-h5-Zbw.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "exemple@gmail.com"; ObjectID = "3C6-X4-1RO"; */
+"3C6-X4-1RO.placeholder" = "exemple@gmail.com";
+
+/* Class = "UILabel"; text = "Pet Name"; ObjectID = "3Ec-gr-XTc"; */
+"3Ec-gr-XTc.text" = "Pet Name";
+
+/* Class = "UITextField"; placeholder = "Injection"; ObjectID = "3qa-fM-GVT"; */
+"3qa-fM-GVT.placeholder" = "Injection";
+
+/* Class = "UINavigationItem"; title = "Vétérinaires"; ObjectID = "4i4-Qg-hvI"; */
+"4i4-Qg-hvI.title" = "Vétérinaires";
+
+/* Class = "UIBarButtonItem"; title = "Ajouter"; ObjectID = "4jc-SK-IYk"; */
+"4jc-SK-IYk.title" = "Ajouter";
+
+/* Class = "UIBarButtonItem"; title = "Vétérinaires"; ObjectID = "4wU-06-E43"; */
+"4wU-06-E43.title" = "Vétérinaires";
+
+/* Class = "UIButton"; normalTitle = "Consultations"; ObjectID = "5YN-Y2-e9s"; */
+"5YN-Y2-e9s.normalTitle" = "Consultations";
+
+/* Class = "UITextField"; placeholder = "Couleur"; ObjectID = "6Iy-Zr-wvV"; */
+"6Iy-Zr-wvV.placeholder" = "Couleur";
+
+/* Class = "UITextField"; placeholder = "URL éleveur"; ObjectID = "6qb-aj-qq7"; */
+"6qb-aj-qq7.placeholder" = "URL éleveur";
+
+/* Class = "UILabel"; text = "Génération automatique vaccination"; ObjectID = "7DB-3q-YAx"; */
+"7DB-3q-YAx.text" = "Génération automatique vaccination";
+
+/* Class = "UILabel"; text = "Disease Three"; ObjectID = "980-xN-8ik"; */
+"980-xN-8ik.text" = "Disease Three";
+
+/* Class = "UILabel"; text = "Disease Two"; ObjectID = "9FZ-vY-M8K"; */
+"9FZ-vY-M8K.text" = "Disease Two";
+
+/* Class = "UIButton"; normalTitle = "Annuler"; ObjectID = "9X7-RR-cuE"; */
+"9X7-RR-cuE.normalTitle" = "Annuler";
+
+/* Class = "UITextField"; placeholder = "Nom"; ObjectID = "AP7-f3-LW2"; */
+"AP7-f3-LW2.placeholder" = "Nom";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "AgZ-o6-uGy"; */
+"AgZ-o6-uGy.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Animaux"; ObjectID = "Aju-rN-8dV"; */
+"Aju-rN-8dV.title" = "Animaux";
+
+/* Class = "UITextField"; placeholder = "Mére"; ObjectID = "BAh-7n-iTf"; */
+"BAh-7n-iTf.placeholder" = "Mére";
+
+/* Class = "UILabel"; text = "Pet Name"; ObjectID = "BLr-zm-h3K"; */
+"BLr-zm-h3K.text" = "Pet Name";
+
+/* Class = "UITextField"; placeholder = "N° ordinal"; ObjectID = "Bnm-T0-9RW"; */
+"Bnm-T0-9RW.placeholder" = "N° ordinal";
+
+/* Class = "UILabel"; text = "Génération consultation dans calendrier"; ObjectID = "CQt-FE-s7g"; */
+"CQt-FE-s7g.text" = "Génération consultation dans calendrier";
+
+/* Class = "UILabel"; text = "Particularités"; ObjectID = "D5B-Ta-hiX"; */
+"D5B-Ta-hiX.text" = "Particularités";
+
+/* Class = "UIBarButtonItem"; title = "Animal"; ObjectID = "DEf-2P-rZz"; */
+"DEf-2P-rZz.title" = "Animal";
+
+/* Class = "UITextField"; placeholder = "Prénom"; ObjectID = "DKg-mr-PBT"; */
+"DKg-mr-PBT.placeholder" = "Prénom";
+
+/* Class = "UIBarButtonItem"; title = "Animaux"; ObjectID = "DUx-p2-kyW"; */
+"DUx-p2-kyW.title" = "Animaux";
+
+/* Class = "UITextField"; placeholder = "Complément adresse"; ObjectID = "EDG-nU-WpY"; */
+"EDG-nU-WpY.placeholder" = "Complément adresse";
+
+/* Class = "UILabel"; text = "Race"; ObjectID = "EgM-8r-qsA"; */
+"EgM-8r-qsA.text" = "Race";
+
+/* Class = "UIBarButtonItem"; title = "Ajouter"; ObjectID = "EjX-bg-sqx"; */
+"EjX-bg-sqx.title" = "Ajouter";
+
+/* Class = "UIButton"; normalTitle = "Photo"; ObjectID = "Em2-2A-nRg"; */
+"Em2-2A-nRg.normalTitle" = "Photo";
+
+/* Class = "UITextField"; placeholder = "Vétérinaire"; ObjectID = "FZG-5h-Kyu"; */
+"FZG-5h-Kyu.placeholder" = "Vétérinaire";
+
+/* Class = "UITextField"; placeholder = "Date vaccin"; ObjectID = "Fcf-vA-Ao1"; */
+"Fcf-vA-Ao1.placeholder" = "Date vaccin";
+
+/* Class = "UIButton"; normalTitle = "Supprimer"; ObjectID = "GeI-It-dcp"; */
+"GeI-It-dcp.normalTitle" = "Supprimer";
+
+/* Class = "UILabel"; text = "Date de décès"; ObjectID = "HjD-AR-8Vo"; */
+"HjD-AR-8Vo.text" = "Date de décès";
+
+/* Class = "UITextField"; placeholder = "CP"; ObjectID = "IRm-dA-8GM"; */
+"IRm-dA-8GM.placeholder" = "CP";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "ITh-zE-DSR"; */
+"ITh-zE-DSR.title" = "Item";
+
+/* Class = "UILabel"; text = "Couleur"; ObjectID = "Ia4-PL-Vos"; */
+"Ia4-PL-Vos.text" = "Couleur";
+
+/* Class = "UILabel"; text = "Sevré(e)"; ObjectID = "Jg0-8n-Paq"; */
+"Jg0-8n-Paq.text" = "Sevré(e)";
+
+/* Class = "UIBarButtonItem"; title = "Animal"; ObjectID = "Jpt-k4-3Nm"; */
+"Jpt-k4-3Nm.title" = "Animal";
+
+/* Class = "UIButton"; normalTitle = "Connexion"; ObjectID = "K1L-VQ-Fc7"; */
+"K1L-VQ-Fc7.normalTitle" = "Connexion";
+
+/* Class = "UITabBarItem"; title = "Vétérinaires"; ObjectID = "KRl-zf-daU"; */
+"KRl-zf-daU.title" = "Vétérinaires";
+
+/* Class = "UILabel"; text = "Pedigree"; ObjectID = "KZW-Bm-iF2"; */
+"KZW-Bm-iF2.text" = "Pedigree";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Ljy-G0-Qlo"; */
+"Ljy-G0-Qlo.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "0102030405"; ObjectID = "LtT-Mh-5zu"; */
+"LtT-Mh-5zu.placeholder" = "0102030405";
+
+/* Class = "UILabel"; text = "Disease Four"; ObjectID = "M9r-hp-9pH"; */
+"M9r-hp-9pH.text" = "Disease Four";
+
+/* Class = "UIButton"; normalTitle = "Ajouter au calendrier"; ObjectID = "MlM-dQ-3cm"; */
+"MlM-dQ-3cm.normalTitle" = "Ajouter au calendrier";
+
+/* Class = "UIButton"; normalTitle = "Inscription"; ObjectID = "NUf-YL-Q60"; */
+"NUf-YL-Q60.normalTitle" = "Inscription";
+
+/* Class = "UITextField"; placeholder = "N° origine"; ObjectID = "NVm-0C-ZkD"; */
+"NVm-0C-ZkD.placeholder" = "N° origine";
+
+/* Class = "UIBarButtonItem"; title = "+"; ObjectID = "NYg-OR-p29"; */
+"NYg-OR-p29.title" = "+";
+
+/* Class = "UILabel"; text = "Vétérinaire"; ObjectID = "Ncx-SC-8Zt"; */
+"Ncx-SC-8Zt.text" = "Vétérinaire";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Nr7-xu-mFF"; */
+"Nr7-xu-mFF.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Supprimer la fiche"; ObjectID = "O8k-rp-zp6"; */
+"O8k-rp-zp6.normalTitle" = "Supprimer la fiche";
+
+/* Class = "UIButton"; normalTitle = "Annuler"; ObjectID = "POk-wq-glh"; */
+"POk-wq-glh.normalTitle" = "Annuler";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Pky-8Z-L3U"; */
+"Pky-8Z-L3U.title" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RZh-lw-JJF"; */
+"RZh-lw-JJF.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SAK-Lv-fY4"; */
+"SAK-Lv-fY4.text" = "Label";
+
+/* Class = "UILabel"; text = "Disease One"; ObjectID = "SxX-d0-E4X"; */
+"SxX-d0-E4X.text" = "Disease One";
+
+/* Class = "UISegmentedControl"; TA2-FX-9Kd.segmentTitles[0] = "Femelle"; ObjectID = "TA2-FX-9Kd"; */
+"TA2-FX-9Kd.segmentTitles[0]" = "Femelle";
+
+/* Class = "UISegmentedControl"; TA2-FX-9Kd.segmentTitles[1] = "Mâle"; ObjectID = "TA2-FX-9Kd"; */
+"TA2-FX-9Kd.segmentTitles[1]" = "Mâle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TXM-XH-KT4"; */
+"TXM-XH-KT4.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Supprimer"; ObjectID = "TjO-e4-our"; */
+"TjO-e4-our.normalTitle" = "Supprimer";
+
+/* Class = "UIBarButtonItem"; title = "+"; ObjectID = "Ucz-11-BD1"; */
+"Ucz-11-BD1.title" = "+";
+
+/* Class = "UINavigationItem"; title = "Paramétres"; ObjectID = "W3l-kp-RZD"; */
+"W3l-kp-RZD.title" = "Paramétres";
+
+/* Class = "UIBarButtonItem"; title = "+"; ObjectID = "Wy6-Id-36c"; */
+"Wy6-Id-36c.title" = "+";
+
+/* Class = "UILabel"; text = "Rappel vaccination activé"; ObjectID = "XZN-Sb-DDj"; */
+"XZN-Sb-DDj.text" = "Rappel vaccination activé";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xan-9k-Wkr"; */
+"Xan-9k-Wkr.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "YSA-qD-Gso"; */
+"YSA-qD-Gso.title" = "Title";
+
+/* Class = "UILabel"; text = "MDPet"; ObjectID = "ZgC-yx-Xyo"; */
+"ZgC-yx-Xyo.text" = "MDPet";
+
+/* Class = "UILabel"; text = "Stérilisé(e)"; ObjectID = "aTZ-W0-qaD"; */
+"aTZ-W0-qaD.text" = "Stérilisé(e)";
+
+/* Class = "UIButton"; normalTitle = "Annuler les modifications"; ObjectID = "arh-nm-cNf"; */
+"arh-nm-cNf.normalTitle" = "Annuler les modifications";
+
+/* Class = "UITextField"; placeholder = "Poids"; ObjectID = "bwY-u0-3hY"; */
+"bwY-u0-3hY.placeholder" = "Poids";
+
+/* Class = "UIButton"; normalTitle = "Vaccins"; ObjectID = "cTH-4C-f4P"; */
+"cTH-4C-f4P.normalTitle" = "Vaccins";
+
+/* Class = "UITextField"; placeholder = "Motif consultation"; ObjectID = "coc-bS-xw6"; */
+"coc-bS-xw6.placeholder" = "Motif consultation";
+
+/* Class = "UILabel"; text = "Modifications non sauvegardées?"; ObjectID = "dAr-UV-fxj"; */
+"dAr-UV-fxj.text" = "Modifications non sauvegardées?";
+
+/* Class = "UILabel"; text = "Eleveur"; ObjectID = "dN2-N7-b0t"; */
+"dN2-N7-b0t.text" = "Eleveur";
+
+/* Class = "UILabel"; text = "Vaccination effectuée"; ObjectID = "dRF-BB-maI"; */
+"dRF-BB-maI.text" = "Vaccination effectuée";
+
+/* Class = "UIButton"; normalTitle = "Continuer à modifier"; ObjectID = "dXe-U6-rbO"; */
+"dXe-U6-rbO.normalTitle" = "Continuer à modifier";
+
+/* Class = "UILabel"; text = "Disease Five"; ObjectID = "dr0-Rd-GvB"; */
+"dr0-Rd-GvB.text" = "Disease Five";
+
+/* Class = "UILabel"; text = "1ére injection"; ObjectID = "e68-O9-UTV"; */
+"e68-O9-UTV.text" = "1ére injection";
+
+/* Class = "UITextField"; placeholder = "Signes particuliers"; ObjectID = "eBv-Rs-wqF"; */
+"eBv-Rs-wqF.placeholder" = "Signes particuliers";
+
+/* Class = "UITextField"; placeholder = "Race"; ObjectID = "eCW-QL-fmP"; */
+"eCW-QL-fmP.placeholder" = "Race";
+
+/* Class = "UITextField"; placeholder = "Vétérinaire"; ObjectID = "eqk-zN-FWY"; */
+"eqk-zN-FWY.placeholder" = "Vétérinaire";
+
+/* Class = "UITextField"; placeholder = "Date consultation"; ObjectID = "fWN-LU-baL"; */
+"fWN-LU-baL.placeholder" = "Date consultation";
+
+/* Class = "UITabBarItem"; title = "Paramètres"; ObjectID = "h2P-FK-CmG"; */
+"h2P-FK-CmG.title" = "Paramètres";
+
+/* Class = "UIBarButtonItem"; title = "Ajouter"; ObjectID = "hmN-f4-zFH"; */
+"hmN-f4-zFH.title" = "Ajouter";
+
+/* Class = "UITextField"; placeholder = "Vétérinaire"; ObjectID = "iLH-LI-HXG"; */
+"iLH-LI-HXG.placeholder" = "Vétérinaire";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "iVc-C9-JEn"; */
+"iVc-C9-JEn.title" = "Title";
+
+/* Class = "UITextField"; placeholder = "Date Stérilisation"; ObjectID = "j21-V4-H4B"; */
+"j21-V4-H4B.placeholder" = "Date Stérilisation";
+
+/* Class = "UILabel"; text = "Date de naissance"; ObjectID = "jMd-53-zHd"; */
+"jMd-53-zHd.text" = "Date de naissance";
+
+/* Class = "UILabel"; text = "Vaccine Date"; ObjectID = "jZm-IF-qUW"; */
+"jZm-IF-qUW.text" = "Vaccine Date";
+
+/* Class = "UILabel"; text = "Disease Eight"; ObjectID = "kMO-Lg-J82"; */
+"kMO-Lg-J82.text" = "Disease Eight";
+
+/* Class = "UIButton"; normalTitle = "Supprimer la fiche"; ObjectID = "kvb-d6-Hsv"; */
+"kvb-d6-Hsv.normalTitle" = "Supprimer la fiche";
+
+/* Class = "UILabel"; text = "Voulez-vous vraiment supprimer cet animal?"; ObjectID = "lb6-KD-hIH"; */
+"lb6-KD-hIH.text" = "Voulez-vous vraiment supprimer cet animal?";
+
+/* Class = "UITextField"; placeholder = "Père"; ObjectID = "lvj-82-xFX"; */
+"lvj-82-xFX.placeholder" = "Père";
+
+/* Class = "UITextField"; placeholder = "Date décès"; ObjectID = "n1C-VT-8vA"; */
+"n1C-VT-8vA.placeholder" = "Date décès";
+
+/* Class = "UILabel"; text = "Disease Seven"; ObjectID = "nOf-kA-jgs"; */
+"nOf-kA-jgs.text" = "Disease Seven";
+
+/* Class = "UIBarButtonItem"; title = "Log Out"; ObjectID = "nih-dV-4sf"; */
+"nih-dV-4sf.title" = "Log Out";
+
+/* Class = "UITextField"; placeholder = "Identification"; ObjectID = "pT8-nb-LUK"; */
+"pT8-nb-LUK.placeholder" = "Identification";
+
+/* Class = "UILabel"; text = "Sexe"; ObjectID = "qqK-Tk-0Cn"; */
+"qqK-Tk-0Cn.text" = "Sexe";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "r3k-dL-q26"; */
+"r3k-dL-q26.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Vignette vaccin"; ObjectID = "r7m-gB-wXo"; */
+"r7m-gB-wXo.normalTitle" = "Vignette vaccin";
+
+/* Class = "UILabel"; text = "Identification"; ObjectID = "r95-Gi-YqL"; */
+"r95-Gi-YqL.text" = "Identification";
+
+/* Class = "UILabel"; text = "Nom"; ObjectID = "r9q-4E-apH"; */
+"r9q-4E-apH.text" = "Nom";
+
+/* Class = "UITextField"; placeholder = "Nom"; ObjectID = "rBW-Wc-LkY"; */
+"rBW-Wc-LkY.placeholder" = "Nom";
+
+/* Class = "UIBarButtonItem"; title = "Consultations"; ObjectID = "sGg-HA-yTB"; */
+"sGg-HA-yTB.title" = "Consultations";
+
+/* Class = "UIBarButtonItem"; title = "Vaccins"; ObjectID = "ujo-v9-2s1"; */
+"ujo-v9-2s1.title" = "Vaccins";
+
+/* Class = "UITextField"; placeholder = "Date sevrage"; ObjectID = "vcl-Dm-dit"; */
+"vcl-Dm-dit.placeholder" = "Date sevrage";
+
+/* Class = "UILabel"; text = "Pet Name"; ObjectID = "vn8-rG-V5M"; */
+"vn8-rG-V5M.text" = "Pet Name";
+
+/* Class = "UILabel"; text = "Clinique"; ObjectID = "vwZ-Qh-zaq"; */
+"vwZ-Qh-zaq.text" = "Clinique";
+
+/* Class = "UILabel"; text = "Kg"; ObjectID = "w4b-Bf-lv8"; */
+"w4b-Bf-lv8.text" = "Kg";
+
+/* Class = "UINavigationItem"; title = "Animaux"; ObjectID = "w9P-zP-p72"; */
+"w9P-zP-p72.title" = "Animaux";
+
+/* Class = "UIButton"; normalTitle = "Mot de passe oublié ?"; ObjectID = "wIW-qq-i5W"; */
+"wIW-qq-i5W.normalTitle" = "Mot de passe oublié ?";
+
+/* Class = "UILabel"; text = "Disease Six"; ObjectID = "wfl-Wp-14b"; */
+"wfl-Wp-14b.text" = "Disease Six";
+
+/* Class = "UIBarButtonItem"; title = "+"; ObjectID = "xbt-W0-O3b"; */
+"xbt-W0-O3b.title" = "+";
+
+/* Class = "UITextField"; placeholder = "Vaccin"; ObjectID = "xfM-ZK-Xvq"; */
+"xfM-ZK-Xvq.placeholder" = "Vaccin";
+
+/* Class = "UITextField"; placeholder = "Rue"; ObjectID = "xxS-Ka-87A"; */
+"xxS-Ka-87A.placeholder" = "Rue";
+
+/* Class = "UITextField"; placeholder = "Clinique"; ObjectID = "zrX-4I-PEq"; */
+"zrX-4I-PEq.placeholder" = "Clinique";

@@ -51,6 +51,12 @@
 		37A6589024922C610063867C /* UserUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588F24922C610063867C /* UserUid.swift */; };
 		37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A981DD24A4E26200F491E2 /* Diseases.swift */; };
 		37C227BE24D06E8C00492C59 /* TypeOfCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227BD24D06E8C00492C59 /* TypeOfCall.swift */; };
+		37C227CE24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227CD24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift */; };
+		37C227D024D1D71900492C59 /* AuthenticationGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227CF24D1D71900492C59 /* AuthenticationGateway.swift */; };
+		37C227D224D1DB6A00492C59 /* ManagmentUserFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D124D1DB6A00492C59 /* ManagmentUserFirebase.swift */; };
+		37C227D424D2BFAB00492C59 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D324D2BFAB00492C59 /* AuthenticationError.swift */; };
+		37C227D624D2C08A00492C59 /* AuthenticationErrorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D524D2C08A00492C59 /* AuthenticationErrorValidator.swift */; };
+		37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */; };
 		37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12923FC112100CF6247 /* UIViewController+Alert.swift */; };
 		37CED12C23FC114400CF6247 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12B23FC114400CF6247 /* Errors.swift */; };
 		37CED12E23FC154200CF6247 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12D23FC154200CF6247 /* Pets.swift */; };
@@ -62,6 +68,7 @@
 		37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */; };
 		37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAC249919AB0077FEFB /* Notification.swift */; };
 		63648A39CE01CAD4FAFD4A5F /* Pods_MDPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */; };
+		BDD2E22FE5EA215B145C5863 /* Pods_MDPet_MDPetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC151D98E87455C2F561A68D /* Pods_MDPet_MDPetTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +131,14 @@
 		37A6588F24922C610063867C /* UserUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUid.swift; sourceTree = "<group>"; };
 		37A981DD24A4E26200F491E2 /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
 		37C227BD24D06E8C00492C59 /* TypeOfCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCall.swift; sourceTree = "<group>"; };
+		37C227CD24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayFirebase.swift; sourceTree = "<group>"; };
+		37C227CF24D1D71900492C59 /* AuthenticationGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGateway.swift; sourceTree = "<group>"; };
+		37C227D124D1DB6A00492C59 /* ManagmentUserFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagmentUserFirebase.swift; sourceTree = "<group>"; };
+		37C227D324D2BFAB00492C59 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
+		37C227D524D2C08A00492C59 /* AuthenticationErrorValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrorValidator.swift; sourceTree = "<group>"; };
+		37C227D724D2FC0700492C59 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		37C227D824D2FC0800492C59 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserPrsenter.swift; sourceTree = "<group>"; };
 		37CED12923FC112100CF6247 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		37CED12B23FC114400CF6247 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		37CED12D23FC154200CF6247 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
@@ -134,9 +149,12 @@
 		37D0384C24B4AF6100449A69 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUpdateViewController.swift; sourceTree = "<group>"; };
 		37DE5AAC249919AB0077FEFB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		3DE25FB5122F5C1015FB02E6 /* Pods-MDPet-MDPetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet-MDPetTests.release.xcconfig"; path = "Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests.release.xcconfig"; sourceTree = "<group>"; };
 		5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.release.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.release.xcconfig"; sourceTree = "<group>"; };
 		AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDPet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6F85B532D5278025591B2BB /* Pods-MDPet-MDPetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet-MDPetTests.debug.xcconfig"; path = "Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.debug.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.debug.xcconfig"; sourceTree = "<group>"; };
+		BC151D98E87455C2F561A68D /* Pods_MDPet_MDPetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDPet_MDPetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD2E22FE5EA215B145C5863 /* Pods_MDPet_MDPetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +183,7 @@
 			children = (
 				3748CF1A23EDE48C002B8999 /* CloudKit.framework */,
 				AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */,
+				BC151D98E87455C2F561A68D /* Pods_MDPet_MDPetTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -410,6 +430,10 @@
 			children = (
 				37CED13C23FD329500CF6247 /* LoginViewController.swift */,
 				372CFFC9248676B600984537 /* SettingsViewController.swift */,
+				37C227D124D1DB6A00492C59 /* ManagmentUserFirebase.swift */,
+				37C227D324D2BFAB00492C59 /* AuthenticationError.swift */,
+				37C227D524D2C08A00492C59 /* AuthenticationErrorValidator.swift */,
+				37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -420,6 +444,8 @@
 				372CFFD32486A2A400984537 /* User.swift */,
 				37A6588F24922C610063867C /* UserUid.swift */,
 				37D0384824B45D8100449A69 /* Settings.swift */,
+				37C227CD24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift */,
+				37C227CF24D1D71900492C59 /* AuthenticationGateway.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -455,6 +481,8 @@
 			children = (
 				B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */,
 				5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */,
+				B6F85B532D5278025591B2BB /* Pods-MDPet-MDPetTests.debug.xcconfig */,
+				3DE25FB5122F5C1015FB02E6 /* Pods-MDPet-MDPetTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -486,9 +514,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3715EAE4239188E900CAA9E7 /* Build configuration list for PBXNativeTarget "MDPetTests" */;
 			buildPhases = (
+				392644670DC9E48F7913CF84 /* [CP] Check Pods Manifest.lock */,
 				3715EAD4239188E900CAA9E7 /* Sources */,
 				3715EAD5239188E900CAA9E7 /* Frameworks */,
 				3715EAD6239188E900CAA9E7 /* Resources */,
+				42672C8F70446963C2FDA41A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -526,6 +556,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 3715EAB6239188E800CAA9E7;
 			productRefGroup = 3715EAC0239188E800CAA9E7 /* Products */;
@@ -595,6 +626,45 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		392644670DC9E48F7913CF84 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MDPet-MDPetTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42672C8F70446963C2FDA41A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		ABEA4854FAE02257CA6FA760 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -628,17 +698,22 @@
 				37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */,
 				37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */,
 				3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */,
+				37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */,
 				3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */,
 				3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */,
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
 				372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */,
+				37C227CE24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift in Sources */,
 				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				37D0384B24B4995D00449A69 /* PresentVaccineDetailCell.swift in Sources */,
 				37D0384D24B4AF6100449A69 /* SelfSizedTableView.swift in Sources */,
+				37C227D424D2BFAB00492C59 /* AuthenticationError.swift in Sources */,
 				37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */,
 				375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
+				37C227D624D2C08A00492C59 /* AuthenticationErrorValidator.swift in Sources */,
+				37C227D024D1D71900492C59 /* AuthenticationGateway.swift in Sources */,
 				372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */,
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
@@ -658,6 +733,7 @@
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
+				37C227D224D1DB6A00492C59 /* ManagmentUserFirebase.swift in Sources */,
 				379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */,
 				3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */,
 				375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */,
@@ -697,6 +773,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3715EAC9239188E800CAA9E7 /* Base */,
+				37C227D724D2FC0700492C59 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -705,6 +782,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3715EAD1239188E800CAA9E7 /* Base */,
+				37C227D824D2FC0800492C59 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -716,6 +794,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -776,6 +855,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -874,11 +954,13 @@
 		};
 		3715EAE5239188E900CAA9E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6F85B532D5278025591B2BB /* Pods-MDPet-MDPetTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88WF6385D;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MDPetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -896,11 +978,13 @@
 		};
 		3715EAE6239188E900CAA9E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE25FB5122F5C1015FB02E6 /* Pods-MDPet-MDPetTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88WF6385D;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MDPetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (

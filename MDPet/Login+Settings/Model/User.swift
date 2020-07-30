@@ -7,14 +7,16 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseAuth
+
+public typealias RegisterUserBasicParams = (email: String, password: String)
 
 struct User {
 
   let uid: String
   let email: String
 
-  init(authData: Firebase.User) {
+  init(authData: FirebaseAuth.User) {
     uid = authData.uid
     email = authData.email!
   }

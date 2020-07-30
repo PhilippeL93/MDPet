@@ -7,9 +7,9 @@
 //
 
 import XCTest
+import Firebase
 
 @testable import MDPet
-import Fieabase
 
 class AuthenticationGatewayStub: AuthenticationGateway {
 

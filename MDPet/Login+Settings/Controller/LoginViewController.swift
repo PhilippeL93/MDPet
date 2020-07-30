@@ -7,13 +7,23 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseCore
 
 class LoginViewController: UIViewController {
 
     // MARK: Constants
     let loginToList = "LoginToList"
     var userUid: UserUid!
+    var authenticationError: AuthenticationError?
+    var signedInUser: User?
+    private var userFirebase: AuthenticationGateway!
+    private var auth: Auth = {
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        return Auth.auth()
+    }()
 
     // MARK: Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
@@ -27,6 +37,7 @@ class LoginViewController: UIViewController {
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        userFirebase = AuthenticationGatewayFirebase(auth: auth)
         missingPasswordButton.underlineMyText()
         Auth.auth().addStateDidChangeListener { _, user in
             if user != nil {
@@ -64,18 +75,22 @@ class LoginViewController: UIViewController {
             else {
                 return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-          if let error = error, user == nil {
-            let alert = UIAlertController(title: "Connexion a échoué",
-                                          message: error.localizedDescription,
-                                          preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-
-            self.present(alert, animated: true, completion: nil)
-          }
+        let userParams = RegisterUserBasicParams(email: email, password: password)
+        userFirebase.connect(userParams: userParams) { result in
+            switch result {
+            case let .success(user):
+                self.signedInUser = user
+            case let .failure(error):
+                self.authenticationError = error
+                self.presentAlert(error: self.authenticationError!)
+            }
         }
     }
+
+    private func generateUserEntity(identifier: String, userParams: RegisterUserBasicParams) -> User {
+        return User(uid: identifier, email: userParams.email)
+    }
+
     private func handleRegister() {
         let alert = UIAlertController(title: "Enregistrement",
                                       message: "S'enregistrer",
@@ -84,19 +99,24 @@ class LoginViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Sauvegarder", style: .default) { _ in
             let emailField = alert.textFields![0]
             let passwordField = alert.textFields![1]
-            Auth.auth().createUser(withEmail: emailField.text!,
-                                   password: passwordField.text!) { _, error in
-                                    if error == nil {
-                                        Auth.auth().signIn(withEmail: self.textFieldLoginEmail.text!,
-                                                           password: self.textFieldLoginPassword.text!)
-                                    } else {
-                                        let alert = UIAlertController(title: "Connexion a échoué",
-                                                                      message: error?.localizedDescription,
-                                                                      preferredStyle: .alert)
-                                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                                        self.present(alert, animated: true, completion: nil)
-                                        return
-                                    }
+            let userParams = RegisterUserBasicParams(email: emailField.text!, password: passwordField.text!)
+            self.userFirebase.register(userParams: userParams) { result in
+                switch result {
+                case let .success(user):
+                    self.signedInUser = user
+                    self.userFirebase.connect(userParams: userParams) { result in
+                        switch result {
+                        case let .success(user):
+                            self.signedInUser = user
+                        case let .failure(error):
+                            self.authenticationError = error
+                            self.presentAlert(error: self.authenticationError!)
+                        }
+                    }
+                case let .failure(error):
+                    self.authenticationError = error
+                    self.presentAlert(error: self.authenticationError!)
+                }
             }
         }
         let cancelAction = UIAlertAction(title: "Annuler",
@@ -124,17 +144,48 @@ class LoginViewController: UIViewController {
             else {
                 return
         }
-        Auth.auth().sendPasswordReset(withEmail: email) { error in
-            if let error = error {
-                let alert = UIAlertController(title: "Email inconnu",
-                                              message: error.localizedDescription,
-                                              preferredStyle: .alert)
-
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-
-                self.present(alert, animated: true, completion: nil)
+        let userParams = RegisterUserBasicParams(email: email, password: "")
+        userFirebase.resetPassword(userParams: userParams) { result in
+            switch result {
+            case let .success(user):
+                self.signedInUser = user
+            case let .failure(error):
+                self.authenticationError = error
+                self.presentAlert(error: self.authenticationError!)
             }
         }
+    }
+    private func presentAlert(error: AuthenticationError) {
+        var message = ""
+        switch error {
+        case .invalidName:
+            message = "Nom inconnu"
+        case .invalidPassword:
+            message = "Mot de passe non robuste"
+        case .userDisabled:
+            message = "Utilisateur désactivé"
+        case .emailAlreadyInUse:
+            message = "Utilisateur déjà existant"
+        case .invalidEmail:
+            message = "Email invalide"
+        case .wrongPassword:
+            message = "Mot de passe incorrect"
+        case .userNotFound:
+            message = "Utilisateur inconnu"
+        case .accountExistsWithDifferentCredential:
+            message = "Compte déjà existant"
+        case .networkError:
+            message = "Pas de connexion"
+        case .credentialAlreadyInUse:
+            message = "Compte déjà utilisé"
+        case .unknown:
+            message = "Erreur inconnu"
+        }
+        let alert = UIAlertController(title: "Connexion",
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
     }
 }
 

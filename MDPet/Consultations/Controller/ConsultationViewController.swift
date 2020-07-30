@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 import EventKit
 
 class ConsultationViewController: UIViewController {
