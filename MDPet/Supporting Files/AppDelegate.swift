@@ -7,57 +7,43 @@
 //
 
 import UIKit
-import CoreData
+import Firebase
 import FirebaseDatabase
 import FirebaseCore
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-//    func application(_ application: UIApplication,
-//                     didFinishLaunchingWithOptions
-//        launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        // Override point for customization after application launch.
-//        return true
-//    }
+    override init() {
+        super.init()
+        print("================== AppDelegate init")
+        FirebaseApp.configure()
+        print("================= AppDelegate \(FirebaseApp.app()) ")
+        Database.database().isPersistenceEnabled = true
+    }
 
-//    func application(_ application: UIApplication,
-//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        FirebaseApp.configure()
-//        return true
-//    }
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 //      FirebaseApp.configure()
-      Database.database().isPersistenceEnabled = true
-      return true
-    }
-
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MDPet")
-            container.loadPersistentStores(completionHandler: { (_, error) in
-                if let error = error as NSError? {
-                    fatalError("Unresolved error \(error), \(error.userInfo)")
-                }
-            })
-            return container
-        }()
-
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        print("================== AppDelegate application")
+        Database.database().isPersistenceEnabled = true
+        _ = Auth.auth().addStateDidChangeListener { _, user in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if user != nil {
+                let controller = storyboard.instantiateViewController(withIdentifier: "LoginToList")
+                self.window?.rootViewController = controller
+                self.window?.makeKeyAndVisible()
+                UserUid.uid = user!.uid
+            } else {
+                //        LoginViewController
+                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+                self.window?.rootViewController = controller
+                self.window?.makeKeyAndVisible()
             }
         }
+        return true
     }
 }

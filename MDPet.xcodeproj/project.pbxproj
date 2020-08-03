@@ -12,7 +12,6 @@
 		3715EACA239188E800CAA9E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAC8239188E800CAA9E7 /* Main.storyboard */; };
 		3715EACF239188E800CAA9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3715EACE239188E800CAA9E7 /* Assets.xcassets */; };
 		3715EAD2239188E800CAA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3715EAD0239188E800CAA9E7 /* LaunchScreen.storyboard */; };
-		3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* MDPetTests.swift */; };
 		372CEF77249B692F002AEAF5 /* ConsultationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */; };
 		372CEF79249BA8AA002AEAF5 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* PetViewController.swift */; };
 		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
@@ -25,6 +24,8 @@
 		372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */; };
 		372CFFD42486A2A400984537 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD32486A2A400984537 /* User.swift */; };
 		372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD52486A72400984537 /* VeterinaryItem.swift */; };
+		3735EC0624D577F20095451A /* GetFirebaseVeterinariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */; };
+		3735EC6224D80CA80095451A /* FirebaseDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */; };
 		3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */; };
 		3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */; };
 		3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */; };
@@ -43,6 +44,8 @@
 		3757579224C8956F00294274 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579124C8956F00294274 /* VaccineViewController.swift */; };
 		3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */; };
 		3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579524CDC7C900294274 /* EventsCalendarManager.swift */; };
+		3762434E24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */; };
+		3762435424D5629500BD03FE /* AuthenticationGatewayStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */; };
 		379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* TypeOfCaller.swift */; };
 		379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36624B767BA00C056A1 /* ImagePicker.swift */; };
 		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
@@ -59,7 +62,6 @@
 		37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */; };
 		37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12923FC112100CF6247 /* UIViewController+Alert.swift */; };
 		37CED12C23FC114400CF6247 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12B23FC114400CF6247 /* Errors.swift */; };
-		37CED12E23FC154200CF6247 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12D23FC154200CF6247 /* Pets.swift */; };
 		37CED13223FD1F0700CF6247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */; };
 		37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED13C23FD329500CF6247 /* LoginViewController.swift */; };
 		37D0384924B45D8100449A69 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0384824B45D8100449A69 /* Settings.swift */; };
@@ -90,7 +92,7 @@
 		3715EAD1239188E800CAA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3715EAD3239188E800CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3715EAD8239188E900CAA9E7 /* MDPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MDPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3715EADC239188E900CAA9E7 /* MDPetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPetTests.swift; sourceTree = "<group>"; };
+		3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayStub.swift; sourceTree = "<group>"; };
 		3715EADE239188E900CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListViewController.swift; sourceTree = "<group>"; };
 		372CEF78249BA8AA002AEAF5 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,8 @@
 		372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinariesListTableViewController.swift; sourceTree = "<group>"; };
 		372CFFD32486A2A400984537 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		372CFFD52486A72400984537 /* VeterinaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinaryItem.swift; sourceTree = "<group>"; };
+		3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVeterinariesTests.swift; sourceTree = "<group>"; };
+		3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseClient.swift; sourceTree = "<group>"; };
 		3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVeterinaryCell.swift; sourceTree = "<group>"; };
 		3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebasePicture.swift; sourceTree = "<group>"; };
 		3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmVeterinarySuppressViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		3757579124C8956F00294274 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
 		3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfFirebaseItems.swift; sourceTree = "<group>"; };
 		3757579524CDC7C900294274 /* EventsCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarManager.swift; sourceTree = "<group>"; };
+		3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayFirebaseTests.swift; sourceTree = "<group>"; };
 		379AB36224B75B5000C056A1 /* TypeOfCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCaller.swift; sourceTree = "<group>"; };
 		379AB36624B767BA00C056A1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
@@ -141,7 +146,6 @@
 		37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserPrsenter.swift; sourceTree = "<group>"; };
 		37CED12923FC112100CF6247 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		37CED12B23FC114400CF6247 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		37CED12D23FC154200CF6247 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
 		37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37CED13C23FD329500CF6247 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37D0384824B45D8100449A69 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -226,7 +230,9 @@
 		3715EADB239188E900CAA9E7 /* MDPetTests */ = {
 			isa = PBXGroup;
 			children = (
-				3715EADC239188E900CAA9E7 /* MDPetTests.swift */,
+				3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */,
+				3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */,
+				3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */,
 				3715EADE239188E900CAA9E7 /* Info.plist */,
 			);
 			path = MDPetTests;
@@ -369,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				3748CF2023EF194B002B8999 /* Races.swift */,
-				37CED12D23FC154200CF6247 /* Pets.swift */,
 				372CFFCD2486839200984537 /* PetItem.swift */,
 			);
 			path = Model;
@@ -412,6 +417,7 @@
 				379AB36224B75B5000C056A1 /* TypeOfCaller.swift */,
 				37C227BD24D06E8C00492C59 /* TypeOfCall.swift */,
 				3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */,
+				3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -704,6 +710,7 @@
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
 				372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */,
+				3735EC6224D80CA80095451A /* FirebaseDatabaseClient.swift in Sources */,
 				37C227CE24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift in Sources */,
 				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				37D0384B24B4995D00449A69 /* PresentVaccineDetailCell.swift in Sources */,
@@ -746,7 +753,6 @@
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
 				37D0384924B45D8100449A69 /* Settings.swift in Sources */,
-				37CED12E23FC154200CF6247 /* Pets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,7 +760,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3715EADD239188E900CAA9E7 /* MDPetTests.swift in Sources */,
+				3762435424D5629500BD03FE /* AuthenticationGatewayStub.swift in Sources */,
+				3762434E24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift in Sources */,
+				3735EC0624D577F20095451A /* GetFirebaseVeterinariesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

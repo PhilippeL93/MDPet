@@ -11,7 +11,12 @@ import FirebaseAuth
 
 public typealias RegisterUserBasicParams = (email: String, password: String)
 
-struct User {
+protocol User {
+    var uid: String { get }
+    var email: String { get }
+}
+
+struct UserEntity: User {
 
   let uid: String
   let email: String

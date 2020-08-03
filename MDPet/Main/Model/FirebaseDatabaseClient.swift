@@ -1,24 +1,31 @@
 //
-//  GetFirebaseVeterinaries.swift
+//  FirebaseDatabaseClient.swift
 //  MDPet
 //
-//  Created by Philippe on 24/06/2020.
+//  Created by Philippe on 03/08/2020.
 //  Copyright © 2020 Philippe. All rights reserved.
 //
 
 import Foundation
 import FirebaseDatabase
 
-class GetFirebaseVeterinaries {
+class FirebaseDatabaseClient {
 
-    static let shared = GetFirebaseVeterinaries(with: DatabaseReference())
-    private var databaseReference: DatabaseReference
+    private let databaseReference: DatabaseReference
     var veterinariesItems: [VeterinaryItem] = []
 
     init(with databaseReference: DatabaseReference) {
         self.databaseReference = databaseReference
-        let path = UserUid.uid + veterinariesItem
-        self.databaseReference = Database.database().reference(withPath: "\(path)")
+    }
+
+    func readSample(completion: @escaping ([String]) -> Void) {
+        self.databaseReference
+            .child("sample")
+            .observeSingleEvent(of: .value) { snapshot in
+                var sampleList: [String] = []
+                // ...
+                completion(sampleList)
+        }
     }
 
     func observeVeterinaries(callback: @escaping (Bool, [VeterinaryItem]) -> Void) {
@@ -35,17 +42,5 @@ class GetFirebaseVeterinaries {
                 self.veterinariesItems = newItems
                 callback(true, self.veterinariesItems)
         }
-    }
-
-    func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
-        guard veterinariesItems.count != 0 else {
-            callback(false, "", -1)
-            return
-        }
-        for indice in 0...veterinariesItems.count-1
-            where veterinariesItems[indice].key == veterinaryToSearch {
-                callback(true, veterinariesItems[indice].veterinaryName, indice)
-        }
-        callback(false, "", -1)
     }
 }

@@ -57,7 +57,18 @@ struct AuthenticationGatewayFirebase: AuthenticationGateway {
             completion(result)
         }
     }
+//    func alreadyConnected(userParams: RegisterUserBasicParams, completion: @escaping((RegisterResult) -> Void)) {
+//        auth.addStateDidChangeListener { _, user  in
+//            var userUid = ""
+//            if user != nil {
+//                userUid = user!.uid
+//            }
+//            let userEntity = self.generateUserEntity(identifier: userUid, userParams: userParams)
+//            let result = RegisterResult.success(userEntity)
+//            completion(result)
+//        }
+//    }
     private func generateUserEntity(identifier: String, userParams: RegisterUserBasicParams) -> User {
-        return User(uid: identifier, email: userParams.email)
+        return UserEntity(uid: identifier, email: userParams.email)
     }
 }

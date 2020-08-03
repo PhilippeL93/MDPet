@@ -302,6 +302,7 @@ class ConsultationViewController: UIViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateConsultation() {
+        var consultationReport = ""
         toggleActivityIndicator(shown: true)
         databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
         //            guard let vaccineKey = vaccineItem?.key else {
@@ -316,12 +317,15 @@ class ConsultationViewController: UIViewController {
         if Settings.automaticGenerateEventInCalendarSwitch == true {
             manageEventToCalendar()
         }
+        if consultationReportView.text != "Compte-rendu" {
+            consultationReport = String(consultationReportView.text!)
+        }
         consultationItem = ConsultationItem(
             key: "",
             reason: String(consultationReasonField.text!),
             date: String(consultationDateToSave),
             veterinary: String(selectedVeterinaryKey),
-            report: String(consultationReportView.text!),
+            report: consultationReport,
             weight: String(consultationWeightField.text!),
             idEvent: consultationIdEvent,
             diseases: [])

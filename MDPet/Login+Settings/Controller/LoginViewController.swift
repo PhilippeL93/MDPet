@@ -13,13 +13,15 @@ import FirebaseCore
 class LoginViewController: UIViewController {
 
     // MARK: Constants
-    let loginToList = "LoginToList"
     var userUid: UserUid!
     var authenticationError: AuthenticationError?
     var signedInUser: User?
-    private var userFirebase: AuthenticationGateway!
+    private var authenticationGateway: AuthenticationGateway!
     private var auth: Auth = {
+        print("=================== LoginViewController private var auth")
+        print("================= LoginViewController \(FirebaseApp.app()) ")
         if FirebaseApp.app() == nil {
+            print("================ LoginViewController FirebaseApp.app() == nil")
             FirebaseApp.configure()
         }
         return Auth.auth()
@@ -37,16 +39,8 @@ class LoginViewController: UIViewController {
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        userFirebase = AuthenticationGatewayFirebase(auth: auth)
+        authenticationGateway = AuthenticationGatewayFirebase(auth: auth)
         missingPasswordButton.underlineMyText()
-        Auth.auth().addStateDidChangeListener { _, user in
-            if user != nil {
-                self.performSegue(withIdentifier: self.loginToList, sender: nil)
-                self.textFieldLoginEmail.text = nil
-                self.textFieldLoginPassword.text = nil
-                UserUid.uid = user!.uid
-            }
-        }
     }
 
     @IBAction func loginDidTouch(_ sender: Any) {
@@ -76,7 +70,7 @@ class LoginViewController: UIViewController {
                 return
         }
         let userParams = RegisterUserBasicParams(email: email, password: password)
-        userFirebase.connect(userParams: userParams) { result in
+        authenticationGateway.connect(userParams: userParams) { result in
             switch result {
             case let .success(user):
                 self.signedInUser = user
@@ -88,7 +82,7 @@ class LoginViewController: UIViewController {
     }
 
     private func generateUserEntity(identifier: String, userParams: RegisterUserBasicParams) -> User {
-        return User(uid: identifier, email: userParams.email)
+        return UserEntity(uid: identifier, email: userParams.email)
     }
 
     private func handleRegister() {
@@ -100,11 +94,11 @@ class LoginViewController: UIViewController {
             let emailField = alert.textFields![0]
             let passwordField = alert.textFields![1]
             let userParams = RegisterUserBasicParams(email: emailField.text!, password: passwordField.text!)
-            self.userFirebase.register(userParams: userParams) { result in
+            self.authenticationGateway.register(userParams: userParams) { result in
                 switch result {
                 case let .success(user):
                     self.signedInUser = user
-                    self.userFirebase.connect(userParams: userParams) { result in
+                    self.authenticationGateway.connect(userParams: userParams) { result in
                         switch result {
                         case let .success(user):
                             self.signedInUser = user
@@ -145,7 +139,7 @@ class LoginViewController: UIViewController {
                 return
         }
         let userParams = RegisterUserBasicParams(email: email, password: "")
-        userFirebase.resetPassword(userParams: userParams) { result in
+        authenticationGateway.resetPassword(userParams: userParams) { result in
             switch result {
             case let .success(user):
                 self.signedInUser = user

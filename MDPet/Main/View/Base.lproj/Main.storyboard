@@ -1981,7 +1981,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Manage Calendar">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Manage Calendar">
                                 <rect key="frame" x="81" y="511" width="213" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Ajouter au calendrier"/>
@@ -2042,7 +2042,6 @@
                         <outlet property="consultationReportView" destination="3rY-NX-j8Z" id="AL4-4R-KyO"/>
                         <outlet property="consultationVeterinaryField" destination="iLH-LI-HXG" id="Nw5-GG-EsS"/>
                         <outlet property="consultationWeightField" destination="bwY-u0-3hY" id="puy-Jj-4G0"/>
-                        <outlet property="manageCalendarButton" destination="MlM-dQ-3cm" id="ZO4-gd-9yz"/>
                         <outlet property="saveConsultationButton" destination="ITh-zE-DSR" id="ora-9I-5a2"/>
                     </connections>
                 </viewController>
@@ -2183,7 +2182,7 @@
         <!--Login View Controller-->
         <scene sceneID="XZx-tj-kcm">
             <objects>
-                <viewController id="ZpG-R2-526" userLabel="Login View Controller" customClass="LoginViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="ZpG-R2-526" userLabel="Login View Controller" customClass="LoginViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VKC-Bf-8yo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2294,7 +2293,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="yfh-KD-50u">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="F6V-S5-kUn" customClass="TabBarViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="LoginToList" modalPresentationStyle="fullScreen" id="F6V-S5-kUn" customClass="TabBarViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nAl-Cx-H2e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
