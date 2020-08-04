@@ -116,8 +116,11 @@ class VaccineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.locale = localeLanguage
-        pathVaccine = UserUid.uid + vaccinesItem + petItem!.key
-        databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
+//        ici modif pour architecture
+//        pathVaccine = UserUid.uid + vaccinesItem + petItem!.key
+//        databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
+        let path = UserUid.uid
+        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
         createObserverVaccine()
         createDelegateVaccine()
         initiateObserverVaccine()
@@ -361,7 +364,9 @@ extension VaccineViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateVaccine() {
-        databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
+//        databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
+        let path = UserUid.uid
+        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
         //            guard let vaccineKey = vaccineItem?.key else {
         //                return
         //            }

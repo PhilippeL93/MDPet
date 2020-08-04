@@ -8,8 +8,8 @@
 
 import Foundation
 
-let consultationsItem = "-consultations-item"
+let consultationsItem = "consultations-item"
 let petsInages = "pets-images"
-let petsItem = "-pets-item"
-let vaccinesItem = "-vaccines-item"
-let veterinariesItem = "-veterinaries-item"
+let petsItem = "pets-item"
+let vaccinesItem = "vaccines-item"
+let veterinariesItem = "veterinaries-item"

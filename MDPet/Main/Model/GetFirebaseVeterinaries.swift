@@ -17,14 +17,17 @@ class GetFirebaseVeterinaries {
 
     init(with databaseReference: DatabaseReference) {
         self.databaseReference = databaseReference
-        let path = UserUid.uid + veterinariesItem
-        self.databaseReference = Database.database().reference(withPath: "\(path)")
+//        ici modif pour architecture
+//        let path = UserUid.uid + veterinariesItem
+//        self.databaseReference = Database.database().reference(withPath: "\(path)")
+        let path = UserUid.uid
+        self.databaseReference = Database.database().reference(withPath: "\(path)").child(veterinariesItem)
     }
 
     func observeVeterinaries(callback: @escaping (Bool, [VeterinaryItem]) -> Void) {
         self.databaseReference
             .queryOrdered(byChild: "veterinaryName")
-            .observeSingleEvent(of: .value) {snapshot in
+            .observe(.value, with: { snapshot in
                 var newItems: [VeterinaryItem] = []
                 for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
@@ -34,7 +37,7 @@ class GetFirebaseVeterinaries {
                 }
                 self.veterinariesItems = newItems
                 callback(true, self.veterinariesItems)
-        }
+        })
     }
 
     func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {

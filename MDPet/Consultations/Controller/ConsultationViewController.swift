@@ -105,8 +105,12 @@ class ConsultationViewController: UIViewController {
         super.viewDidLoad()
         dateFormatter.locale = localeLanguage
         formatDate()
-        pathConsultation = UserUid.uid + consultationsItem + petItem!.key
-        databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
+//        ici modif pour architecture
+//        pathConsultation = UserUid.uid + consultationsItem + petItem!.key
+//        databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
+        let path = UserUid.uid
+        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
+
         createObserverConsultation()
         createDelegateConsultation()
         initiateObserverConsultation()
@@ -304,7 +308,9 @@ class ConsultationViewController: UIViewController {
     private func createOrUpdateConsultation() {
         var consultationReport = ""
         toggleActivityIndicator(shown: true)
-        databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
+//        databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
+        let path = UserUid.uid
+        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
         //            guard let vaccineKey = vaccineItem?.key else {
         //                return
         //            }
@@ -500,6 +506,12 @@ extension ConsultationViewController: UITextViewDelegate {
             consultationReportView.textColor = UIColor.label
         } else {
             consultationReportView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+        if consultationReportView.text == "Compte-rendu" {
+            consultationReportView.textColor = UIColor.lightGray
+            consultationReportView.font = UIFont(name: "raleway", size: 17.0)
+            consultationReportView.returnKeyType = .done
+            consultationReportView.delegate = self
         }
         consultationReportView.resignFirstResponder()
     }

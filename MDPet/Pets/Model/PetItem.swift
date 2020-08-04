@@ -34,6 +34,8 @@ struct PetItem {
     var petPedigreeNumber: String
     var petMotherName: String
     var petFatherName: String
+//    var vaccinesItem: [String]
+//    var consultationsItem: [String]
 
     init(name: String, key: String = "",
          URLPicture: String, type: Int,
@@ -50,6 +52,8 @@ struct PetItem {
          pedigree: Bool,
          pedigreeNumber: String,
          motherName: String, fatherName: String) {
+//         vaccinesItem: [String],
+//         consultationsItem: [String]) {
         self.ref = nil
         self.key = key
         self.petName = name
@@ -73,6 +77,8 @@ struct PetItem {
         self.petPedigreeNumber = pedigreeNumber
         self.petMotherName = motherName
         self.petFatherName = fatherName
+//        self.vaccinesItem = vaccinesItem
+//        self.consultationsItem = consultationsItem
     }
 
     init?(snapshot: DataSnapshot) {
@@ -99,6 +105,8 @@ struct PetItem {
             let petPedigreeNumber = value["petPedigreeNumber"] as? String,
             let petMotherName = value["petMotherName"] as? String,
             let petFatherName = value["petFatherName"] as? String
+//            let vaccinesItem = value["vaccines-item"] as? [String],
+//            let consultationsItem = value["consultations-item"] as? [String]
             else {
                 return nil
         }
@@ -125,6 +133,8 @@ struct PetItem {
         self.petPedigreeNumber = petPedigreeNumber
         self.petMotherName = petMotherName
         self.petFatherName = petFatherName
+//        self.vaccinesItem = vaccinesItem
+//        self.consultationsItem = consultationsItem
     }
 
     func toAnyObject() -> Any {
@@ -150,6 +160,8 @@ struct PetItem {
             "petPedigreeNumber": petPedigreeNumber,
             "petMotherName": petMotherName,
             "petFatherName": petFatherName
+//            "vaccines-item":vaccinesItem,
+//            "consultations-item":consultationsItem
         ]
     }
 }

@@ -179,7 +179,9 @@ class PetViewController: UIViewController {
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        pathPet = UserUid.uid + petsItem
+//        ici modif pour architecture
+//        pathPet = UserUid.uid + petsItem
+        pathPet = UserUid.uid
         databaseRef = Database.database().reference(withPath: "\(pathPet)")
         createObserverPet()
         createDelegatePet()
@@ -866,7 +868,8 @@ extension PetViewController {
         petItem?.petMotherName = String(petMotherNameField.text ?? "")
         petItem?.petFatherName = String(petFatherNameField.text ?? "")
 
-        let petItemRef = databaseRef.child(uniqueUUID)
+        let petItemRef = databaseRef.child(petsItem).child(uniqueUUID)
+//        let petItemRef = Database.database().child(petsItem).child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
         navigationController?.popViewController(animated: true)
     }

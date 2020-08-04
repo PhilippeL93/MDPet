@@ -12,36 +12,19 @@ import FirebaseDatabase
 class GetFirebasePets {
 
     static let shared = GetFirebasePets(with: DatabaseReference())
-//    var databaseRef = Database.database().reference(withPath: petsItem)
     private var databaseReference: DatabaseReference
     var petItems: [PetItem] = []
 
     init(with databaseReference: DatabaseReference) {
         self.databaseReference = databaseReference
-        let path = UserUid.uid + petsItem
-        self.databaseReference = Database.database().reference(withPath: "\(path)")
+        let path = UserUid.uid
+        self.databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem)
     }
 
     func observePets(callback: @escaping (Bool, [PetItem]) -> Void) {
-//        let path = UserUid.uid + petsItem
-//
-//        databaseRef = Database.database().reference(withPath: "\(path)")
-//
-//        let query = databaseRef.queryOrdered(byChild: "petName")
-//        query.observe(.value, with: { snapshot in
-//            var newItems: [PetItem] = []
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let petItem = PetItem(snapshot: snapshot) {
-//                    newItems.append(petItem)
-//                }
-//            }
-//            self.petItems = newItems
-//            callback(true, self.petItems)
-//        })
         self.databaseReference
             .queryOrdered(byChild: "petName")
-            .observeSingleEvent(of: .value) {snapshot in
+            .observe(.value, with: { snapshot in
                 var newItems: [PetItem] = []
                 for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
@@ -51,40 +34,58 @@ class GetFirebasePets {
                 }
                 self.petItems = newItems
                 callback(true, self.petItems)
-        }
+        })
     }
-    func readPets(veterinaryToSearch: String, callback: @escaping (Bool, Bool) -> Void) {
-//        let path = UserUid.uid + petsItem
-//
-//        var veterinaryFound = false
-//
-//        databaseRef = Database.database().reference(withPath: "\(path)")
-//
-//        let query = databaseRef.queryOrdered(byChild: "petVeterinary")
-//        query.observeSingleEvent(of: .value, with: { snapshot in
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let petItem = PetItem(snapshot: snapshot) {
-//                    if petItem.petVeterinary == veterinaryToSearch {
-//                       veterinaryFound = true
-//                    }
-//                }
-//            }
-//            callback(true, veterinaryFound)
-//        })
+    func readPets(veterinaryToSearch: String, callback: @escaping (Bool) -> Void) {
         var veterinaryFound = false
         self.databaseReference
-            .queryOrdered(byChild: "petVeterinary")
             .observeSingleEvent(of: .value) {snapshot in
+                var newItems: [PetItem] = []
                 for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
                         let petItem = PetItem(snapshot: snapshot) {
                         if petItem.petVeterinary == veterinaryToSearch {
                             veterinaryFound = true
                         }
+                        newItems.append(petItem)
                     }
                 }
-                callback(true, veterinaryFound)
+                if veterinaryFound == true {
+                    callback(veterinaryFound)
+                } else {
+                    self.readVaccines(petItems: self.petItems,
+                                      veterinaryToSearch: veterinaryToSearch,
+                                      callback: callback)
+                    self.readConsultations(petItems: self.petItems,
+                                           veterinaryToSearch: veterinaryToSearch,
+                                           callback: callback)
+                }
+        }
+    }
+    private func readVaccines(petItems: [PetItem],
+                              veterinaryToSearch: String,
+                              callback: @escaping((Bool) -> Void )) {
+        for indice in 0...self.petItems.count-1 {
+            let petKey = self.petItems[indice].key
+            GetFirebaseVaccines.shared.readVaccines(petKey: petKey,
+                                                    veterinaryToSearch: veterinaryToSearch) { (found) in
+                                                        if found == true {
+                                                            callback(found)
+                                                        }
+            }
+        }
+    }
+    private func readConsultations(petItems: [PetItem],
+                                   veterinaryToSearch: String,
+                                   callback: @escaping((Bool) -> Void )) {
+        for indice in 0...self.petItems.count-1 {
+            let petKey = self.petItems[indice].key
+            GetFirebaseConsultations.shared.readConsultations(petKey: petKey,
+                                                              veterinaryToSearch: veterinaryToSearch) { (found) in
+                                                                if found == true {
+                                                                    callback(found)
+                                                                }
+            }
         }
     }
 }

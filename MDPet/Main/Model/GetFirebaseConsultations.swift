@@ -12,46 +12,25 @@ import FirebaseDatabase
 class GetFirebaseConsultations {
 
     static let shared = GetFirebaseConsultations(with: DatabaseReference())
-//    var databaseRef = Database.database().reference(withPath: consultationsItem)
     private var databaseReference: DatabaseReference
     var consultationItems: [ConsultationItem] = []
     var newItems: [ConsultationItem] = []
-    var path = ""
 
     init(with databaseReference: DatabaseReference) {
         self.databaseReference = databaseReference
+//        let path = UserUid.uid
+//        self.databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem)
     }
 
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
 
     func observeConsultations(petKey: String, callback: @escaping (Bool, [ConsultationItem]) -> Void) {
-//        let path = UserUid.uid + consultationsItem + petKey
-//
-//        databaseRef = Database.database().reference(withPath: "\(path)")
-//
-//        let query = databaseRef.queryOrdered(byChild: "consultationDate")
-//        query.observe(.value, with: { snapshot in
-//            self.newItems = []
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let consultationItem = ConsultationItem(snapshot: snapshot) {
-//                    self.newItems.append(consultationItem)
-//                }
-//            }
-//            if self.newItems.count != 0 {
-//                self.newItems = self.newItems.sorted(by: {
-//                    $0.consultationDate > $1.consultationDate
-//                })
-//            }
-//            self.consultationItems = self.newItems
-//            callback(true, self.consultationItems)
-//        })
-        path = UserUid.uid + consultationsItem + petKey
-        databaseReference = Database.database().reference(withPath: "\(path)")
+        let path = UserUid.uid
+        databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem).child(petKey).child(consultationsItem)
         self.databaseReference
             .queryOrdered(byChild: "consultationDate")
-            .observeSingleEvent(of: .value) {snapshot in
+            .observe(.value, with: { snapshot in
                 self.newItems = []
                 for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
@@ -66,69 +45,28 @@ class GetFirebaseConsultations {
                 }
                 self.consultationItems = self.newItems
                 callback(true, self.consultationItems)
-        }
+        })
     }
-    func readConsultations(veterinaryToSearch: String, callback: @escaping (Bool, Bool) -> Void) {
-//        let path = UserUid.uid + consultationsItem + petKey
-//
-//        databaseRef = Database.database().reference(withPath: "\(path)")
-//
-//        let query = databaseRef
-//        query.observeSingleEvent(of: .value, with: { snapshot in
-//            self.newItems = []
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let consultationItem = ConsultationItem(snapshot: snapshot) {
-//                    self.newItems.append(consultationItem)
-//                }
-//            }
-//            self.consultationItems = self.newItems
-//            callback(true, self.consultationItems)
-//        })
-        path = UserUid.uid + consultationsItem
-        databaseReference = Database.database().reference(withPath: "\(path)")
-        var consultationFound = false
+    func readConsultations(petKey: String, veterinaryToSearch: String, callback: @escaping (Bool) -> Void) {
+        let path = UserUid.uid
+        databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem).child(petKey).child(consultationsItem)
+        var veterinaryFound = false
         self.databaseReference
             .observeSingleEvent(of: .value) {snapshot in
-                print("'=============== ok")
-                if let getData = snapshot.value as? [String:Any] {
-
-                     let wins = getData["wins"] as? String
-
-                     print("\(wins)") //check the value of wins is correct
-
-                 }
-//                self.newItems = []
-//                for child in snapshot.children {
-//                    if let snapshot = child as? DataSnapshot,
-//                        let consultationItem = ConsultationItem(snapshot: snapshot) {
-//                        self.newItems.append(consultationItem)
-//                    }
-//                }
-                self.consultationItems = self.newItems
-                callback(true, consultationFound)
+                self.newItems = []
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let consultationItem = ConsultationItem(snapshot: snapshot) {
+                        if consultationItem.consultationVeterinary == veterinaryToSearch {
+                            veterinaryFound = true
+                        }
+                    }
+                }
+                callback(veterinaryFound)
         }
     }
     func deleteConsultations(petKey: String, callback: @escaping (Bool) -> Void) {
-//        let path = UserUid.uid + consultationsItem + petKey
-//
-//        databaseRef = Database.database().reference(withPath: "\(path)")
-//
-//        let query = databaseRef
-//        query.observeSingleEvent(of: .value, with: { snapshot in
-//            self.newItems = []
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let consultationItem = ConsultationItem(snapshot: snapshot) {
-//                    let consultationKey = consultationItem.key
-//                    let deleteRefConsultation = self.databaseRef.child(consultationKey)
-//                    deleteRefConsultation.removeValue()
-//                }
-//            }
-//            callback(true)
-//        })
-        path = UserUid.uid + consultationsItem + petKey
-        databaseReference = Database.database().reference(withPath: "\(path)")
+        databaseReference = databaseReference.child(petKey).child(consultationsItem)
         self.databaseReference
             .observeSingleEvent(of: .value) {snapshot in
                 self.newItems = []
