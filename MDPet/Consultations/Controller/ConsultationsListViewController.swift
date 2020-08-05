@@ -29,6 +29,9 @@ class ConsultationsListViewController: UIViewController {
       override func viewDidLoad() {
         super.viewDidLoad()
         petNameLabel.text = petItem?.petName
+        self.navigationItem.title = "Consultations"
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont(name: "Raleway", size: 17)! ]
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()

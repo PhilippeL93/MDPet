@@ -17,6 +17,5 @@ protocol AuthenticationGateway {
     func connect(userParams: RegisterUserBasicParams, completion: @escaping((RegisterResult) -> Void))
 
     func resetPassword(userParams: RegisterUserBasicParams, completion: @escaping((RegisterResult) -> Void))
-    
-//    func alreadyConnected(userParams: RegisterUserBasicParams, completion: @escaping((RegisterResult) -> Void))
+
 }

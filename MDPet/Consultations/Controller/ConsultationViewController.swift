@@ -132,7 +132,6 @@ class ConsultationViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .navigationBarConsultationToTrue, object: nil)
         NotificationCenter.default.removeObserver(self, name: .consultationIsToUpdate, object: nil)
         NotificationCenter.default.removeObserver(self, name: .consultationHasBeenDeleted, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .consultationHasBeenDeleted, object: nil)
     }
     // MARK: - @objc func
     @objc func tapGestuireRecognizer(gesture: UIGestureRecognizer) {
@@ -229,6 +228,8 @@ class ConsultationViewController: UIViewController {
     private func updateDictionnaryFieldsUpdated(updated: Bool, forKey: String) {
         fieldsUpdated.updateValue(updated, forKey: forKey)
     }
+}
+extension ConsultationViewController {
     // MARK: - functions
     private func createObserverConsultation() {
         createObserverConsultationReason()
@@ -453,8 +454,7 @@ extension ConsultationViewController {
         datePickerConsultationDate?.minuteInterval = 5
         datePickerConsultationDate?.locale = localeLanguage
         datePickerConsultationDate?.addTarget(self,
-                                       action:
-                                                #selector(ConsultationViewController.dateChangedConsultationDate(datePicker:)),
+                                       action: #selector(ConsultationViewController.dateChangedConsultationDate(datePicker:)),
                                        for: .valueChanged )
         consultationDateField.inputView = datePickerConsultationDate
     }

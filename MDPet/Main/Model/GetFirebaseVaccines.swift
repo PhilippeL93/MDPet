@@ -29,7 +29,8 @@ class GetFirebaseVaccines {
 
     func observeVaccines(petKey: String, callback: @escaping (Bool, [VaccineItem]) -> Void) {
         let path = UserUid.uid
-        databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem).child(petKey).child(vaccinesItem)
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(vaccinesItem)
         self.databaseReference
             .queryOrdered(byChild: "vaccineDate")
             .observe(.value, with: { snapshot in
@@ -51,7 +52,8 @@ class GetFirebaseVaccines {
     }
     func readVaccines(petKey: String, veterinaryToSearch: String, callback: @escaping (Bool) -> Void) {
         let path = UserUid.uid
-        databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem).child(petKey).child(vaccinesItem)
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(vaccinesItem)
         var veterinaryFound = false
         self.databaseReference
             .observeSingleEvent(of: .value) {snapshot in
@@ -91,6 +93,14 @@ class GetFirebaseVaccines {
                 callback(true)
         }
     }
+    func deleteVaccine(petKey: String, vaccineKey: String, callback: @escaping (Bool) -> Void) {
+        let path = UserUid.uid
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(vaccinesItem).child(vaccineKey)
+        self.databaseReference
+            .removeValue()
+    }
+
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
             if wayToSort == "fromDMYToYMD" {

@@ -22,6 +22,7 @@ class VaccineViewController: UIViewController {
     @IBOutlet weak var saveVaccineButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var vaccineDoneSwitch: UISwitch!
+    @IBOutlet weak var suppressVaccineButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
@@ -42,7 +43,6 @@ class VaccineViewController: UIViewController {
     var selectedVeterinaryName = ""
 
     var veterinariesItems: [VeterinaryItem] = []
-    //    var typeOfCall: String = ""
     var typeOfCall: TypeOfCall?
     var petItem: PetItem?
     var vaccineItem: VaccineItem?
@@ -77,7 +77,10 @@ class VaccineViewController: UIViewController {
         imagePicker.present(from: sender)
     }
     @IBAction func saveVaccine(_ sender: Any) {
-        createOrUpdateVaccine()
+    createOrUpdateVaccine()
+    }
+    @IBAction func suppressVaccine(_ sender: Any) {
+        getSuppressedVaccine()
     }
     @IBAction func backToVaccines(_ sender: UIBarButtonItem) {
         activeField?.resignFirstResponder()
@@ -116,11 +119,9 @@ class VaccineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.locale = localeLanguage
-//        ici modif pour architecture
-//        pathVaccine = UserUid.uid + vaccinesItem + petItem!.key
-//        databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
         let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
+        databaseRef = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
         createObserverVaccine()
         createDelegateVaccine()
         initiateObserverVaccine()
@@ -177,6 +178,16 @@ class VaccineViewController: UIViewController {
             return
         }
     }
+    @objc func isVaccineDeleted(notification: Notification) {
+        var hasBeenDeleted = false
+        if let object = notification.object as? Bool {
+            hasBeenDeleted = object
+        }
+        if hasBeenDeleted == true {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+    }
     @objc func vaccineInjectionFieldDidEnd(_ textField: UITextField) {
         if vaccineInjectionField.text != vaccineItem?.vaccineInjection {
             updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineInjectionUpdated")
@@ -229,7 +240,6 @@ class VaccineViewController: UIViewController {
     private func updateDictionnaryFieldsUpdated(updated: Bool, forKey: String) {
         fieldsUpdated.updateValue(updated, forKey: forKey)
     }
-
 }
 extension VaccineViewController {
     // MARK: - functions
@@ -257,8 +267,8 @@ extension VaccineViewController {
                                                name: .navigationBarVaccineToTrue, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(isVaccineToUpdate),
                                                name: .vaccineIsToUpdate, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(isVaccineDeleted),
-//                                               name: .hasBeenDeleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(isVaccineDeleted),
+                                               name: .vaccineHasBeenDeleted, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
@@ -269,7 +279,7 @@ extension VaccineViewController {
         if case .create = typeOfCall {
             saveVaccineButton.title = "Ajouter"
             self.title = "Nouveau vaccin"
-//            suppressVaccineButton.isHidden = true
+            suppressVaccineButton.isHidden = true
         } else {
             saveVaccineButton.title = "OK"
             self.title = "Modification vaccin"
@@ -347,6 +357,19 @@ extension VaccineViewController {
     private func toggleActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
     }
+    private func getSuppressedVaccine() {
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmVaccineSuppress")
+            as? ConfirmVaccineSuppressViewController else {
+                return
+        }
+        destVC.petItem = petItem
+        destVC.vaccineItem = vaccineItem
+        self.addChild(destVC)
+        destVC.view.frame = self.view.frame
+        self.view.addSubview(destVC.view)
+        destVC.didMove(toParent: self)
+    }
     private func checkUpdateVaccineDone() {
         if saveVaccineButton.isEnabled == false {
             navigationController?.popViewController(animated: true)
@@ -364,12 +387,9 @@ extension VaccineViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateVaccine() {
-//        databaseRef = Database.database().reference(withPath: "\(pathVaccine)")
         let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
-        //            guard let vaccineKey = vaccineItem?.key else {
-        //                return
-        //            }
+        databaseRef = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
         var storageRef = imageRef.child("\(String(describing: vaccineKey)).png")
         var uniqueUUID = vaccineKey
 
@@ -405,7 +425,6 @@ extension VaccineViewController {
             key: "",
             number: 1,
             injection: String(vaccineInjectionField.text ?? ""),
-//            date: String(vaccineDateField.text ?? ""),
             date: String(vaccineDateToSave),
             URLThumbnail: vaccineURLThumbnail,
             veterinary: String(selectedVeterinaryKey),

@@ -42,7 +42,6 @@ class ConfirmConsultationSuppressViewController: UIViewController {
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
     }
-
     private func removeAnimate() {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -51,8 +50,7 @@ class ConfirmConsultationSuppressViewController: UIViewController {
             if (finished) {
                 self.view.removeFromSuperview()
             }
-        }
-        )
+        })
     }
     private func prepareToGoBack() {
         NotificationCenter.default.post(name: .consultationHasBeenDeleted, object: consultationHasBeenDeleted)
@@ -62,7 +60,7 @@ class ConfirmConsultationSuppressViewController: UIViewController {
     }
     private func gestSuppressConsultation() {
         let eventIdentifier = consultationItem?.consultationIdEvent
-        eventsCalendarManager.requestSuppressEvent(eventIdentifier: eventIdentifier!) { (result, idEvent) in
+        eventsCalendarManager.requestSuppressEvent(eventIdentifier: eventIdentifier!) { (result, _) in
             switch result {
             case .success:
                 print("success")

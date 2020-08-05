@@ -827,7 +827,6 @@ extension PetViewController {
         } else {
             updatePetStorage(petURLPicture: "", uniqueUUID: uniqueUUID)
         }
-//        navigationController?.popViewController(animated: true)
     }
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
         toggleActivityIndicator(shown: true)
@@ -867,7 +866,6 @@ extension PetViewController {
         petItem?.petFatherName = String(petFatherNameField.text ?? "")
 
         let petItemRef = databaseRef.child(petsItem).child(uniqueUUID)
-//        let petItemRef = Database.database().child(petsItem).child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
         navigationController?.popViewController(animated: true)
     }
@@ -1016,7 +1014,6 @@ extension PetViewController: UITextFieldDelegate {
         activeField = previousActiveField
     }
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        activeField?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         if #available(iOS 13.0, *) {
             activeField?.textColor = UIColor.label
         } else {
@@ -1078,9 +1075,6 @@ private extension PetViewController {
                 if distanceToBottom > keyboardHeight {
                     return
                 }
-//              if distanceToBottom < 0 {
-//                  distanceToBottom = 0
-//              }
                 let collapseSpace = (keyboardHeight - distanceToBottom + 10)
                 UIView.animate(withDuration: 0.3, animations: {
                     self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace)
