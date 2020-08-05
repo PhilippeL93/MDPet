@@ -19,6 +19,7 @@ class ConsultationViewController: UIViewController {
     @IBOutlet weak var consultationWeightField: UITextField!
     @IBOutlet weak var consultationReportView: UITextView!
     @IBOutlet weak var saveConsultationButton: UIBarButtonItem!
+    @IBOutlet weak var suppressConsultationButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
@@ -39,7 +40,6 @@ class ConsultationViewController: UIViewController {
 
     var veterinariesItems: [VeterinaryItem] = []
     var consultationsItems: [ConsultationItem] = []
-    //    var typeOfCall: String = ""
     var typeOfCall: TypeOfCall?
     var petItem: PetItem?
     var consultationItem: ConsultationItem?
@@ -66,6 +66,9 @@ class ConsultationViewController: UIViewController {
     }
     @IBAction func saveConsultation(_ sender: Any) {
         createOrUpdateConsultation()
+    }
+    @IBAction func suppressConsultation(_ sender: Any) {
+        getSuppressedConsultation()
     }
     @IBAction func backToConsultations(_ sender: UIBarButtonItem) {
         activeField?.resignFirstResponder()
@@ -105,12 +108,9 @@ class ConsultationViewController: UIViewController {
         super.viewDidLoad()
         dateFormatter.locale = localeLanguage
         formatDate()
-//        ici modif pour architecture
-//        pathConsultation = UserUid.uid + consultationsItem + petItem!.key
-//        databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
         let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
-
+        databaseRef = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
         createObserverConsultation()
         createDelegateConsultation()
         initiateObserverConsultation()
@@ -131,6 +131,7 @@ class ConsultationViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: .navigationBarConsultationToTrue, object: nil)
         NotificationCenter.default.removeObserver(self, name: .consultationIsToUpdate, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .consultationHasBeenDeleted, object: nil)
         NotificationCenter.default.removeObserver(self, name: .consultationHasBeenDeleted, object: nil)
     }
     // MARK: - @objc func
@@ -169,6 +170,16 @@ class ConsultationViewController: UIViewController {
             isToUpdate = object
         }
         if isToUpdate == false {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+    }
+    @objc func isConsultationDeleted(notification: Notification) {
+        var hasBeenDeleted = false
+        if let object = notification.object as? Bool {
+            hasBeenDeleted = object
+        }
+        if hasBeenDeleted == true {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -243,9 +254,8 @@ class ConsultationViewController: UIViewController {
                                                name: .navigationBarConsultationToTrue, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(isConsultationToUpdate),
                                                name: .consultationIsToUpdate, object: nil)
-//        ici
-//        NotificationCenter.default.addObserver(self, selector: #selector(isConsultationDeleted),
-//                                               name: .consultationHasBeenDeleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(isConsultationDeleted),
+                                               name: .consultationHasBeenDeleted, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
@@ -256,8 +266,7 @@ class ConsultationViewController: UIViewController {
         if case .create = typeOfCall {
             saveConsultationButton.title = "Ajouter"
             self.title = "Nouvelle consultation"
-            //        ici
-            //            suppressConsultationButton.isHidden = true
+            suppressConsultationButton.isHidden = true
         } else {
             saveConsultationButton.title = "OK"
             self.title = "Modification consultation"
@@ -308,9 +317,9 @@ class ConsultationViewController: UIViewController {
     private func createOrUpdateConsultation() {
         var consultationReport = ""
         toggleActivityIndicator(shown: true)
-//        databaseRef = Database.database().reference(withPath: "\(pathConsultation)")
         let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath: "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
+        databaseRef = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
         //            guard let vaccineKey = vaccineItem?.key else {
         //                return
         //            }
@@ -341,6 +350,19 @@ class ConsultationViewController: UIViewController {
     }
     private func toggleActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
+    }
+    private func getSuppressedConsultation() {
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmConsultationSuppress")
+            as? ConfirmConsultationSuppressViewController else {
+                return
+        }
+        destVC.petItem = petItem
+        destVC.consultationItem = consultationItem
+        self.addChild(destVC)
+        destVC.view.frame = self.view.frame
+        self.view.addSubview(destVC.view)
+        destVC.didMove(toParent: self)
     }
     private func checkConsultationComplete() {
         guard let consultationReason = consultationReasonField.text else {
@@ -384,7 +406,7 @@ extension ConsultationViewController {
         let store = EKEventStore()
         let event = EKEvent(eventStore: store)
         dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
-        event.title = String(consultationReasonField.text!)
+        event.title = petItem!.petName + " - " + String(consultationReasonField.text!)
         event.startDate = dateFormatter.date(from: consultationDateField.text!)
         event.endDate = event.startDate + 3600
         event.location = veterinariesItems[veterinaryIndice].veterinaryName
@@ -412,6 +434,8 @@ extension ConsultationViewController {
                     self.getErrors(type: .eventDoesntExistInCalendar)
                 case .eventNotUpdatedToCalendar:
                     self.getErrors(type: .eventNotUpdatedToCalendar)
+                case .eventNotSuppressedToCalendar:
+                    self.getErrors(type: .eventNotSuppressedToCalendar)
                 }
             }
         }

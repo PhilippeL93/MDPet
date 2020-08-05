@@ -27,7 +27,8 @@ class GetFirebaseConsultations {
 
     func observeConsultations(petKey: String, callback: @escaping (Bool, [ConsultationItem]) -> Void) {
         let path = UserUid.uid
-        databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem).child(petKey).child(consultationsItem)
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(consultationsItem)
         self.databaseReference
             .queryOrdered(byChild: "consultationDate")
             .observe(.value, with: { snapshot in
@@ -49,7 +50,8 @@ class GetFirebaseConsultations {
     }
     func readConsultations(petKey: String, veterinaryToSearch: String, callback: @escaping (Bool) -> Void) {
         let path = UserUid.uid
-        databaseReference = Database.database().reference(withPath: "\(path)").child(petsItem).child(petKey).child(consultationsItem)
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(consultationsItem)
         var veterinaryFound = false
         self.databaseReference
             .observeSingleEvent(of: .value) {snapshot in
@@ -65,11 +67,12 @@ class GetFirebaseConsultations {
                 callback(veterinaryFound)
         }
     }
-    func deleteConsultations(petKey: String, callback: @escaping (Bool) -> Void) {
-        databaseReference = databaseReference.child(petKey).child(consultationsItem)
+    func deleteAllConsultations(petKey: String, callback: @escaping (Bool) -> Void) {
+        let path = UserUid.uid
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(consultationsItem)
         self.databaseReference
             .observeSingleEvent(of: .value) {snapshot in
-                self.newItems = []
                 for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
                         let consultationItem = ConsultationItem(snapshot: snapshot) {
@@ -80,6 +83,13 @@ class GetFirebaseConsultations {
                 }
                 callback(true)
         }
+    }
+    func deleteConsultation(petKey: String, consultationKey: String, callback: @escaping (Bool) -> Void) {
+        let path = UserUid.uid
+        databaseReference = Database.database().reference(withPath:
+            "\(path)").child(petsItem).child(petKey).child(consultationsItem).child(consultationKey)
+        self.databaseReference
+            .removeValue()
     }
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {

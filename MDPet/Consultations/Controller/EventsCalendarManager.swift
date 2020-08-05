@@ -140,6 +140,56 @@ class EventsCalendarManager: NSObject {
         }
         return eventAlreadyExists
     }
+   func requestSuppressEvent(eventIdentifier: String,
+                             completion : @escaping EventsCalendarManagerResponse) {
+        let authStatus = getAuthorizationStatus()
+        switch authStatus {
+        case .authorized:
+            self.suppressEvent(eventIdentifier: eventIdentifier, completion: { (result, idEvent) in
+                switch result {
+                case .success:
+                    completion(.success(true), idEvent)
+                case .failure(let error):
+                    completion(.failure(error), idEvent)
+                }
+            })
+        case .notDetermined:
+            //Auth is not determined
+            //We should request access to the calendar
+            requestAccess { (accessGranted, error) in
+                if accessGranted {
+                    self.suppressEvent(eventIdentifier: eventIdentifier, completion: { (result, idEvent) in
+                        switch result {
+                        case .success:
+                            completion(.success(true), idEvent)
+                        case .failure(let error):
+                            completion(.failure(error), idEvent)
+                        }
+                    })
+                } else {
+                    // Auth denied, we should display a popup
+                    completion(.failure(.calendarAccessDeniedOrRestricted), "")
+                }
+            }
+        case .denied, .restricted:
+            // Auth denied or restricted, we should display a popup
+            completion(.failure(.calendarAccessDeniedOrRestricted), "")
+        @unknown default:
+            print("error")
+        }
+    }
+    func suppressEvent(eventIdentifier: String,
+                       completion : @escaping EventsCalendarManagerResponse) {
+        let eventToRemove = eventStore.event(withIdentifier: eventIdentifier)
+        if eventToRemove != nil {
+            do {
+                try eventStore.remove(eventToRemove!, span: .thisEvent, commit: true)
+            } catch {
+                completion(.failure(.eventNotSuppressedToCalendar), eventIdentifier)
+            }
+            completion(.success(true), eventIdentifier)
+        }
+    }
 }
 
 // EKEventEditViewDelegate
@@ -158,4 +208,5 @@ enum CustomError: Error {
     case eventAlreadyExistsInCalendar
     case eventDoesntExistInCalendar
     case eventNotUpdatedToCalendar
+    case eventNotSuppressedToCalendar
 }

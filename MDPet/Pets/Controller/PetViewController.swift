@@ -179,8 +179,6 @@ class PetViewController: UIViewController {
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-//        ici modif pour architecture
-//        pathPet = UserUid.uid + petsItem
         pathPet = UserUid.uid
         databaseRef = Database.database().reference(withPath: "\(pathPet)")
         createObserverPet()

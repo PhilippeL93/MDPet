@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Raleway-Bold.ttf">
+            <string>Raleway-Bold</string>
+        </array>
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
@@ -990,7 +993,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Lkd-vC-Pb6"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="25"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Supprimer la fiche">
                                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1958,8 +1961,8 @@
                                     <action selector="consultationDateEditingDidBegin:" destination="ibQ-5h-4AM" eventType="editingDidBegin" id="hC9-Xx-CLt"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-NX-j8Z" userLabel="Consultation Report Text View">
-                                <rect key="frame" x="8" y="170" width="359" height="279"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-NX-j8Z" userLabel="Consultation Report Text View">
+                                <rect key="frame" x="8" y="170" width="359" height="267"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
@@ -1981,12 +1984,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Manage Calendar">
-                                <rect key="frame" x="81" y="511" width="213" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Consultation suppress">
+                                <rect key="frame" x="0.0" y="615" width="375" height="42"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Ajouter au calendrier"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="25"/>
+                                <state key="normal" title="Supprimer la consultation"/>
                                 <connections>
-                                    <action selector="manageCalendar:" destination="ibQ-5h-4AM" eventType="touchUpInside" id="mal-Tb-qyq"/>
+                                    <action selector="suppresConsultationButton:" destination="8zK-kP-hLg" eventType="touchUpInside" id="cBZ-8Q-R4v"/>
+                                    <action selector="suppressConsultation:" destination="ibQ-5h-4AM" eventType="touchUpInside" id="jtB-GP-lQg"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="b3y-SX-ZRG">
@@ -1998,23 +2003,22 @@
                         <constraints>
                             <constraint firstItem="fWN-LU-baL" firstAttribute="top" secondItem="coc-bS-xw6" secondAttribute="bottom" constant="8" id="5Ne-xV-WGy"/>
                             <constraint firstItem="bwY-u0-3hY" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="241" id="5a4-Ua-gqI"/>
-                            <constraint firstItem="Y1U-Ck-YzC" firstAttribute="bottom" secondItem="MlM-dQ-3cm" secondAttribute="bottom" constant="126" id="8tI-mU-Gfj"/>
+                            <constraint firstItem="MlM-dQ-3cm" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" id="6Hi-KD-yd6"/>
                             <constraint firstItem="Y1U-Ck-YzC" firstAttribute="trailing" secondItem="3rY-NX-j8Z" secondAttribute="trailing" constant="8" id="9Ks-8Q-E2I"/>
                             <constraint firstItem="iLH-LI-HXG" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="8" id="9jI-WA-4Im"/>
                             <constraint firstItem="Y1U-Ck-YzC" firstAttribute="trailing" secondItem="iLH-LI-HXG" secondAttribute="trailing" constant="8" id="Acr-gB-Hiq"/>
-                            <constraint firstItem="Y1U-Ck-YzC" firstAttribute="trailing" secondItem="MlM-dQ-3cm" secondAttribute="trailing" constant="81" id="Bd6-sQ-laA"/>
                             <constraint firstItem="coc-bS-xw6" firstAttribute="top" secondItem="RZh-lw-JJF" secondAttribute="bottom" constant="16" id="DuM-rJ-fSv"/>
                             <constraint firstItem="iLH-LI-HXG" firstAttribute="top" secondItem="fWN-LU-baL" secondAttribute="bottom" constant="8" id="Igw-E5-byT"/>
                             <constraint firstItem="w4b-Bf-lv8" firstAttribute="leading" secondItem="bwY-u0-3hY" secondAttribute="trailing" constant="8" id="JEM-MC-sCm"/>
                             <constraint firstItem="Y1U-Ck-YzC" firstAttribute="trailing" secondItem="fWN-LU-baL" secondAttribute="trailing" constant="8" id="LvA-ca-grr"/>
-                            <constraint firstItem="MlM-dQ-3cm" firstAttribute="top" secondItem="3rY-NX-j8Z" secondAttribute="bottom" constant="62" id="NTQ-rb-CeD"/>
                             <constraint firstItem="bwY-u0-3hY" firstAttribute="top" secondItem="iLH-LI-HXG" secondAttribute="bottom" constant="8" id="OgZ-Aw-Szu"/>
+                            <constraint firstItem="Y1U-Ck-YzC" firstAttribute="bottom" secondItem="MlM-dQ-3cm" secondAttribute="bottom" constant="10" id="R89-Q4-w20"/>
                             <constraint firstItem="fWN-LU-baL" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="8" id="Rwa-EE-IQz"/>
                             <constraint firstItem="coc-bS-xw6" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="8" id="VSf-9L-Drf"/>
-                            <constraint firstItem="MlM-dQ-3cm" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="81" id="VZo-9M-CKD"/>
                             <constraint firstItem="3rY-NX-j8Z" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="8" id="W2Z-qq-vDg"/>
                             <constraint firstItem="Y1U-Ck-YzC" firstAttribute="trailing" secondItem="coc-bS-xw6" secondAttribute="trailing" constant="8" id="c4K-io-q3I"/>
                             <constraint firstItem="Y1U-Ck-YzC" firstAttribute="trailing" secondItem="w4b-Bf-lv8" secondAttribute="trailing" constant="8" id="ctW-cK-8Ul"/>
+                            <constraint firstItem="MlM-dQ-3cm" firstAttribute="trailing" secondItem="Y1U-Ck-YzC" secondAttribute="trailing" id="jN3-ic-4r8"/>
                             <constraint firstItem="w4b-Bf-lv8" firstAttribute="centerY" secondItem="bwY-u0-3hY" secondAttribute="centerY" id="lPn-iO-TKM"/>
                             <constraint firstItem="RZh-lw-JJF" firstAttribute="top" secondItem="Y1U-Ck-YzC" secondAttribute="top" constant="10" id="qak-13-n18"/>
                             <constraint firstItem="RZh-lw-JJF" firstAttribute="centerX" secondItem="h1T-gu-4XN" secondAttribute="centerX" id="sxq-nm-5u2"/>
@@ -2043,11 +2047,13 @@
                         <outlet property="consultationVeterinaryField" destination="iLH-LI-HXG" id="Nw5-GG-EsS"/>
                         <outlet property="consultationWeightField" destination="bwY-u0-3hY" id="puy-Jj-4G0"/>
                         <outlet property="saveConsultationButton" destination="ITh-zE-DSR" id="ora-9I-5a2"/>
+                        <outlet property="suppressConsultationButton" destination="MlM-dQ-3cm" id="lfc-F9-Os2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5T-dk-Wel" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="8zK-kP-hLg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4727" y="-329"/>
+            <point key="canvasLocation" x="4725.6000000000004" y="-329.68515742128938"/>
         </scene>
         <!--Consultations List View Controller-->
         <scene sceneID="evD-pJ-UJU">
@@ -2607,7 +2613,156 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQb-5u-nTQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5406" y="-330"/>
+            <point key="canvasLocation" x="5822" y="354"/>
+        </scene>
+        <!--Confirm Consultation Suppress View Controller-->
+        <scene sceneID="RNl-kB-1d6">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmConsultationSuppress" id="SGn-ds-AVq" userLabel="Confirm Consultation Suppress View Controller" customClass="ConfirmConsultationSuppressViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kFN-ZS-pc0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbj-4w-mfW" userLabel="Popup View">
+                                <rect key="frame" x="16" y="520" width="343" height="135"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sOe-dk-DMh">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="135"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUR-Qf-ilG" userLabel="View Suppress" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="80"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nnT-Ro-5eU">
+                                                        <rect key="frame" x="0.0" y="8" width="343" height="66"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voulez-vous vraiment supprimer cet animal?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T5-7V-OcL" userLabel="Text Label">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="21" id="RaG-0J-ZJy"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgQ-A8-Hfr" userLabel="Underline View">
+                                                                <rect key="frame" x="0.0" y="23" width="343" height="1"/>
+                                                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="4nm-nG-G6C"/>
+                                                                    <constraint firstAttribute="width" constant="343" id="PTx-Wy-zJf"/>
+                                                                    <constraint firstAttribute="height" constant="1" id="zcQ-Hh-CRo"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azA-UN-8q7" userLabel="Button Suppress">
+                                                                <rect key="frame" x="0.0" y="26" width="343" height="40"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="0rq-JK-ODN"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                <state key="normal" title="Supprimer">
+                                                                    <color key="titleShadowColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="suppressConsultation:" destination="SGn-ds-AVq" eventType="touchUpInside" id="93n-Hf-lHD"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="azA-UN-8q7" firstAttribute="width" secondItem="2T5-7V-OcL" secondAttribute="width" id="Sqv-WH-V9B"/>
+                                                            <constraint firstItem="OgQ-A8-Hfr" firstAttribute="width" secondItem="2T5-7V-OcL" secondAttribute="width" id="e5c-JL-cPu"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9n-4u-tQi" userLabel="View Cancel" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="90" width="343" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clQ-g0-dy2" userLabel="Button Cancel">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
+                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="3Bo-KB-24d"/>
+                                                            <constraint firstAttribute="height" constant="45" id="BTf-HT-snW"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="sfw-1P-ZS1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <state key="normal" title="Annuler"/>
+                                                        <connections>
+                                                            <action selector="cancelSuppressConsultation:" destination="SGn-ds-AVq" eventType="touchUpInside" id="lt9-8m-Jue"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="clQ-g0-dy2" secondAttribute="bottom" id="8VP-CP-N58"/>
+                                                    <constraint firstAttribute="trailing" secondItem="clQ-g0-dy2" secondAttribute="trailing" id="8uw-QC-jWx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="clQ-g0-dy2" secondAttribute="trailing" id="FuT-We-GjD"/>
+                                                    <constraint firstItem="clQ-g0-dy2" firstAttribute="top" secondItem="J9n-4u-tQi" secondAttribute="top" id="Tmu-Ob-LBu"/>
+                                                    <constraint firstItem="clQ-g0-dy2" firstAttribute="top" secondItem="J9n-4u-tQi" secondAttribute="top" id="WWg-bo-ssU"/>
+                                                    <constraint firstItem="clQ-g0-dy2" firstAttribute="leading" secondItem="J9n-4u-tQi" secondAttribute="leading" id="XRA-2c-Djb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="clQ-g0-dy2" secondAttribute="bottom" id="mcz-nM-cXn"/>
+                                                    <constraint firstItem="clQ-g0-dy2" firstAttribute="leading" secondItem="J9n-4u-tQi" secondAttribute="leading" id="p3E-Bx-jg4"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="clQ-g0-dy2" firstAttribute="width" secondItem="2T5-7V-OcL" secondAttribute="width" id="9ic-rq-Uhf"/>
+                                            <constraint firstItem="dUR-Qf-ilG" firstAttribute="leading" secondItem="sOe-dk-DMh" secondAttribute="leading" id="BSy-mQ-gnS"/>
+                                            <constraint firstItem="dUR-Qf-ilG" firstAttribute="top" secondItem="sOe-dk-DMh" secondAttribute="top" id="mY1-0Y-AQF"/>
+                                            <constraint firstAttribute="trailing" secondItem="dUR-Qf-ilG" secondAttribute="trailing" id="wQt-Ij-qKm"/>
+                                            <constraint firstItem="J9n-4u-tQi" firstAttribute="top" secondItem="dUR-Qf-ilG" secondAttribute="bottom" constant="10" id="wXa-2l-e4u"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="sOe-dk-DMh" firstAttribute="top" secondItem="Qbj-4w-mfW" secondAttribute="top" id="9ko-TV-dBt"/>
+                                    <constraint firstItem="sOe-dk-DMh" firstAttribute="leading" secondItem="Qbj-4w-mfW" secondAttribute="leading" id="VF0-iY-B4k"/>
+                                    <constraint firstAttribute="width" constant="343" id="Vfj-7Q-Dxb"/>
+                                    <constraint firstAttribute="trailing" secondItem="sOe-dk-DMh" secondAttribute="trailing" id="YQS-Vh-BYh"/>
+                                    <constraint firstAttribute="bottom" secondItem="sOe-dk-DMh" secondAttribute="bottom" id="cZd-ve-XzW"/>
+                                    <constraint firstAttribute="height" constant="135" id="pU5-Qr-Hh3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.48888843910000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Wpa-gN-2Ie" firstAttribute="trailing" secondItem="Qbj-4w-mfW" secondAttribute="trailing" constant="16" id="Qng-IP-RVe"/>
+                            <constraint firstItem="Wpa-gN-2Ie" firstAttribute="bottom" secondItem="Qbj-4w-mfW" secondAttribute="bottom" constant="12" id="jTH-Z9-jA1"/>
+                            <constraint firstItem="Qbj-4w-mfW" firstAttribute="leading" secondItem="Wpa-gN-2Ie" secondAttribute="leading" constant="16" id="ndy-AO-xy9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wpa-gN-2Ie"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iTZ-N5-FZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5382" y="-330"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

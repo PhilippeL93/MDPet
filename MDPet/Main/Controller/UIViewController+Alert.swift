@@ -42,6 +42,8 @@ extension UIViewController {
             alert(message: Errors.eventDoesntExistInCalendar.rawValue, title: "Calendrier")
         case .eventNotUpdatedToCalendar:
             alert(message: Errors.eventNotUpdatedToCalendar.rawValue, title: "Calendrier")
+        case .eventNotSuppressedToCalendar:
+            alert(message: Errors.eventNotSuppressedToCalendar.rawValue, title: "Calendrier")
         }
     }
 
@@ -68,6 +70,8 @@ extension UIViewController {
             return Errors.eventDoesntExistInCalendar.rawValue
         case .eventNotUpdatedToCalendar:
             return Errors.eventNotUpdatedToCalendar.rawValue
+        case .eventNotSuppressedToCalendar:
+            return Errors.eventNotSuppressedToCalendar.rawValue
         }
     }
 }

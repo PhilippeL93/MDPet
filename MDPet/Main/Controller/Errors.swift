@@ -20,6 +20,7 @@ enum Errors: String {
     case eventAlreadyExistsInCalendar = "Evènement déjà existant"
     case eventDoesntExistInCalendar = "Evènement non trouvé"
     case eventNotUpdatedToCalendar = "Evènement non mis à jour"
+    case eventNotSuppressedToCalendar = "Evènement non supprimé"
 //    case invalidName = "Nom inconnu"
 //    case invalidPassword = "Mot de passe incorrect"
 //    case userDisabled = "Utilisateur désactivé"

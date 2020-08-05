@@ -67,7 +67,7 @@ class GetFirebaseVaccines {
                 }
         }
     }
-    func deleteVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
+    func deleteAllVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
         databaseReference = databaseReference.child(petKey).child(vaccinesItem)
         self.databaseReference
             .observeSingleEvent(of: .value) {snapshot in

@@ -26,6 +26,7 @@
 		372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD52486A72400984537 /* VeterinaryItem.swift */; };
 		3735EC0624D577F20095451A /* GetFirebaseVeterinariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */; };
 		3735EC6224D80CA80095451A /* FirebaseDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */; };
+		3735EC6424D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC6324D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift */; };
 		3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */; };
 		3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */; };
 		3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */; };
@@ -108,6 +109,7 @@
 		372CFFD52486A72400984537 /* VeterinaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinaryItem.swift; sourceTree = "<group>"; };
 		3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVeterinariesTests.swift; sourceTree = "<group>"; };
 		3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseClient.swift; sourceTree = "<group>"; };
+		3735EC6324D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmConsultationSuppressViewController.swift; sourceTree = "<group>"; };
 		3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVeterinaryCell.swift; sourceTree = "<group>"; };
 		3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebasePicture.swift; sourceTree = "<group>"; };
 		3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmVeterinarySuppressViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */,
 				379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */,
 				3757579524CDC7C900294274 /* EventsCalendarManager.swift */,
+				3735EC6324D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				37C227D224D1DB6A00492C59 /* ManagmentUserFirebase.swift in Sources */,
 				379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */,
 				3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */,
+				3735EC6424D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift in Sources */,
 				375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */,
 				379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */,
 				375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */,

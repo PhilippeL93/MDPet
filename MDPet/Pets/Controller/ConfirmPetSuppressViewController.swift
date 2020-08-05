@@ -14,7 +14,6 @@ class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressPet(_ sender: UIButton) {
-        petHasBeenDeleted = true
         gestSuppressPet()
         prepareToGoBack()
     }
@@ -32,7 +31,6 @@ class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - var
     var petItem: PetItem?
-    var databaseRef = Database.database().reference(withPath: petsItem)
     var imageRef = Storage.storage().reference().child(petsInages)
     var petHasBeenDeleted = true
 
@@ -66,32 +64,30 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func gestSuppressPet() {
-        let path = UserUid.uid + petsItem
-        let petKey = petItem?.key
-        databaseRef = Database.database().reference(withPath: "\(path)")
-        let deleteRefPet = databaseRef.child(petItem!.key)
+        let deleteRefPet = Database.database().reference(withPath: "\(UserUid.uid)").child(petsItem).child(petItem!.key)
         if !(petItem?.petURLPicture.isEmpty)! {
-            let imageDeleteRef = imageRef.child("\(petKey ?? "").png")
+            let imageDeleteRef = imageRef.child("\(petItem?.key ?? "").png")
             imageDeleteRef.delete { error in
                 if let error = error {
                     print("error \(error)")
                 }
             }
         }
-        GetFirebaseVaccines.shared.deleteVaccines(petKey: petKey!) { (success) in
+        GetFirebaseVaccines.shared.deleteAllVaccines(petKey: petItem!.key) { (success) in
             if !success {
                 print("erreur")
             }
         }
-        GetFirebaseConsultations.shared.deleteConsultations(petKey: petKey!) { (success) in
-            if success {
-                deleteRefPet.removeValue { error, _  in
-                    if let error = error {
-                        print("error \(error)")
-                    }
-                }
-            } else {
+        GetFirebaseConsultations.shared.deleteAllConsultations(petKey: petItem!.key) { (success) in
+            if !success {
                 print("erreur")
+            }
+        }
+        deleteRefPet.removeValue { error, _  in
+            if let error = error {
+                print("error \(error)")
+            } else {
+                self.petHasBeenDeleted = true
             }
         }
     }
