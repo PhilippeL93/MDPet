@@ -158,9 +158,6 @@
 /* Class = "UILabel"; text = "Disease Four"; ObjectID = "M9r-hp-9pH"; */
 "M9r-hp-9pH.text" = "Disease Four";
 
-/* Class = "UIButton"; normalTitle = "Ajouter au calendrier"; ObjectID = "MlM-dQ-3cm"; */
-"MlM-dQ-3cm.normalTitle" = "Ajouter au calendrier";
-
 /* Class = "UIButton"; normalTitle = "Inscription"; ObjectID = "NUf-YL-Q60"; */
 "NUf-YL-Q60.normalTitle" = "Inscription";
 

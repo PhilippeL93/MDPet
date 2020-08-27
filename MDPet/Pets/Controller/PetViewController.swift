@@ -62,7 +62,6 @@ class PetViewController: UIViewController {
     private var typeFieldOrView: String = ""
     private var selectedVeterinaryName = ""
 
-    //    var typeOfCall: String = ""
     var typeOfCall: TypeOfCall?
     var petItem: PetItem?
     private var veterinariesItems: [VeterinaryItem] = []
@@ -70,12 +69,13 @@ class PetViewController: UIViewController {
     private var databaseRef = Database.database().reference(withPath: petsItem)
     private var imageRef = Storage.storage().reference().child(petsInages)
     private var pathPet: String = ""
+    private var oneFieldHasBeenUpdated = false
 
     var imagePicker: ImagePicker!
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
-            var oneFieldHasBeenUpdated = false
+            oneFieldHasBeenUpdated = false
             for (_, hasBeenUpdated) in fieldsUpdated
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
@@ -94,6 +94,7 @@ class PetViewController: UIViewController {
         imagePicker.present(from: sender)
     }
     @IBAction func savePet(_ sender: Any) {
+        toggleActivityIndicator(shown: true)
         createOrUpdatePet()
     }
     @IBAction func suppressPet(_ sender: Any) {
@@ -451,7 +452,8 @@ class PetViewController: UIViewController {
         }
         private func formatDate() {
             dateFormatter.locale = localeLanguage
-            dateFormatter.dateFormat = "dd MMMM yyyy"
+//            dateFormatter.dateFormat = "dd MMMM yyyy"
+           dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
         }
         private func updateDictionnaryFieldsUpdated(updated: Bool, forKey: String) {
             fieldsUpdated.updateValue(updated, forKey: forKey)
@@ -516,8 +518,8 @@ class PetViewController: UIViewController {
         toggleActivityIndicator(shown: false)
         toggleSavePetButton(shown: false)
         if case .create = typeOfCall {
-            savePetButton.title = "Ajouter"
-            self.title = "Nouvel animal"
+            savePetButton.title = addButtonTitle
+            self.title = newPetTitle
             suppressPetButton.isHidden = true
             vaccinesButton.isHidden = true
             consultationsButton.isHidden = true
@@ -532,8 +534,8 @@ class PetViewController: UIViewController {
             petFatherNameField.isEnabled = false
             petFatherNameField.text = ""
         } else {
-            savePetButton.title = "OK"
-            self.title = "Modification animal"
+            savePetButton.title = OKButtonTitle
+            self.title = updatePetTitle
         }
         if petBreederView.text.isEmpty {
             petBreederView.text = "Eleveur"
@@ -829,7 +831,6 @@ extension PetViewController {
         }
     }
     private func updatePetStorage(petURLPicture: String, uniqueUUID: String) {
-        toggleActivityIndicator(shown: true)
         petItem = PetItem(
             name: "", key: "",
             URLPicture: "", type: 0,
@@ -912,7 +913,7 @@ extension PetViewController {
         }
     }
     private func checkUpdatePetDone() {
-        if savePetButton.isEnabled == false {
+        if oneFieldHasBeenUpdated == false {
             navigationController?.popViewController(animated: true)
             return
         }

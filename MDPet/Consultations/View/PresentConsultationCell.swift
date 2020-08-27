@@ -20,9 +20,11 @@ class PresentConsultationCell: UITableViewCell {
 
     func configureConsultationCell(consultationItem: ConsultationItem, callback: @escaping (Bool) -> Void ) {
 
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = dateFormatddMMyyyyWithSlashes
         let dateToDisplay = dateFormatter.string(from: dateDMY!)
         consultationReasonLabel.text = consultationItem.consultationReason
         consultationDateLabel.text = String(dateToDisplay)

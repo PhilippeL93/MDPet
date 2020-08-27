@@ -42,7 +42,6 @@ class PetsListTableViewController: UIViewController {
             as? PetViewController else {
                 return
         }
-//        destVC.typeOfCall = "create"
         destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
@@ -89,7 +88,6 @@ extension PetsListTableViewController: UITableViewDelegate {
                 return
         }
         let petItem = petItems[indexPath.row]
-//        destVC.typeOfCall = "update"
         destVC.typeOfCall = TypeOfCall.update
         destVC.petItem = petItem
         self.show(destVC, sender: self)

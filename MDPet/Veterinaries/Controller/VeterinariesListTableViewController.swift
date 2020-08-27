@@ -23,10 +23,6 @@ class VeterinariesListTableViewController: UIViewController {
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
         super.viewDidLoad()
-//        let path = UserUid.uid + veterinariesItem
-//        let databaseReference = Database.database().reference(withPath: "\(path)")
-//        let client = GetFirebaseVeterinaries(with: DatabaseReference())
-//        client.observeVeterinaries { (success, veterinariesItems) in
         GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
             if success {
                 self.veterinariesItems = veterinariesItems
@@ -41,7 +37,6 @@ class VeterinariesListTableViewController: UIViewController {
             as? VeterinaryViewController else {
                 return
         }
-//        destVC.typeOfCall = "create"
         destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }

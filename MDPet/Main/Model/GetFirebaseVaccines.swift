@@ -69,30 +69,6 @@ class GetFirebaseVaccines {
                 }
         }
     }
-    func deleteAllVaccines(petKey: String, callback: @escaping (Bool) -> Void) {
-        databaseReference = databaseReference.child(petKey).child(vaccinesItem)
-        self.databaseReference
-            .observeSingleEvent(of: .value) {snapshot in
-                self.newItems = []
-                for child in snapshot.children {
-                    if let snapshot = child as? DataSnapshot,
-                        let vaccineItem = VaccineItem(snapshot: snapshot) {
-                        let vaccineKey = vaccineItem.key
-                        if !vaccineItem.vaccineURLThumbnail.isEmpty {
-                            let imageDeleteRef = self.imageRef.child("\(petKey ).png")
-                            imageDeleteRef.delete { error in
-                                if let error = error {
-                                    print("error \(error)")
-                                }
-                            }
-                        }
-                        let deleteRefVaccine = self.databaseReference.child(vaccineKey)
-                        deleteRefVaccine.removeValue()
-                    }
-                }
-                callback(true)
-        }
-    }
     func deleteVaccine(petKey: String, vaccineKey: String, callback: @escaping (Bool) -> Void) {
         let path = UserUid.uid
         databaseReference = Database.database().reference(withPath:
@@ -104,15 +80,19 @@ class GetFirebaseVaccines {
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
             if wayToSort == "fromDMYToYMD" {
-                dateFormatter.dateFormat = "dd MMMM yyyy"
+//                dateFormatter.dateFormat = "dd MMMM yyyy"
+                dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             } else {
-                dateFormatter.dateFormat = "yyyyMMdd"
+//                dateFormatter.dateFormat = "yyyyMMdd"
+                dateFormatter.dateFormat =  dateFormatyyyyMMdd
             }
             let dateNewFormat = self.dateFormatter.date(from: newItems[indice].vaccineDate)
             if wayToSort == "fromDMYToYMD" {
-                dateFormatter.dateFormat = "yyyyMMdd"
+//                dateFormatter.dateFormat = "yyyyMMdd"
+                dateFormatter.dateFormat =  dateFormatyyyyMMdd
             } else {
-                dateFormatter.dateFormat = "dd MMMM yyyy"
+//                dateFormatter.dateFormat = "dd MMMM yyyy"
+                dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             }
             let dateInverted = self.dateFormatter.string(from: dateNewFormat!)
             newItems[indice].vaccineDate = dateInverted

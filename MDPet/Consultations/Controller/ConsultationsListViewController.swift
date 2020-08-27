@@ -50,7 +50,6 @@ class ConsultationsListViewController: UIViewController {
                 return
         }
         destVC.petItem = petItem
-//        destVC.typeOfCall = "create"
         destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
@@ -94,7 +93,6 @@ extension ConsultationsListViewController: UITableViewDelegate {
                     return
             }
             let consultationItem = consultationItems[indexPath.row]
-//            destVC.typeOfCall = "update"
             destVC.typeOfCall = TypeOfCall.update
             destVC.petItem = petItem
             destVC.consultationItem = consultationItem

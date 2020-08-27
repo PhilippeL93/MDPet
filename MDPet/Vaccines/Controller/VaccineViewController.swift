@@ -54,10 +54,11 @@ class VaccineViewController: UIViewController {
     private var petDiseases: [String] = []
     private var petDiseasesSwitch: [Bool] = []
     private var vaccineDateToSave: String = ""
+    private var oneFieldHasBeenUpdated = false
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
-            var oneFieldHasBeenUpdated = false
+            oneFieldHasBeenUpdated = false
             for (_, hasBeenUpdated) in fieldsUpdated
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
@@ -77,7 +78,8 @@ class VaccineViewController: UIViewController {
         imagePicker.present(from: sender)
     }
     @IBAction func saveVaccine(_ sender: Any) {
-    createOrUpdateVaccine()
+        toggleActivityIndicator(shown: true)
+        createOrUpdateVaccine()
     }
     @IBAction func suppressVaccine(_ sender: Any) {
         getSuppressedVaccine()
@@ -104,15 +106,17 @@ class VaccineViewController: UIViewController {
         if vaccineDateField.text!.isEmpty {
             let date = Date()
             vaccineDateField.text = dateFormatter.string(from: date)
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+//            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
             vaccineDateToSave = dateFormatter.string(from: date)
         } else {
-            dateFormatter.dateFormat = "dd MMMM yyyy"
+//            dateFormatter.dateFormat = "dd MMMM yyyy"
+            dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             let vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
             datePickerVaccineDate?.date = vaccineDate!
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+//            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
             vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
-
         }
     }
     // MARK: - override
@@ -202,7 +206,8 @@ class VaccineViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
         }
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
         vaccineDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
         vaccineDateField.text = dateFormatter.string(from: datePicker.date)
@@ -277,12 +282,12 @@ extension VaccineViewController {
         toggleActivityIndicator(shown: false)
         toggleSaveVaccineButton(shown: false)
         if case .create = typeOfCall {
-            saveVaccineButton.title = "Ajouter"
-            self.title = "Nouveau vaccin"
+            saveVaccineButton.title = addButtonTitle
+            self.title = newVaccineTitle
             suppressVaccineButton.isHidden = true
         } else {
-            saveVaccineButton.title = "OK"
-            self.title = "Modification vaccin"
+            saveVaccineButton.title = OKButtonTitle
+            self.title = updateVaccinTitle
         }
     }
     private func initiateVaccineView() {
@@ -333,9 +338,12 @@ extension VaccineViewController {
     private func initiateFieldsView() {
         vaccineKey = vaccineItem?.key ?? ""
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
         let vaccineDate = dateFormatter.date(from: vaccineItem!.vaccineDate)
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+        vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
+//        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
         vaccineDateField.text = dateFormatter.string(from: vaccineDate!)
         vaccineNameField.text = vaccineItem?.vaccineName
         if vaccineItem?.vaccineDone == true {
@@ -371,7 +379,7 @@ extension VaccineViewController {
         destVC.didMove(toParent: self)
     }
     private func checkUpdateVaccineDone() {
-        if saveVaccineButton.isEnabled == false {
+        if oneFieldHasBeenUpdated == false {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -419,7 +427,6 @@ extension VaccineViewController {
         navigationController?.popViewController(animated: true)
     }
     private func updateVaccineStorage(vaccineURLThumbnail: String, uniqueUUID: String) {
-        toggleActivityIndicator(shown: true)
         vaccineItem = VaccineItem(
             name: String(vaccineNameField.text ?? ""),
             key: "",
@@ -513,7 +520,8 @@ extension VaccineViewController {
     }
     private func formatDate() {
 //        dateFormatter.locale = localeLanguage
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+//        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
     }
 }
 

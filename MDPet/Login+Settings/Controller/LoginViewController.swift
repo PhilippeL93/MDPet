@@ -41,6 +41,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         authenticationGateway = AuthenticationGatewayFirebase(auth: auth)
         missingPasswordButton.underlineMyText()
+//        Auth.auth().addStateDidChangeListener { _, user in
+//            if user != nil {
+//                self.performSegue(withIdentifier: self.loginToList, sender: nil)
+//                self.textFieldLoginEmail.text = nil
+//                self.textFieldLoginPassword.text = nil
+//                UserUid.uid = user!.uid
+//            }
+//        }
     }
 
     @IBAction func loginDidTouch(_ sender: Any) {

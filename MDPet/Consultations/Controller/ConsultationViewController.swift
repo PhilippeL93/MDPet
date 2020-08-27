@@ -48,10 +48,11 @@ class ConsultationViewController: UIViewController {
     private var databaseRef = Database.database().reference(withPath: consultationsItem)
     private var pathConsultation: String = ""
     private var consultationDateToSave: String = ""
+    private var oneFieldHasBeenUpdated = false
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
-            var oneFieldHasBeenUpdated = false
+            oneFieldHasBeenUpdated = false
             for (_, hasBeenUpdated) in fieldsUpdated
                 where hasBeenUpdated == true {
                     oneFieldHasBeenUpdated = true
@@ -65,6 +66,7 @@ class ConsultationViewController: UIViewController {
         }
     }
     @IBAction func saveConsultation(_ sender: Any) {
+        toggleActivityIndicator(shown: true)
         createOrUpdateConsultation()
     }
     @IBAction func suppressConsultation(_ sender: Any) {
@@ -90,15 +92,22 @@ class ConsultationViewController: UIViewController {
     @IBAction func consultationDateEditingDidBegin(_ sender: Any) {
         formatDate()
         if consultationDateField.text!.isEmpty {
-            let date = Date()
+            let calendar = Calendar.current
+            let rightNow = Date()
+            let interval = 0
+            let nextDiff = interval - calendar.component(.minute, from: rightNow)
+            let date = calendar.date(byAdding: .minute, value: nextDiff, to: rightNow) ?? Date()
             consultationDateField.text = dateFormatter.string(from: date)
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
             consultationDateToSave = dateFormatter.string(from: date)
+            datePickerConsultationDate?.date = date
         } else {
             formatDate()
             let consultationDate = dateFormatter.date(from: consultationDateField.text!)
             datePickerConsultationDate?.date = consultationDate!
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
             consultationDateToSave = dateFormatter.string(from: consultationDate!)
         }
     }
@@ -197,7 +206,8 @@ class ConsultationViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
         }
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         consultationDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
         consultationDateField.text = dateFormatter.string(from: datePicker.date)
@@ -265,12 +275,12 @@ extension ConsultationViewController {
         toggleSaveConsultationButton(shown: false)
         consultationPetNameLabel.text = petItem?.petName
         if case .create = typeOfCall {
-            saveConsultationButton.title = "Ajouter"
-            self.title = "Nouvelle consultation"
+            saveConsultationButton.title = addButtonTitle
+            self.title = newConsultationTitle
             suppressConsultationButton.isHidden = true
         } else {
-            saveConsultationButton.title = "OK"
-            self.title = "Modification consultation"
+            saveConsultationButton.title = OKButtonTitle
+            self.title = updateConsultationTitle
         }
         if consultationReportView.text.isEmpty {
             consultationReportView.text = "Compte-rendu"
@@ -283,10 +293,12 @@ extension ConsultationViewController {
     private func initiateConsultationView() {
         consultationKey = consultationItem?.key ?? ""
         consultationReasonField.text = consultationItem?.consultationReason
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         let consultationDate = dateFormatter.date(from: consultationItem!.consultationDate)
         consultationDateToSave = dateFormatter.string(from: consultationDate!)
-        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+//        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+        dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
         consultationDateField.text = dateFormatter.string(from: consultationDate!)
         consultationWeightField.text = consultationItem?.consultationWeight
         consultationReportView.text = consultationItem?.consultationReport
@@ -300,7 +312,7 @@ extension ConsultationViewController {
         selectedVeterinaryKey = consultationItem?.consultationVeterinary ?? ""
     }
     private func checkUpdateConsultationDone() {
-        if saveConsultationButton.isEnabled == false {
+        if oneFieldHasBeenUpdated == false {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -317,13 +329,9 @@ extension ConsultationViewController {
     }
     private func createOrUpdateConsultation() {
         var consultationReport = ""
-        toggleActivityIndicator(shown: true)
         let path = UserUid.uid
         databaseRef = Database.database().reference(withPath:
             "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
-        //            guard let vaccineKey = vaccineItem?.key else {
-        //                return
-        //            }
 
         var uniqueUUID = consultationKey
 
@@ -406,7 +414,8 @@ extension ConsultationViewController {
         }
         let store = EKEventStore()
         let event = EKEvent(eventStore: store)
-        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+//        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
+        dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
         event.title = petItem!.petName + " - " + String(consultationReasonField.text!)
         event.startDate = dateFormatter.date(from: consultationDateField.text!)
         event.endDate = event.startDate + 3600
@@ -472,9 +481,8 @@ extension ConsultationViewController {
                                          for: .editingDidEnd)
     }
     private func formatDate() {
-//        dateFormatter.dateStyle = DateFormatter.Style.full
-        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
-//        dateFormatter.timeStyle = DateFormatter.Style.short
+//        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
+        dateFormatter.dateFormat = dateFormatddMMMyyyyHHmm
     }
 }
 // MARK: UITextFieldDelegate

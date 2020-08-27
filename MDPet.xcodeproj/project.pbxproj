@@ -48,6 +48,8 @@
 		3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579524CDC7C900294274 /* EventsCalendarManager.swift */; };
 		3762434E24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */; };
 		3762435424D5629500BD03FE /* AuthenticationGatewayStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */; };
+		3776359024F6A81A0090BD4F /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776358F24F6A81A0090BD4F /* Titles.swift */; };
+		3776359224F6A9EE0090BD4F /* DatesFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776359124F6A9EE0090BD4F /* DatesFormat.swift */; };
 		379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* TypeOfCaller.swift */; };
 		379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36624B767BA00C056A1 /* ImagePicker.swift */; };
 		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
@@ -132,6 +134,8 @@
 		3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfFirebaseItems.swift; sourceTree = "<group>"; };
 		3757579524CDC7C900294274 /* EventsCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarManager.swift; sourceTree = "<group>"; };
 		3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayFirebaseTests.swift; sourceTree = "<group>"; };
+		3776358F24F6A81A0090BD4F /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
+		3776359124F6A9EE0090BD4F /* DatesFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesFormat.swift; sourceTree = "<group>"; };
 		379AB36224B75B5000C056A1 /* TypeOfCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCaller.swift; sourceTree = "<group>"; };
 		379AB36624B767BA00C056A1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
@@ -424,6 +428,8 @@
 				37C227BD24D06E8C00492C59 /* TypeOfCall.swift */,
 				3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */,
 				3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */,
+				3776358F24F6A81A0090BD4F /* Titles.swift */,
+				3776359124F6A9EE0090BD4F /* DatesFormat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -710,6 +716,7 @@
 				37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */,
 				37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */,
 				3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */,
+				3776359024F6A81A0090BD4F /* Titles.swift in Sources */,
 				37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */,
 				3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */,
 				3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */,
@@ -744,6 +751,7 @@
 				37C227BE24D06E8C00492C59 /* TypeOfCall.swift in Sources */,
 				3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
+				3776359224F6A9EE0090BD4F /* DatesFormat.swift in Sources */,
 				3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
 				37C227D224D1DB6A00492C59 /* ManagmentUserFirebase.swift in Sources */,

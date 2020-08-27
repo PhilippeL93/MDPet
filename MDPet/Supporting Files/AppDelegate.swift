@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.makeKeyAndVisible()
                 UserUid.uid = user!.uid
             } else {
-                //        LoginViewController
                 let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
                 self.window?.rootViewController = controller
                 self.window?.makeKeyAndVisible()

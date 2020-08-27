@@ -67,23 +67,6 @@ class GetFirebaseConsultations {
                 callback(veterinaryFound)
         }
     }
-    func deleteAllConsultations(petKey: String, callback: @escaping (Bool) -> Void) {
-        let path = UserUid.uid
-        databaseReference = Database.database().reference(withPath:
-            "\(path)").child(petsItem).child(petKey).child(consultationsItem)
-        self.databaseReference
-            .observeSingleEvent(of: .value) {snapshot in
-                for child in snapshot.children {
-                    if let snapshot = child as? DataSnapshot,
-                        let consultationItem = ConsultationItem(snapshot: snapshot) {
-                        let consultationKey = consultationItem.key
-                        let deleteRefConsultation = self.databaseReference.child(consultationKey)
-                        deleteRefConsultation.removeValue()
-                    }
-                }
-                callback(true)
-        }
-    }
     func deleteConsultation(petKey: String, consultationKey: String, callback: @escaping (Bool) -> Void) {
         let path = UserUid.uid
         databaseReference = Database.database().reference(withPath:
@@ -94,15 +77,19 @@ class GetFirebaseConsultations {
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
             if wayToSort == "fromDMAToAMD" {
-                dateFormatter.dateFormat = "dd MMMM yyyy"
+//                dateFormatter.dateFormat = "dd MMMM yyyy"
+                dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             } else {
-                dateFormatter.dateFormat = "yyyyMMdd"
+//                dateFormatter.dateFormat = "yyyyMMdd"
+                dateFormatter.dateFormat = dateFormatyyyyMMdd
             }
             let dateNewFormat = self.dateFormatter.date(from: newItems[indice].consultationDate)
             if wayToSort == "fromDMAToAMD" {
-                dateFormatter.dateFormat = "yyyyMMdd"
+//                dateFormatter.dateFormat = "yyyyMMdd"
+                dateFormatter.dateFormat = dateFormatyyyyMMdd
             } else {
-                dateFormatter.dateFormat = "dd MMMM yyyy"
+//                dateFormatter.dateFormat = "dd MMMM yyyy"
+                dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             }
             let dateInverted = self.dateFormatter.string(from: dateNewFormat!)
             newItems[indice].consultationDate = dateInverted

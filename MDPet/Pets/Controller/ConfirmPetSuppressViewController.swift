@@ -17,25 +17,21 @@ class ConfirmPetSuppressViewController: UIViewController {
         gestSuppressPet()
         prepareToGoBack()
     }
-
     @IBAction func cancelSuppressPet(_ sender: Any) {
         petHasBeenDeleted = false
         prepareToGoBack()
     }
-
     // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showAnimate()
     }
-
     // MARK: - var
     var petItem: PetItem?
     var imageRef = Storage.storage().reference().child(petsInages)
     var petHasBeenDeleted = true
 
     // MARK: - functions
-        ///   showAnimate in order animate pollutants view when it's apperaed
     private func showAnimate() {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0
@@ -45,7 +41,6 @@ class ConfirmPetSuppressViewController: UIViewController {
         }
         )
     }
-
     private func removeAnimate() {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -71,16 +66,6 @@ class ConfirmPetSuppressViewController: UIViewController {
                 if let error = error {
                     print("error \(error)")
                 }
-            }
-        }
-        GetFirebaseVaccines.shared.deleteAllVaccines(petKey: petItem!.key) { (success) in
-            if !success {
-                print("erreur")
-            }
-        }
-        GetFirebaseConsultations.shared.deleteAllConsultations(petKey: petItem!.key) { (success) in
-            if !success {
-                print("erreur")
             }
         }
         deleteRefPet.removeValue { error, _  in
