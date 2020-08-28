@@ -38,7 +38,6 @@ class PetViewController: UIViewController {
     @IBOutlet weak var suppressPetButton: UIButton!
     @IBOutlet weak var vaccinesButton: UIButton!
     @IBOutlet weak var consultationsButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
     private var pickerViewGender = UIPickerView()
@@ -94,7 +93,7 @@ class PetViewController: UIViewController {
         imagePicker.present(from: sender)
     }
     @IBAction func savePet(_ sender: Any) {
-        toggleActivityIndicator(shown: true)
+        self.showActivityIndicator(onView: self.view)
         createOrUpdatePet()
     }
     @IBAction func suppressPet(_ sender: Any) {
@@ -515,7 +514,6 @@ class PetViewController: UIViewController {
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
     private func initiateButtonSwitchViewPet() {
-        toggleActivityIndicator(shown: false)
         toggleSavePetButton(shown: false)
         if case .create = typeOfCall {
             savePetButton.title = addButtonTitle
@@ -618,9 +616,6 @@ class PetViewController: UIViewController {
                 vaccinesButton.isHidden = true
             }
         }
-    }
-    private func toggleActivityIndicator(shown: Bool) {
-        activityIndicator.isHidden = !shown
     }
     private func getRowRaceFromKey(raceToSearch: String) -> Int {
         var rowRace: Int = 0
@@ -868,6 +863,9 @@ extension PetViewController {
 
         let petItemRef = databaseRef.child(petsItem).child(uniqueUUID)
         petItemRef.setValue(petItem?.toAnyObject())
+        if currentReachabilityStatus == .twoG || currentReachabilityStatus == .threeG {
+           print("======== connection lente détectée \(currentReachabilityStatus)")
+        }
         navigationController?.popViewController(animated: true)
     }
     private func getVaccines() {
@@ -1101,3 +1099,4 @@ extension PetViewController: ImagePickerDelegate {
         updateDictionnaryFieldsUpdated(updated: true, forKey: "petPictureUpdated")
     }
 }
+

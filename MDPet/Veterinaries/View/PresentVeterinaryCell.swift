@@ -16,6 +16,7 @@ class PresentVeterinaryCell: UITableViewCell {
 
     @IBOutlet weak var veterinaryNameLabel: UILabel!
     @IBOutlet weak var veterinaryCityLabel: UILabel!
+    @IBOutlet weak var veterinaryCallPhoneField: UIButton!
 
     @IBAction func callVeterinary(_ sender: UIButton) {
         cellDelegate?.onClickCell(index: (indexSelected?.row)!)
@@ -24,8 +25,13 @@ class PresentVeterinaryCell: UITableViewCell {
     weak var cellDelegate: TableViewClick?
     var indexSelected: IndexPath?
 
-    func configurePetCell(with name: String, city: String) {
+    func configurePetCell(with name: String, city: String, phone: String) {
         veterinaryNameLabel.text = name
         veterinaryCityLabel.text = city
+        if phone.isEmpty {
+            veterinaryCallPhoneField.isHidden = true
+        } else {
+            veterinaryCallPhoneField.isHidden = false
+        }
     }
 }

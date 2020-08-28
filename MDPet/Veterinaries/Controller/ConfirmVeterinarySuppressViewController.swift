@@ -14,7 +14,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
     // MARK: - buttons
     @IBAction func suppressVeterinary(_ sender: UIButton) {
         veterinayHasBeenDeleted = true
-        gestSuppressVeterinary()
+        getSuppressVeterinary()
         prepareToGoBack()
     }
 
@@ -63,10 +63,9 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
         self.removeAnimate()
         self.view.removeFromSuperview()
     }
-    private func gestSuppressVeterinary() {
-        let path = UserUid.uid + veterinariesItem
-        databaseRef = Database.database().reference(withPath: "\(path)")
-        let deleteRef = databaseRef.child(veterinaryKey)
+    private func getSuppressVeterinary() {
+        let deleteRef = Database.database().reference(withPath:
+            "\(UserUid.uid)").child(veterinariesItem).child(veterinaryKey)
         deleteRef.removeValue { error, _  in
             if let error = error {
                 print("error \(error)")

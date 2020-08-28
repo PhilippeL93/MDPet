@@ -20,7 +20,6 @@ class ConsultationViewController: UIViewController {
     @IBOutlet weak var consultationReportView: UITextView!
     @IBOutlet weak var saveConsultationButton: UIBarButtonItem!
     @IBOutlet weak var suppressConsultationButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
     private var consultationReason: UITextField?
@@ -66,7 +65,7 @@ class ConsultationViewController: UIViewController {
         }
     }
     @IBAction func saveConsultation(_ sender: Any) {
-        toggleActivityIndicator(shown: true)
+        self.showActivityIndicator(onView: self.view)
         createOrUpdateConsultation()
     }
     @IBAction func suppressConsultation(_ sender: Any) {
@@ -271,7 +270,6 @@ extension ConsultationViewController {
                                                               action: #selector(tapGestuireRecognizer(gesture:))))
     }
     private func initiateButtonConsultationView() {
-        toggleActivityIndicator(shown: false)
         toggleSaveConsultationButton(shown: false)
         consultationPetNameLabel.text = petItem?.petName
         if case .create = typeOfCall {
@@ -356,9 +354,6 @@ extension ConsultationViewController {
         let consultationItemRef = databaseRef.child(uniqueUUID)
         consultationItemRef.setValue(consultationItem?.toAnyObject())
         navigationController?.popViewController(animated: true)
-    }
-    private func toggleActivityIndicator(shown: Bool) {
-        activityIndicator.isHidden = !shown
     }
     private func getSuppressedConsultation() {
         navigationController?.navigationBar.isUserInteractionEnabled = false

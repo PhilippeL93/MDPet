@@ -23,7 +23,6 @@ class VaccineViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var vaccineDoneSwitch: UISwitch!
     @IBOutlet weak var suppressVaccineButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - variables
     private var vaccineInjection: UITextField?
@@ -78,7 +77,7 @@ class VaccineViewController: UIViewController {
         imagePicker.present(from: sender)
     }
     @IBAction func saveVaccine(_ sender: Any) {
-        toggleActivityIndicator(shown: true)
+        self.showActivityIndicator(onView: self.view)
         createOrUpdateVaccine()
     }
     @IBAction func suppressVaccine(_ sender: Any) {
@@ -279,7 +278,6 @@ extension VaccineViewController {
     }
     private func initiateButtonVaccineView() {
         vaccinePetNameLabel.text = petItem?.petName
-        toggleActivityIndicator(shown: false)
         toggleSaveVaccineButton(shown: false)
         if case .create = typeOfCall {
             saveVaccineButton.title = addButtonTitle
@@ -361,9 +359,6 @@ extension VaccineViewController {
             }
         }
         selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
-    }
-    private func toggleActivityIndicator(shown: Bool) {
-        activityIndicator.isHidden = !shown
     }
     private func getSuppressedVaccine() {
         navigationController?.navigationBar.isUserInteractionEnabled = false

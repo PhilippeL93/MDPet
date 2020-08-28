@@ -43,6 +43,7 @@
 		3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */; };
 		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
 		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
+		3756072C24F8F49E00DFC4DA /* ActivtyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756072B24F8F49E00DFC4DA /* ActivtyView.swift */; };
 		3757579224C8956F00294274 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579124C8956F00294274 /* VaccineViewController.swift */; };
 		3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */; };
 		3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579524CDC7C900294274 /* EventsCalendarManager.swift */; };
@@ -50,6 +51,7 @@
 		3762435424D5629500BD03FE /* AuthenticationGatewayStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */; };
 		3776359024F6A81A0090BD4F /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776358F24F6A81A0090BD4F /* Titles.swift */; };
 		3776359224F6A9EE0090BD4F /* DatesFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776359124F6A9EE0090BD4F /* DatesFormat.swift */; };
+		3776359624F7DB770090BD4F /* ConnectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776359524F7DB770090BD4F /* ConnectionType.swift */; };
 		379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36224B75B5000C056A1 /* TypeOfCaller.swift */; };
 		379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36624B767BA00C056A1 /* ImagePicker.swift */; };
 		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
@@ -129,6 +131,7 @@
 		3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListViewController.swift; sourceTree = "<group>"; };
 		3755789F24A5E88400CA1252 /* VaccineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineItem.swift; sourceTree = "<group>"; };
 		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
+		3756072B24F8F49E00DFC4DA /* ActivtyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivtyView.swift; sourceTree = "<group>"; };
 		3757578E24C87D5D00294274 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../../../../Desktop/Raleway/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		3757579124C8956F00294274 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
 		3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfFirebaseItems.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayFirebaseTests.swift; sourceTree = "<group>"; };
 		3776358F24F6A81A0090BD4F /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		3776359124F6A9EE0090BD4F /* DatesFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesFormat.swift; sourceTree = "<group>"; };
+		3776359524F7DB770090BD4F /* ConnectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionType.swift; sourceTree = "<group>"; };
 		379AB36224B75B5000C056A1 /* TypeOfCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCaller.swift; sourceTree = "<group>"; };
 		379AB36624B767BA00C056A1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 				3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */,
 				3748CF2223EFE84B002B8999 /* SettingsButton.swift */,
 				3715EAC8239188E800CAA9E7 /* Main.storyboard */,
+				3756072B24F8F49E00DFC4DA /* ActivtyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */,
 				3776358F24F6A81A0090BD4F /* Titles.swift */,
 				3776359124F6A9EE0090BD4F /* DatesFormat.swift */,
+				3776359524F7DB770090BD4F /* ConnectionType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -715,6 +721,7 @@
 				3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */,
 				37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */,
 				37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */,
+				3776359624F7DB770090BD4F /* ConnectionType.swift in Sources */,
 				3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */,
 				3776359024F6A81A0090BD4F /* Titles.swift in Sources */,
 				37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */,
@@ -738,6 +745,7 @@
 				372CFFD42486A2A400984537 /* User.swift in Sources */,
 				37A6589024922C610063867C /* UserUid.swift in Sources */,
 				379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */,
+				3756072C24F8F49E00DFC4DA /* ActivtyView.swift in Sources */,
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
 				379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */,
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,

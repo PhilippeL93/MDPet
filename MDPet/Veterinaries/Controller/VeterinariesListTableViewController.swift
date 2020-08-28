@@ -57,7 +57,9 @@ extension VeterinariesListTableViewController: UITableViewDataSource {
         let veterinaryItem = veterinariesItems[indexPath.row]
         cell.cellDelegate = self
         cell.indexSelected = indexPath
-        cell.configurePetCell(with: veterinaryItem.veterinaryName, city: veterinaryItem.veterinaryCity)
+        cell.configurePetCell(with: veterinaryItem.veterinaryName,
+                              city: veterinaryItem.veterinaryCity,
+                              phone: veterinaryItem.veterinaryPhone)
         return cell
     }
 
