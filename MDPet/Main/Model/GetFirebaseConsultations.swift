@@ -77,18 +77,14 @@ class GetFirebaseConsultations {
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
             if wayToSort == "fromDMAToAMD" {
-//                dateFormatter.dateFormat = "dd MMMM yyyy"
                 dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             } else {
-//                dateFormatter.dateFormat = "yyyyMMdd"
                 dateFormatter.dateFormat = dateFormatyyyyMMdd
             }
             let dateNewFormat = self.dateFormatter.date(from: newItems[indice].consultationDate)
             if wayToSort == "fromDMAToAMD" {
-//                dateFormatter.dateFormat = "yyyyMMdd"
                 dateFormatter.dateFormat = dateFormatyyyyMMdd
             } else {
-//                dateFormatter.dateFormat = "dd MMMM yyyy"
                 dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             }
             let dateInverted = self.dateFormatter.string(from: dateNewFormat!)

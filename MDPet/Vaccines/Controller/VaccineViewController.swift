@@ -105,15 +105,12 @@ class VaccineViewController: UIViewController {
         if vaccineDateField.text!.isEmpty {
             let date = Date()
             vaccineDateField.text = dateFormatter.string(from: date)
-//            dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
             vaccineDateToSave = dateFormatter.string(from: date)
         } else {
-//            dateFormatter.dateFormat = "dd MMMM yyyy"
             dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             let vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
             datePickerVaccineDate?.date = vaccineDate!
-//            dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
             vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
         }
@@ -205,7 +202,6 @@ class VaccineViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
         }
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
         vaccineDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
@@ -221,12 +217,12 @@ class VaccineViewController: UIViewController {
     @objc func vaccineVeterinaryFieldDidEnd(_ textField: UITextField) {
         selectedVeterinaryName = ""
             if case .update = typeOfCall {
-            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-            veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinaryName, _) in
-                if success {
-                    self.selectedVeterinaryName = veterinaryName
+                GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
+                veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinariesItems, _) in
+                    if success {
+                        self.selectedVeterinaryName = veterinariesItems.veterinaryName
+                    }
                 }
-            }
         }
         if vaccineVeterinaryField.text != selectedVeterinaryName {
             updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
@@ -336,11 +332,9 @@ extension VaccineViewController {
     private func initiateFieldsView() {
         vaccineKey = vaccineItem?.key ?? ""
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
         let vaccineDate = dateFormatter.date(from: vaccineItem!.vaccineDate)
         vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
-//        dateFormatter.dateFormat = "dd MMMM yyyy"
         dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
         vaccineDateField.text = dateFormatter.string(from: vaccineDate!)
         vaccineNameField.text = vaccineItem?.vaccineName
@@ -353,9 +347,9 @@ extension VaccineViewController {
         petDiseases = vaccineItem!.vaccineDiseases
 
         GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinaryName, _) in
+        veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinariesItems, _) in
             if success {
-                self.vaccineVeterinaryField.text = veterinaryName
+                self.vaccineVeterinaryField.text = veterinariesItems.veterinaryName
             }
         }
         selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
@@ -514,8 +508,6 @@ extension VaccineViewController {
                                      for: .touchUpInside)
     }
     private func formatDate() {
-//        dateFormatter.locale = localeLanguage
-//        dateFormatter.dateFormat = "dd MMMM yyyy"
         dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
     }
 }

@@ -80,18 +80,14 @@ class GetFirebaseVaccines {
     private func sortTable(wayToSort: String) {
         for indice in 0...newItems.count-1 {
             if wayToSort == "fromDMYToYMD" {
-//                dateFormatter.dateFormat = "dd MMMM yyyy"
                 dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             } else {
-//                dateFormatter.dateFormat = "yyyyMMdd"
                 dateFormatter.dateFormat =  dateFormatyyyyMMdd
             }
             let dateNewFormat = self.dateFormatter.date(from: newItems[indice].vaccineDate)
             if wayToSort == "fromDMYToYMD" {
-//                dateFormatter.dateFormat = "yyyyMMdd"
                 dateFormatter.dateFormat =  dateFormatyyyyMMdd
             } else {
-//                dateFormatter.dateFormat = "dd MMMM yyyy"
                 dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             }
             let dateInverted = self.dateFormatter.string(from: dateNewFormat!)

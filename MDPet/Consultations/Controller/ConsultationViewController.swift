@@ -97,7 +97,6 @@ class ConsultationViewController: UIViewController {
             let nextDiff = interval - calendar.component(.minute, from: rightNow)
             let date = calendar.date(byAdding: .minute, value: nextDiff, to: rightNow) ?? Date()
             consultationDateField.text = dateFormatter.string(from: date)
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
             consultationDateToSave = dateFormatter.string(from: date)
             datePickerConsultationDate?.date = date
@@ -105,7 +104,6 @@ class ConsultationViewController: UIViewController {
             formatDate()
             let consultationDate = dateFormatter.date(from: consultationDateField.text!)
             datePickerConsultationDate?.date = consultationDate!
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
             consultationDateToSave = dateFormatter.string(from: consultationDate!)
         }
@@ -205,7 +203,6 @@ class ConsultationViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
         }
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         consultationDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
@@ -215,9 +212,9 @@ class ConsultationViewController: UIViewController {
         selectedVeterinaryName = ""
         if case .update = typeOfCall {
             GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-            veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinaryName, _) in
+            veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinariesItems, _) in
                 if success {
-                    self.selectedVeterinaryName = veterinaryName
+                    self.selectedVeterinaryName = veterinariesItems.veterinaryName
                 }
             }
         }
@@ -291,20 +288,18 @@ extension ConsultationViewController {
     private func initiateConsultationView() {
         consultationKey = consultationItem?.key ?? ""
         consultationReasonField.text = consultationItem?.consultationReason
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         let consultationDate = dateFormatter.date(from: consultationItem!.consultationDate)
         consultationDateToSave = dateFormatter.string(from: consultationDate!)
-//        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
         dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
         consultationDateField.text = dateFormatter.string(from: consultationDate!)
         consultationWeightField.text = consultationItem?.consultationWeight
         consultationReportView.text = consultationItem?.consultationReport
 
         GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinaryName, _) in
+        veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinariesItems, _) in
             if success {
-                self.consultationVeterinaryField.text = veterinaryName
+                self.consultationVeterinaryField.text = veterinariesItems.veterinaryName
             }
         }
         selectedVeterinaryKey = consultationItem?.consultationVeterinary ?? ""
@@ -409,7 +404,6 @@ extension ConsultationViewController {
         }
         let store = EKEventStore()
         let event = EKEvent(eventStore: store)
-//        dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
         dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
         event.title = petItem!.petName + " - " + String(consultationReasonField.text!)
         event.startDate = dateFormatter.date(from: consultationDateField.text!)
@@ -476,7 +470,6 @@ extension ConsultationViewController {
                                          for: .editingDidEnd)
     }
     private func formatDate() {
-//        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
         dateFormatter.dateFormat = dateFormatddMMMyyyyHHmm
     }
 }

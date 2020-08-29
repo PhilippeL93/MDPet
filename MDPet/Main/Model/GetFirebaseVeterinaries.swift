@@ -14,12 +14,10 @@ class GetFirebaseVeterinaries {
     static let shared = GetFirebaseVeterinaries(with: DatabaseReference())
     private var databaseReference: DatabaseReference
     var veterinariesItems: [VeterinaryItem] = []
+    var test: VeterinaryItem? = nil
 
     init(with databaseReference: DatabaseReference) {
         self.databaseReference = databaseReference
-//        ici modif pour architecture
-//        let path = UserUid.uid + veterinariesItem
-//        self.databaseReference = Database.database().reference(withPath: "\(path)")
         let path = UserUid.uid
         self.databaseReference = Database.database().reference(withPath: "\(path)").child(veterinariesItem)
     }
@@ -40,15 +38,20 @@ class GetFirebaseVeterinaries {
         })
     }
 
-    func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
+//    func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
+    func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, VeterinaryItem, Int) -> Void) {
         guard veterinariesItems.count != 0 else {
-            callback(false, "", -1)
+            callback(false, test!, -1)
+//            callback(false, "", -1)
             return
         }
         for indice in 0...veterinariesItems.count-1
             where veterinariesItems[indice].key == veterinaryToSearch {
-                callback(true, veterinariesItems[indice].veterinaryName, indice)
+                callback(true, veterinariesItems[indice], indice)
+//                callback(true, veterinariesItems[indice].veterinaryName, indice)
+                return
         }
-        callback(false, "", -1)
+        callback(false, test!, -1)
+//         callback(false, "", -1)
     }
 }

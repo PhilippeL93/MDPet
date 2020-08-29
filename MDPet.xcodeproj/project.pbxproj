@@ -44,6 +44,7 @@
 		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
 		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
 		3756072C24F8F49E00DFC4DA /* ActivtyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756072B24F8F49E00DFC4DA /* ActivtyView.swift */; };
+		3756072E24FAB4EA00DFC4DA /* MangamentPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756072D24FAB4EA00DFC4DA /* MangamentPhone.swift */; };
 		3757579224C8956F00294274 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579124C8956F00294274 /* VaccineViewController.swift */; };
 		3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */; };
 		3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579524CDC7C900294274 /* EventsCalendarManager.swift */; };
@@ -132,6 +133,7 @@
 		3755789F24A5E88400CA1252 /* VaccineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineItem.swift; sourceTree = "<group>"; };
 		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
 		3756072B24F8F49E00DFC4DA /* ActivtyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivtyView.swift; sourceTree = "<group>"; };
+		3756072D24FAB4EA00DFC4DA /* MangamentPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangamentPhone.swift; sourceTree = "<group>"; };
 		3757578E24C87D5D00294274 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../../../../Desktop/Raleway/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		3757579124C8956F00294274 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
 		3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfFirebaseItems.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				3776358F24F6A81A0090BD4F /* Titles.swift */,
 				3776359124F6A9EE0090BD4F /* DatesFormat.swift */,
 				3776359524F7DB770090BD4F /* ConnectionType.swift */,
+				3756072D24FAB4EA00DFC4DA /* MangamentPhone.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */,
 				375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
+				3756072E24FAB4EA00DFC4DA /* MangamentPhone.swift in Sources */,
 				3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */,
 				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,

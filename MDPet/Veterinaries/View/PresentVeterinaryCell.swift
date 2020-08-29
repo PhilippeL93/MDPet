@@ -28,10 +28,11 @@ class PresentVeterinaryCell: UITableViewCell {
     func configurePetCell(with name: String, city: String, phone: String) {
         veterinaryNameLabel.text = name
         veterinaryCityLabel.text = city
-        if phone.isEmpty {
-            veterinaryCallPhoneField.isHidden = true
-        } else {
-            veterinaryCallPhoneField.isHidden = false
+        veterinaryCallPhoneField.isHidden = true
+        if !phone.isEmpty {
+            if currentPhoneStatus == .phoneUsable {
+              veterinaryCallPhoneField.isHidden = false
+            }
         }
     }
 }

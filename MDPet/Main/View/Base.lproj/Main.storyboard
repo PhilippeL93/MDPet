@@ -1352,6 +1352,7 @@
                         <outlet property="consultationsButton" destination="5YN-Y2-e9s" id="11b-c9-qgW"/>
                         <outlet property="petBirthDateField" destination="02y-cG-e25" id="UOo-0V-50I"/>
                         <outlet property="petBreederView" destination="mK0-z5-e9m" id="3UJ-wO-uDU"/>
+                        <outlet property="petCallPhoneField" destination="3r8-dV-djD" id="3VT-ma-caY"/>
                         <outlet property="petColorField" destination="6Iy-Zr-wvV" id="Il3-2g-q7Z"/>
                         <outlet property="petDeathDateField" destination="n1C-VT-8vA" id="LBb-ji-boq"/>
                         <outlet property="petFatherNameField" destination="lvj-82-xFX" id="wYD-G9-CIg"/>

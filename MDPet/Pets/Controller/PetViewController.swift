@@ -38,7 +38,8 @@ class PetViewController: UIViewController {
     @IBOutlet weak var suppressPetButton: UIButton!
     @IBOutlet weak var vaccinesButton: UIButton!
     @IBOutlet weak var consultationsButton: UIButton!
-
+    @IBOutlet weak var petCallPhoneField: UIButton!
+    
     // MARK: - variables
     private var pickerViewGender = UIPickerView()
     private var datePickerBirthDate: UIDatePicker?
@@ -334,9 +335,9 @@ class PetViewController: UIViewController {
             selectedVeterinaryName = ""
             if case .update = typeOfCall {
                 GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-                veterinaryToSearch: petItem!.petVeterinary) { (success, veterinaryName, _) in
+                veterinaryToSearch: petItem!.petVeterinary) { (success, veterinariesItems, _) in
                     if success {
-                        self.selectedVeterinaryName = veterinaryName
+                        self.selectedVeterinaryName = veterinariesItems.veterinaryName
                     }
                 }
             }
@@ -451,8 +452,7 @@ class PetViewController: UIViewController {
         }
         private func formatDate() {
             dateFormatter.locale = localeLanguage
-//            dateFormatter.dateFormat = "dd MMMM yyyy"
-           dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
+            dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
         }
         private func updateDictionnaryFieldsUpdated(updated: Bool, forKey: String) {
             fieldsUpdated.updateValue(updated, forKey: forKey)
@@ -572,13 +572,20 @@ class PetViewController: UIViewController {
             petSterilizedSwitch.isOn = false
             petSterilizedDateField.isEnabled = false
         }
+        petCallPhoneField.isHidden = true
         GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: petItem!.petVeterinary) { (success, veterinaryName, _) in
+        veterinaryToSearch: petItem!.petVeterinary) { (success, veterinariesItems, _) in
             if success {
-                self.petVeterinaryField.text = veterinaryName
+                self.petVeterinaryField.text = veterinariesItems.veterinaryName
+                if !veterinariesItems.veterinaryPhone.isEmpty {
+                    if self.currentPhoneStatus == .phoneUsable {
+                      self.petCallPhoneField.isHidden = false
+                    }
+                }
             }
         }
         selectedVeterinaryKey = petItem?.petVeterinary ?? ""
+
         petRaceField.text = petItem?.petRace
         if petItem?.petWeaning == true {
             petWeaningSwitch.isOn = true

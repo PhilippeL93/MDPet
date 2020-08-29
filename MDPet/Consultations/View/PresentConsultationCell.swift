@@ -20,19 +20,17 @@ class PresentConsultationCell: UITableViewCell {
 
     func configureConsultationCell(consultationItem: ConsultationItem, callback: @escaping (Bool) -> Void ) {
 
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
-//        dateFormatter.dateFormat = "dd/MM/yyyy"
         dateFormatter.dateFormat = dateFormatddMMyyyyWithSlashes
         let dateToDisplay = dateFormatter.string(from: dateDMY!)
         consultationReasonLabel.text = consultationItem.consultationReason
         consultationDateLabel.text = String(dateToDisplay)
 
         GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: consultationItem.consultationVeterinary) { (success, veterinaryName, _) in
+        veterinaryToSearch: consultationItem.consultationVeterinary) { (success, veterinariesItems, _) in
             if success {
-                self.consultationVeterinaryLabel.text = veterinaryName
+                self.consultationVeterinaryLabel.text = veterinariesItems.veterinaryName
             }
         }
     }
