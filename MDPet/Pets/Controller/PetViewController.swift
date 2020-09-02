@@ -39,7 +39,7 @@ class PetViewController: UIViewController {
     @IBOutlet weak var vaccinesButton: UIButton!
     @IBOutlet weak var consultationsButton: UIButton!
     @IBOutlet weak var petCallPhoneField: UIButton!
-    
+
     // MARK: - variables
     private var pickerViewGender = UIPickerView()
     private var datePickerBirthDate: UIDatePicker?
@@ -334,10 +334,12 @@ class PetViewController: UIViewController {
         @objc func petVeterinaryFieldDidEnd(_ textField: UITextField) {
             selectedVeterinaryName = ""
             if case .update = typeOfCall {
-                GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-                veterinaryToSearch: petItem!.petVeterinary) { (success, veterinariesItems, _) in
-                    if success {
-                        self.selectedVeterinaryName = veterinariesItems.veterinaryName
+                if !petItem!.petVeterinary.isEmpty {
+                    GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
+                    veterinaryToSearch: petItem!.petVeterinary) { (success, veterinariesItems, _) in
+                        if success {
+                            self.selectedVeterinaryName = veterinariesItems.veterinaryName
+                        }
                     }
                 }
             }
@@ -545,7 +547,15 @@ class PetViewController: UIViewController {
     }
     private func initiatePetView() {
         initiatePictureView()
-        initiateFieldsView()
+        initiateIdentityFields()
+//        initiateSterilizedFields()
+        initiateSterilizedFields(switchStatus: petItem!.petSterilized)
+        initiateVeterinaryFields()
+        initiateWeaningFields(switchStatus: petItem!.petWeaning)
+        initiateBreederFields()
+        initiatePedigreeFields(switchStatus: petItem!.petPedigree)
+        initiateVaccineButton()
+
     }
     private func initiatePictureView() {
         petPicture.image = nil
@@ -557,71 +567,67 @@ class PetViewController: UIViewController {
             }
         }
     }
-    private func initiateFieldsView() {
+    private func initiateIdentityFields() {
         petKey = petItem?.key ?? ""
         petTypeSegmentedControl.selectedSegmentIndex = petItem?.petType ?? 0
         petNameField.text = petItem?.petName
         petGenderSegmentedControl.selectedSegmentIndex = petItem?.petGender ?? 0
         petBirthDateField.text = petItem?.petBirthDate
+        petRaceField.text = petItem?.petRace
+        petColorField.text = petItem?.petColor
+        petParticularSignsField.text = petItem?.petParticularSigns
         petTatooField.text = petItem?.petTatoo
+        petDeathDateField.text = petItem?.petDeathDate
+    }
+    private func initiateSterilizedFields(switchStatus: Bool) {
         petSterilizedDateField.text = petItem?.petSterilizedDate
-        if petItem?.petSterilized == true {
-            petSterilizedSwitch.isOn = true
-            petSterilizedDateField.isEnabled = true
-        } else {
-            petSterilizedSwitch.isOn = false
-            petSterilizedDateField.isEnabled = false
-        }
+        petSterilizedSwitch.isOn = switchStatus
+        petSterilizedDateField.isEnabled = switchStatus
+
+    }
+    private func initiateVeterinaryFields() {
         petCallPhoneField.isHidden = true
+        guard !petItem!.petVeterinary.isEmpty else {
+            return
+        }
         GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
         veterinaryToSearch: petItem!.petVeterinary) { (success, veterinariesItems, _) in
             if success {
                 self.petVeterinaryField.text = veterinariesItems.veterinaryName
                 if !veterinariesItems.veterinaryPhone.isEmpty {
                     if self.currentPhoneStatus == .phoneUsable {
-                      self.petCallPhoneField.isHidden = false
+                        self.petCallPhoneField.isHidden = false
                     }
                 }
             }
         }
         selectedVeterinaryKey = petItem?.petVeterinary ?? ""
-
-        petRaceField.text = petItem?.petRace
-        if petItem?.petWeaning == true {
-            petWeaningSwitch.isOn = true
-            petWeaningDateField.isEnabled = true
-        } else {
-            petWeaningSwitch.isOn = false
-            petWeaningDateField.isEnabled = false
-        }
+    }
+    private func initiateWeaningFields(switchStatus: Bool) {
+        petWeaningSwitch.isOn = switchStatus
+        petWeaningDateField.isEnabled = switchStatus
         petWeaningDateField.text = petItem?.petWeaningDate
-        petDeathDateField.text = petItem?.petDeathDate
-        petColorField.text = petItem?.petColor
+    }
+    private func initiateBreederFields() {
         petBreederView.text = petItem?.petBreeder
-        petParticularSignsField.text = petItem?.petParticularSigns
         petURLBreederField.text = petItem?.petURLBreeder
-        if petItem?.petPedigree == true {
-            petPedigreeSwitch.isOn = true
-            petPedigreeNumberField.isEnabled = true
-            petMotherNameField.isEnabled = true
-            petFatherNameField.isEnabled = true
-        } else {
-            petPedigreeSwitch.isOn = false
-            petPedigreeNumberField.isEnabled = false
-            petMotherNameField.isEnabled = false
-            petFatherNameField.isEnabled = false
-        }
+    }
+    private func initiatePedigreeFields(switchStatus: Bool) {
+        petPedigreeSwitch.isOn = switchStatus
+        petPedigreeNumberField.isEnabled = switchStatus
+        petMotherNameField.isEnabled = switchStatus
+        petFatherNameField.isEnabled = switchStatus
         petPedigreeNumberField.text = petItem?.petPedigreeNumber
         petMotherNameField.text = petItem?.petMotherName
         petFatherNameField.text = petItem?.petFatherName
+    }
+    private func initiateVaccineButton() {
         guard let petType =
             petTypeSegmentedControl.titleForSegment(at: petTypeSegmentedControl.selectedSegmentIndex) else {
-            return
+                return
         }
-        if case .update = typeOfCall {
-            if petType == "Rongeur" {
-                vaccinesButton.isHidden = true
-            }
+        if petType == "Rongeur" {
+            vaccinesButton.isHidden = true
         }
     }
     private func getRowRaceFromKey(raceToSearch: String) -> Int {
@@ -798,6 +804,8 @@ extension PetViewController {
                                 action: #selector(PetViewController.petFatherNameFieldDidEnd(_:)),
                                 for: .editingDidEnd)
     }
+}
+extension PetViewController {
     private func createOrUpdatePet() {
         databaseRef = Database.database().reference(withPath: "\(pathPet)")
 //        guard let petKey = petItem?.key else {
@@ -1106,4 +1114,3 @@ extension PetViewController: ImagePickerDelegate {
         updateDictionnaryFieldsUpdated(updated: true, forKey: "petPictureUpdated")
     }
 }
-

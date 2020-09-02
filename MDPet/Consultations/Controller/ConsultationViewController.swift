@@ -353,7 +353,7 @@ extension ConsultationViewController {
     private func getSuppressedConsultation() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
         guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmConsultationSuppress")
-            as? ConfirmConsultationSuppressViewController else {
+            as? ConfirmConsultationSuppresViewController else {
                 return
         }
         destVC.petItem = petItem
@@ -452,7 +452,8 @@ extension ConsultationViewController {
         datePickerConsultationDate?.minuteInterval = 5
         datePickerConsultationDate?.locale = localeLanguage
         datePickerConsultationDate?.addTarget(self,
-                                       action: #selector(ConsultationViewController.dateChangedConsultationDate(datePicker:)),
+                                       action: #selector(
+                                        ConsultationViewController.dateChangedConsultationDate(datePicker:)),
                                        for: .valueChanged )
         consultationDateField.inputView = datePickerConsultationDate
     }
@@ -582,9 +583,6 @@ private extension ConsultationViewController {
                 if distanceToBottom > keyboardHeight {
                     return
                 }
-                //            if distanceToBottom < 0 {
-                //                distanceToBottom = 0
-                //            }
                 let collapseSpace = (keyboardHeight - distanceToBottom + 10)
                 UIView.animate(withDuration: 0.3, animations: {
                     self.view.frame.origin = CGPoint(x: self.lastOffset.x, y: collapseSpace)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfirmConsultationSuppressViewController: UIViewController {
+class ConfirmConsultationSuppresViewController: UIViewController {
 
     // MARK: - override
     override func viewDidLoad() {
@@ -63,7 +63,17 @@ class ConfirmConsultationSuppressViewController: UIViewController {
         eventsCalendarManager.requestSuppressEvent(eventIdentifier: eventIdentifier!) { (result, _) in
             switch result {
             case .success:
-                print("success")
+//                print("success")
+                let consultationKey = self.consultationItem?.key
+                let petKey = self.petItem?.key
+                GetFirebaseConsultations.shared.deleteConsultation(petKey: petKey!,
+                                                                   consultationKey: consultationKey!) { (success) in
+                    if success {
+                        self.consultationHasBeenDeleted = true
+                    } else {
+                        print("erreur")
+                    }
+                }
             case .failure(let error):
                 switch error {
                 case .calendarAccessDeniedOrRestricted:
@@ -79,17 +89,6 @@ class ConfirmConsultationSuppressViewController: UIViewController {
                 case .eventNotSuppressedToCalendar:
                     self.getErrors(type: .eventNotSuppressedToCalendar)
                 }
-            }
-        }
-        let consultationKey = consultationItem?.key
-        let petKey = petItem?.key
-
-        GetFirebaseConsultations.shared.deleteConsultation(petKey: petKey!,
-                                                           consultationKey: consultationKey!) { (success) in
-            if success {
-                self.consultationHasBeenDeleted = true
-            } else {
-                print("erreur")
             }
         }
     }

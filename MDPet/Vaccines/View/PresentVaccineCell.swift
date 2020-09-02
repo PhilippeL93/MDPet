@@ -23,6 +23,7 @@ class PresentVaccineCell: UITableViewCell {
 
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
+    private var diseasesToDisplay: [String] = []
 
     func configureVaccineCell(with vaccineItem: VaccineItem) {
         vaccineInjectionLabel.text = vaccineItem.vaccineInjection
@@ -34,11 +35,34 @@ class PresentVaccineCell: UITableViewCell {
 
         manageDiseasesLabel()
 
-        var diseasesToDisplay: [String] = []
         for indice in 0...vaccineItem.vaccineDiseases.count-1
             where vaccineItem.vaccineSwitchDiseases[indice] == true {
                 diseasesToDisplay.append(vaccineItem.vaccineDiseases[indice])
         }
+        guard diseasesToDisplay.count > 0 else {
+            return
+        }
+        manageDiseasesDisplay()
+    }
+    private func manageDiseasesLabel() {
+        diseaseOneLabel.isHidden = true
+        diseaseTwoLabel.isHidden = true
+        diseaseThreeLabel.isHidden = true
+        diseaseFourLabel.isHidden = true
+        diseaseFiveLabel.isHidden = true
+        diseaseSixLabel.isHidden = true
+        diseaseSevenLabel.isHidden = true
+        diseaseEightLabel.isHidden = true
+        diseaseOneLabel.text = ""
+        diseaseTwoLabel.text = ""
+        diseaseThreeLabel.text = ""
+        diseaseFourLabel.text = ""
+        diseaseFiveLabel.text = ""
+        diseaseSixLabel.text = ""
+        diseaseSevenLabel.text = ""
+        diseaseEightLabel.text = ""
+    }
+    private func manageDiseasesDisplay() {
         for indice in 0...diseasesToDisplay.count-1 {
             switch indice {
             case 0:
@@ -72,24 +96,5 @@ class PresentVaccineCell: UITableViewCell {
             default: break
             }
         }
-    }
-    private func manageDiseasesLabel() {
-        diseaseOneLabel.isHidden = true
-        diseaseTwoLabel.isHidden = true
-        diseaseThreeLabel.isHidden = true
-        diseaseFourLabel.isHidden = true
-        diseaseFiveLabel.isHidden = true
-        diseaseSixLabel.isHidden = true
-        diseaseSevenLabel.isHidden = true
-        diseaseEightLabel.isHidden = true
-        
-        diseaseOneLabel.text = ""
-        diseaseTwoLabel.text = ""
-        diseaseThreeLabel.text = ""
-        diseaseFourLabel.text = ""
-        diseaseFiveLabel.text = ""
-        diseaseSixLabel.text = ""
-        diseaseSevenLabel.text = ""
-        diseaseEightLabel.text = ""
     }
 }

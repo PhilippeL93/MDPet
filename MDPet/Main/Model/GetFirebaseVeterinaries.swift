@@ -14,7 +14,7 @@ class GetFirebaseVeterinaries {
     static let shared = GetFirebaseVeterinaries(with: DatabaseReference())
     private var databaseReference: DatabaseReference
     var veterinariesItems: [VeterinaryItem] = []
-    var test: VeterinaryItem? = nil
+    var veterinaryItem: VeterinaryItem?
 
     init(with databaseReference: DatabaseReference) {
         self.databaseReference = databaseReference
@@ -41,7 +41,7 @@ class GetFirebaseVeterinaries {
 //    func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, String, Int) -> Void) {
     func getVeterinaryFromKey(veterinaryToSearch: String, callback: @escaping (Bool, VeterinaryItem, Int) -> Void) {
         guard veterinariesItems.count != 0 else {
-            callback(false, test!, -1)
+            callback(false, veterinaryItem!, -1)
 //            callback(false, "", -1)
             return
         }
@@ -51,7 +51,7 @@ class GetFirebaseVeterinaries {
 //                callback(true, veterinariesItems[indice].veterinaryName, indice)
                 return
         }
-        callback(false, test!, -1)
+        callback(false, veterinaryItem!, -1)
 //         callback(false, "", -1)
     }
 }

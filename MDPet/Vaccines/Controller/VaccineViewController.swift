@@ -39,13 +39,6 @@ class VaccineViewController: UIViewController {
     private var selectedRace: String = ""
     private var selectedVeterinaryKey: String = ""
     private var petDiseasesCount: Int = 0
-    var selectedVeterinaryName = ""
-
-    var veterinariesItems: [VeterinaryItem] = []
-    var typeOfCall: TypeOfCall?
-    var petItem: PetItem?
-    var vaccineItem: VaccineItem?
-    var imagePicker: ImagePicker!
     private var vaccineKey: String = ""
     private var databaseRef = Database.database().reference(withPath: vaccinesItem)
     private var imageRef = Storage.storage().reference().child(petsInages)
@@ -54,6 +47,13 @@ class VaccineViewController: UIViewController {
     private var petDiseasesSwitch: [Bool] = []
     private var vaccineDateToSave: String = ""
     private var oneFieldHasBeenUpdated = false
+
+    var selectedVeterinaryName = ""
+    var veterinariesItems: [VeterinaryItem] = []
+    var typeOfCall: TypeOfCall?
+    var petItem: PetItem?
+    var vaccineItem: VaccineItem?
+    var imagePicker: ImagePicker!
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -467,15 +467,6 @@ extension VaccineViewController {
     saveVaccineButton.isEnabled = shown
     saveVaccineButton.isAccessibilityElement = shown
     }
-
-//    ici
-//    private func getSwitchUpdated(switchField: Bool, switchFirebase: Bool) -> Bool {
-//        if switchField != switchFirebase {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
     private func createObserverVaccineInjection() {
         vaccineInjectionField?.addTarget(self,
                                          action: #selector(VaccineViewController.vaccineInjectionFieldDidEnd(_:)),
@@ -611,17 +602,13 @@ private extension VaccineViewController {
             (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
             constraintContentHeight = keyboardHeight + view.frame.size.height
-            var distanceToBottom: CGFloat = 0
-            distanceToBottom =
+            let distanceToBottom =
                 self.scrollView.frame.size.height
                 - (activeField?.frame.origin.y)!
                 - (activeField?.frame.size.height)!
             if distanceToBottom > keyboardHeight {
                 return
             }
-//            if distanceToBottom < 0 {
-//                distanceToBottom = 0
-//            }
             let collapseSpace = (keyboardHeight - distanceToBottom + 10)
             UIView.animate(withDuration: 0.3, animations: {
                 self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace)
@@ -639,12 +626,6 @@ private extension VaccineViewController {
 extension VaccineViewController: ImagePickerDelegate {
 
     func didSelect(image: UIImage?) {
-//        let image = image
-//        if image != nil {
-//
-//        } else {
-//
-//        }
         guard let image = image else {
             return
         }
