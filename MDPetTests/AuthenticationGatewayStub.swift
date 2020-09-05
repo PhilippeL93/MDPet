@@ -13,8 +13,8 @@ import Firebase
 
 class AuthenticationGatewayStub: AuthenticationGateway {
     
-    var registeredUser: User?
-    var registerResult: Result<User, AuthenticationError>?
+    var registeredUser: MDPet.User?
+    var registerResult: Result<MDPet.User, AuthenticationError>?
 
     func register(userParams: RegisterUserBasicParams, completion: @escaping ((RegisterResult) -> Void)) {
         guard let registerResult = registerResult else { return }

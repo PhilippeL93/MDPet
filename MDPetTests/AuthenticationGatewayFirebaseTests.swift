@@ -17,6 +17,7 @@ class AuthenticationGatewayFirebaseTests: XCTestCase {
 
     private let userEmail = "fake@orange.fr"
     private let userPassword = "somepassword"
+    private var gateway: AuthenticationGateway!
     private var auth: Auth = {
         print("================== test private var auth")
         print("================= test \(FirebaseApp.app()) ")
@@ -26,16 +27,17 @@ class AuthenticationGatewayFirebaseTests: XCTestCase {
         }
         return Auth.auth()
     }()
-    private var gateway: AuthenticationGateway!
 
     override func setUp() {
         super.setUp()
         print("================== setUp")
+//        FirebaseApp.configure()
         gateway = AuthenticationGatewayFirebase(auth: auth)
     }
 
     override func tearDown() {
         super.tearDown()
+        print("================== tearDown")
 //        deleteCurrentUser()
     }
 

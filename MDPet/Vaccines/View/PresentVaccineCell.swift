@@ -32,6 +32,7 @@ class PresentVaccineCell: UITableViewCell {
         let dateDMY = dateFormatter.date(from: vaccineItem.vaccineDate)
         dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
         vaccineDateLabel.text = dateFormatter.string(for: dateDMY)
+        diseasesToDisplay = []
 
         manageDiseasesLabel()
 

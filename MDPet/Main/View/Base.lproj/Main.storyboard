@@ -220,7 +220,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="x9Z-ib-3Bx">
                                 <rect key="frame" x="8" y="142" width="359" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Génération consultation dans calendrier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQt-FE-s7g" userLabel="Automatic Generate Event Calendar Label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Générer consultation dans calendrier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQt-FE-s7g" userLabel="Automatic Generate Event Calendar Label">
                                         <rect key="frame" x="0.0" y="0.0" width="289" height="31"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -657,7 +657,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="C6u-At-hoi" kind="relationship" relationship="rootViewController" id="LaM-qV-aVm"/>
+                        <segue destination="Yug-RC-4Cj" kind="relationship" relationship="rootViewController" id="Dab-mJ-pxG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNl-1K-wwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -665,137 +665,116 @@
             <point key="canvasLocation" x="1577" y="-815"/>
         </scene>
         <!--Pets List Table View-->
-        <scene sceneID="14W-wc-AYy">
+        <scene sceneID="ouO-CB-IXB">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="C6u-At-hoi" userLabel="Pets List Table View" customClass="PetsListTableViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JLl-Zk-bZ1" userLabel="Pets Table View">
+                <tableViewController id="Yug-RC-4Cj" userLabel="Pets List Table View" customClass="PetsListTableViewController" customModule="MDPet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x8z-Y5-zV3" userLabel="Pets Table View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemPet" id="1tO-I9-brQ" userLabel="Pets Table View Cell" customClass="PresentPetCell" customModule="MDPet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemPet" rowHeight="85" id="hdG-0d-rE3" userLabel="Pets Table View Cell" customClass="PresentPetCell" customModule="MDPet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1tO-I9-brQ" id="oW5-c8-7rU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdG-0d-rE3" id="srV-E3-VnY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbL-kO-btW">
-                                            <rect key="frame" x="8" y="7" width="355" height="68.5"/>
+                                        <view contentMode="scaleToFill" id="2O2-nL-9QW" userLabel="View Cell">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EDn-Mm-QY0">
-                                                    <rect key="frame" x="8" y="4" width="339" height="60.5"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17a-3m-Ndl" userLabel="View Image Pet" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="70" height="69"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeN-lD-URV" userLabel="View Image Pet" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
-                                                            <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-aj-ol0" userLabel="Pet Picture">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="fjA-aj-ol0" secondAttribute="height" multiplier="1:1" id="Vfc-K7-0GQ"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="fjA-aj-ol0" secondAttribute="bottom" id="MPF-Ag-sZR"/>
-                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="centerY" secondItem="DeN-lD-URV" secondAttribute="centerY" id="PYz-5l-dWi"/>
-                                                                <constraint firstAttribute="width" constant="60" id="RRl-kW-6W7"/>
-                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="centerX" secondItem="DeN-lD-URV" secondAttribute="centerX" id="VDa-qY-6My"/>
-                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="top" secondItem="DeN-lD-URV" secondAttribute="top" id="WVN-nI-enT"/>
-                                                                <constraint firstAttribute="width" secondItem="DeN-lD-URV" secondAttribute="height" multiplier="1:1" id="fyI-ss-8Vb"/>
-                                                                <constraint firstAttribute="trailing" secondItem="fjA-aj-ol0" secondAttribute="trailing" id="qCc-k2-NwS"/>
-                                                                <constraint firstItem="fjA-aj-ol0" firstAttribute="leading" secondItem="DeN-lD-URV" secondAttribute="leading" id="sYb-s6-YyD"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <integer key="value" value="25"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                    <integer key="value" value="1"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </view>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="tZh-bz-wcI">
-                                                            <rect key="frame" x="68" y="0.0" width="271" height="60.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3k-dL-q26" userLabel="Pet Name Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="23.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xan-9k-Wkr" userLabel="Pet Birth Date Label">
-                                                                    <rect key="frame" x="0.0" y="37.5" width="271" height="23"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="Xan-9k-Wkr" firstAttribute="width" secondItem="r3k-dL-q26" secondAttribute="width" id="Yne-gC-w1V"/>
-                                                                <constraint firstItem="Xan-9k-Wkr" firstAttribute="height" secondItem="r3k-dL-q26" secondAttribute="height" id="hQB-j3-6LC"/>
-                                                            </constraints>
-                                                        </stackView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OhZ-R7-PjI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="69"/>
+                                                        </imageView>
                                                     </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="tZh-bz-wcI" secondAttribute="bottom" id="Fjg-9n-eEy"/>
-                                                        <constraint firstAttribute="bottom" secondItem="DeN-lD-URV" secondAttribute="bottom" id="LEq-yI-Wcn"/>
-                                                        <constraint firstItem="tZh-bz-wcI" firstAttribute="top" secondItem="EDn-Mm-QY0" secondAttribute="top" id="OXp-tc-GWI"/>
-                                                        <constraint firstItem="tZh-bz-wcI" firstAttribute="leading" secondItem="DeN-lD-URV" secondAttribute="trailing" constant="8" id="Ubs-hO-qBl"/>
-                                                        <constraint firstItem="DeN-lD-URV" firstAttribute="top" secondItem="EDn-Mm-QY0" secondAttribute="top" id="jIr-zr-vyw"/>
-                                                        <constraint firstItem="tZh-bz-wcI" firstAttribute="height" secondItem="DeN-lD-URV" secondAttribute="height" id="p0g-0a-iyY"/>
-                                                        <constraint firstAttribute="trailing" secondItem="tZh-bz-wcI" secondAttribute="trailing" id="vJp-x0-eFf"/>
-                                                        <constraint firstItem="DeN-lD-URV" firstAttribute="leading" secondItem="EDn-Mm-QY0" secondAttribute="leading" id="zMk-kH-7KU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="OhZ-R7-PjI" secondAttribute="trailing" id="CGK-KL-oRJ"/>
+                                                        <constraint firstItem="OhZ-R7-PjI" firstAttribute="leading" secondItem="17a-3m-Ndl" secondAttribute="leading" id="Fmm-8K-Lzs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="OhZ-R7-PjI" secondAttribute="bottom" id="PIz-7B-lUl"/>
+                                                        <constraint firstItem="OhZ-R7-PjI" firstAttribute="top" secondItem="17a-3m-Ndl" secondAttribute="top" id="bl2-9V-xgx"/>
                                                     </constraints>
-                                                </stackView>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <integer key="value" value="25"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-BL-11I" userLabel="Pet Name Label">
+                                                    <rect key="frame" x="97" y="8" width="270" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="6Fe-0Z-sbx"/>
+                                                        <constraint firstAttribute="width" constant="270" id="8Oi-Uu-x49"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxv-wW-PtA" userLabel="Pet Birth Date Label">
+                                                    <rect key="frame" x="97" y="52" width="270" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="270" id="DKS-3Q-1xb"/>
+                                                        <constraint firstAttribute="height" constant="25" id="nds-Hq-U7o"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstItem="EDn-Mm-QY0" firstAttribute="top" secondItem="zbL-kO-btW" secondAttribute="top" constant="4" id="7lm-dR-RbL"/>
-                                                <constraint firstAttribute="bottom" secondItem="EDn-Mm-QY0" secondAttribute="bottom" constant="4" id="89z-TP-tTh"/>
-                                                <constraint firstItem="EDn-Mm-QY0" firstAttribute="leading" secondItem="zbL-kO-btW" secondAttribute="leading" constant="8" id="HvT-Mi-M25"/>
-                                                <constraint firstAttribute="trailing" secondItem="EDn-Mm-QY0" secondAttribute="trailing" constant="8" id="fao-BC-01b"/>
+                                                <constraint firstItem="17a-3m-Ndl" firstAttribute="top" secondItem="2O2-nL-9QW" secondAttribute="top" constant="8" id="3EB-sJ-hPd"/>
+                                                <constraint firstAttribute="trailing" secondItem="qgr-BL-11I" secondAttribute="trailing" constant="8" id="3Mp-51-Pfk"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cxv-wW-PtA" secondAttribute="trailing" constant="8" id="7zQ-li-LCQ"/>
+                                                <constraint firstItem="Cxv-wW-PtA" firstAttribute="height" secondItem="qgr-BL-11I" secondAttribute="height" id="8oW-S4-txe"/>
+                                                <constraint firstAttribute="bottom" secondItem="17a-3m-Ndl" secondAttribute="bottom" constant="8" id="Axc-zE-FHb"/>
+                                                <constraint firstItem="Cxv-wW-PtA" firstAttribute="width" secondItem="qgr-BL-11I" secondAttribute="width" id="HTv-7s-7MA"/>
+                                                <constraint firstItem="qgr-BL-11I" firstAttribute="leading" secondItem="17a-3m-Ndl" secondAttribute="trailing" constant="19" id="Vhb-Gl-FQU"/>
+                                                <constraint firstItem="Cxv-wW-PtA" firstAttribute="leading" secondItem="17a-3m-Ndl" secondAttribute="trailing" constant="19" id="X6r-GE-sPF"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cxv-wW-PtA" secondAttribute="bottom" constant="8" id="m7b-em-Fff"/>
+                                                <constraint firstItem="17a-3m-Ndl" firstAttribute="leading" secondItem="2O2-nL-9QW" secondAttribute="leading" constant="8" id="nKu-Zl-Qkb"/>
+                                                <constraint firstItem="qgr-BL-11I" firstAttribute="top" secondItem="2O2-nL-9QW" secondAttribute="top" constant="8" id="swo-44-nGj"/>
+                                                <constraint firstItem="Cxv-wW-PtA" firstAttribute="top" secondItem="qgr-BL-11I" secondAttribute="bottom" constant="19" id="v88-Xj-Fd6"/>
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="zbL-kO-btW" secondAttribute="bottom" constant="5" id="0Mu-xh-3IH"/>
-                                        <constraint firstAttribute="trailing" secondItem="zbL-kO-btW" secondAttribute="trailing" constant="12" id="XfJ-Fx-Ehs"/>
-                                        <constraint firstItem="zbL-kO-btW" firstAttribute="top" secondItem="oW5-c8-7rU" secondAttribute="top" constant="7" id="dg0-M7-MIX"/>
-                                        <constraint firstItem="zbL-kO-btW" firstAttribute="leading" secondItem="oW5-c8-7rU" secondAttribute="leading" constant="8" id="e7F-BT-EQ9"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <color key="tintColor" red="0.69006222490000002" green="0.9137675166" blue="1.857701864e-05" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <outlet property="petBirthDateLabel" destination="Xan-9k-Wkr" id="TJ9-O4-Tzd"/>
-                                    <outlet property="petNameLabel" destination="r3k-dL-q26" id="wFb-aR-UKZ"/>
-                                    <outlet property="petPicture" destination="fjA-aj-ol0" id="uaA-eX-AVG"/>
+                                    <outlet property="petBirthDateLabel" destination="Cxv-wW-PtA" id="Nn5-gh-NIF"/>
+                                    <outlet property="petNameLabel" destination="qgr-BL-11I" id="7iI-2c-hKT"/>
+                                    <outlet property="petPicture" destination="OhZ-R7-PjI" id="AXW-15-zPJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="C6u-At-hoi" id="nxx-wJ-sOZ"/>
-                            <outlet property="delegate" destination="C6u-At-hoi" id="zuu-p8-3DC"/>
+                            <outlet property="dataSource" destination="Yug-RC-4Cj" id="HyO-9n-I0K"/>
+                            <outlet property="delegate" destination="Yug-RC-4Cj" id="hxe-hl-0QE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Animaux" id="w9P-zP-p72">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="NYg-OR-p29" userLabel="AddPet">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <navigationItem key="navigationItem" title="Animaux" id="2nK-L7-Prw" userLabel="Navigation Items">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="ayZ-WH-uHo" userLabel="AddPet">
                             <connections>
-                                <action selector="addNewPet:" destination="C6u-At-hoi" id="KNs-gj-6bK"/>
+                                <action selector="addNewPet:" destination="Yug-RC-4Cj" id="3rx-Aq-M73"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="JLl-Zk-bZ1" id="KaB-ru-AWq"/>
+                        <outlet property="tableView" destination="x8z-Y5-zV3" id="njW-DQ-hDk"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wsQ-Na-j0I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAS-de-mzI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="-815"/>
+            <point key="canvasLocation" x="2462" y="-815"/>
         </scene>
         <!--Pet-->
         <scene sceneID="XqL-Rt-cMI">

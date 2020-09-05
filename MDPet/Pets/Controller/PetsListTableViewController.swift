@@ -10,9 +10,9 @@ import UIKit
 
 class PetsListTableViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
 
-    @IBAction func addNewPet(_ sender: UIBarButtonItem) {
+    @IBAction func addNewPet(_ sender: Any) {
         createNewPet()
     }
     // MARK: Constants
