@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+//import CloudKit
 
 class VeterinariesListTableViewController: UIViewController {
 
@@ -18,19 +18,15 @@ class VeterinariesListTableViewController: UIViewController {
     }
 
     // MARK: Properties
-    var veterinariesItems: [VeterinaryItem] = []
+    var veterinariesList = VeterinariesItem.fetchAll()
 
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
         super.viewDidLoad()
-        GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
-            if success {
-                self.veterinariesItems = veterinariesItems
-                self.tableView.reloadData()
-            } else {
-                print("erreur")
-            }
-        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        refresh()
     }
     private func createNewVeterinary() {
         guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "VeterinaryController")
@@ -40,34 +36,27 @@ class VeterinariesListTableViewController: UIViewController {
         destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
+    @objc private func refresh() {
+        veterinariesList = VeterinariesItem.fetchAll()
+        tableView.reloadData()
+    }
 }
 
-// MARK: - extension Data for tableView
 extension VeterinariesListTableViewController: UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return veterinariesList.count
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemVeterinary", for: indexPath)
-            as? PresentVeterinaryCell else {
-            return UITableViewCell()
-        }
-
-        let veterinaryItem = veterinariesItems[indexPath.row]
+          as? PresentVeterinaryCell else {
+              return UITableViewCell()
+      }
         cell.cellDelegate = self
-        cell.indexSelected = indexPath
-        cell.configurePetCell(with: veterinaryItem.veterinaryName,
-                              city: veterinaryItem.veterinaryCity,
-                              phone: veterinaryItem.veterinaryPhone)
+        cell.configureVeterinaryCell(veterinariesItem: veterinariesList[indexPath.row])
         return cell
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return veterinariesItems.count
-    }
 }
-
 // MARK: - extension Delegate
 extension VeterinariesListTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -79,7 +68,7 @@ extension VeterinariesListTableViewController: UITableViewDelegate {
             as? VeterinaryViewController else {
                 return
         }
-        let veterinaryItem = veterinariesItems[indexPath.row]
+        let veterinaryItem = veterinariesList[indexPath.row]
         destVC.typeOfCall = TypeOfCall.update
         destVC.veterinaryItem = veterinaryItem
         self.show(destVC, sender: self)
@@ -87,8 +76,8 @@ extension VeterinariesListTableViewController: UITableViewDelegate {
 }
 
 extension VeterinariesListTableViewController: TableViewClick {
-    func onClickCell(index: Int) {
-        if let url = URL(string: "telprompt://\(veterinariesItems[index].veterinaryPhone)") {
+    func onClickCell(phoneNumber: String) {
+        if let url = URL(string: "telprompt://\(phoneNumber)") {
             let application = UIApplication.shared
             guard application.canOpenURL(url) else {
                 return

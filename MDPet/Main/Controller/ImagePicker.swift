@@ -85,6 +85,7 @@ extension ImagePicker: UIImagePickerControllerDelegate {
         guard let image = info[.editedImage] as? UIImage else {
             return self.pickerController(picker, didSelect: nil)
         }
+
         self.pickerController(picker, didSelect: image)
     }
 }

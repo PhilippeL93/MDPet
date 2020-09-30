@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import CoreData
 import EventKit
 
 class ConsultationViewController: UIViewController {
@@ -32,22 +32,24 @@ class ConsultationViewController: UIViewController {
     private var constraintContentHeight: CGFloat!
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
-    private var selectedVeterinaryKey: String = ""
+    private var selectedVeterinaryObjectID: NSManagedObjectID?
+    private var selectedVeterinaryRecordID: String?
     private var typeFieldOrView: String = ""
     private var selectedVeterinaryName = ""
     private var consultationIdEvent = ""
-
-    var veterinariesItems: [VeterinaryItem] = []
-    var consultationsItems: [ConsultationItem] = []
-    var typeOfCall: TypeOfCall?
-    var petItem: PetItem?
-    var consultationItem: ConsultationItem?
-    var eventsCalendarManager = EventsCalendarManager()
-    private var consultationKey: String = ""
-    private var databaseRef = Database.database().reference(withPath: consultationsItem)
-    private var pathConsultation: String = ""
-    private var consultationDateToSave: String = ""
+    private var consultationObjectId: NSManagedObjectID?
+    private var veterinariesList = VeterinariesItem.fetchAll()
+    private var veterinariesItem: [VeterinariesItem] = []
+    private var veterinaryItem: VeterinariesItem?
+    private var eventsCalendarManager = EventsCalendarManager()
+    private var dateItem = ""
+    private var dateSelected = ""
+    private var consultationDateToSave: Date?
     private var oneFieldHasBeenUpdated = false
+
+    var typeOfCall: TypeOfCall?
+    var petItem: PetsItem?
+    var consultationItem: ConsultationsItem?
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -78,8 +80,8 @@ class ConsultationViewController: UIViewController {
     }
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !consultationVeterinaryField.text!.isEmpty {
-            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-            veterinaryToSearch: selectedVeterinaryKey) { (success, _, rowVeterinary) in
+            Model.shared.getVeterinaryFromObjectID(
+                veterinaryToSearch: selectedVeterinaryObjectID!) { (success, rowVeterinary) in
                 if success {
                     self.pickerViewVeterinary.selectRow(rowVeterinary, inComponent: 0, animated: true)
                 }
@@ -98,14 +100,14 @@ class ConsultationViewController: UIViewController {
             let date = calendar.date(byAdding: .minute, value: nextDiff, to: rightNow) ?? Date()
             consultationDateField.text = dateFormatter.string(from: date)
             dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-            consultationDateToSave = dateFormatter.string(from: date)
+            consultationDateToSave = date
             datePickerConsultationDate?.date = date
         } else {
             formatDate()
             let consultationDate = dateFormatter.date(from: consultationDateField.text!)
             datePickerConsultationDate?.date = consultationDate!
             dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-            consultationDateToSave = dateFormatter.string(from: consultationDate!)
+            consultationDateToSave = consultationDate!
         }
     }
 
@@ -114,23 +116,14 @@ class ConsultationViewController: UIViewController {
         super.viewDidLoad()
         dateFormatter.locale = localeLanguage
         formatDate()
-        let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath:
-            "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
         createObserverConsultation()
         createDelegateConsultation()
         initiateObserverConsultation()
-        GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
-            if success {
-                self.veterinariesItems = veterinariesItems
-                if case .update = self.typeOfCall {
-                    self.initiateConsultationView()
-                }
-                self.initiateButtonConsultationView()
-            } else {
-                print("erreur")
-            }
+        veterinariesList = VeterinariesItem.fetchAll()
+        if case .update = self.typeOfCall {
+            self.initiateConsultationView()
         }
+        self.initiateButtonConsultationView()
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -198,23 +191,28 @@ class ConsultationViewController: UIViewController {
     }
     @objc func dateChangedConsultationDate(datePicker: UIDatePicker) {
         consultationDateField.text = dateFormatter.string(from: datePicker.date)
-        if consultationDateField.text != consultationItem?.consultationDate {
+        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
+        dateSelected = dateFormatter.string(from: datePicker.date)
+        dateItem = ""
+        if dateSelected != dateItem {
             updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationDateUpdated")
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
         }
         dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-        consultationDateToSave = dateFormatter.string(from: datePicker.date)
+        consultationDateToSave = datePicker.date
         formatDate()
         consultationDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func consultationVeterinaryFieldDidEnd(_ textField: UITextField) {
         selectedVeterinaryName = ""
         if case .update = typeOfCall {
-            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-            veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinariesItems, _) in
-                if success {
-                    self.selectedVeterinaryName = veterinariesItems.veterinaryName
+            if consultationItem!.consultationVeterinary != nil {
+                Model.shared.getVeterinaryFromRecordID(
+                    veterinaryToSearch: consultationItem!.consultationVeterinary!) {(success, veterinaryItem) in
+                    if success {
+                        self.selectedVeterinaryName = (veterinaryItem?.veterinaryName!)!
+                    }
                 }
             }
         }
@@ -286,23 +284,31 @@ extension ConsultationViewController {
         }
     }
     private func initiateConsultationView() {
-        consultationKey = consultationItem?.key ?? ""
+        consultationObjectId = consultationItem?.objectID
         consultationReasonField.text = consultationItem?.consultationReason
-        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-        let consultationDate = dateFormatter.date(from: consultationItem!.consultationDate)
-        consultationDateToSave = dateFormatter.string(from: consultationDate!)
         dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
-        consultationDateField.text = dateFormatter.string(from: consultationDate!)
+        if consultationItem?.consultationDate != nil {
+            consultationDateField.text = dateFormatter.string(from: (consultationItem?.consultationDate)!)
+            consultationDateToSave = consultationItem?.consultationDate
+        }
         consultationWeightField.text = consultationItem?.consultationWeight
         consultationReportView.text = consultationItem?.consultationReport
 
-        GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: consultationItem!.consultationVeterinary) { (success, veterinariesItems, _) in
+        initiateVeterinaryFields()
+    }
+    private func initiateVeterinaryFields() {
+        guard consultationItem!.consultationVeterinary != nil else {
+            return
+        }
+
+        Model.shared.getVeterinaryFromRecordID(
+            veterinaryToSearch: consultationItem!.consultationVeterinary!) {(success, veterinaryItem) in
             if success {
-                self.consultationVeterinaryField.text = veterinariesItems.veterinaryName
+                self.selectedVeterinaryObjectID = veterinaryItem?.objectID
+                self.selectedVeterinaryRecordID = veterinaryItem?.veterinaryRecordID
+                self.consultationVeterinaryField.text = veterinaryItem?.veterinaryName!
             }
         }
-        selectedVeterinaryKey = consultationItem?.consultationVeterinary ?? ""
     }
     private func checkUpdateConsultationDone() {
         if oneFieldHasBeenUpdated == false {
@@ -321,34 +327,43 @@ extension ConsultationViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateConsultation() {
-        var consultationReport = ""
-        let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath:
-            "\(path)").child(petsItem).child(petItem!.key).child(consultationsItem)
-
-        var uniqueUUID = consultationKey
-
-        if case .create = typeOfCall {
-            uniqueUUID = UUID().uuidString
+        if currentReachabilityStatus == .twoG || currentReachabilityStatus == .threeG {
+            print("======== connection lente détectée \(currentReachabilityStatus)")
         }
+        if case .update = self.typeOfCall {
+            let consultationId = consultationItem?.objectID
+            let consultationToSave = Model.shared.getObjectByIdConsultation(objectId: consultationId!)
+            updateConsultationStorage(consultationToSave: consultationToSave!)
+        } else {
+            let consultationToSave = ConsultationsItem(context: AppDelegate.viewContext)
+            updateConsultationStorage(consultationToSave: consultationToSave)
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    private func updateConsultationStorage(consultationToSave: ConsultationsItem) {
+
         if Settings.automaticGenerateEventInCalendarSwitch == true {
             manageEventToCalendar()
         }
+
+        consultationToSave.consultationReason = String(consultationReasonField.text ?? "")
+        if consultationDateToSave != nil {
+            consultationToSave.consultationDate = consultationDateToSave
+        }
+        consultationToSave.consultationVeterinary = selectedVeterinaryRecordID
+        var consultationReport = ""
         if consultationReportView.text != "Compte-rendu" {
             consultationReport = String(consultationReportView.text!)
         }
-        consultationItem = ConsultationItem(
-            key: "",
-            reason: String(consultationReasonField.text!),
-            date: String(consultationDateToSave),
-            veterinary: String(selectedVeterinaryKey),
-            report: consultationReport,
-            weight: String(consultationWeightField.text!),
-            idEvent: consultationIdEvent,
-            diseases: [])
-        let consultationItemRef = databaseRef.child(uniqueUUID)
-        consultationItemRef.setValue(consultationItem?.toAnyObject())
-        navigationController?.popViewController(animated: true)
+        consultationToSave.consultationReport = consultationReport
+        consultationToSave.consultationWeight = String(consultationWeightField.text!)
+        consultationToSave.consultationIdEvent = consultationIdEvent
+        consultationToSave.consultationPet = petItem?.petRecordID
+        do {
+        try AppDelegate.viewContext.save()
+        } catch {
+            print("Error saving consultation")
+        }
     }
     private func getSuppressedConsultation() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
@@ -356,7 +371,7 @@ extension ConsultationViewController {
             as? ConfirmConsultationSuppresViewController else {
                 return
         }
-        destVC.petItem = petItem
+        destVC.consultationObjectId = consultationObjectId
         destVC.consultationItem = consultationItem
         self.addChild(destVC)
         destVC.view.frame = self.view.frame
@@ -397,24 +412,30 @@ extension ConsultationViewController {
 }
 extension ConsultationViewController {
     private func manageEventToCalendar() {
-        var veterinaryIndice = 0
-        for indice in 0...veterinariesItems.count-1
-            where ( selectedVeterinaryKey == veterinariesItems[indice].key) {
-                veterinaryIndice = indice
+        Model.shared.getVeterinaryFromRecordID(
+            veterinaryToSearch: selectedVeterinaryRecordID!) {(success, veterinaryItem) in
+            if success {
+                self.veterinaryItem = veterinaryItem
+            }
         }
+
         let store = EKEventStore()
         let event = EKEvent(eventStore: store)
         dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
-        event.title = petItem!.petName + " - " + String(consultationReasonField.text!)
+        event.title = petItem!.petName! + " - " + String(consultationReasonField.text!)
         event.startDate = dateFormatter.date(from: consultationDateField.text!)
         event.endDate = event.startDate + 3600
-        event.location = veterinariesItems[veterinaryIndice].veterinaryName
-                        + ", "
-                        + veterinariesItems[veterinaryIndice].veterinaryStreetOne
-                        + ", "
-                        + veterinariesItems[veterinaryIndice].veterinaryPostalCode
-                        + " "
-                        + veterinariesItems[veterinaryIndice].veterinaryCity
+        var eventLocation: [String] = []
+        eventLocation.insert(veterinaryItem!.veterinaryCity!, at: 0)
+        eventLocation.insert(veterinaryItem!.veterinaryStreetOne!, at: 0)
+        eventLocation.insert(veterinaryItem!.veterinaryName!, at: 0)
+        event.location = String((eventLocation as AnyObject).description)
+
+        let eventOne = veterinaryItem!.veterinaryName! + ", "
+        let eventTwo = veterinaryItem!.veterinaryStreetOne! + ", "
+        let eventThree = String(veterinaryItem!.veterinaryPostalCode!) + " "
+            + veterinaryItem!.veterinaryCity!
+        event.location = String(eventOne) + String(eventTwo) + String(eventThree)
         let eventIdentifier = consultationItem?.consultationIdEvent ?? ""
         eventsCalendarManager.addEventToCalendar(event: event, eventIdentifier: eventIdentifier) { (result, idEvent) in
             switch result {
@@ -544,17 +565,17 @@ extension ConsultationViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return veterinariesItems.count
+        return veterinariesList.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return veterinariesItems[row].veterinaryName
+            return veterinariesList[row].veterinaryName
     }
-
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedVeterinaryKey = veterinariesItems[row].key
-        consultationVeterinaryField.text = veterinariesItems[row].veterinaryName
-        //            petVeterinaryField.resignFirstResponder()
+        consultationVeterinaryField.text = veterinariesList[row].veterinaryName
+        selectedVeterinaryObjectID = veterinariesList[row].objectID
+        selectedVeterinaryRecordID = veterinariesList[row].veterinaryRecordID
+//        petVeterinaryField.resignFirstResponder()
     }
 }
 // MARK: - Keyboard Handling

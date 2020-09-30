@@ -16,20 +16,17 @@
 		372CEF79249BA8AA002AEAF5 /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF78249BA8AA002AEAF5 /* PetViewController.swift */; };
 		372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */; };
 		372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */; };
-		372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */; };
-		372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */; };
 		372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFC9248676B600984537 /* SettingsViewController.swift */; };
 		372CFFCC248682FA00984537 /* PetsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCB248682FA00984537 /* PetsListTableViewController.swift */; };
-		372CFFCE2486839200984537 /* PetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFCD2486839200984537 /* PetItem.swift */; };
 		372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */; };
-		372CFFD42486A2A400984537 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD32486A2A400984537 /* User.swift */; };
-		372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CFFD52486A72400984537 /* VeterinaryItem.swift */; };
-		3735EC0624D577F20095451A /* GetFirebaseVeterinariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */; };
-		3735EC6224D80CA80095451A /* FirebaseDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */; };
 		3735EC6424D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC6324D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift */; };
 		3735EC6624DA8F370095451A /* ConfirmVaccineSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735EC6524DA8F370095451A /* ConfirmVaccineSuppressViewController.swift */; };
+		373743192508CDCC005F1957 /* PetsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373743182508CDCC005F1957 /* PetsItem.swift */; };
+		3737431B2508FD22005F1957 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737431A2508FD22005F1957 /* Model.swift */; };
+		37374352250B79AD005F1957 /* VeterinariesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37374351250B79AD005F1957 /* VeterinariesItem.swift */; };
+		37374354250FC83E005F1957 /* ConsultationsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37374353250FC83E005F1957 /* ConsultationsItem.swift */; };
+		37374356250FCA8E005F1957 /* VaccinesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37374355250FCA8E005F1957 /* VaccinesItem.swift */; };
 		3741A18A2493B3AB00E3D858 /* PresentVeterinaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */; };
-		3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */; };
 		3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */; };
 		3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */; };
 		3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CEF623EDC53D002B8999 /* TabBarViewController.swift */; };
@@ -38,18 +35,12 @@
 		3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2223EFE84B002B8999 /* SettingsButton.swift */; };
 		3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */; };
 		3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748CF4823F06623002B8999 /* VeterinayViewController.swift */; };
-		375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */; };
-		375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375317D224ADE6E9006B5912 /* ConsultationItem.swift */; };
 		3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */; };
-		375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755789F24A5E88400CA1252 /* VaccineItem.swift */; };
-		375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */; };
 		3756072C24F8F49E00DFC4DA /* ActivtyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756072B24F8F49E00DFC4DA /* ActivtyView.swift */; };
 		3756072E24FAB4EA00DFC4DA /* MangamentPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756072D24FAB4EA00DFC4DA /* MangamentPhone.swift */; };
 		3757579224C8956F00294274 /* VaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579124C8956F00294274 /* VaccineViewController.swift */; };
-		3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */; };
 		3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757579524CDC7C900294274 /* EventsCalendarManager.swift */; };
-		3762434E24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */; };
-		3762435424D5629500BD03FE /* AuthenticationGatewayStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */; };
+		375D72A42511FA880033CEBF /* CreateURLForImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D72A32511FA880033CEBF /* CreateURLForImage.swift */; };
 		3776359024F6A81A0090BD4F /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776358F24F6A81A0090BD4F /* Titles.swift */; };
 		3776359224F6A9EE0090BD4F /* DatesFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776359124F6A9EE0090BD4F /* DatesFormat.swift */; };
 		3776359624F7DB770090BD4F /* ConnectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776359524F7DB770090BD4F /* ConnectionType.swift */; };
@@ -58,15 +49,9 @@
 		379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36824B8715200C056A1 /* CalandarVaccines.swift */; };
 		379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */; };
 		37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588D248A86DC0063867C /* PresentPetCell.swift */; };
-		37A6589024922C610063867C /* UserUid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6588F24922C610063867C /* UserUid.swift */; };
 		37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A981DD24A4E26200F491E2 /* Diseases.swift */; };
 		37C227BE24D06E8C00492C59 /* TypeOfCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227BD24D06E8C00492C59 /* TypeOfCall.swift */; };
-		37C227CE24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227CD24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift */; };
-		37C227D024D1D71900492C59 /* AuthenticationGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227CF24D1D71900492C59 /* AuthenticationGateway.swift */; };
-		37C227D224D1DB6A00492C59 /* ManagmentUserFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D124D1DB6A00492C59 /* ManagmentUserFirebase.swift */; };
-		37C227D424D2BFAB00492C59 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D324D2BFAB00492C59 /* AuthenticationError.swift */; };
-		37C227D624D2C08A00492C59 /* AuthenticationErrorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D524D2C08A00492C59 /* AuthenticationErrorValidator.swift */; };
-		37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */; };
+		37CA799B25151071005C4538 /* MDPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37CA799925151071005C4538 /* MDPet.xcdatamodeld */; };
 		37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12923FC112100CF6247 /* UIViewController+Alert.swift */; };
 		37CED12C23FC114400CF6247 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CED12B23FC114400CF6247 /* Errors.swift */; };
 		37CED13223FD1F0700CF6247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */; };
@@ -77,7 +62,6 @@
 		37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */; };
 		37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE5AAC249919AB0077FEFB /* Notification.swift */; };
 		63648A39CE01CAD4FAFD4A5F /* Pods_MDPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */; };
-		BDD2E22FE5EA215B145C5863 /* Pods_MDPet_MDPetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC151D98E87455C2F561A68D /* Pods_MDPet_MDPetTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,26 +83,23 @@
 		3715EAD1239188E800CAA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3715EAD3239188E800CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3715EAD8239188E900CAA9E7 /* MDPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MDPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayStub.swift; sourceTree = "<group>"; };
 		3715EADE239188E900CAA9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		372CEF76249B692F002AEAF5 /* ConsultationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsListViewController.swift; sourceTree = "<group>"; };
 		372CEF78249BA8AA002AEAF5 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
 		372CEFBE249FD036002AEAF5 /* PresentConsultationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentConsultationCell.swift; sourceTree = "<group>"; };
 		372CEFC0249FD07D002AEAF5 /* PresentVaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVaccineCell.swift; sourceTree = "<group>"; };
-		372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVeterinaries.swift; sourceTree = "<group>"; };
-		372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebasePets.swift; sourceTree = "<group>"; };
 		372CFFC9248676B600984537 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		372CFFCB248682FA00984537 /* PetsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsListTableViewController.swift; sourceTree = "<group>"; };
-		372CFFCD2486839200984537 /* PetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetItem.swift; sourceTree = "<group>"; };
 		372CFFD12486856100984537 /* VeterinariesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinariesListTableViewController.swift; sourceTree = "<group>"; };
-		372CFFD32486A2A400984537 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		372CFFD52486A72400984537 /* VeterinaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinaryItem.swift; sourceTree = "<group>"; };
-		3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVeterinariesTests.swift; sourceTree = "<group>"; };
-		3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseClient.swift; sourceTree = "<group>"; };
 		3735EC6324D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmConsultationSuppressViewController.swift; sourceTree = "<group>"; };
 		3735EC6524DA8F370095451A /* ConfirmVaccineSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmVaccineSuppressViewController.swift; sourceTree = "<group>"; };
+		373743182508CDCC005F1957 /* PetsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsItem.swift; sourceTree = "<group>"; };
+		3737431A2508FD22005F1957 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		37374350250A9361005F1957 /* MDPet.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = MDPet.entitlements; sourceTree = "<group>"; };
+		37374351250B79AD005F1957 /* VeterinariesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeterinariesItem.swift; sourceTree = "<group>"; };
+		37374353250FC83E005F1957 /* ConsultationsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationsItem.swift; sourceTree = "<group>"; };
+		37374355250FCA8E005F1957 /* VaccinesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesItem.swift; sourceTree = "<group>"; };
 		3741A1892493B3AB00E3D858 /* PresentVeterinaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentVeterinaryCell.swift; sourceTree = "<group>"; };
-		3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebasePicture.swift; sourceTree = "<group>"; };
 		3741A191249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmVeterinarySuppressViewController.swift; sourceTree = "<group>"; };
 		3741A19324979D3000E3D858 /* ConfirmPetSuppressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPetSuppressViewController.swift; sourceTree = "<group>"; };
 		3748CEF623EDC53D002B8999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -127,18 +108,14 @@
 		3748CF2223EFE84B002B8999 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		3748CF2423EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCornerBorderRadiusView.swift; sourceTree = "<group>"; };
 		3748CF4823F06623002B8999 /* VeterinayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VeterinayViewController.swift; sourceTree = "<group>"; };
-		375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseConsultations.swift; sourceTree = "<group>"; };
-		375317D224ADE6E9006B5912 /* ConsultationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationItem.swift; sourceTree = "<group>"; };
+		3754506D2514F04100CFA8B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3755789D24A5DDA200CA1252 /* VaccinesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesListViewController.swift; sourceTree = "<group>"; };
-		3755789F24A5E88400CA1252 /* VaccineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineItem.swift; sourceTree = "<group>"; };
-		375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFirebaseVaccines.swift; sourceTree = "<group>"; };
 		3756072B24F8F49E00DFC4DA /* ActivtyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivtyView.swift; sourceTree = "<group>"; };
 		3756072D24FAB4EA00DFC4DA /* MangamentPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangamentPhone.swift; sourceTree = "<group>"; };
 		3757578E24C87D5D00294274 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../../../../Desktop/Raleway/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		3757579124C8956F00294274 /* VaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineViewController.swift; sourceTree = "<group>"; };
-		3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfFirebaseItems.swift; sourceTree = "<group>"; };
 		3757579524CDC7C900294274 /* EventsCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarManager.swift; sourceTree = "<group>"; };
-		3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayFirebaseTests.swift; sourceTree = "<group>"; };
+		375D72A32511FA880033CEBF /* CreateURLForImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateURLForImage.swift; sourceTree = "<group>"; };
 		3776358F24F6A81A0090BD4F /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		3776359124F6A9EE0090BD4F /* DatesFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesFormat.swift; sourceTree = "<group>"; };
 		3776359524F7DB770090BD4F /* ConnectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionType.swift; sourceTree = "<group>"; };
@@ -147,17 +124,11 @@
 		379AB36824B8715200C056A1 /* CalandarVaccines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarVaccines.swift; sourceTree = "<group>"; };
 		379AB36A24B8B2E000C056A1 /* ConsultationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationViewController.swift; sourceTree = "<group>"; };
 		37A6588D248A86DC0063867C /* PresentPetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPetCell.swift; sourceTree = "<group>"; };
-		37A6588F24922C610063867C /* UserUid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUid.swift; sourceTree = "<group>"; };
 		37A981DD24A4E26200F491E2 /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
 		37C227BD24D06E8C00492C59 /* TypeOfCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfCall.swift; sourceTree = "<group>"; };
-		37C227CD24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGatewayFirebase.swift; sourceTree = "<group>"; };
-		37C227CF24D1D71900492C59 /* AuthenticationGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationGateway.swift; sourceTree = "<group>"; };
-		37C227D124D1DB6A00492C59 /* ManagmentUserFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagmentUserFirebase.swift; sourceTree = "<group>"; };
-		37C227D324D2BFAB00492C59 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
-		37C227D524D2C08A00492C59 /* AuthenticationErrorValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrorValidator.swift; sourceTree = "<group>"; };
 		37C227D724D2FC0700492C59 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		37C227D824D2FC0800492C59 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserPrsenter.swift; sourceTree = "<group>"; };
+		37CA799A25151071005C4538 /* MDPet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MDPet.xcdatamodel; sourceTree = "<group>"; };
 		37CED12923FC112100CF6247 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		37CED12B23FC114400CF6247 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -167,12 +138,9 @@
 		37D0384C24B4AF6100449A69 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		37DE5AAA2499192C0077FEFB /* ConfirmUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUpdateViewController.swift; sourceTree = "<group>"; };
 		37DE5AAC249919AB0077FEFB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		3DE25FB5122F5C1015FB02E6 /* Pods-MDPet-MDPetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet-MDPetTests.release.xcconfig"; path = "Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests.release.xcconfig"; sourceTree = "<group>"; };
 		5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.release.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.release.xcconfig"; sourceTree = "<group>"; };
 		AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDPet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6F85B532D5278025591B2BB /* Pods-MDPet-MDPetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet-MDPetTests.debug.xcconfig"; path = "Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDPet.debug.xcconfig"; path = "Target Support Files/Pods-MDPet/Pods-MDPet.debug.xcconfig"; sourceTree = "<group>"; };
-		BC151D98E87455C2F561A68D /* Pods_MDPet_MDPetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDPet_MDPetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +157,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDD2E22FE5EA215B145C5863 /* Pods_MDPet_MDPetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +168,6 @@
 			children = (
 				3748CF1A23EDE48C002B8999 /* CloudKit.framework */,
 				AED4F1223DC9D341AEFA3DAC /* Pods_MDPet.framework */,
-				BC151D98E87455C2F561A68D /* Pods_MDPet_MDPetTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,6 +195,7 @@
 		3715EAC1239188E800CAA9E7 /* MDPet */ = {
 			isa = PBXGroup;
 			children = (
+				37374350250A9361005F1957 /* MDPet.entitlements */,
 				37CED13123FD1F0700CF6247 /* GoogleService-Info.plist */,
 				37A65888248A7E8C0063867C /* Login+Settings */,
 				37A65880248A7A650063867C /* Veterinaries */,
@@ -244,9 +211,6 @@
 		3715EADB239188E900CAA9E7 /* MDPetTests */ = {
 			isa = PBXGroup;
 			children = (
-				3762434D24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift */,
-				3715EADC239188E900CAA9E7 /* AuthenticationGatewayStub.swift */,
-				3735EC0524D577F20095451A /* GetFirebaseVeterinariesTests.swift */,
 				3715EADE239188E900CAA9E7 /* Info.plist */,
 			);
 			path = MDPetTests;
@@ -307,8 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				37A981DD24A4E26200F491E2 /* Diseases.swift */,
-				3755789F24A5E88400CA1252 /* VaccineItem.swift */,
 				379AB36824B8715200C056A1 /* CalandarVaccines.swift */,
+				37374355250FCA8E005F1957 /* VaccinesItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,7 +288,7 @@
 		372CEFBD249FD01C002AEAF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				375317D224ADE6E9006B5912 /* ConsultationItem.swift */,
+				37374353250FC83E005F1957 /* ConsultationsItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,7 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				3748CF2023EF194B002B8999 /* Races.swift */,
-				372CFFCD2486839200984537 /* PetItem.swift */,
+				373743182508CDCC005F1957 /* PetsItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,7 +382,7 @@
 		37A65886248A7ABF0063867C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				372CFFD52486A72400984537 /* VeterinaryItem.swift */,
+				37374351250B79AD005F1957 /* VeterinariesItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,19 +390,15 @@
 		37A65887248A7E6B0063867C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3741A18D2495F22A00E3D858 /* GetFirebasePicture.swift */,
-				372CEFC224A3578B002AEAF5 /* GetFirebaseVeterinaries.swift */,
-				372CEFC424A386D1002AEAF5 /* GetFirebasePets.swift */,
-				375578A124A625EC00CA1252 /* GetFirebaseVaccines.swift */,
-				375317D024ADE60A006B5912 /* GetFirebaseConsultations.swift */,
+				37CA799925151071005C4538 /* MDPet.xcdatamodeld */,
+				3737431A2508FD22005F1957 /* Model.swift */,
 				379AB36224B75B5000C056A1 /* TypeOfCaller.swift */,
 				37C227BD24D06E8C00492C59 /* TypeOfCall.swift */,
-				3757579324C9B8CE00294274 /* NameOfFirebaseItems.swift */,
-				3735EC6124D80CA80095451A /* FirebaseDatabaseClient.swift */,
 				3776358F24F6A81A0090BD4F /* Titles.swift */,
 				3776359124F6A9EE0090BD4F /* DatesFormat.swift */,
 				3776359524F7DB770090BD4F /* ConnectionType.swift */,
 				3756072D24FAB4EA00DFC4DA /* MangamentPhone.swift */,
+				375D72A32511FA880033CEBF /* CreateURLForImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,10 +417,6 @@
 			children = (
 				37CED13C23FD329500CF6247 /* LoginViewController.swift */,
 				372CFFC9248676B600984537 /* SettingsViewController.swift */,
-				37C227D124D1DB6A00492C59 /* ManagmentUserFirebase.swift */,
-				37C227D324D2BFAB00492C59 /* AuthenticationError.swift */,
-				37C227D524D2C08A00492C59 /* AuthenticationErrorValidator.swift */,
-				37C227D924D3027F00492C59 /* RegisterUserPrsenter.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -468,11 +424,7 @@
 		37A6588C248A7F070063867C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				372CFFD32486A2A400984537 /* User.swift */,
-				37A6588F24922C610063867C /* UserUid.swift */,
 				37D0384824B45D8100449A69 /* Settings.swift */,
-				37C227CD24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift */,
-				37C227CF24D1D71900492C59 /* AuthenticationGateway.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -508,8 +460,6 @@
 			children = (
 				B7C5F9DD6581DA0799B6F075 /* Pods-MDPet.debug.xcconfig */,
 				5461D8453E8C939CF7C9CDBE /* Pods-MDPet.release.xcconfig */,
-				B6F85B532D5278025591B2BB /* Pods-MDPet-MDPetTests.debug.xcconfig */,
-				3DE25FB5122F5C1015FB02E6 /* Pods-MDPet-MDPetTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -541,11 +491,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3715EAE4239188E900CAA9E7 /* Build configuration list for PBXNativeTarget "MDPetTests" */;
 			buildPhases = (
-				392644670DC9E48F7913CF84 /* [CP] Check Pods Manifest.lock */,
 				3715EAD4239188E900CAA9E7 /* Sources */,
 				3715EAD5239188E900CAA9E7 /* Frameworks */,
 				3715EAD6239188E900CAA9E7 /* Resources */,
-				42672C8F70446963C2FDA41A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -564,7 +512,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Philippe;
 				TargetAttributes = {
 					3715EABE239188E800CAA9E7 = {
@@ -653,45 +601,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		392644670DC9E48F7913CF84 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MDPet-MDPetTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		42672C8F70446963C2FDA41A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MDPet-MDPetTests/Pods-MDPet-MDPetTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ABEA4854FAE02257CA6FA760 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -725,34 +634,25 @@
 				37CED13D23FD329500CF6247 /* LoginViewController.swift in Sources */,
 				37CED12A23FC112100CF6247 /* UIViewController+Alert.swift in Sources */,
 				3776359624F7DB770090BD4F /* ConnectionType.swift in Sources */,
+				37374356250FCA8E005F1957 /* VaccinesItem.swift in Sources */,
 				3741A192249778E000E3D858 /* ConfirmVeterinarySuppressViewController.swift in Sources */,
 				3776359024F6A81A0090BD4F /* Titles.swift in Sources */,
-				37C227DA24D3027F00492C59 /* RegisterUserPrsenter.swift in Sources */,
 				3748CF2323EFE84B002B8999 /* SettingsButton.swift in Sources */,
 				3748CEF723EDC53D002B8999 /* TabBarViewController.swift in Sources */,
 				3748CF4923F06623002B8999 /* VeterinayViewController.swift in Sources */,
+				37374352250B79AD005F1957 /* VeterinariesItem.swift in Sources */,
 				3748CF2123EF194B002B8999 /* Races.swift in Sources */,
 				372CEFC1249FD07D002AEAF5 /* PresentVaccineCell.swift in Sources */,
-				3735EC6224D80CA80095451A /* FirebaseDatabaseClient.swift in Sources */,
-				37C227CE24D1D2C700492C59 /* AuthenticationGatewayFirebase.swift in Sources */,
-				372CEFC524A386D2002AEAF5 /* GetFirebasePets.swift in Sources */,
 				37D0384B24B4995D00449A69 /* PresentVaccineDetailCell.swift in Sources */,
 				37D0384D24B4AF6100449A69 /* SelfSizedTableView.swift in Sources */,
-				37C227D424D2BFAB00492C59 /* AuthenticationError.swift in Sources */,
 				37A981DE24A4E26200F491E2 /* Diseases.swift in Sources */,
-				375317D324ADE6E9006B5912 /* ConsultationItem.swift in Sources */,
+				375D72A42511FA880033CEBF /* CreateURLForImage.swift in Sources */,
 				37A6588E248A86DC0063867C /* PresentPetCell.swift in Sources */,
-				37C227D624D2C08A00492C59 /* AuthenticationErrorValidator.swift in Sources */,
-				37C227D024D1D71900492C59 /* AuthenticationGateway.swift in Sources */,
-				372CEFC324A3578C002AEAF5 /* GetFirebaseVeterinaries.swift in Sources */,
-				372CFFD42486A2A400984537 /* User.swift in Sources */,
-				37A6589024922C610063867C /* UserUid.swift in Sources */,
 				379AB36324B75B5000C056A1 /* TypeOfCaller.swift in Sources */,
 				3756072C24F8F49E00DFC4DA /* ActivtyView.swift in Sources */,
 				3741A19424979D3000E3D858 /* ConfirmPetSuppressViewController.swift in Sources */,
 				379AB36B24B8B2E000C056A1 /* ConsultationViewController.swift in Sources */,
 				372CEFBF249FD036002AEAF5 /* PresentConsultationCell.swift in Sources */,
-				372CFFCE2486839200984537 /* PetItem.swift in Sources */,
 				372CEF79249BA8AA002AEAF5 /* PetViewController.swift in Sources */,
 				37DE5AAB2499192C0077FEFB /* ConfirmUpdateViewController.swift in Sources */,
 				372CFFD22486856100984537 /* VeterinariesListTableViewController.swift in Sources */,
@@ -763,20 +663,17 @@
 				3757579624CDC7C900294274 /* EventsCalendarManager.swift in Sources */,
 				37CED12C23FC114400CF6247 /* Errors.swift in Sources */,
 				3776359224F6A9EE0090BD4F /* DatesFormat.swift in Sources */,
-				3757579424C9B8CE00294274 /* NameOfFirebaseItems.swift in Sources */,
 				3748CF2523EFEA5D002B8999 /* SettingsCornerBorderRadiusView.swift in Sources */,
-				37C227D224D1DB6A00492C59 /* ManagmentUserFirebase.swift in Sources */,
 				379AB36724B767BA00C056A1 /* ImagePicker.swift in Sources */,
 				3755789E24A5DDA200CA1252 /* VaccinesListViewController.swift in Sources */,
+				37CA799B25151071005C4538 /* MDPet.xcdatamodeld in Sources */,
+				3737431B2508FD22005F1957 /* Model.swift in Sources */,
 				3735EC6424D9E3CB0095451A /* ConfirmConsultationSuppressViewController.swift in Sources */,
-				375578A024A5E88400CA1252 /* VaccineItem.swift in Sources */,
 				379AB36924B8715200C056A1 /* CalandarVaccines.swift in Sources */,
-				375578A224A625EC00CA1252 /* GetFirebaseVaccines.swift in Sources */,
-				375317D124ADE60A006B5912 /* GetFirebaseConsultations.swift in Sources */,
+				373743192508CDCC005F1957 /* PetsItem.swift in Sources */,
+				37374354250FC83E005F1957 /* ConsultationsItem.swift in Sources */,
 				372CFFCA248676B600984537 /* SettingsViewController.swift in Sources */,
 				3756072E24FAB4EA00DFC4DA /* MangamentPhone.swift in Sources */,
-				3741A18E2495F22A00E3D858 /* GetFirebasePicture.swift in Sources */,
-				372CFFD62486A72400984537 /* VeterinaryItem.swift in Sources */,
 				37DE5AAD249919AB0077FEFB /* Notification.swift in Sources */,
 				3735EC6624DA8F370095451A /* ConfirmVaccineSuppressViewController.swift in Sources */,
 				3715EAC3239188E800CAA9E7 /* AppDelegate.swift in Sources */,
@@ -788,9 +685,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3762435424D5629500BD03FE /* AuthenticationGatewayStub.swift in Sources */,
-				3762434E24D3F97900BD03FE /* AuthenticationGatewayFirebaseTests.swift in Sources */,
-				3735EC0624D577F20095451A /* GetFirebaseVeterinariesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,6 +704,7 @@
 			children = (
 				3715EAC9239188E800CAA9E7 /* Base */,
 				37C227D724D2FC0700492C59 /* fr */,
+				3754506D2514F04100CFA8B9 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -853,6 +748,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -877,7 +773,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -914,6 +810,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -932,7 +829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -952,7 +849,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88WF6385D;
 				INFOPLIST_FILE = "MDPet/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -975,7 +872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88WF6385D;
 				INFOPLIST_FILE = "MDPet/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -990,7 +887,6 @@
 		};
 		3715EAE5239188E900CAA9E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6F85B532D5278025591B2BB /* Pods-MDPet-MDPetTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -998,7 +894,7 @@
 				DEVELOPMENT_TEAM = C88WF6385D;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MDPetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1014,7 +910,6 @@
 		};
 		3715EAE6239188E900CAA9E7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DE25FB5122F5C1015FB02E6 /* Pods-MDPet-MDPetTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1022,7 +917,7 @@
 				DEVELOPMENT_TEAM = C88WF6385D;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MDPetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1067,6 +962,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		37CA799925151071005C4538 /* MDPet.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				37CA799A25151071005C4538 /* MDPet.xcdatamodel */,
+			);
+			currentVersion = 37CA799A25151071005C4538 /* MDPet.xcdatamodel */;
+			name = MDPet.xcdatamodeld;
+			path = ../../MDPet.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3715EAB7239188E800CAA9E7 /* Project object */;
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TableViewClick: AnyObject {
-    func onClickCell(index: Int)
+    func onClickCell(phoneNumber: String)
 }
 
 class PresentVeterinaryCell: UITableViewCell {
@@ -19,19 +19,21 @@ class PresentVeterinaryCell: UITableViewCell {
     @IBOutlet weak var veterinaryCallPhoneField: UIButton!
 
     @IBAction func callVeterinary(_ sender: UIButton) {
-        cellDelegate?.onClickCell(index: (indexSelected?.row)!)
+        cellDelegate?.onClickCell(phoneNumber: veterinaryPhoneNumber)
     }
 
     weak var cellDelegate: TableViewClick?
-    var indexSelected: IndexPath?
+//    var indexSelected: IndexPath?
+    var veterinaryPhoneNumber = ""
 
-    func configurePetCell(with name: String, city: String, phone: String) {
-        veterinaryNameLabel.text = name
-        veterinaryCityLabel.text = city
+    func configureVeterinaryCell(veterinariesItem: VeterinariesItem) {
+        veterinaryNameLabel.text = veterinariesItem.veterinaryName
+        veterinaryCityLabel.text = veterinariesItem.veterinaryCity
         veterinaryCallPhoneField.isHidden = true
-        if !phone.isEmpty {
+        if !veterinariesItem.veterinaryPhone!.isEmpty {
             if currentPhoneStatus == .phoneUsable {
-              veterinaryCallPhoneField.isHidden = false
+                veterinaryPhoneNumber = veterinariesItem.veterinaryPhone!
+                veterinaryCallPhoneField.isHidden = false
             }
         }
     }

@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseStorage
+import CoreData
 
 class ConfirmPetSuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressPet(_ sender: UIButton) {
         gestSuppressPet()
+        petHasBeenDeleted = true
         prepareToGoBack()
     }
     @IBAction func cancelSuppressPet(_ sender: Any) {
@@ -27,8 +27,7 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.showAnimate()
     }
     // MARK: - var
-    var petItem: PetItem?
-    var imageRef = Storage.storage().reference().child(petsInages)
+    var petObjectId: NSManagedObjectID?
     var petHasBeenDeleted = true
 
     // MARK: - functions
@@ -59,21 +58,7 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func gestSuppressPet() {
-        let deleteRefPet = Database.database().reference(withPath: "\(UserUid.uid)").child(petsItem).child(petItem!.key)
-        if !(petItem?.petURLPicture.isEmpty)! {
-            let imageDeleteRef = imageRef.child("\(petItem?.key ?? "").png")
-            imageDeleteRef.delete { error in
-                if let error = error {
-                    print("error \(error)")
-                }
-            }
-        }
-        deleteRefPet.removeValue { error, _  in
-            if let error = error {
-                print("error \(error)")
-            } else {
-                self.petHasBeenDeleted = true
-            }
-        }
+        let petToDelete = Model.shared.getObjectByIdPet(objectId: petObjectId!)
+        try? AppDelegate.viewContext.delete(petToDelete!)
     }
 }

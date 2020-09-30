@@ -14,18 +14,22 @@ class PresentPetCell: UITableViewCell {
     @IBOutlet weak var petNameLabel: UILabel!
     @IBOutlet weak var petBirthDateLabel: UILabel!
 
-    let imageCache = NSCache<NSString, AnyObject>()
+    private var dateFormatter = DateFormatter()
+    private let localeLanguage = Locale(identifier: "FR-fr")
 
-    func configurePetCell(name: String, URLPicture: String, birthDate: String, callback: @escaping (Bool) -> Void ) {
+    func configurePetCell(petsItem: PetsItem, callback: @escaping (Bool) -> Void ) {
         petPicture.image = nil
-
-        GetFirebasePicture.shared.getPicture(URLPicture: URLPicture) { (success, picture) in
-            if success, let picture = picture {
-                self.petPicture.image = picture
-            }
-            self.petNameLabel.text = name
-            self.petBirthDateLabel.text = birthDate
+        petNameLabel.text = petsItem.petName
+        if petsItem.petBirthDate != nil {
+            dateFormatter.locale = localeLanguage
+            dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
+            let birthDate = dateFormatter.string(from: petsItem.petBirthDate!)
+            petBirthDateLabel.text = birthDate
+        } else {
+            petBirthDateLabel.text = ""
         }
+        let imageData = petsItem.petPicture!
+        petPicture.image = UIImage(data: imageData)
         callback(true)
     }
 }

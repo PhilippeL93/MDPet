@@ -20,8 +20,8 @@ class VaccinesListViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     // MARK: Properties
-    var petItem: PetItem?
-    var vaccineItems: [VaccineItem] = []
+    var petItem: PetsItem?
+    var vaccinesList = VaccinesItem.fetchAll(vaccinePet: "")
 
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
@@ -33,14 +33,7 @@ class VaccinesListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-        GetFirebaseVaccines.shared.observeVaccines(petKey: petItem!.key) { (success, vaccineItems) in
-            if success {
-                self.vaccineItems = vaccineItems
-                self.tableView.reloadData()
-            } else {
-                print("erreur")
-            }
-        }
+        refresh()
     }
     private func createNewVaccine() {
         guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "VaccineController")
@@ -51,30 +44,26 @@ class VaccinesListViewController: UIViewController {
         destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
-
+    @objc private func refresh() {
+        vaccinesList = VaccinesItem.fetchAll(vaccinePet: (petItem?.petRecordID)!)
+        tableView.reloadData()
+    }
 }
-// MARK: - extension Data for tableView
+
 extension VaccinesListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vaccinesList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemVaccine", for: indexPath)
-            as? PresentVaccineCell else {
-                return UITableViewCell()
-        }
-
-        let vaccineItem = vaccineItems[indexPath.row]
-        cell.configureVaccineCell(with: vaccineItem)
+          as? PresentVaccineCell else {
+              return UITableViewCell()
+      }
+        cell.configureVaccineCell(with: vaccinesList[indexPath.row])
         return cell
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vaccineItems.count
-    }
 }
-
 // MARK: - extension Delegate
 extension VaccinesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,7 +75,12 @@ extension VaccinesListViewController: UITableViewDelegate {
             as? VaccineViewController else {
                 return
         }
-        let vaccineItem = vaccineItems[indexPath.row]
+        guard
+            let cell = tableView.cellForRow(at: indexPath),
+            let indexPath = tableView.indexPath(for: cell)
+            else
+        { return }
+        let vaccineItem = vaccinesList[indexPath.row]
         destVC.typeOfCall = TypeOfCall.update
         destVC.petItem = petItem
         destVC.vaccineItem = vaccineItem

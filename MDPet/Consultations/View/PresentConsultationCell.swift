@@ -16,21 +16,24 @@ class PresentConsultationCell: UITableViewCell {
 
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
-    var consultationItem: ConsultationItem?
+    private var veterinaryItem: VeterinariesItem?
 
-    func configureConsultationCell(consultationItem: ConsultationItem, callback: @escaping (Bool) -> Void ) {
+    func configureConsultationCell(consultationItem: ConsultationsItem, callback: @escaping (Bool) -> Void ) {
 
-        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-        let dateDMY = dateFormatter.date(from: consultationItem.consultationDate)
-        dateFormatter.dateFormat = dateFormatddMMyyyyWithSlashes
-        let dateToDisplay = dateFormatter.string(from: dateDMY!)
+        if consultationItem.consultationDate != nil {
+            dateFormatter.locale = localeLanguage
+            dateFormatter.dateFormat = dateFormatddMMyyyyWithSlashes
+            let consultationDate = dateFormatter.string(from: consultationItem.consultationDate!)
+            consultationDateLabel.text = consultationDate
+        } else {
+            consultationDateLabel.text = ""
+        }
         consultationReasonLabel.text = consultationItem.consultationReason
-        consultationDateLabel.text = String(dateToDisplay)
 
-        GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: consultationItem.consultationVeterinary) { (success, veterinariesItems, _) in
+        Model.shared.getVeterinaryFromRecordID(
+            veterinaryToSearch: consultationItem.consultationVeterinary!) { (success, veterinaryItem) in
             if success {
-                self.consultationVeterinaryLabel.text = veterinariesItems.veterinaryName
+                self.consultationVeterinaryLabel.text = veterinaryItem?.veterinaryName!
             }
         }
     }

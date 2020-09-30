@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ConfirmVaccineSuppressViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class ConfirmVaccineSuppressViewController: UIViewController {
 
     @IBAction func suppressVaccine(_ sender: Any) {
         getSuppressVaccine()
+        vaccineHasBeenDeleted = true
         prepareToGoBack()
     }
     @IBAction func cancelSuppressVaccine(_ sender: Any) {
@@ -26,8 +28,7 @@ class ConfirmVaccineSuppressViewController: UIViewController {
     }
 
     // MARK: - var
-    var petItem: PetItem?
-    var vaccineItem: VaccineItem?
+    var vaccineObjectId: NSManagedObjectID?
     var vaccineHasBeenDeleted = true
 
     // MARK: - functions
@@ -57,17 +58,7 @@ class ConfirmVaccineSuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func getSuppressVaccine() {
-
-        let vaccineKey = vaccineItem?.key
-        let petKey = petItem?.key
-
-        GetFirebaseVaccines.shared.deleteVaccine(petKey: petKey!,
-                                                 vaccineKey: vaccineKey!) { (success) in
-            if success {
-                self.vaccineHasBeenDeleted = true
-            } else {
-                print("erreur")
-            }
-        }
+        let vaccineToDelete = Model.shared.getObjectByIdVaccine(objectId: vaccineObjectId!)
+        try AppDelegate.viewContext.delete(vaccineToDelete!)
     }
 }

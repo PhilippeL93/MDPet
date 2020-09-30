@@ -25,20 +25,23 @@ class PresentVaccineCell: UITableViewCell {
     private var dateFormatter = DateFormatter()
     private var diseasesToDisplay: [String] = []
 
-    func configureVaccineCell(with vaccineItem: VaccineItem) {
+    func configureVaccineCell(with vaccineItem: VaccinesItem) {
         vaccineInjectionLabel.text = vaccineItem.vaccineInjection
-        dateFormatter.locale = localeLanguage
-        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-        let dateDMY = dateFormatter.date(from: vaccineItem.vaccineDate)
-        dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
-        vaccineDateLabel.text = dateFormatter.string(for: dateDMY)
+        if vaccineItem.vaccineDate != nil {
+            dateFormatter.locale = localeLanguage
+            dateFormatter.dateFormat = dateFormatddMMyyyyWithSlashes
+            let consultationDate = dateFormatter.string(from: vaccineItem.vaccineDate!)
+            vaccineDateLabel.text = consultationDate
+        } else {
+            vaccineDateLabel.text = ""
+        }
         diseasesToDisplay = []
 
         manageDiseasesLabel()
 
-        for indice in 0...vaccineItem.vaccineDiseases.count-1
-            where vaccineItem.vaccineSwitchDiseases[indice] == true {
-                diseasesToDisplay.append(vaccineItem.vaccineDiseases[indice])
+        for indice in 0...vaccineItem.vaccineDiseases!.count-1
+        where vaccineItem.vaccineSwitchDiseases![indice] == true {
+            diseasesToDisplay.append(vaccineItem.vaccineDiseases![indice])
         }
         guard diseasesToDisplay.count > 0 else {
             return

@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import CoreData
 
 class ConfirmVeterinarySuppressViewController: UIViewController {
 
     // MARK: - buttons
     @IBAction func suppressVeterinary(_ sender: UIButton) {
-        veterinayHasBeenDeleted = true
         getSuppressVeterinary()
+        veterinayHasBeenDeleted = true
         prepareToGoBack()
     }
 
@@ -30,8 +30,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
     }
 
     // MARK: - var
-    var veterinaryKey: String = ""
-    var databaseRef = Database.database().reference(withPath: veterinariesItem)
+    var veterinaryObjectId: NSManagedObjectID?
     var veterinayHasBeenDeleted = true
 
     // MARK: - functions
@@ -64,12 +63,8 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func getSuppressVeterinary() {
-        let deleteRef = Database.database().reference(withPath:
-            "\(UserUid.uid)").child(veterinariesItem).child(veterinaryKey)
-        deleteRef.removeValue { error, _  in
-            if let error = error {
-                print("error \(error)")
-            }
-        }
+
+        let veterinaryToDelete = Model.shared.getObjectByIdVeterinary(objectId: veterinaryObjectId!)
+        try? AppDelegate.viewContext.delete(veterinaryToDelete!)
     }
 }

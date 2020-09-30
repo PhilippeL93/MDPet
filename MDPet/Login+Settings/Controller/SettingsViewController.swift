@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 
 class SettingsViewController: UIViewController {
 
@@ -29,10 +27,6 @@ class SettingsViewController: UIViewController {
         Settings.automaticGenerateEventInCalendarSwitch = automaticGenerateEventInCalendarSwitch.isOn
     }
 
-    // MARK: Properties
-    var currentUsers: [String] = []
-    let usersRef = Database.database().reference(withPath: "online")
-
     // MARK: Actions
     @IBAction func signoutButtonPressed(_ sender: AnyObject) {
         userSignout()
@@ -50,19 +44,19 @@ class SettingsViewController: UIViewController {
     }
 
     private func userSignout() {
-        let user = Auth.auth().currentUser!
-        let onlineRef = Database.database().reference(withPath: "online/\(user.uid)")
-        onlineRef.removeValue { (error, _) in
-            if let error = error {
-                print("Removing online failed: \(error)")
-                return
-            }
-            do {
-                try Auth.auth().signOut()
-                self.dismiss(animated: true, completion: nil)
-            } catch (let error) {
-                print("Auth sign out failed: \(error)")
-            }
-        }
+//        let user = Auth.auth().currentUser!
+//        let onlineRef = Database.database().reference(withPath: "online/\(user.uid)")
+//        onlineRef.removeValue { (error, _) in
+//            if let error = error {
+//                print("Removing online failed: \(error)")
+//                return
+//            }
+//            do {
+//                try Auth.auth().signOut()
+//                self.dismiss(animated: true, completion: nil)
+//            } catch (let error) {
+//                print("Auth sign out failed: \(error)")
+//            }
+//        }
     }
 }

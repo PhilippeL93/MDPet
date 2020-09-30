@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseStorage
+//import CloudKit
+import CoreData
 
 class VaccineViewController: UIViewController {
 
@@ -37,22 +37,27 @@ class VaccineViewController: UIViewController {
     private let localeLanguage = Locale(identifier: "FR-fr")
     private var dateFormatter = DateFormatter()
     private var selectedRace: String = ""
-    private var selectedVeterinaryKey: String = ""
+    private var selectedVeterinaryObjectID: NSManagedObjectID?
+    private var selectedVeterinaryRecordID: String?
     private var petDiseasesCount: Int = 0
     private var vaccineKey: String = ""
-    private var databaseRef = Database.database().reference(withPath: vaccinesItem)
-    private var imageRef = Storage.storage().reference().child(petsInages)
     private var pathVaccine: String = ""
     private var petDiseases: [String] = []
     private var petDiseasesSwitch: [Bool] = []
-    private var vaccineDateToSave: String = ""
     private var oneFieldHasBeenUpdated = false
+    private var thumbnailImageSelected: UIImage?
+    private var dateItem = ""
+    private var dateSelected = ""
+    private var vaccineObjectId: NSManagedObjectID?
+    private var petObjectIdString = ""
 
+    var veterinariesList = VeterinariesItem.fetchAll()
     var selectedVeterinaryName = ""
-    var veterinariesItems: [VeterinaryItem] = []
+    var veterinariesItem: [VeterinariesItem] = []
+    var veterinaryItem: VeterinariesItem?
     var typeOfCall: TypeOfCall?
-    var petItem: PetItem?
-    var vaccineItem: VaccineItem?
+    var petItem: PetsItem?
+    var vaccineItem: VaccinesItem?
     var imagePicker: ImagePicker!
 
     private var fieldsUpdated: [String: Bool] = [:] {
@@ -90,8 +95,8 @@ class VaccineViewController: UIViewController {
     }
     @IBAction func veterinaryEditingDidBegin(_ sender: Any) {
         if !vaccineVeterinaryField.text!.isEmpty {
-            GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-            veterinaryToSearch: selectedVeterinaryKey) { (success, _, rowVeterinary) in
+            Model.shared.getVeterinaryFromObjectID(
+                veterinaryToSearch: selectedVeterinaryObjectID!) { (success, rowVeterinary) in
                 if success {
                     self.pickerViewVeterinary.selectRow(rowVeterinary, inComponent: 0, animated: true)
                 }
@@ -105,37 +110,24 @@ class VaccineViewController: UIViewController {
         if vaccineDateField.text!.isEmpty {
             let date = Date()
             vaccineDateField.text = dateFormatter.string(from: date)
-            dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-            vaccineDateToSave = dateFormatter.string(from: date)
         } else {
-            dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
             let vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
             datePickerVaccineDate?.date = vaccineDate!
-            dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-            vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
         }
     }
     // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.locale = localeLanguage
-        let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath:
-            "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
         createObserverVaccine()
         createDelegateVaccine()
         initiateObserverVaccine()
-        GetFirebaseVeterinaries.shared.observeVeterinaries { (success, veterinariesItems) in
-            if success {
-                self.veterinariesItems = veterinariesItems
-                if case .update = self.typeOfCall {
-                    self.initiateVaccineView()
-                }
-            } else {
-                print("erreur")
-            }
-        }
         initDiseases()
+        veterinariesList = VeterinariesItem.fetchAll()
+        if case .update = self.typeOfCall {
+            self.initiateVaccineView()
+        }
+
         initiateButtonVaccineView()
         imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
@@ -197,15 +189,18 @@ class VaccineViewController: UIViewController {
     }
     @objc func dateChangedVaccineDate(datePicker: UIDatePicker) {
         vaccineDateField.text = dateFormatter.string(from: datePicker.date)
-        if vaccineDateField.text != vaccineItem?.vaccineDate {
+        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
+        dateSelected = dateFormatter.string(from: datePicker.date)
+        dateItem = ""
+        if vaccineItem?.vaccineDate != nil {
+            dateItem = dateFormatter.string(from: (vaccineItem?.vaccineDate)!)
+        }
+        if dateSelected != dateItem {
             updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineDateUpdated")
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
         }
-        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-        vaccineDateToSave = dateFormatter.string(from: datePicker.date)
         formatDate()
-        vaccineDateField.text = dateFormatter.string(from: datePicker.date)
     }
     @objc func vaccineNameFieldDidEnd(_ textField: UITextField) {
         if vaccineNameField.text != vaccineItem?.vaccineName {
@@ -216,13 +211,15 @@ class VaccineViewController: UIViewController {
     }
     @objc func vaccineVeterinaryFieldDidEnd(_ textField: UITextField) {
         selectedVeterinaryName = ""
-            if case .update = typeOfCall {
-                GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-                veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinariesItems, _) in
+        if case .update = typeOfCall {
+            if vaccineItem!.vaccineVeterinary != nil {
+                Model.shared.getVeterinaryFromRecordID(
+                    veterinaryToSearch: vaccineItem!.vaccineVeterinary!) { (success, veterinaryItem) in
                     if success {
-                        self.selectedVeterinaryName = veterinariesItems.veterinaryName
+                        self.selectedVeterinaryName = veterinaryItem!.veterinaryName!
                     }
                 }
+            }
         }
         if vaccineVeterinaryField.text != selectedVeterinaryName {
             updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineVeterinaryUpdated")
@@ -289,14 +286,10 @@ extension VaccineViewController {
         initiateFieldsView()
     }
     private func initiatePictureView() {
-        thumbnailImageView.image = nil
-        if let URLPicture = vaccineItem?.vaccineURLThumbnail {
-            GetFirebasePicture.shared.getPicture(URLPicture: URLPicture) { (success, picture) in
-                if success, let picture = picture {
-                    self.thumbnailImageView.image = picture
-                }
-            }
+        guard let imageData = vaccineItem?.vaccineThumbnail else {
+            return
         }
+        thumbnailImageView.image = UIImage(data: imageData)
     }
     private func initDiseases() {
         switch petItem?.petType {
@@ -315,44 +308,38 @@ extension VaccineViewController {
         default:
             petDiseasesCount = 0
         }
-        if case .create = typeOfCall {
-            vaccineItem = VaccineItem(
-                name: "",
-                key: "",
-                number: 1,
-                injection: "",
-                date: "",
-                URLThumbnail: "",
-                veterinary: "",
-                diseases: petDiseases,
-                switchDiseasess: petDiseasesSwitch,
-                done: false)
-        }
     }
     private func initiateFieldsView() {
-        vaccineKey = vaccineItem?.key ?? ""
+        vaccineObjectId = vaccineItem?.objectID
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
-        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-        let vaccineDate = dateFormatter.date(from: vaccineItem!.vaccineDate)
-        vaccineDateToSave = dateFormatter.string(from: vaccineDate!)
         dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
-        vaccineDateField.text = dateFormatter.string(from: vaccineDate!)
+        if vaccineItem!.vaccineDate != nil {
+            vaccineDateField.text = dateFormatter.string(from: vaccineItem!.vaccineDate!)
+        }
         vaccineNameField.text = vaccineItem?.vaccineName
         if vaccineItem?.vaccineDone == true {
             vaccineDoneSwitch.isOn = true
         } else {
             vaccineDoneSwitch.isOn = false
         }
-        petDiseasesSwitch = vaccineItem!.vaccineSwitchDiseases
-        petDiseases = vaccineItem!.vaccineDiseases
+        petDiseasesSwitch = vaccineItem!.vaccineSwitchDiseases!
+        petDiseases = vaccineItem!.vaccineDiseases!
+        tableView.reloadData()
 
-        GetFirebaseVeterinaries.shared.getVeterinaryFromKey(
-        veterinaryToSearch: vaccineItem!.vaccineVeterinary) { (success, veterinariesItems, _) in
+        initiateVeterinaryFields()
+    }
+    private func initiateVeterinaryFields() {
+        guard vaccineItem?.vaccineVeterinary != nil else {
+            return
+        }
+        Model.shared.getVeterinaryFromRecordID(
+            veterinaryToSearch: vaccineItem!.vaccineVeterinary!) { (success, veterinaryItem) in
             if success {
-                self.vaccineVeterinaryField.text = veterinariesItems.veterinaryName
+                self.selectedVeterinaryRecordID = veterinaryItem?.veterinaryRecordID
+                self.selectedVeterinaryObjectID = veterinaryItem?.objectID
+                self.vaccineVeterinaryField.text = veterinaryItem?.veterinaryName!
             }
         }
-        selectedVeterinaryKey = vaccineItem?.vaccineVeterinary ?? ""
     }
     private func getSuppressedVaccine() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
@@ -360,8 +347,7 @@ extension VaccineViewController {
             as? ConfirmVaccineSuppressViewController else {
                 return
         }
-        destVC.petItem = petItem
-        destVC.vaccineItem = vaccineItem
+        destVC.vaccineObjectId = vaccineObjectId
         self.addChild(destVC)
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
@@ -384,51 +370,39 @@ extension VaccineViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateVaccine() {
-        let path = UserUid.uid
-        databaseRef = Database.database().reference(withPath:
-            "\(path)").child(petsItem).child(petItem!.key).child(vaccinesItem)
-        var storageRef = imageRef.child("\(String(describing: vaccineKey)).png")
-        var uniqueUUID = vaccineKey
-
-         if case .create = typeOfCall {
-            uniqueUUID = UUID().uuidString
-            storageRef = imageRef.child("\(String(describing: uniqueUUID)).png")
+        if currentReachabilityStatus == .twoG || currentReachabilityStatus == .threeG {
+            print("======== connection lente détectée \(currentReachabilityStatus)")
         }
-
-        if let uploadData = self.thumbnailImageView.image?.pngData() {
-            storageRef.putData(uploadData, metadata: nil, completion: { (_, error) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                storageRef.downloadURL(completion: { (url, err) in
-                    if let err = err {
-                        print(err)
-                        return
-                    }
-                    let vaccineURLThumbnail = (url?.absoluteString) ?? ""
-                    self.updateVaccineStorage(vaccineURLThumbnail: vaccineURLThumbnail, uniqueUUID: uniqueUUID)
-                })
-            })
+        if case .update = self.typeOfCall {
+            let vaccineId = vaccineItem?.objectID
+            let vaccineToSave = Model.shared.getObjectByIdVaccine(objectId: vaccineId!)
+            updateVaccineStorage(vaccineToSave: vaccineToSave!)
         } else {
-            updateVaccineStorage(vaccineURLThumbnail: "", uniqueUUID: uniqueUUID)
+            let vaccineToSave = VaccinesItem(context: AppDelegate.viewContext)
+            updateVaccineStorage(vaccineToSave: vaccineToSave)
         }
         navigationController?.popViewController(animated: true)
     }
-    private func updateVaccineStorage(vaccineURLThumbnail: String, uniqueUUID: String) {
-        vaccineItem = VaccineItem(
-            name: String(vaccineNameField.text ?? ""),
-            key: "",
-            number: 1,
-            injection: String(vaccineInjectionField.text ?? ""),
-            date: String(vaccineDateToSave),
-            URLThumbnail: vaccineURLThumbnail,
-            veterinary: String(selectedVeterinaryKey),
-            diseases: petDiseases,
-            switchDiseasess: petDiseasesSwitch,
-            done: vaccineDoneSwitch.isOn)
-        let vaccineItemRef = databaseRef.child(uniqueUUID)
-        vaccineItemRef.setValue(vaccineItem?.toAnyObject())
+    private func updateVaccineStorage(vaccineToSave: VaccinesItem) {
+        vaccineToSave.vaccineInjection = String(vaccineInjectionField.text ?? "")
+        vaccineToSave.vaccineName = String(vaccineNameField.text ?? "")
+        if !vaccineDateField.text!.isEmpty {
+            vaccineToSave.vaccineDate = dateFormatter.date(from: vaccineDateField.text ?? "")
+        }
+        if thumbnailImageSelected != nil {
+            let imageData = thumbnailImageView.image?.pngData()
+            vaccineToSave.vaccineThumbnail = imageData
+        }
+        vaccineToSave.vaccineVeterinary = selectedVeterinaryRecordID
+        vaccineToSave.vaccineDiseases = petDiseases
+        vaccineToSave.vaccineSwitchDiseases = petDiseasesSwitch
+        vaccineToSave.vaccineDone = vaccineDoneSwitch.isOn
+        vaccineToSave.vaccinePet = petItem?.petRecordID
+        do {
+        try AppDelegate.viewContext.save()
+        } catch {
+            print("Error saving vaccine")
+        }
     }
     private func checkVaccineComplete() {
         guard let vaccineInjection = vaccineInjectionField.text else {
@@ -514,17 +488,16 @@ extension VaccineViewController: UITableViewDataSource {
             as? PresentVaccineDetailCell else {
             return UITableViewCell()
         }
-
-        let vaccineDisease = vaccineItem?.vaccineDiseases[indexPath.row]
-        let vaccineDiseaseSwitch = vaccineItem?.vaccineSwitchDiseases[indexPath.row]
+        let vaccineDisease = petDiseases[indexPath.row]
+        let vaccineDiseaseSwitch = petDiseasesSwitch[indexPath.row]
         cell.cellDelegateVaccine = self
         cell.indexSelected = indexPath
-        cell.configureVaccineDetailCell(with: vaccineDisease!, vaccineDiseaseSwitch: vaccineDiseaseSwitch!)
+        cell.configureVaccineDetailCell(with: vaccineDisease, vaccineDiseaseSwitch: vaccineDiseaseSwitch)
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (vaccineItem?.vaccineDiseases.count)!
+        return petDiseases.count
     }
 
 }
@@ -540,7 +513,7 @@ extension VaccineViewController: TableViewClickVaccine {
     func onClickCellVaccine(index: Int, switchDisease: Bool) {
         petDiseasesSwitch[index] =  switchDisease
         let fieldToUpdated = "vaccineSwitchDiseases" + String(index) + "Updated"
-        if petDiseasesSwitch[index] != vaccineItem?.vaccineSwitchDiseases[index] {
+        if petDiseasesSwitch[index] != vaccineItem?.vaccineSwitchDiseases![index] {
             updateDictionnaryFieldsUpdated(updated: true, forKey: fieldToUpdated)
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: fieldToUpdated)
@@ -579,16 +552,16 @@ extension VaccineViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return veterinariesItems.count
+        return veterinariesList.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return veterinariesItems[row].veterinaryName
+            return veterinariesList[row].veterinaryName
     }
-
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedVeterinaryKey = veterinariesItems[row].key
-        vaccineVeterinaryField.text = veterinariesItems[row].veterinaryName
+        vaccineVeterinaryField.text = veterinariesList[row].veterinaryName
+        selectedVeterinaryObjectID = veterinariesList[row].objectID
+        selectedVeterinaryRecordID = veterinariesList[row].veterinaryRecordID
         //            petVeterinaryField.resignFirstResponder()
     }
 }
@@ -630,6 +603,7 @@ extension VaccineViewController: ImagePickerDelegate {
             return
         }
         self.thumbnailImageView.image = image
+        thumbnailImageSelected = image
         updateDictionnaryFieldsUpdated(updated: true, forKey: "thumbnailImageUpdated")
     }
 }

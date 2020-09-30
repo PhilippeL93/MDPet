@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZpG-R2-526">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZpG-R2-526">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,14 +28,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="textShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemRedColor"/>
+                            <color key="textShadowColor" systemColor="systemRedColor"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -52,7 +53,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gOE-sb-Uso" userLabel="Veterinaries Table View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemVeterinary" rowHeight="64" id="LDd-QP-dXV" userLabel="Veterinaries Table View Cell" customClass="PresentVeterinaryCell" customModule="MDPet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="64"/>
@@ -100,7 +101,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="jgA-hD-WMH" firstAttribute="top" secondItem="8MM-Ly-A8V" secondAttribute="top" constant="20" id="I7X-TK-51Q"/>
                                                 <constraint firstItem="2lO-Km-NN6" firstAttribute="leading" secondItem="8MM-Ly-A8V" secondAttribute="leading" constant="10" id="MXx-mz-Dnb"/>
@@ -133,7 +134,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Vétérinaires" id="4i4-Qg-hvI">
                         <barButtonItem key="rightBarButtonItem" title="+" id="Ucz-11-BD1" userLabel="AddVeterinary">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="addNewVeterinary:" destination="20g-gl-aeJ" id="lC7-m5-QzA"/>
                             </connections>
@@ -156,15 +157,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="textShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemRedColor"/>
+                            <color key="textShadowColor" systemColor="systemRedColor"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -232,7 +233,8 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="oyA-Ym-hs0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="oyA-Ym-hs0" firstAttribute="trailing" secondItem="P8p-y2-SOx" secondAttribute="trailing" constant="8" id="9ri-fo-l9e"/>
                             <constraint firstItem="P8p-y2-SOx" firstAttribute="leading" secondItem="oyA-Ym-hs0" secondAttribute="leading" constant="8" id="GBc-9N-vO1"/>
@@ -244,11 +246,10 @@
                             <constraint firstItem="x9Z-ib-3Bx" firstAttribute="top" secondItem="5wR-k7-tbo" secondAttribute="bottom" constant="8" id="rJx-gg-Aym"/>
                             <constraint firstItem="P8p-y2-SOx" firstAttribute="top" secondItem="oyA-Ym-hs0" secondAttribute="top" constant="20" id="tN1-UW-eey"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="oyA-Ym-hs0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Paramétres" id="W3l-kp-RZD">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="nih-dV-4sf">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="signoutButtonPressed:" destination="FE6-d0-1zL" id="xPz-pt-H4P"/>
                             </connections>
@@ -359,22 +360,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8k-rp-zp6" userLabel="SuppressVeterinary" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8k-rp-zp6" userLabel="SuppressVeterinary" customClass="SettingsButton" customModule="MDPet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="627" width="375" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="4qc-Z2-BrO"/>
                                     <constraint firstAttribute="height" constant="30" id="DnX-Js-Lll"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Supprimer la fiche">
-                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
                                 <connections>
                                     <action selector="suppressVeterinary:" destination="z5o-3h-AKK" eventType="touchUpInside" id="ap1-ur-x5p"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="N° ordinal" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bnm-T0-9RW" userLabel="VeterinaryNumber">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="N° ordinal" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Bnm-T0-9RW" userLabel="VeterinaryNumber">
                                 <rect key="frame" x="10" y="173" width="200" height="34"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -390,7 +391,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="jIN-de-sKP"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="AP7-f3-LW2" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="0Hk-oh-ZP7"/>
@@ -412,6 +414,7 @@
                             <constraint firstItem="0JH-dR-rA2" firstAttribute="width" secondItem="EDG-nU-WpY" secondAttribute="width" id="ORa-Oj-oZF"/>
                             <constraint firstItem="zrX-4I-PEq" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="R0x-mK-Hkh"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="EDG-nU-WpY" secondAttribute="trailing" constant="10" id="SAd-BV-zad"/>
+                            <constraint firstItem="3C6-X4-1RO" firstAttribute="width" secondItem="EDG-nU-WpY" secondAttribute="width" id="SLZ-0y-coR"/>
                             <constraint firstItem="vwZ-Qh-zaq" firstAttribute="top" secondItem="jIN-de-sKP" secondAttribute="top" constant="12" id="U4O-fC-Jff"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="AP7-f3-LW2" secondAttribute="trailing" constant="10" id="USH-Ld-1wG"/>
                             <constraint firstItem="vwZ-Qh-zaq" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="Vg4-K1-glb"/>
@@ -434,7 +437,6 @@
                             <constraint firstItem="O8k-rp-zp6" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" id="is4-pa-8L9"/>
                             <constraint firstItem="jIN-de-sKP" firstAttribute="trailing" secondItem="DKg-mr-PBT" secondAttribute="trailing" constant="10" id="kVe-JZ-7V4"/>
                             <constraint firstItem="0JH-dR-rA2" firstAttribute="top" secondItem="IRm-dA-8GM" secondAttribute="bottom" constant="8" id="mir-wA-2Ln"/>
-                            <constraint firstItem="3C6-X4-1RO" firstAttribute="width" secondItem="EDG-nU-WpY" secondAttribute="width" id="mjR-dr-5rG"/>
                             <constraint firstItem="DKg-mr-PBT" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="n9N-up-fBm"/>
                             <constraint firstItem="LtT-Mh-5zu" firstAttribute="leading" secondItem="jIN-de-sKP" secondAttribute="leading" constant="10" id="nbS-Fj-npe"/>
                             <constraint firstItem="bsy-hf-Nqe" firstAttribute="leading" secondItem="vwZ-Qh-zaq" secondAttribute="trailing" constant="15" id="qEz-mv-8Zq"/>
@@ -447,7 +449,6 @@
                             <constraint firstItem="0JH-dR-rA2" firstAttribute="height" secondItem="zrX-4I-PEq" secondAttribute="height" id="xdb-eT-cG4"/>
                             <constraint firstItem="xxS-Ka-87A" firstAttribute="top" secondItem="Bnm-T0-9RW" secondAttribute="bottom" constant="8" id="z5A-da-6za"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jIN-de-sKP"/>
                     </view>
                     <navigationItem key="navigationItem" id="Yan-cJ-cYs">
                         <barButtonItem key="leftBarButtonItem" title="Vétérinaires" id="4wU-06-E43" userLabel="Back">
@@ -456,7 +457,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Ajouter" id="4jc-SK-IYk" userLabel="Save Veterinary">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="saveVeterinary:" destination="z5o-3h-AKK" id="jYx-uZ-QGW"/>
                             </connections>
@@ -506,33 +507,33 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voulez-vous vraiment supprimer ce vétérinaire?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cE-jG-deo" userLabel="Text Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="e3d-aY-xac"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPW-jH-ySR" userLabel="Underline View">
                                                                 <rect key="frame" x="0.0" y="23" width="343" height="1"/>
-                                                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                                <color key="tintColor" systemColor="systemGray2Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="343" id="6d1-W8-Oo4"/>
                                                                     <constraint firstAttribute="height" constant="1" id="A5P-4x-4zd"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="B9f-CT-Zum"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-It-dcp" userLabel="Button Suppress">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-It-dcp" userLabel="Button Suppress">
                                                                 <rect key="frame" x="0.0" y="26" width="343" height="40"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="qBy-FP-aPe"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <state key="normal" title="Supprimer">
-                                                                    <color key="titleShadowColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="suppressVeterinary:" destination="b3I-vH-qBr" eventType="touchUpInside" id="rns-Pl-fIX"/>
@@ -545,10 +546,10 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <integer key="value" value="10"/>
@@ -561,9 +562,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2b7-Ed-YpT" userLabel="View Cancel" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="90" width="343" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9X7-RR-cuE" userLabel="Button Cancel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9X7-RR-cuE" userLabel="Button Cancel">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
-                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="gPn-sS-GQB"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="j4j-fN-7Cd"/>
@@ -576,7 +577,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="9X7-RR-cuE" firstAttribute="top" secondItem="2b7-Ed-YpT" secondAttribute="top" id="48d-rL-PZT"/>
                                                     <constraint firstAttribute="trailing" secondItem="9X7-RR-cuE" secondAttribute="trailing" id="Hl8-6p-Y1m"/>
@@ -592,7 +593,7 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <integer key="value" value="1"/>
@@ -609,7 +610,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Mzy-WS-aMW" firstAttribute="leading" secondItem="mXH-Yv-nO0" secondAttribute="leading" id="0m4-rB-2JV"/>
                                     <constraint firstAttribute="width" constant="343" id="AtL-5e-NbR"/>
@@ -620,13 +621,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Os4-A6-Fch"/>
                         <color key="backgroundColor" white="1" alpha="0.48888843911917096" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mXH-Yv-nO0" firstAttribute="leading" secondItem="Os4-A6-Fch" secondAttribute="leading" constant="16" id="3vb-ar-7qx"/>
                             <constraint firstItem="Os4-A6-Fch" firstAttribute="trailing" secondItem="mXH-Yv-nO0" secondAttribute="trailing" constant="16" id="DPJ-ya-wpM"/>
                             <constraint firstItem="Os4-A6-Fch" firstAttribute="bottom" secondItem="mXH-Yv-nO0" secondAttribute="bottom" constant="12" id="yy0-DH-YEy"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Os4-A6-Fch"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmQ-M1-Dqf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -645,15 +646,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="textShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemRedColor"/>
+                            <color key="textShadowColor" systemColor="systemRedColor"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -671,7 +672,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x8z-Y5-zV3" userLabel="Pets Table View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemPet" rowHeight="85" id="hdG-0d-rE3" userLabel="Pets Table View Cell" customClass="PresentPetCell" customModule="MDPet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
@@ -691,7 +692,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="69"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="OhZ-R7-PjI" secondAttribute="trailing" id="CGK-KL-oRJ"/>
                                                         <constraint firstItem="OhZ-R7-PjI" firstAttribute="leading" secondItem="17a-3m-Ndl" secondAttribute="leading" id="Fmm-8K-Lzs"/>
@@ -706,7 +707,7 @@
                                                             <integer key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="value" systemColor="systemBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -731,7 +732,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="17a-3m-Ndl" firstAttribute="top" secondItem="2O2-nL-9QW" secondAttribute="top" constant="8" id="3EB-sJ-hPd"/>
                                                 <constraint firstAttribute="trailing" secondItem="qgr-BL-11I" secondAttribute="trailing" constant="8" id="3Mp-51-Pfk"/>
@@ -793,7 +794,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ke-6m-w1P" userLabel="View Image Pet">
                                                 <rect key="frame" x="112" y="8" width="151" height="151"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Em2-2A-nRg" userLabel="add Photo Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Em2-2A-nRg" userLabel="add Photo Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="151" height="151"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Em2-2A-nRg" secondAttribute="height" multiplier="1:1" id="1UY-wD-W1T"/>
@@ -849,7 +850,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="name"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sexe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqK-Tk-0Cn" userLabel="Pet Gender Label">
-                                                <rect key="frame" x="8" y="253" width="31.5" height="21"/>
+                                                <rect key="frame" x="8" y="253" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="6MV-Sv-JA7"/>
                                                 </constraints>
@@ -925,7 +926,7 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9q-4E-apH" userLabel="Pet Name Label">
-                                                <rect key="frame" x="8" y="213" width="30.5" height="21"/>
+                                                <rect key="frame" x="8" y="213" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="eos-NB-tkW"/>
                                                 </constraints>
@@ -959,16 +960,16 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pmb-GH-J7f">
                                                 <rect key="frame" x="120" y="791.5" width="51" height="31"/>
                                             </switch>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-d6-Hsv" userLabel="Pet Suppress">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-d6-Hsv" userLabel="Pet Suppress">
                                                 <rect key="frame" x="0.0" y="978" width="375" height="44"/>
-                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Lkd-vC-Pb6"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="25"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Supprimer la fiche">
-                                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" systemColor="systemRedColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="suppressPet:" destination="xbp-Gj-2Jk" eventType="touchUpInside" id="8sn-GG-vwY"/>
@@ -977,23 +978,23 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="JFT-MJ-M8b" userLabel="Stack View Buttons">
                                                 <rect key="frame" x="8" y="928" width="359" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTH-4C-f4P" userLabel="Pet Vaccins">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTH-4C-f4P" userLabel="Pet Vaccins">
                                                         <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
-                                                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="33I-V3-a1b"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <state key="normal" title="Vaccins">
-                                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleColor" systemColor="systemRedColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="vaccineButtom:" destination="xbp-Gj-2Jk" eventType="touchUpInside" id="1Rn-wb-TpQ"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YN-Y2-e9s" userLabel="Pet Consultations">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YN-Y2-e9s" userLabel="Pet Consultations">
                                                         <rect key="frame" x="184" y="0.0" width="175" height="30"/>
-                                                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="Zl9-eg-bkk"/>
                                                         </constraints>
@@ -1011,12 +1012,12 @@
                                             </stackView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mK0-z5-e9m" userLabel="Pet Breeder Field">
                                                 <rect key="frame" x="112" y="497" width="255" height="75"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="255" id="AJa-um-fTz"/>
                                                     <constraint firstAttribute="height" constant="75" id="d1a-v2-bMJ"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
@@ -1024,7 +1025,7 @@
                                                 </connections>
                                             </textView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vétérinaire" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eqk-zN-FWY" userLabel="Pet Veterinary Field">
-                                                <rect key="frame" x="127.5" y="622" width="239.5" height="34"/>
+                                                <rect key="frame" x="132" y="622" width="235" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="dS3-DC-8WE"/>
                                                 </constraints>
@@ -1047,25 +1048,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couleur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ia4-PL-Vos" userLabel="Pet Color Label">
-                                                <rect key="frame" x="8" y="380" width="49" height="16.5"/>
+                                                <rect key="frame" x="8" y="380" width="52.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Particularités" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-Ta-hiX" userLabel="Pet Particular Signs Label">
-                                                <rect key="frame" x="8" y="422.5" width="76" height="15.5"/>
+                                                <rect key="frame" x="8" y="422.5" width="80" height="15.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eleveur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dN2-N7-b0t" userLabel="Pet Breeder Label">
-                                                <rect key="frame" x="8" y="532" width="46.5" height="16.5"/>
+                                                <rect key="frame" x="8" y="532" width="50" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vétérinaire" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-SC-8Zt" userLabel="Pet Veterinary Label">
-                                                <rect key="frame" x="8" y="633.5" width="66.5" height="11.5"/>
+                                                <rect key="frame" x="8" y="633.5" width="71" height="11.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1089,7 +1090,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r95-Gi-YqL" userLabel="Pet Tatoo Label">
-                                                <rect key="frame" x="8" y="467.5" width="80.5" height="16.5"/>
+                                                <rect key="frame" x="8" y="467.5" width="85" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1102,7 +1103,7 @@
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="url"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="N° origine" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVm-0C-ZkD">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="N° origine" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NVm-0C-ZkD">
                                                 <rect key="frame" x="182" y="664" width="185" height="34"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1116,18 +1117,18 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mére" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BAh-7n-iTf">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mére" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BAh-7n-iTf">
                                                 <rect key="frame" x="112" y="706" width="255" height="34"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Père" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvj-82-xFX">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Père" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lvj-82-xFX">
                                                 <rect key="frame" x="112" y="748" width="255" height="34"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hl-UA-ZDO">
-                                                <rect key="frame" x="82.5" y="627" width="24" height="24"/>
+                                                <rect key="frame" x="87" y="627" width="24" height="24"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-dV-djD" userLabel="Button Call Phone">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -1141,7 +1142,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="3r8-dV-djD" secondAttribute="bottom" id="0bq-DY-sGh"/>
                                                     <constraint firstItem="3r8-dV-djD" firstAttribute="centerY" secondItem="7Hl-UA-ZDO" secondAttribute="centerY" id="ank-Af-Mmd"/>
@@ -1152,7 +1153,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="jMd-53-zHd" firstAttribute="top" secondItem="TA2-FX-9Kd" secondAttribute="bottom" constant="15" id="2cx-wd-6kF"/>
                                             <constraint firstAttribute="trailing" secondItem="eqk-zN-FWY" secondAttribute="trailing" constant="8" id="3IF-zq-gbz"/>
@@ -1305,14 +1306,14 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="PvF-0v-gFU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EdO-FT-pDO" firstAttribute="bottom" secondItem="PvF-0v-gFU" secondAttribute="bottom" id="6do-8n-uZ0"/>
                             <constraint firstItem="PvF-0v-gFU" firstAttribute="trailing" secondItem="EdO-FT-pDO" secondAttribute="trailing" id="IJX-Pd-4sv"/>
                             <constraint firstItem="EdO-FT-pDO" firstAttribute="leading" secondItem="PvF-0v-gFU" secondAttribute="leading" id="jcU-Ei-cwc"/>
                             <constraint firstItem="EdO-FT-pDO" firstAttribute="top" secondItem="PvF-0v-gFU" secondAttribute="top" id="wWX-49-ApW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PvF-0v-gFU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Pky-8Z-L3U" userLabel="Navigation Item">
                         <barButtonItem key="leftBarButtonItem" title="Animaux" id="DUx-p2-kyW" userLabel="Back">
@@ -1371,7 +1372,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ekq-Zf-fdT" userLabel="Vaccines Table View">
                                 <rect key="frame" x="0.0" y="53" width="375" height="614"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemVaccine" rowHeight="161.5" id="hVd-qh-mqO" userLabel="Vaccines Table View Cell" customClass="PresentVaccineCell" customModule="MDPet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="161.5"/>
@@ -1542,7 +1543,7 @@
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="S4U-qX-Qhl" secondAttribute="trailing" constant="8" id="Nha-HI-Cl1"/>
                                                         <constraint firstItem="S4U-qX-Qhl" firstAttribute="leading" secondItem="AkV-KR-YvP" secondAttribute="leading" constant="8" id="Uo6-eu-wB1"/>
@@ -1582,13 +1583,14 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLr-zm-h3K" userLabel="Pet Name Label">
-                                <rect key="frame" x="139" y="10" width="97.5" height="26"/>
+                                <rect key="frame" x="136.5" y="10" width="102.5" height="26"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="dRn-Xa-xPI"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="BLr-zm-h3K" firstAttribute="centerX" secondItem="wjJ-EH-hfk" secondAttribute="centerX" id="38k-Yq-5t5"/>
                             <constraint firstItem="ekq-Zf-fdT" firstAttribute="leading" secondItem="dRn-Xa-xPI" secondAttribute="leading" id="MKo-qr-htU"/>
@@ -1602,7 +1604,6 @@
                             <constraint firstItem="ekq-Zf-fdT" firstAttribute="trailing" secondItem="dRn-Xa-xPI" secondAttribute="trailing" id="tnk-4w-CUv"/>
                             <constraint firstItem="ekq-Zf-fdT" firstAttribute="bottom" secondItem="dRn-Xa-xPI" secondAttribute="bottom" id="tuw-Ec-9Ik"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dRn-Xa-xPI"/>
                     </view>
                     <navigationItem key="navigationItem" id="qG4-0o-vVj">
                         <barButtonItem key="leftBarButtonItem" title="Animal" id="DEf-2P-rZz" userLabel="Back">
@@ -1611,7 +1612,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="Wy6-Id-36c" userLabel="Add New Vaccine">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="addNewVaccine:" destination="8ay-E0-Ahw" id="xFA-p7-3GE"/>
                             </connections>
@@ -1641,7 +1642,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn8-rG-V5M" userLabel="Pet Name Label">
-                                                <rect key="frame" x="139" y="16" width="97.5" height="26"/>
+                                                <rect key="frame" x="136.5" y="16" width="102.5" height="26"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1683,7 +1684,7 @@
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42E-Sp-7Jm" userLabel="Under Line">
                                                 <rect key="frame" x="8" y="227" width="359" height="1"/>
-                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="axa-ml-lC8"/>
                                                 </constraints>
@@ -1693,7 +1694,7 @@
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="100" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Al0-1O-PDd" customClass="SelfSizedTableView" customModule="MDPet" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemVaccineDetail" id="JJJ-6P-CYy" userLabel="Vaccine Table View Cell" customClass="PresentVaccineDetailCell" customModule="MDPet" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
@@ -1709,7 +1710,7 @@
                                                                             </connections>
                                                                         </switch>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nr7-xu-mFF" userLabel="Disease Label">
-                                                                            <rect key="frame" x="8" y="11" width="302" height="21.5"/>
+                                                                            <rect key="frame" x="9" y="11" width="301" height="21.5"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="21" id="DDZ-Yr-bp0"/>
                                                                             </constraints>
@@ -1740,7 +1741,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfb-fZ-6mG">
                                                         <rect key="frame" x="68" y="123" width="239" height="140"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7m-gB-wXo" userLabel="Add Thumbnail Button">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7m-gB-wXo" userLabel="Add Thumbnail Button">
                                                                 <rect key="frame" x="0.0" y="0.0" width="239" height="140"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="140" id="UBp-zY-Q6J"/>
@@ -1754,7 +1755,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="239" height="140"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="nU3-ZU-JOn" secondAttribute="trailing" id="1Ln-4P-WsQ"/>
                                                             <constraint firstItem="nU3-ZU-JOn" firstAttribute="leading" secondItem="Sfb-fZ-6mG" secondAttribute="leading" id="DEK-ti-kFP"/>
@@ -1799,9 +1800,9 @@
                                                     </switch>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW1-9o-inG">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW1-9o-inG">
                                                 <rect key="frame" x="0.0" y="798" width="375" height="42"/>
-                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="25"/>
                                                 <state key="normal" title="Supprimer la vaccination"/>
                                                 <connections>
@@ -1856,24 +1857,24 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="g1n-Qh-bXK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tQf-MT-nsk" firstAttribute="leading" secondItem="g1n-Qh-bXK" secondAttribute="leading" id="9Rq-XI-zqB"/>
                             <constraint firstItem="g1n-Qh-bXK" firstAttribute="bottom" secondItem="tQf-MT-nsk" secondAttribute="bottom" id="Gc9-1x-kV8"/>
                             <constraint firstItem="tQf-MT-nsk" firstAttribute="top" secondItem="g1n-Qh-bXK" secondAttribute="top" id="SkO-pW-AxQ"/>
                             <constraint firstItem="g1n-Qh-bXK" firstAttribute="trailing" secondItem="tQf-MT-nsk" secondAttribute="trailing" id="wQp-f5-0Qq"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="g1n-Qh-bXK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="iVc-C9-JEn">
                         <barButtonItem key="leftBarButtonItem" title="Vaccins" id="ujo-v9-2s1" userLabel="Back">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="backToVaccines:" destination="IJE-KT-xET" id="RVm-PE-cB1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Ajouter" id="hmN-f4-zFH" userLabel="Save Vaccine">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="saveVaccine:" destination="IJE-KT-xET" id="KKs-qT-BDC"/>
                             </connections>
@@ -1907,7 +1908,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZh-lw-JJF" userLabel="Pet Name Label">
-                                <rect key="frame" x="160.5" y="10" width="54" height="26"/>
+                                <rect key="frame" x="158.5" y="10" width="58.5" height="26"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1930,11 +1931,11 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-NX-j8Z" userLabel="Consultation Report Text View">
                                 <rect key="frame" x="8" y="170" width="359" height="267"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="267" id="AIw-Wl-kKe"/>
                                 </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1954,9 +1955,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Consultation suppress Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-dQ-3cm" userLabel="Consultation suppress Button">
                                 <rect key="frame" x="0.0" y="615" width="375" height="42"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="25"/>
                                 <state key="normal" title="Supprimer la consultation"/>
                                 <connections>
@@ -1965,7 +1966,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Y1U-Ck-YzC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fWN-LU-baL" firstAttribute="top" secondItem="coc-bS-xw6" secondAttribute="bottom" constant="8" id="5Ne-xV-WGy"/>
                             <constraint firstItem="bwY-u0-3hY" firstAttribute="leading" secondItem="Y1U-Ck-YzC" secondAttribute="leading" constant="241" id="5a4-Ua-gqI"/>
@@ -1990,7 +1992,6 @@
                             <constraint firstItem="RZh-lw-JJF" firstAttribute="centerX" secondItem="h1T-gu-4XN" secondAttribute="centerX" id="sxq-nm-5u2"/>
                             <constraint firstItem="3rY-NX-j8Z" firstAttribute="top" secondItem="bwY-u0-3hY" secondAttribute="bottom" constant="8" id="xab-6X-0B8"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Y1U-Ck-YzC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="YSA-qD-Gso">
                         <barButtonItem key="leftBarButtonItem" title="Consultations" id="sGg-HA-yTB" userLabel="Back">
@@ -2029,7 +2030,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ec-gr-XTc">
-                                <rect key="frame" x="139" y="10" width="97.5" height="26"/>
+                                <rect key="frame" x="136.5" y="10" width="102.5" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="oaO-NZ-J9g"/>
                                 </constraints>
@@ -2039,7 +2040,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ypN-8j-ZQJ" userLabel="Consultations Table View">
                                 <rect key="frame" x="0.0" y="53" width="375" height="565"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemConsultation" rowHeight="64" id="xaA-uW-BAF" userLabel="Consultations Table View Cell" customClass="PresentConsultationCell" customModule="MDPet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
@@ -2058,19 +2059,19 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Consultation veterinary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAK-Lv-fY4" userLabel="Consultation Veterinary Label">
-                                                            <rect key="frame" x="8" y="36" width="218" height="17"/>
+                                                            <rect key="frame" x="8" y="36" width="212.5" height="17"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consultation date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a5-a3-X5b" userLabel="Consultation Date Label">
-                                                            <rect key="frame" x="256" y="36" width="111" height="17"/>
+                                                            <rect key="frame" x="250.5" y="36" width="116.5" height="17"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="SAK-Lv-fY4" firstAttribute="leading" secondItem="ko0-eG-5aJ" secondAttribute="leading" constant="8" id="1nC-Xc-N7D"/>
                                                         <constraint firstItem="SAK-Lv-fY4" firstAttribute="top" secondItem="TXM-XH-KT4" secondAttribute="bottom" constant="8" id="7aZ-BZ-fdC"/>
@@ -2106,7 +2107,8 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="NFe-IR-pJD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ypN-8j-ZQJ" firstAttribute="leading" secondItem="NFe-IR-pJD" secondAttribute="leading" id="0Zc-4e-tko"/>
                             <constraint firstItem="ypN-8j-ZQJ" firstAttribute="bottom" secondItem="NFe-IR-pJD" secondAttribute="bottom" id="7QW-qE-Jnx"/>
@@ -2115,7 +2117,6 @@
                             <constraint firstItem="3Ec-gr-XTc" firstAttribute="centerX" secondItem="K0O-Lx-bLK" secondAttribute="centerX" id="Uh1-db-uKP"/>
                             <constraint firstItem="ypN-8j-ZQJ" firstAttribute="top" secondItem="3Ec-gr-XTc" secondAttribute="bottom" constant="17" id="cdR-b0-nve"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="NFe-IR-pJD"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hUd-qm-Mp1">
@@ -2151,99 +2152,66 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MDPet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgC-yx-Xyo">
                                 <rect key="frame" x="84" y="78" width="207" height="69.5"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="63"/>
-                                <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1h3-eC-ifN" userLabel="Text Field Login Password">
-                                <rect key="frame" x="70" y="303.5" width="235" height="38"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-VQ-Fc7">
-                                <rect key="frame" x="70" y="394.5" width="235" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-VQ-Fc7">
+                                <rect key="frame" x="70" y="380.5" width="235" height="38"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="hYA-Po-Mdd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <state key="normal" title="Connexion">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginDidTouch:" destination="ZpG-R2-526" eventType="touchUpInside" id="kmM-MF-43B"/>
+                                    <action selector="connexion:" destination="ZpG-R2-526" eventType="touchUpInside" id="jJp-Ia-JlS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUf-YL-Q60">
-                                <rect key="frame" x="70" y="440.5" width="235" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="CDz-rJ-kFC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Inscription">
-                                    <color key="titleColor" red="0.92298394439999998" green="0.33495402340000002" blue="0.27055013179999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUpDidTouch:" destination="ZpG-R2-526" eventType="touchUpInside" id="2Hv-lQ-diJ"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ljy-G0-Qlo" userLabel="Text Field Login Email">
-                                <rect key="frame" x="70" y="257.5" width="235" height="38"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIW-qq-i5W" userLabel="Missing Password">
-                                <rect key="frame" x="132.5" y="349.5" width="110" height="25"/>
-                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="11"/>
-                                <state key="normal" title="Mot de passe oublié ?"/>
-                                <connections>
-                                    <action selector="missingPassword:" destination="ZpG-R2-526" eventType="touchUpInside" id="tNn-Qw-nfr"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApU-5H-mWr" userLabel="Name User Label">
+                                <rect key="frame" x="70" y="284" width="235" height="19"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iCloud account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PH5-iV-mDj" userLabel="iCloud Account Label">
+                                <rect key="frame" x="70" y="333" width="235" height="19"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="lYL-Jy-Y4A"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="wIW-qq-i5W" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="0dX-Vs-Wwn"/>
-                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="height" secondItem="Ljy-G0-Qlo" secondAttribute="height" id="AlI-Oa-qjF"/>
+                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="top" secondItem="PH5-iV-mDj" secondAttribute="bottom" constant="28.5" id="0hw-cV-1Ls"/>
+                            <constraint firstItem="lYL-Jy-Y4A" firstAttribute="trailing" secondItem="PH5-iV-mDj" secondAttribute="trailing" constant="70" id="6kv-7M-Dvg"/>
                             <constraint firstItem="ZgC-yx-Xyo" firstAttribute="top" secondItem="lYL-Jy-Y4A" secondAttribute="top" constant="78" id="Cfq-Fm-TaF"/>
-                            <constraint firstItem="NUf-YL-Q60" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="FpA-Ol-WhW"/>
-                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="top" secondItem="wIW-qq-i5W" secondAttribute="bottom" constant="20" id="JtL-Lb-Rek"/>
-                            <constraint firstItem="1h3-eC-ifN" firstAttribute="height" secondItem="Ljy-G0-Qlo" secondAttribute="height" id="KMM-1U-8EX"/>
-                            <constraint firstItem="NUf-YL-Q60" firstAttribute="top" secondItem="K1L-VQ-Fc7" secondAttribute="bottom" constant="8" id="MEL-Ag-8ZH"/>
-                            <constraint firstItem="NUf-YL-Q60" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="WnZ-cb-wW4"/>
-                            <constraint firstItem="K1L-VQ-Fc7" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="ZAa-Ea-ZwE"/>
-                            <constraint firstItem="Ljy-G0-Qlo" firstAttribute="top" secondItem="ZgC-yx-Xyo" secondAttribute="bottom" constant="110" id="cNa-aR-hZc"/>
-                            <constraint firstItem="1h3-eC-ifN" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="dX5-ye-ZSk"/>
-                            <constraint firstItem="1h3-eC-ifN" firstAttribute="top" secondItem="Ljy-G0-Qlo" secondAttribute="bottom" constant="8" id="eld-8H-hng"/>
-                            <constraint firstItem="wIW-qq-i5W" firstAttribute="top" secondItem="1h3-eC-ifN" secondAttribute="bottom" constant="8" id="k4J-Qh-mHE"/>
+                            <constraint firstItem="ApU-5H-mWr" firstAttribute="top" secondItem="ZgC-yx-Xyo" secondAttribute="bottom" constant="136.5" id="OtR-V8-jI5"/>
+                            <constraint firstItem="lYL-Jy-Y4A" firstAttribute="trailing" secondItem="ApU-5H-mWr" secondAttribute="trailing" constant="70" id="U4P-5K-9pq"/>
+                            <constraint firstItem="ApU-5H-mWr" firstAttribute="leading" secondItem="lYL-Jy-Y4A" secondAttribute="leading" constant="70" id="dvZ-ZR-iqh"/>
+                            <constraint firstItem="PH5-iV-mDj" firstAttribute="top" secondItem="ApU-5H-mWr" secondAttribute="bottom" constant="30" id="kSs-MF-Wew"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K1L-VQ-Fc7" secondAttribute="trailing" constant="54" id="npv-BJ-XSx"/>
                             <constraint firstItem="K1L-VQ-Fc7" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="oi5-IN-LtT"/>
-                            <constraint firstItem="1h3-eC-ifN" firstAttribute="width" secondItem="Ljy-G0-Qlo" secondAttribute="width" id="pZK-eU-oSZ"/>
                             <constraint firstItem="ZgC-yx-Xyo" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="uN8-MK-X6P"/>
-                            <constraint firstItem="Ljy-G0-Qlo" firstAttribute="centerX" secondItem="VKC-Bf-8yo" secondAttribute="centerX" id="vby-UM-LzY"/>
+                            <constraint firstItem="PH5-iV-mDj" firstAttribute="leading" secondItem="lYL-Jy-Y4A" secondAttribute="leading" constant="70" id="v6s-JN-IaZ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lYL-Jy-Y4A"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="A9S-WR-78k" appends="YES" id="2Wn-VH-xcq"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="missingPasswordButton" destination="wIW-qq-i5W" id="RVU-0K-yQJ"/>
-                        <outlet property="textFieldLoginEmail" destination="Ljy-G0-Qlo" id="bfV-X1-kGe"/>
-                        <outlet property="textFieldLoginPassword" destination="1h3-eC-ifN" id="muf-5n-4el"/>
-                        <segue destination="F6V-S5-kUn" kind="presentation" identifier="LoginToList" id="75A-IR-byw"/>
+                        <outlet property="iCloudAccountLabel" destination="PH5-iV-mDj" id="vDM-RI-9WE"/>
+                        <outlet property="nameUserLabel" destination="ApU-5H-mWr" id="0Ha-RL-8na"/>
+                        <segue destination="F6V-S5-kUn" kind="presentation" identifier="LoginToList" id="gtH-gr-CEn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAj-Z8-iDj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="A9S-WR-78k">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="ZpG-R2-526" id="RZo-WV-mTe"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="A9S-WR-78k"/>
             </objects>
-            <point key="canvasLocation" x="-330.39999999999998" y="353.9730134932534"/>
+            <point key="canvasLocation" x="-407.19999999999999" y="353.9730134932534"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="yfh-KD-50u">
@@ -2253,8 +2221,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="selectedImageTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                        <color key="selectedImageTintColor" systemColor="systemRedColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="ZtB-sG-xiW" kind="relationship" relationship="viewControllers" id="HWp-6w-50v"/>
@@ -2288,33 +2256,33 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voulez-vous vraiment supprimer cet animal?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lb6-KD-hIH" userLabel="Text Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="2Ob-dV-bx1"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4R-6Q-WxC" userLabel="Underline View">
                                                                 <rect key="frame" x="0.0" y="23" width="343" height="1"/>
-                                                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                                <color key="tintColor" systemColor="systemGray2Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="343" id="2UY-NA-IsA"/>
                                                                     <constraint firstAttribute="height" constant="1" id="6WX-aa-PeG"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="IIC-qu-vXw"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjO-e4-our" userLabel="Button Suppress">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjO-e4-our" userLabel="Button Suppress">
                                                                 <rect key="frame" x="0.0" y="26" width="343" height="40"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="zIq-tT-E8z"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <state key="normal" title="Supprimer">
-                                                                    <color key="titleShadowColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="suppressPet:" destination="s0W-nT-wZw" eventType="touchUpInside" id="vyI-gY-2kQ"/>
@@ -2327,10 +2295,10 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <integer key="value" value="10"/>
@@ -2343,9 +2311,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzI-tE-CYP" userLabel="View Cancel" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="90" width="343" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POk-wq-glh" userLabel="Button Cancel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POk-wq-glh" userLabel="Button Cancel">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
-                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="0nt-9W-tWT"/>
                                                             <constraint firstAttribute="height" constant="45" id="lnV-f8-pfi"/>
@@ -2358,7 +2326,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="POk-wq-glh" secondAttribute="trailing" id="5OG-0M-9R9"/>
                                                     <constraint firstItem="POk-wq-glh" firstAttribute="top" secondItem="WzI-tE-CYP" secondAttribute="top" id="C0i-aI-Qf8"/>
@@ -2374,7 +2342,7 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <integer key="value" value="1"/>
@@ -2391,7 +2359,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Stv-tX-j3A" secondAttribute="bottom" id="3HF-Le-FH7"/>
                                     <constraint firstItem="Stv-tX-j3A" firstAttribute="leading" secondItem="3th-RL-tFl" secondAttribute="leading" id="8UJ-GX-K25"/>
@@ -2402,13 +2370,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="w1w-mc-SPK"/>
                         <color key="backgroundColor" white="1" alpha="0.48888843910000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3th-RL-tFl" firstAttribute="leading" secondItem="w1w-mc-SPK" secondAttribute="leading" constant="16" id="Ds9-PM-1Rc"/>
                             <constraint firstItem="w1w-mc-SPK" firstAttribute="bottom" secondItem="3th-RL-tFl" secondAttribute="bottom" constant="12" id="i0V-qt-h39"/>
                             <constraint firstItem="w1w-mc-SPK" firstAttribute="trailing" secondItem="3th-RL-tFl" secondAttribute="trailing" constant="16" id="mHc-eg-OdH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="w1w-mc-SPK"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kY-4s-el8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2437,33 +2405,33 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modifications non sauvegardées?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAr-UV-fxj" userLabel="Text Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="jkb-3P-f98"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0D-kw-Kw6" userLabel="Underline View">
                                                                 <rect key="frame" x="0.0" y="23" width="343" height="1"/>
-                                                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                                <color key="tintColor" systemColor="systemGray2Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="343" id="9Vt-h7-XIW"/>
                                                                     <constraint firstAttribute="height" constant="1" id="WTT-L0-IlO"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="ZaB-Bh-xiJ"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arh-nm-cNf" userLabel="Button Cancel Update">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arh-nm-cNf" userLabel="Button Cancel Update">
                                                                 <rect key="frame" x="0.0" y="26" width="343" height="40"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="lZO-69-Kte"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <state key="normal" title="Annuler les modifications">
-                                                                    <color key="titleShadowColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="cancelUpdate:" destination="bDF-3I-ufm" eventType="touchUpInside" id="Kwc-Sa-7f1"/>
@@ -2476,10 +2444,10 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <integer key="value" value="10"/>
@@ -2492,9 +2460,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35A-GW-IpN" userLabel="View Cancel" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="90" width="343" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXe-U6-rbO" userLabel="Button Continue Update">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXe-U6-rbO" userLabel="Button Continue Update">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
-                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="Yt3-XJ-wjx"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="dDr-Ii-1BT"/>
@@ -2507,7 +2475,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="dXe-U6-rbO" firstAttribute="leading" secondItem="35A-GW-IpN" secondAttribute="leading" id="2xn-EP-2Tf"/>
                                                     <constraint firstAttribute="bottom" secondItem="dXe-U6-rbO" secondAttribute="bottom" id="9vA-Dy-xtH"/>
@@ -2523,7 +2491,7 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <integer key="value" value="1"/>
@@ -2540,7 +2508,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="9GI-83-alK" firstAttribute="leading" secondItem="1Ur-mo-H5h" secondAttribute="leading" id="81Y-br-0uL"/>
                                     <constraint firstAttribute="width" constant="343" id="SPv-mR-iry"/>
@@ -2551,13 +2519,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="nov-4w-6Ee"/>
                         <color key="backgroundColor" white="1" alpha="0.48888843910000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nov-4w-6Ee" firstAttribute="trailing" secondItem="1Ur-mo-H5h" secondAttribute="trailing" constant="16" id="GHh-29-uNc"/>
                             <constraint firstItem="1Ur-mo-H5h" firstAttribute="leading" secondItem="nov-4w-6Ee" secondAttribute="leading" constant="16" id="LRX-An-pYU"/>
                             <constraint firstItem="nov-4w-6Ee" firstAttribute="bottom" secondItem="1Ur-mo-H5h" secondAttribute="bottom" constant="12" id="ON9-Uq-W1s"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="nov-4w-6Ee"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQb-5u-nTQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2586,33 +2554,33 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voulez-vous vraiment supprimer cet animal?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T5-7V-OcL" userLabel="Text Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="RaG-0J-ZJy"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgQ-A8-Hfr" userLabel="Underline View">
                                                                 <rect key="frame" x="0.0" y="23" width="343" height="1"/>
-                                                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                                <color key="tintColor" systemColor="systemGray2Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="4nm-nG-G6C"/>
                                                                     <constraint firstAttribute="width" constant="343" id="PTx-Wy-zJf"/>
                                                                     <constraint firstAttribute="height" constant="1" id="zcQ-Hh-CRo"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azA-UN-8q7" userLabel="Button Suppress">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azA-UN-8q7" userLabel="Button Suppress">
                                                                 <rect key="frame" x="0.0" y="26" width="343" height="40"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="0rq-JK-ODN"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <state key="normal" title="Supprimer">
-                                                                    <color key="titleShadowColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="suppressConsultation:" destination="SGn-ds-AVq" eventType="touchUpInside" id="93n-Hf-lHD"/>
@@ -2625,10 +2593,10 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <integer key="value" value="10"/>
@@ -2641,9 +2609,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9n-4u-tQi" userLabel="View Cancel" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="90" width="343" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clQ-g0-dy2" userLabel="Button Cancel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clQ-g0-dy2" userLabel="Button Cancel">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
-                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="3Bo-KB-24d"/>
                                                             <constraint firstAttribute="height" constant="45" id="BTf-HT-snW"/>
@@ -2656,7 +2624,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="clQ-g0-dy2" secondAttribute="bottom" id="8VP-CP-N58"/>
                                                     <constraint firstAttribute="trailing" secondItem="clQ-g0-dy2" secondAttribute="trailing" id="8uw-QC-jWx"/>
@@ -2672,7 +2640,7 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <integer key="value" value="1"/>
@@ -2689,7 +2657,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="sOe-dk-DMh" firstAttribute="top" secondItem="Qbj-4w-mfW" secondAttribute="top" id="9ko-TV-dBt"/>
                                     <constraint firstItem="sOe-dk-DMh" firstAttribute="leading" secondItem="Qbj-4w-mfW" secondAttribute="leading" id="VF0-iY-B4k"/>
@@ -2700,13 +2668,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Wpa-gN-2Ie"/>
                         <color key="backgroundColor" white="1" alpha="0.48888843910000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Wpa-gN-2Ie" firstAttribute="trailing" secondItem="Qbj-4w-mfW" secondAttribute="trailing" constant="16" id="Qng-IP-RVe"/>
                             <constraint firstItem="Wpa-gN-2Ie" firstAttribute="bottom" secondItem="Qbj-4w-mfW" secondAttribute="bottom" constant="12" id="jTH-Z9-jA1"/>
                             <constraint firstItem="Qbj-4w-mfW" firstAttribute="leading" secondItem="Wpa-gN-2Ie" secondAttribute="leading" constant="16" id="ndy-AO-xy9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Wpa-gN-2Ie"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTZ-N5-FZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2735,33 +2703,33 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voulez-vous vraiment supprimer cet animal?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlg-8e-S3S" userLabel="Text Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="5Cs-Ck-Ti0"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                                <color key="highlightedColor" systemColor="tertiarySystemBackgroundColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xB3-jH-69o" userLabel="Underline View">
                                                                 <rect key="frame" x="0.0" y="23" width="343" height="1"/>
-                                                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                                <color key="tintColor" systemColor="systemGray2Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="3Zn-qv-fic"/>
                                                                     <constraint firstAttribute="width" constant="343" id="VBL-t8-w3m"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="dVi-3g-mUL"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-SQ-cMu" userLabel="Button Suppress">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-SQ-cMu" userLabel="Button Suppress">
                                                                 <rect key="frame" x="0.0" y="26" width="343" height="40"/>
-                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="dCS-YH-R5s"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                 <state key="normal" title="Supprimer">
-                                                                    <color key="titleShadowColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="suppressVaccine:" destination="QDE-Wz-aAL" eventType="touchUpInside" id="z9Y-Aj-wCg"/>
@@ -2774,10 +2742,10 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <integer key="value" value="10"/>
@@ -2790,9 +2758,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZi-7V-eyB" userLabel="View Cancel" customClass="SettingsCornerBorderRadiusView" customModule="MDPet" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="90" width="343" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82i-QK-kZT" userLabel="Button Cancel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82i-QK-kZT" userLabel="Button Cancel">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
-                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="E76-BD-YgW"/>
                                                             <constraint firstAttribute="height" constant="45" id="XHF-At-owh"/>
@@ -2805,7 +2773,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="82i-QK-kZT" secondAttribute="trailing" id="4W9-dn-nYb"/>
                                                     <constraint firstItem="82i-QK-kZT" firstAttribute="top" secondItem="bZi-7V-eyB" secondAttribute="top" id="EV1-nY-fwR"/>
@@ -2821,7 +2789,7 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" systemColor="tertiarySystemBackgroundColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <integer key="value" value="1"/>
@@ -2838,7 +2806,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="BwY-mc-Ytp" secondAttribute="bottom" id="1Nt-yf-vRi"/>
                                     <constraint firstAttribute="height" constant="135" id="WHF-cX-xP2"/>
@@ -2849,13 +2817,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZgD-WN-UId"/>
                         <color key="backgroundColor" white="1" alpha="0.48888843910000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IGz-OR-a5F" firstAttribute="leading" secondItem="ZgD-WN-UId" secondAttribute="leading" constant="16" id="AW9-jT-DU8"/>
                             <constraint firstItem="ZgD-WN-UId" firstAttribute="trailing" secondItem="IGz-OR-a5F" secondAttribute="trailing" constant="16" id="H3s-eY-Rcp"/>
                             <constraint firstItem="ZgD-WN-UId" firstAttribute="bottom" secondItem="IGz-OR-a5F" secondAttribute="bottom" constant="12" id="lmn-rs-3Z0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZgD-WN-UId"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BhK-n1-3UD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2863,8 +2831,38 @@
             <point key="canvasLocation" x="6169" y="-1278"/>
         </scene>
     </scenes>
-    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" systemColor="systemRedColor"/>
     <resources>
         <image name="phone.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ConfirmConsultationSuppresViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class ConfirmConsultationSuppresViewController: UIViewController {
 
     @IBAction func suppressConsultation(_ sender: Any) {
         gestSuppressConsultation()
+        consultationHasBeenDeleted = true
         prepareToGoBack()
     }
 
@@ -27,8 +29,9 @@ class ConfirmConsultationSuppresViewController: UIViewController {
     }
 
     // MARK: - var
-    var petItem: PetItem?
-    var consultationItem: ConsultationItem?
+//    var petItem: PetsItem?
+    var consultationObjectId: NSManagedObjectID?
+    var consultationItem: ConsultationsItem?
     var consultationHasBeenDeleted = true
     var eventsCalendarManager = EventsCalendarManager()
 
@@ -60,36 +63,40 @@ class ConfirmConsultationSuppresViewController: UIViewController {
     }
     private func gestSuppressConsultation() {
         let eventIdentifier = consultationItem?.consultationIdEvent
-        eventsCalendarManager.requestSuppressEvent(eventIdentifier: eventIdentifier!) { (result, _) in
-            switch result {
-            case .success:
-//                print("success")
-                let consultationKey = self.consultationItem?.key
-                let petKey = self.petItem?.key
-                GetFirebaseConsultations.shared.deleteConsultation(petKey: petKey!,
-                                                                   consultationKey: consultationKey!) { (success) in
-                    if success {
-                        self.consultationHasBeenDeleted = true
-                    } else {
-                        print("erreur")
+        if !eventIdentifier!.isEmpty {
+            eventsCalendarManager.requestSuppressEvent(eventIdentifier: eventIdentifier!) { (result, _) in
+                switch result {
+                case .success:
+                    self.getSuppressConsultationIcloud()
+                case .failure(let error):
+                    switch error {
+                    case .calendarAccessDeniedOrRestricted:
+                        print("'=============== calendarAccessDeniedOrRestricted")
+                        self.getErrors(type: .calendarAccessDeniedOrRestricted)
+                    case .eventNotAddedToCalendar:
+                        print("'=============== eventNotAddedToCalendar")
+                        self.getErrors(type: .eventNotAddedToCalendar)
+                    case .eventAlreadyExistsInCalendar:
+                        print("'=============== eventAlreadyExistsInCalendar")
+                        self.getErrors(type: .eventAlreadyExistsInCalendar)
+                    case .eventDoesntExistInCalendar:
+                        print("'=============== eventDoesntExistInCalendar")
+                        self.getErrors(type: .eventDoesntExistInCalendar)
+                    case .eventNotUpdatedToCalendar:
+                        print("'=============== eventNotUpdatedToCalendar")
+                        self.getErrors(type: .eventNotUpdatedToCalendar)
+                    case .eventNotSuppressedToCalendar:
+                        print("'=============== eventNotSuppressedToCalendar")
+                        self.getErrors(type: .eventNotSuppressedToCalendar)
                     }
                 }
-            case .failure(let error):
-                switch error {
-                case .calendarAccessDeniedOrRestricted:
-                    self.getErrors(type: .calendarAccessDeniedOrRestricted)
-                case .eventNotAddedToCalendar:
-                    self.getErrors(type: .eventNotAddedToCalendar)
-                case .eventAlreadyExistsInCalendar:
-                    self.getErrors(type: .eventAlreadyExistsInCalendar)
-                case .eventDoesntExistInCalendar:
-                    self.getErrors(type: .eventDoesntExistInCalendar)
-                case .eventNotUpdatedToCalendar:
-                    self.getErrors(type: .eventNotUpdatedToCalendar)
-                case .eventNotSuppressedToCalendar:
-                    self.getErrors(type: .eventNotSuppressedToCalendar)
-                }
             }
+        } else {
+            getSuppressConsultationIcloud()
         }
+    }
+    private func getSuppressConsultationIcloud() {
+        let consultationToDelete = Model.shared.getObjectByIdConsultation(objectId: consultationObjectId!)
+        try AppDelegate.viewContext.delete(consultationToDelete!)
     }
 }

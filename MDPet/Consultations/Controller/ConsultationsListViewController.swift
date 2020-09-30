@@ -22,8 +22,8 @@ class ConsultationsListViewController: UIViewController {
     }
 
     // MARK: Properties
-    var petItem: PetItem?
-    var consultationItems: [ConsultationItem] = []
+    var petItem: PetsItem?
+    var consultationsList = ConsultationsItem.fetchAll(consultationPet: "")
 
     // MARK: UIViewController Lifecycle
       override func viewDidLoad() {
@@ -35,14 +35,7 @@ class ConsultationsListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-        GetFirebaseConsultations.shared.observeConsultations(petKey: petItem!.key) { (success, consultationItems) in
-            if success {
-                self.consultationItems = consultationItems
-                self.tableView.reloadData()
-            } else {
-                print("erreur")
-            }
-        }
+        refresh()
     }
     private func createNewConsultation() {
         guard let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ConsultationController")
@@ -53,34 +46,30 @@ class ConsultationsListViewController: UIViewController {
         destVC.typeOfCall = TypeOfCall.create
         self.show(destVC, sender: self)
     }
+    @objc private func refresh() {
+        consultationsList = ConsultationsItem.fetchAll(consultationPet: (petItem?.petRecordID)!)
+        tableView.reloadData()
+    }
 }
-
-// MARK: - extension Data for tableView
 extension ConsultationsListViewController: UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return consultationsList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemConsultation", for: indexPath)
-            as? PresentConsultationCell else {
-                return UITableViewCell()
-        }
-
-        let consultationItem = consultationItems[indexPath.row]
-        cell.configureConsultationCell(consultationItem: consultationItem) { (success) in
+          as? PresentConsultationCell else {
+              return UITableViewCell()
+      }
+        cell.configureConsultationCell(consultationItem: consultationsList[indexPath.row]) { (success) in
             if !success {
                 return
             }
         }
         return cell
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return consultationItems.count
-    }
 }
+
 // MARK: - extension Delegate
 extension ConsultationsListViewController: UITableViewDelegate {
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -92,7 +81,12 @@ extension ConsultationsListViewController: UITableViewDelegate {
                 as? ConsultationViewController else {
                     return
             }
-            let consultationItem = consultationItems[indexPath.row]
+            guard
+                let cell = tableView.cellForRow(at: indexPath),
+                let indexPath = tableView.indexPath(for: cell)
+                else
+            { return }
+            let consultationItem = consultationsList[indexPath.row]
             destVC.typeOfCall = TypeOfCall.update
             destVC.petItem = petItem
             destVC.consultationItem = consultationItem
