@@ -27,7 +27,8 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.showAnimate()
     }
     // MARK: - var
-    var petObjectId: NSManagedObjectID?
+//    var petObjectId: NSManagedObjectID?
+    var petItem: PetsItem?
     var petHasBeenDeleted = true
 
     // MARK: - functions
@@ -58,7 +59,24 @@ class ConfirmPetSuppressViewController: UIViewController {
         self.view.removeFromSuperview()
     }
     private func gestSuppressPet() {
-        let petToDelete = Model.shared.getObjectByIdPet(objectId: petObjectId!)
-        try? AppDelegate.viewContext.delete(petToDelete!)
+        getSuppressVaccines()
+        getSuppressConsultations()
+        let petToDelete = Model.shared.getObjectByIdPet(objectId: petItem!.objectID )
+        AppDelegate.viewContext.delete(petToDelete!)
+        try? AppDelegate.viewContext.save()
+    }
+    private func getSuppressVaccines() {
+        let vaccinesList = VaccinesItem.fetchAll(vaccinePet: (petItem?.petRecordID)!)
+        guard vaccinesList.count > 0 else {
+            return
+        }
+        VaccinesItem.deleteForPet(vaccinesList: vaccinesList)
+    }
+    private func getSuppressConsultations() {
+        let consultationsList = ConsultationsItem.fetchAll(consultationPet: (petItem?.petRecordID)!)
+        guard consultationsList.count > 0 else {
+            return
+        }
+        ConsultationsItem.deleteForPet(consultationsList: consultationsList)
     }
 }

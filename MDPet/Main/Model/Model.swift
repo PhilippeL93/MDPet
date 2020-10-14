@@ -31,7 +31,6 @@ class Model {
         publicDB = container.publicCloudDatabase
         privateDB = container.privateCloudDatabase
     }
-
     func getObjectByIdPet(objectId: NSManagedObjectID) -> PetsItem? {
         return AppDelegate.viewContext.object(with: objectId) as? PetsItem
     }

@@ -39,4 +39,12 @@ class VaccinesItem: NSManagedObject {
         }
         return vaccinesItem
     }
+    static func deleteForPet(vaccinesList: [VaccinesItem],
+                             viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
+        for indice in 0...vaccinesList.count - 1 {
+            let vaccineToDelete = Model.shared.getObjectByIdVaccine(objectId: vaccinesList[indice].objectID )
+            AppDelegate.viewContext.delete(vaccineToDelete!)
+            try? AppDelegate.viewContext.save()
+        }
+    }
 }

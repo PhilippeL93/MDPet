@@ -23,7 +23,6 @@ class PresentVeterinaryCell: UITableViewCell {
     }
 
     weak var cellDelegate: TableViewClick?
-//    var indexSelected: IndexPath?
     var veterinaryPhoneNumber = ""
 
     func configureVeterinaryCell(veterinariesItem: VeterinariesItem) {

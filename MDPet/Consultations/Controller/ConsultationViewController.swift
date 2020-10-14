@@ -14,12 +14,13 @@ class ConsultationViewController: UIViewController {
 
     @IBOutlet weak var consultationPetNameLabel: UILabel!
     @IBOutlet weak var consultationReasonField: UITextField!
-    @IBOutlet weak var consultationDateField: UITextField!
+//    @IBOutlet weak var consultationDateField: UITextField!
     @IBOutlet weak var consultationVeterinaryField: UITextField!
     @IBOutlet weak var consultationWeightField: UITextField!
     @IBOutlet weak var consultationReportView: UITextView!
     @IBOutlet weak var saveConsultationButton: UIBarButtonItem!
     @IBOutlet weak var suppressConsultationButton: UIButton!
+    @IBOutlet weak var consultationDatePicker: UIDatePicker!
 
     // MARK: - variables
     private var consultationReason: UITextField?
@@ -50,6 +51,9 @@ class ConsultationViewController: UIViewController {
     var typeOfCall: TypeOfCall?
     var petItem: PetsItem?
     var consultationItem: ConsultationsItem?
+    var toDoStorageManager = ToDoStorageManager()
+
+    var datePicker: UIDatePicker?
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -90,31 +94,31 @@ class ConsultationViewController: UIViewController {
             pickerViewVeterinary.selectRow(0, inComponent: 0, animated: true)
         }
     }
-    @IBAction func consultationDateEditingDidBegin(_ sender: Any) {
-        formatDate()
-        if consultationDateField.text!.isEmpty {
-            let calendar = Calendar.current
-            let rightNow = Date()
-            let interval = 0
-            let nextDiff = interval - calendar.component(.minute, from: rightNow)
-            let date = calendar.date(byAdding: .minute, value: nextDiff, to: rightNow) ?? Date()
-            consultationDateField.text = dateFormatter.string(from: date)
-            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-            consultationDateToSave = date
-            datePickerConsultationDate?.date = date
-        } else {
-            formatDate()
-            let consultationDate = dateFormatter.date(from: consultationDateField.text!)
-            datePickerConsultationDate?.date = consultationDate!
-            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-            consultationDateToSave = consultationDate!
-        }
-    }
+//    @IBAction func consultationDateEditingDidBegin(_ sender: Any) {
+//        formatDate()
+//        if consultationDateField.text!.isEmpty {
+//            let calendar = Calendar.current
+//            let rightNow = Date()
+//            let interval = 0
+//            let nextDiff = interval - calendar.component(.minute, from: rightNow)
+//            let date = calendar.date(byAdding: .minute, value: nextDiff, to: rightNow) ?? Date()
+//            consultationDateField.text = dateFormatter.string(from: date)
+//            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
+//            consultationDateToSave = date
+//            datePickerConsultationDate?.date = date
+//        } else {
+//            formatDate()
+//            let consultationDate = dateFormatter.date(from: consultationDateField.text!)
+//            datePickerConsultationDate?.date = consultationDate!
+//            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
+//            consultationDateToSave = consultationDate!
+//        }
+//    }
 
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormatter.locale = localeLanguage
+        customDatePicker()
         formatDate()
         createObserverConsultation()
         createDelegateConsultation()
@@ -189,20 +193,45 @@ class ConsultationViewController: UIViewController {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationReasonUpdated")
         }
     }
-    @objc func dateChangedConsultationDate(datePicker: UIDatePicker) {
-        consultationDateField.text = dateFormatter.string(from: datePicker.date)
-        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-        dateSelected = dateFormatter.string(from: datePicker.date)
+//    @objc func dateChangedConsultationDate(datePicker: UIDatePicker) {
+//        consultationDateField.text = dateFormatter.string(from: datePicker.date)
+//        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
+//        dateSelected = dateFormatter.string(from: datePicker.date)
+//        dateItem = ""
+//        if consultationItem?.consultationDate != nil {
+//            dateItem = dateFormatter.string(from: (consultationItem?.consultationDate)!)
+//        }
+//        if dateSelected != dateItem {
+//            updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationDateUpdated")
+//        } else {
+//            updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
+//        }
+//        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
+//        consultationDateToSave = datePicker.date
+//        formatDate()
+//        consultationDateField.text = dateFormatter.string(from: datePicker.date)
+//    }
+    @objc func consultationDateChanged() {
+//        guard let datePickerOne = consultationDatePicker else {
+//            return
+//        }
+//        print("'=============== datePicker \(consultationDatePicker.date)")
+//        guard let datePickerTwo = datePicker else {
+//            return
+//        }
+//        print("'=============== datePickerBis \(datePicker!.date)")
+        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
+        dateSelected = dateFormatter.string(from: consultationDatePicker!.date)
         dateItem = ""
+        if consultationItem?.consultationDate != nil {
+            dateItem = dateFormatter.string(from: (consultationItem?.consultationDate)!)
+        }
         if dateSelected != dateItem {
             updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationDateUpdated")
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
         }
-        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-        consultationDateToSave = datePicker.date
-        formatDate()
-        consultationDateField.text = dateFormatter.string(from: datePicker.date)
+        consultationDateToSave = consultationDatePicker?.date
     }
     @objc func consultationVeterinaryFieldDidEnd(_ textField: UITextField) {
         selectedVeterinaryName = ""
@@ -235,15 +264,30 @@ class ConsultationViewController: UIViewController {
 }
 extension ConsultationViewController {
     // MARK: - functions
+    func customDatePicker() {
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .dateAndTime
+        datePicker?.minuteInterval = 5
+        datePicker?.date = Date()
+        datePicker?.locale = .current
+        datePicker?.preferredDatePickerStyle = .compact
+//        if traitCollection.userInterfaceStyle == .dark {
+            consultationDatePicker?.tintColor = UIColor.systemGray
+//        } else {
+//            consultationDatePicker?.tintColor = UIColor.black
+//        }
+        consultationDatePicker?.backgroundColor = UIColor.systemBackground
+    }
     private func createObserverConsultation() {
         createObserverConsultationReason()
-        createObserverConsultationDatePickerView()
+//        createObserverConsultationDatePickerView()
+        createObserverConsultationdatePicker()
         createObserverConsultationVeterinaryPickerView()
         createObserverConsultationWeight()
     }
     private func createDelegateConsultation() {
         consultationReasonField.delegate = self
-        consultationDateField.delegate = self
+//        consultationDateField.delegate = self
         consultationVeterinaryField.delegate = self
         consultationWeightField.delegate = self
         consultationReportView.delegate = self
@@ -288,8 +332,17 @@ extension ConsultationViewController {
         consultationReasonField.text = consultationItem?.consultationReason
         dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
         if consultationItem?.consultationDate != nil {
-            consultationDateField.text = dateFormatter.string(from: (consultationItem?.consultationDate)!)
+//            consultationDateField.text = dateFormatter.string(from: (consultationItem?.consultationDate)!)
             consultationDateToSave = consultationItem?.consultationDate
+//            let dateString = "12-11-2015 10:50:00"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+            dateFormatter.locale = localeLanguage
+            let dateString = dateFormatter.string(from: (consultationItem?.consultationDate)!)
+
+            let date = dateFormatter.date(from: dateString)
+            consultationDatePicker?.setDate(date!, animated: false)
+            datePicker?.setDate(date!, animated: false)
         }
         consultationWeightField.text = consultationItem?.consultationWeight
         consultationReportView.text = consultationItem?.consultationReport
@@ -327,9 +380,6 @@ extension ConsultationViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateConsultation() {
-        if currentReachabilityStatus == .twoG || currentReachabilityStatus == .threeG {
-            print("======== connection lente détectée \(currentReachabilityStatus)")
-        }
         if case .update = self.typeOfCall {
             let consultationId = consultationItem?.objectID
             let consultationToSave = Model.shared.getObjectByIdConsultation(objectId: consultationId!)
@@ -359,11 +409,8 @@ extension ConsultationViewController {
         consultationToSave.consultationWeight = String(consultationWeightField.text!)
         consultationToSave.consultationIdEvent = consultationIdEvent
         consultationToSave.consultationPet = petItem?.petRecordID
-        do {
-        try AppDelegate.viewContext.save()
-        } catch {
-            print("Error saving consultation")
-        }
+//        toDoStorageManager.save()
+        try? AppDelegate.viewContext.save()
     }
     private func getSuppressedConsultation() {
         navigationController?.navigationBar.isUserInteractionEnabled = false
@@ -385,12 +432,15 @@ extension ConsultationViewController {
         guard !consultationReason.isEmpty else {
             return
         }
-        guard let consultationDate = consultationDateField.text else {
+//        guard let consultationDate = consultationDateField.text else {
+//            return
+//        }
+        guard consultationDatePicker != nil else {
             return
         }
-        guard !consultationDate.isEmpty else {
-            return
-        }
+//        guard !consultationDate.isEmpty else {
+//            return
+//        }
         guard let consultationVeterinary = consultationVeterinaryField.text else {
             return
         }
@@ -423,7 +473,8 @@ extension ConsultationViewController {
         let event = EKEvent(eventStore: store)
         dateFormatter.dateFormat = dateFormatddMMMMyyyyHHmm
         event.title = petItem!.petName! + " - " + String(consultationReasonField.text!)
-        event.startDate = dateFormatter.date(from: consultationDateField.text!)
+//        event.startDate = dateFormatter.date(from: consultationDateField.text!)
+        event.startDate = consultationDatePicker.date
         event.endDate = event.startDate + 3600
         var eventLocation: [String] = []
         eventLocation.insert(veterinaryItem!.veterinaryCity!, at: 0)
@@ -467,16 +518,28 @@ extension ConsultationViewController {
                                                 #selector(ConsultationViewController.consultationReasonFieldDidEnd(_:)),
                                          for: .editingDidEnd)
     }
-    private func createObserverConsultationDatePickerView() {
-        datePickerConsultationDate = UIDatePicker()
-        datePickerConsultationDate?.datePickerMode = .dateAndTime
-        datePickerConsultationDate?.minuteInterval = 5
-        datePickerConsultationDate?.locale = localeLanguage
-        datePickerConsultationDate?.addTarget(self,
-                                       action: #selector(
-                                        ConsultationViewController.dateChangedConsultationDate(datePicker:)),
-                                       for: .valueChanged )
-        consultationDateField.inputView = datePickerConsultationDate
+//    private func createObserverConsultationDatePickerView() {
+//        datePickerConsultationDate = UIDatePicker()
+//        datePickerConsultationDate?.datePickerMode = .dateAndTime
+//        if #available(iOS 14.0, *) {
+//            datePickerConsultationDate?.preferredDatePickerStyle = .inline
+//            datePickerConsultationDate?.sizeToFit()
+//        }
+//        datePickerConsultationDate?.minuteInterval = 5
+//        datePickerConsultationDate?.locale = localeLanguage
+//        datePickerConsultationDate?.addTarget(self,
+//                                       action: #selector(
+//                                        ConsultationViewController.dateChangedConsultationDate(datePicker:)),
+//                                       for: .valueChanged )
+//        consultationDateField.inputView = datePickerConsultationDate
+//    }
+    private func createObserverConsultationdatePicker() {
+        consultationDatePicker?.addTarget(self,
+                                          action: #selector(consultationDateChanged),
+                                          for: .valueChanged)
+//        datePicker?.addTarget(self,
+//                              action: #selector(consultationDateChanged),
+//                              for: .valueChanged)
     }
     private func createObserverConsultationVeterinaryPickerView() {
         pickerViewVeterinary.delegate = self
@@ -585,6 +648,7 @@ private extension ConsultationViewController {
             return
         }
         if !typeFieldOrView.isEmpty {
+            if activeField?.tag != 1 {
             if let keyboardSize =
                 (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 keyboardHeight = keyboardSize.height
@@ -609,6 +673,7 @@ private extension ConsultationViewController {
                     self.view.frame.origin = CGPoint(x: self.lastOffset.x, y: collapseSpace)
                 })
             }
+        }
         }
     }
     @objc private func keyboardWillHide(notification: NSNotification) {

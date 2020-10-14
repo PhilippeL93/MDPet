@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
         }
     }
     private func fetchUserRecord(with recordID: CKRecord.ID) {
-        container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             guard let record = record, error == nil else {
                 // show off your error handling skills
                 return

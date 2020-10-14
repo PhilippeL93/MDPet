@@ -36,4 +36,14 @@ class ConsultationsItem: NSManagedObject {
         }
         return consultationsItem
     }
+    static func deleteForPet(consultationsList: [ConsultationsItem],
+                             viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
+        for indice in 0...consultationsList.count - 1 {
+            let consultationToDelete =
+                Model.shared.getObjectByIdConsultation(objectId:
+                                                        consultationsList[indice].objectID )
+            AppDelegate.viewContext.delete(consultationToDelete!)
+            try? AppDelegate.viewContext.save()
+        }
+    }
 }

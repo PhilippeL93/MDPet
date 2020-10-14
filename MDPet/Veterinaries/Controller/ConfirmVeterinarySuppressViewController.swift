@@ -65,6 +65,7 @@ class ConfirmVeterinarySuppressViewController: UIViewController {
     private func getSuppressVeterinary() {
 
         let veterinaryToDelete = Model.shared.getObjectByIdVeterinary(objectId: veterinaryObjectId!)
-        try? AppDelegate.viewContext.delete(veterinaryToDelete!)
+        AppDelegate.viewContext.delete(veterinaryToDelete!)
+        try? AppDelegate.viewContext.save()
     }
 }

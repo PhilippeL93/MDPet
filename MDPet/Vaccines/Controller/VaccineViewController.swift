@@ -59,6 +59,7 @@ class VaccineViewController: UIViewController {
     var petItem: PetsItem?
     var vaccineItem: VaccinesItem?
     var imagePicker: ImagePicker!
+    var toDoStorageManager = ToDoStorageManager()
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -370,9 +371,6 @@ extension VaccineViewController {
         destVC.didMove(toParent: self)
     }
     private func createOrUpdateVaccine() {
-        if currentReachabilityStatus == .twoG || currentReachabilityStatus == .threeG {
-            print("======== connection lente détectée \(currentReachabilityStatus)")
-        }
         if case .update = self.typeOfCall {
             let vaccineId = vaccineItem?.objectID
             let vaccineToSave = Model.shared.getObjectByIdVaccine(objectId: vaccineId!)
@@ -398,11 +396,8 @@ extension VaccineViewController {
         vaccineToSave.vaccineSwitchDiseases = petDiseasesSwitch
         vaccineToSave.vaccineDone = vaccineDoneSwitch.isOn
         vaccineToSave.vaccinePet = petItem?.petRecordID
-        do {
-        try AppDelegate.viewContext.save()
-        } catch {
-            print("Error saving vaccine")
-        }
+//        toDoStorageManager.save()
+        try? AppDelegate.viewContext.save()
     }
     private func checkVaccineComplete() {
         guard let vaccineInjection = vaccineInjectionField.text else {
@@ -449,6 +444,9 @@ extension VaccineViewController {
     private func createObserverDatePickerVaccineDate() {
         datePickerVaccineDate = UIDatePicker()
         datePickerVaccineDate?.datePickerMode = .date
+        if #available(iOS 14.0, *) {
+            datePickerVaccineDate?.preferredDatePickerStyle = .inline
+        }
         datePickerVaccineDate?.locale = localeLanguage
         datePickerVaccineDate?.addTarget(self,
                                        action: #selector(VaccineViewController.dateChangedVaccineDate(datePicker:)),

@@ -71,22 +71,16 @@ class ConfirmConsultationSuppresViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case .calendarAccessDeniedOrRestricted:
-                        print("'=============== calendarAccessDeniedOrRestricted")
                         self.getErrors(type: .calendarAccessDeniedOrRestricted)
                     case .eventNotAddedToCalendar:
-                        print("'=============== eventNotAddedToCalendar")
                         self.getErrors(type: .eventNotAddedToCalendar)
                     case .eventAlreadyExistsInCalendar:
-                        print("'=============== eventAlreadyExistsInCalendar")
                         self.getErrors(type: .eventAlreadyExistsInCalendar)
                     case .eventDoesntExistInCalendar:
-                        print("'=============== eventDoesntExistInCalendar")
                         self.getErrors(type: .eventDoesntExistInCalendar)
                     case .eventNotUpdatedToCalendar:
-                        print("'=============== eventNotUpdatedToCalendar")
                         self.getErrors(type: .eventNotUpdatedToCalendar)
                     case .eventNotSuppressedToCalendar:
-                        print("'=============== eventNotSuppressedToCalendar")
                         self.getErrors(type: .eventNotSuppressedToCalendar)
                     }
                 }
@@ -97,6 +91,7 @@ class ConfirmConsultationSuppresViewController: UIViewController {
     }
     private func getSuppressConsultationIcloud() {
         let consultationToDelete = Model.shared.getObjectByIdConsultation(objectId: consultationObjectId!)
-        try AppDelegate.viewContext.delete(consultationToDelete!)
+        AppDelegate.viewContext.delete(consultationToDelete!)
+        try? AppDelegate.viewContext.save()
     }
 }

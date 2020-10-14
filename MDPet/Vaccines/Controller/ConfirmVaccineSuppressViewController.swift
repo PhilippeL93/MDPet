@@ -59,6 +59,7 @@ class ConfirmVaccineSuppressViewController: UIViewController {
     }
     private func getSuppressVaccine() {
         let vaccineToDelete = Model.shared.getObjectByIdVaccine(objectId: vaccineObjectId!)
-        try AppDelegate.viewContext.delete(vaccineToDelete!)
+        AppDelegate.viewContext.delete(vaccineToDelete!)
+        try? AppDelegate.viewContext.save()
     }
 }

@@ -63,9 +63,6 @@ class PetViewController: UIViewController {
     private var typeFieldOrView: String = ""
     private var selectedVeterinaryName = ""
 
-    var veterinariesList = VeterinariesItem.fetchAll()
-    var typeOfCall: TypeOfCall?
-    var petItem: PetsItem?
     private var veterinariesItem: [VeterinariesItem] = []
     private var oneFieldHasBeenUpdated = false
     private var petImageSelected: UIImage?
@@ -73,7 +70,11 @@ class PetViewController: UIViewController {
     private var dateSelected = ""
     private var petObjectId: NSManagedObjectID?
 
+    var veterinariesList = VeterinariesItem.fetchAll()
+    var typeOfCall: TypeOfCall?
+    var petItem: PetsItem?
     var imagePicker: ImagePicker!
+    var toDoStorageManager = ToDoStorageManager()
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -390,6 +391,8 @@ class PetViewController: UIViewController {
                         }
                     }
                 }
+            } else {
+                selectedVeterinaryRecordID = ""
             }
         }
         @objc func petRaceFieldDidEnd(_ textField: UITextField) {
@@ -773,6 +776,9 @@ extension PetViewController {
     private func createObserverDatePickerBirthDate() {
         datePickerBirthDate = UIDatePicker()
         datePickerBirthDate?.datePickerMode = .date
+        if #available(iOS 14.0, *) {
+            datePickerBirthDate?.preferredDatePickerStyle = .inline
+        }
         datePickerBirthDate?.locale = localeLanguage
         datePickerBirthDate?.addTarget(self,
                                        action: #selector(PetViewController.birthDateValueChanged(datePicker:)),
@@ -787,6 +793,9 @@ extension PetViewController {
     private func createObserverDatePickerSterilized() {
         datePickerSterilizedDate = UIDatePicker()
         datePickerSterilizedDate?.datePickerMode = .date
+        if #available(iOS 14.0, *) {
+            datePickerSterilizedDate?.preferredDatePickerStyle = .inline
+        }
         datePickerSterilizedDate?.locale = localeLanguage
         datePickerSterilizedDate?.addTarget(self,
                                        action: #selector(PetViewController.dateChangedSterilized(datePicker:)),
@@ -801,6 +810,9 @@ extension PetViewController {
     private func createObserverDatePickerWeaning() {
         datePickerWeaningDate = UIDatePicker()
         datePickerWeaningDate?.datePickerMode = .date
+        if #available(iOS 14.0, *) {
+            datePickerWeaningDate?.preferredDatePickerStyle = .inline
+        }
         datePickerWeaningDate?.locale = localeLanguage
         datePickerWeaningDate?.addTarget(self,
                                        action: #selector(PetViewController.dateChangedWeaning(datePicker:)),
@@ -810,6 +822,9 @@ extension PetViewController {
     private func createObserverDatePickerDeathDate() {
         datePickerDeathDate = UIDatePicker()
         datePickerDeathDate?.datePickerMode = .date
+        if #available(iOS 14.0, *) {
+            datePickerDeathDate?.preferredDatePickerStyle = .inline
+        }
         datePickerDeathDate?.locale = localeLanguage
         datePickerDeathDate?.addTarget(self,
                                        action: #selector(PetViewController.dateChangedDeathDate(datePicker:)),
@@ -870,9 +885,6 @@ extension PetViewController {
 }
 extension PetViewController {
     private func createOrUpdatePet() {
-        if currentReachabilityStatus == .twoG || currentReachabilityStatus == .threeG {
-            print("======== connection lente détectée \(currentReachabilityStatus)")
-        }
         if case .update = self.typeOfCall {
             let petId = petItem!.objectID
             let petToSave = Model.shared.getObjectByIdPet(objectId: petId)
@@ -912,13 +924,18 @@ extension PetViewController {
             petToSave.petDeathDate = dateFormatter.date(from: petDeathDateField.text ?? "")
         }
         petToSave.petColor = String(petColorField.text ?? "")
-        petToSave.petBreeder = String(petBreederView.text ?? "")
+        if petBreederView.text != "Eleveur" {
+            petToSave.petBreeder = String(petBreederView.text ?? "")
+        } else {
+            petToSave.petBreeder = ""
+        }
         petToSave.petURLBreeder = String(petURLBreederField.text ?? "")
         petToSave.petParticularSigns = String(petParticularSignsField.text ?? "")
         petToSave.petPedigree = petPedigreeSwitch.isOn
         petToSave.petPedigreeNumber = String(petPedigreeNumberField.text ?? "")
         petToSave.petMotherName = String(petMotherNameField.text ?? "")
         petToSave.petFatherName = String(petFatherNameField.text ?? "")
+//        toDoStorageManager.save()
         try? AppDelegate.viewContext.save()
     }
     private func getVaccines() {
@@ -945,7 +962,7 @@ extension PetViewController {
             as? ConfirmPetSuppressViewController else {
                 return
         }
-        destVC.petObjectId = petObjectId
+        destVC.petItem = petItem
         self.addChild(destVC)
         destVC.view.frame = self.view.frame
         self.view.addSubview(destVC.view)
@@ -994,6 +1011,7 @@ extension PetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerViewVeterinary {
+            veterinariesList = VeterinariesItem.fetchAll()
             return veterinariesList.count
         } else {
             switch petTypeSegmentedControl.selectedSegmentIndex {
@@ -1012,6 +1030,7 @@ extension PetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerViewVeterinary {
+            veterinariesList = VeterinariesItem.fetchAll()
             return veterinariesList[row].veterinaryName
         } else {
             switch petTypeSegmentedControl.selectedSegmentIndex {
@@ -1030,6 +1049,7 @@ extension PetViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerViewVeterinary {
+            veterinariesList = VeterinariesItem.fetchAll()
             selectedVeterinaryObjectID = veterinariesList[row].objectID
             selectedVeterinaryRecordID = veterinariesList[row].veterinaryRecordID
             petVeterinaryField.text =  veterinariesList[row].veterinaryName
