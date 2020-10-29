@@ -14,7 +14,7 @@ extension UIViewController {
     func showActivityIndicator(onView: UIView) {
         let activityView = UIView.init(frame: onView.bounds)
         activityView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let activityIndicator = UIActivityIndicatorView.init(style: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView.init(style: .large)
         activityIndicator.startAnimating()
         activityIndicator.center = activityView.center
 

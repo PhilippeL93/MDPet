@@ -15,7 +15,7 @@ class VaccineViewController: UIViewController {
     @IBOutlet weak var tableView: SelfSizedTableView!
     @IBOutlet weak var vaccinePetNameLabel: UILabel!
     @IBOutlet weak var vaccineInjectionField: UITextField!
-    @IBOutlet weak var vaccineDateField: UITextField!
+//    @IBOutlet weak var vaccineDateField: UITextField!
     @IBOutlet weak var vaccineNameField: UITextField!
     @IBOutlet weak var vaccineVeterinaryField: UITextField!
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -23,6 +23,7 @@ class VaccineViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var vaccineDoneSwitch: UISwitch!
     @IBOutlet weak var suppressVaccineButton: UIButton!
+    @IBOutlet weak var vaccineDatePicker: UIDatePicker!
 
     // MARK: - variables
     private var vaccineInjection: UITextField?
@@ -48,6 +49,7 @@ class VaccineViewController: UIViewController {
     private var thumbnailImageSelected: UIImage?
     private var dateItem = ""
     private var dateSelected = ""
+    private var vaccineDateToSave: Date?
     private var vaccineObjectId: NSManagedObjectID?
     private var petObjectIdString = ""
 
@@ -60,6 +62,7 @@ class VaccineViewController: UIViewController {
     var vaccineItem: VaccinesItem?
     var imagePicker: ImagePicker!
     var toDoStorageManager = ToDoStorageManager()
+    var datePicker: UIDatePicker?
 
     private var fieldsUpdated: [String: Bool] = [:] {
         didSet {
@@ -106,19 +109,20 @@ class VaccineViewController: UIViewController {
             pickerViewVeterinary.selectRow(0, inComponent: 0, animated: true)
         }
     }
-    @IBAction func vaccineDateEditingDidBegin(_ sender: Any) {
-        formatDate()
-        if vaccineDateField.text!.isEmpty {
-            let date = Date()
-            vaccineDateField.text = dateFormatter.string(from: date)
-        } else {
-            let vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
-            datePickerVaccineDate?.date = vaccineDate!
-        }
-    }
+//    @IBAction func vaccineDateEditingDidBegin(_ sender: Any) {
+//        formatDate()
+//        if vaccineDateField.text!.isEmpty {
+//            let date = Date()
+//            vaccineDateField.text = dateFormatter.string(from: date)
+//        } else {
+//            let vaccineDate = dateFormatter.date(from: vaccineDateField.text!)
+//            datePickerVaccineDate?.date = vaccineDate!
+//        }
+//    }
     // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
+        customDatePicker()
         dateFormatter.locale = localeLanguage
         createObserverVaccine()
         createDelegateVaccine()
@@ -188,10 +192,32 @@ class VaccineViewController: UIViewController {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineInjectionUpdated")
         }
     }
-    @objc func dateChangedVaccineDate(datePicker: UIDatePicker) {
-        vaccineDateField.text = dateFormatter.string(from: datePicker.date)
-        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
-        dateSelected = dateFormatter.string(from: datePicker.date)
+//    @objc func dateChangedVaccineDate(datePicker: UIDatePicker) {
+//        vaccineDateField.text = dateFormatter.string(from: datePicker.date)
+//        dateFormatter.dateFormat = dateFormatyyyyMMddWithDashes
+//        dateSelected = dateFormatter.string(from: datePicker.date)
+//        dateItem = ""
+//        if vaccineItem?.vaccineDate != nil {
+//            dateItem = dateFormatter.string(from: (vaccineItem?.vaccineDate)!)
+//        }
+//        if dateSelected != dateItem {
+//            updateDictionnaryFieldsUpdated(updated: true, forKey: "vaccineDateUpdated")
+//        } else {
+//            updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
+//        }
+//        formatDate()
+//    }
+    @objc func vaccineDateChanged() {
+//        guard let datePickerOne = consultationDatePicker else {
+//            return
+//        }
+//        print("'=============== datePicker \(consultationDatePicker.date)")
+//        guard let datePickerTwo = datePicker else {
+//            return
+//        }
+//        print("'=============== datePickerBis \(datePicker!.date)")
+        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
+        dateSelected = dateFormatter.string(from: vaccineDatePicker!.date)
         dateItem = ""
         if vaccineItem?.vaccineDate != nil {
             dateItem = dateFormatter.string(from: (vaccineItem?.vaccineDate)!)
@@ -201,7 +227,7 @@ class VaccineViewController: UIViewController {
         } else {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "vaccineDateUpdated")
         }
-        formatDate()
+        vaccineDateToSave = vaccineDatePicker?.date
     }
     @objc func vaccineNameFieldDidEnd(_ textField: UITextField) {
         if vaccineNameField.text != vaccineItem?.vaccineName {
@@ -241,16 +267,27 @@ class VaccineViewController: UIViewController {
 }
 extension VaccineViewController {
     // MARK: - functions
+    func customDatePicker() {
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.date = Date()
+        //        datePicker?.locale = .current
+        datePicker?.locale = localeLanguage
+        datePicker?.preferredDatePickerStyle = .compact
+        vaccineDatePicker?.tintColor = UIColor.systemGray
+        vaccineDatePicker?.backgroundColor = UIColor.systemBackground
+    }
     private func createObserverVaccine() {
         createObserverVaccineInjection()
-        createObserverDatePickerVaccineDate()
+//        createObserverDatePickerVaccineDate()
+        createObserverVaccineDatePicker()
         createObserverVaccineName()
         createObserverVeterinaryPickerView()
         createObserverVaccineDoneSwitch()
     }
     private func createDelegateVaccine() {
         vaccineInjectionField.delegate = self
-        vaccineDateField.delegate = self
+//        vaccineDateField.delegate = self
         vaccineNameField.delegate = self
         vaccineVeterinaryField.delegate = self
     }
@@ -315,7 +352,16 @@ extension VaccineViewController {
         vaccineInjectionField.text = vaccineItem?.vaccineInjection
         dateFormatter.dateFormat = dateFormatddMMMMyyyyWithSpaces
         if vaccineItem!.vaccineDate != nil {
-            vaccineDateField.text = dateFormatter.string(from: vaccineItem!.vaccineDate!)
+            vaccineDateToSave = vaccineItem?.vaccineDate
+//            vaccineDateField.text = dateFormatter.string(from: vaccineItem!.vaccineDate!)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+            dateFormatter.locale = localeLanguage
+            let dateString = dateFormatter.string(from: (vaccineItem?.vaccineDate)!)
+
+            let date = dateFormatter.date(from: dateString)
+            vaccineDatePicker?.setDate(date!, animated: false)
+            datePicker?.setDate(date!, animated: false)
         }
         vaccineNameField.text = vaccineItem?.vaccineName
         if vaccineItem?.vaccineDone == true {
@@ -384,8 +430,11 @@ extension VaccineViewController {
     private func updateVaccineStorage(vaccineToSave: VaccinesItem) {
         vaccineToSave.vaccineInjection = String(vaccineInjectionField.text ?? "")
         vaccineToSave.vaccineName = String(vaccineNameField.text ?? "")
-        if !vaccineDateField.text!.isEmpty {
-            vaccineToSave.vaccineDate = dateFormatter.date(from: vaccineDateField.text ?? "")
+//        if !vaccineDateField.text!.isEmpty {
+//            vaccineToSave.vaccineDate = dateFormatter.date(from: vaccineDateField.text ?? "")
+//        }
+        if vaccineDateToSave != nil {
+            vaccineToSave.vaccineDate = vaccineDateToSave
         }
         if thumbnailImageSelected != nil {
             let imageData = thumbnailImageView.image?.pngData()
@@ -412,12 +461,15 @@ extension VaccineViewController {
         guard !vaccineName.isEmpty else {
             return
         }
-        guard let vaccineDate = vaccineDateField.text else {
+//        guard let vaccineDate = vaccineDateField.text else {
+//            return
+//        }
+        guard vaccineDatePicker != nil else {
             return
         }
-        guard !vaccineDate.isEmpty else {
-            return
-        }
+//        guard !vaccineDate.isEmpty else {
+//            return
+//        }
         guard let vaccineVeterinary = vaccineVeterinaryField.text else {
             return
         }
@@ -441,17 +493,10 @@ extension VaccineViewController {
                                          action: #selector(VaccineViewController.vaccineInjectionFieldDidEnd(_:)),
                                          for: .editingDidEnd)
     }
-    private func createObserverDatePickerVaccineDate() {
-        datePickerVaccineDate = UIDatePicker()
-        datePickerVaccineDate?.datePickerMode = .date
-        if #available(iOS 14.0, *) {
-            datePickerVaccineDate?.preferredDatePickerStyle = .inline
-        }
-        datePickerVaccineDate?.locale = localeLanguage
-        datePickerVaccineDate?.addTarget(self,
-                                       action: #selector(VaccineViewController.dateChangedVaccineDate(datePicker:)),
-                                       for: .valueChanged)
-        vaccineDateField.inputView = datePickerVaccineDate
+    private func createObserverVaccineDatePicker() {
+        vaccineDatePicker?.addTarget(self,
+                                          action: #selector(vaccineDateChanged),
+                                          for: .valueChanged)
     }
     private func createObserverVaccineName() {
         vaccineNameField?.addTarget(self,

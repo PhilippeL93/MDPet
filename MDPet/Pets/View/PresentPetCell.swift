@@ -28,7 +28,9 @@ class PresentPetCell: UITableViewCell {
         } else {
             petBirthDateLabel.text = ""
         }
-        let imageData = petsItem.petPicture!
+        guard let imageData = petsItem.petPicture else {
+            return callback(true)
+        }
         petPicture.image = UIImage(data: imageData)
         callback(true)
     }

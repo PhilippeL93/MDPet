@@ -14,7 +14,6 @@ class ConsultationViewController: UIViewController {
 
     @IBOutlet weak var consultationPetNameLabel: UILabel!
     @IBOutlet weak var consultationReasonField: UITextField!
-//    @IBOutlet weak var consultationDateField: UITextField!
     @IBOutlet weak var consultationVeterinaryField: UITextField!
     @IBOutlet weak var consultationWeightField: UITextField!
     @IBOutlet weak var consultationReportView: UITextView!
@@ -52,7 +51,6 @@ class ConsultationViewController: UIViewController {
     var petItem: PetsItem?
     var consultationItem: ConsultationsItem?
     var toDoStorageManager = ToDoStorageManager()
-
     var datePicker: UIDatePicker?
 
     private var fieldsUpdated: [String: Bool] = [:] {
@@ -94,27 +92,6 @@ class ConsultationViewController: UIViewController {
             pickerViewVeterinary.selectRow(0, inComponent: 0, animated: true)
         }
     }
-//    @IBAction func consultationDateEditingDidBegin(_ sender: Any) {
-//        formatDate()
-//        if consultationDateField.text!.isEmpty {
-//            let calendar = Calendar.current
-//            let rightNow = Date()
-//            let interval = 0
-//            let nextDiff = interval - calendar.component(.minute, from: rightNow)
-//            let date = calendar.date(byAdding: .minute, value: nextDiff, to: rightNow) ?? Date()
-//            consultationDateField.text = dateFormatter.string(from: date)
-//            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-//            consultationDateToSave = date
-//            datePickerConsultationDate?.date = date
-//        } else {
-//            formatDate()
-//            let consultationDate = dateFormatter.date(from: consultationDateField.text!)
-//            datePickerConsultationDate?.date = consultationDate!
-//            dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-//            consultationDateToSave = consultationDate!
-//        }
-//    }
-
 // MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -193,33 +170,7 @@ class ConsultationViewController: UIViewController {
             updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationReasonUpdated")
         }
     }
-//    @objc func dateChangedConsultationDate(datePicker: UIDatePicker) {
-//        consultationDateField.text = dateFormatter.string(from: datePicker.date)
-//        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-//        dateSelected = dateFormatter.string(from: datePicker.date)
-//        dateItem = ""
-//        if consultationItem?.consultationDate != nil {
-//            dateItem = dateFormatter.string(from: (consultationItem?.consultationDate)!)
-//        }
-//        if dateSelected != dateItem {
-//            updateDictionnaryFieldsUpdated(updated: true, forKey: "consultationDateUpdated")
-//        } else {
-//            updateDictionnaryFieldsUpdated(updated: false, forKey: "consultationDateUpdated")
-//        }
-//        dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
-//        consultationDateToSave = datePicker.date
-//        formatDate()
-//        consultationDateField.text = dateFormatter.string(from: datePicker.date)
-//    }
     @objc func consultationDateChanged() {
-//        guard let datePickerOne = consultationDatePicker else {
-//            return
-//        }
-//        print("'=============== datePicker \(consultationDatePicker.date)")
-//        guard let datePickerTwo = datePicker else {
-//            return
-//        }
-//        print("'=============== datePickerBis \(datePicker!.date)")
         dateFormatter.dateFormat = dateFormatyyyyMMddHHmm
         dateSelected = dateFormatter.string(from: consultationDatePicker!.date)
         dateItem = ""
@@ -269,25 +220,20 @@ extension ConsultationViewController {
         datePicker?.datePickerMode = .dateAndTime
         datePicker?.minuteInterval = 5
         datePicker?.date = Date()
-        datePicker?.locale = .current
+//        datePicker?.locale = .current
+        datePicker?.locale = localeLanguage
         datePicker?.preferredDatePickerStyle = .compact
-//        if traitCollection.userInterfaceStyle == .dark {
-            consultationDatePicker?.tintColor = UIColor.systemGray
-//        } else {
-//            consultationDatePicker?.tintColor = UIColor.black
-//        }
-        consultationDatePicker?.backgroundColor = UIColor.systemBackground
+//        consultationDatePicker?.tintColor = UIColor.systemGray
+//        consultationDatePicker?.backgroundColor = UIColor.systemBackground
     }
     private func createObserverConsultation() {
         createObserverConsultationReason()
-//        createObserverConsultationDatePickerView()
-        createObserverConsultationdatePicker()
+        createObserverConsultationDatePicker()
         createObserverConsultationVeterinaryPickerView()
         createObserverConsultationWeight()
     }
     private func createDelegateConsultation() {
         consultationReasonField.delegate = self
-//        consultationDateField.delegate = self
         consultationVeterinaryField.delegate = self
         consultationWeightField.delegate = self
         consultationReportView.delegate = self
@@ -518,22 +464,7 @@ extension ConsultationViewController {
                                                 #selector(ConsultationViewController.consultationReasonFieldDidEnd(_:)),
                                          for: .editingDidEnd)
     }
-//    private func createObserverConsultationDatePickerView() {
-//        datePickerConsultationDate = UIDatePicker()
-//        datePickerConsultationDate?.datePickerMode = .dateAndTime
-//        if #available(iOS 14.0, *) {
-//            datePickerConsultationDate?.preferredDatePickerStyle = .inline
-//            datePickerConsultationDate?.sizeToFit()
-//        }
-//        datePickerConsultationDate?.minuteInterval = 5
-//        datePickerConsultationDate?.locale = localeLanguage
-//        datePickerConsultationDate?.addTarget(self,
-//                                       action: #selector(
-//                                        ConsultationViewController.dateChangedConsultationDate(datePicker:)),
-//                                       for: .valueChanged )
-//        consultationDateField.inputView = datePickerConsultationDate
-//    }
-    private func createObserverConsultationdatePicker() {
+    private func createObserverConsultationDatePicker() {
         consultationDatePicker?.addTarget(self,
                                           action: #selector(consultationDateChanged),
                                           for: .valueChanged)
